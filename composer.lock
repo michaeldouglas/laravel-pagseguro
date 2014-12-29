@@ -4,8 +4,58 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2baf68d3dd7840a6d82e21377ad6c7fc",
+    "hash": "0cc4cb3f8dffbec75d1fa65d9961b049",
     "packages": [
+        {
+            "name": "nategood/httpful",
+            "version": "0.2.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nategood/httpful.git",
+                "reference": "7beda470b57250f60ce1b0179c5551620c3e43e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nategood/httpful/zipball/7beda470b57250f60ce1b0179c5551620c3e43e6",
+                "reference": "7beda470b57250f60ce1b0179c5551620c3e43e6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Httpful": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nate Good",
+                    "email": "me@nategood.com",
+                    "homepage": "http://nategood.com"
+                }
+            ],
+            "description": "A Readable, Chainable, REST friendly, PHP HTTP Client",
+            "homepage": "http://github.com/nategood/httpful",
+            "keywords": [
+                "api",
+                "curl",
+                "http",
+                "requests",
+                "rest",
+                "restful"
+            ],
+            "time": "2014-08-24 21:57:36"
+        },
         {
             "name": "slim/slim",
             "version": "2.5.0",

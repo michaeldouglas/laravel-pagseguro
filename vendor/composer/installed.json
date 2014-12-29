@@ -696,5 +696,57 @@
             "testing",
             "xunit"
         ]
+    },
+    {
+        "name": "nategood/httpful",
+        "version": "0.2.17",
+        "version_normalized": "0.2.17.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/nategood/httpful.git",
+            "reference": "7beda470b57250f60ce1b0179c5551620c3e43e6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/nategood/httpful/zipball/7beda470b57250f60ce1b0179c5551620c3e43e6",
+            "reference": "7beda470b57250f60ce1b0179c5551620c3e43e6",
+            "shasum": ""
+        },
+        "require": {
+            "ext-curl": "*",
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "*"
+        },
+        "time": "2014-08-24 21:57:36",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Httpful": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nate Good",
+                "email": "me@nategood.com",
+                "homepage": "http://nategood.com"
+            }
+        ],
+        "description": "A Readable, Chainable, REST friendly, PHP HTTP Client",
+        "homepage": "http://github.com/nategood/httpful",
+        "keywords": [
+            "api",
+            "curl",
+            "http",
+            "requests",
+            "rest",
+            "restful"
+        ]
     }
 ]

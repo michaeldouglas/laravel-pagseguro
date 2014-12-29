@@ -9,4 +9,5 @@ return array(
     'laraPagSeguro' => array($baseDir . '/src'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Slim' => array($vendorDir . '/slim/slim'),
+    'Httpful' => array($vendorDir . '/nategood/httpful/src'),
 );
