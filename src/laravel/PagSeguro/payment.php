@@ -12,7 +12,7 @@
  * @copyright  Laravel\PagSeguro
  */
 
-namespace Laravel\Pagseguro;
+namespace laravel\pagseguro;
 
 class payment{
     

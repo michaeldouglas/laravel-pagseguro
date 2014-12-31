@@ -30,9 +30,9 @@ $dados = array(
     'shippingAddressCountry' => 'BRA'
 );
 
-$p = new \Laravel\Pagseguro\payment;
+$p = new laravel\pagseguro\payment;
 
-echo 'tdsgfds';
+echo 'Teste';
 
 /*
 $url = "https://ws.pagseguro.uol.com.br/v2/checkout";
