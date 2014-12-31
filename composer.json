@@ -7,6 +7,10 @@
     "version": "0.3.0",
     "require": {
         "php": ">=5.3.0",
+        "ext-curl": "*",
+        "lib-curl": "*",
+        "lib-openssl": "*",
+        "lib-libxml": "*",
         "illuminate/support": "4.2.*"
     },
     "require-dev": {
