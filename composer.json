@@ -1,5 +1,5 @@
 {
-    "name": "laravel/PagSeguro",
+    "name": "laravel-pagseguro",
     "description": "Biblioteca de integração com o Gateway de pagamento PagSeguro.",
     "keywords": ["framework", "laravel", "Gateway Pagamento PagSeguro Laravel"],
     "license": "MIT",
