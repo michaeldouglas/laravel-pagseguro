@@ -32,7 +32,7 @@ $dados = array(
 
 $p = new laravel\pagseguro\payment;
 
-echo 'Teste';
+echo 'Teste - 1';
 
 /*
 $url = "https://ws.pagseguro.uol.com.br/v2/checkout";
