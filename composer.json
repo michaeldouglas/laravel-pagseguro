@@ -1,7 +1,7 @@
 {
     "name": "michael/laravelpagseguro",
     "description": "Biblioteca de integração com o Gateway de pagamento PagSeguro.",
-    "keywords": ["framework", "laravel", "Gateway Pagamento PagSeguro Laravel"],
+    "keywords": ["framework", "laravel-pagseguro", "Gateway Pagamento PagSeguro Laravel"],
     "license": "MIT",
     "type": "library",
     "version": "0.1",
