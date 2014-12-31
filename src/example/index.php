@@ -27,12 +27,13 @@ $dados = array(
 );
 
 
-$p = new laravel\pagseguro\Payment;
-
+$payment = new laravel\pagseguro\Payment;
 try{
-    $p->setAddItem($dados);
-    echo "<pre> - - ";
-    print_r($p->getPaymentItems());
+    $payment->setPaymentCurrency('BRL')
+            ->setPaymentReference('REF1')
+            ->setAddItem($dados);
+    echo "<pre>";
+    print_r($payment->getPaymentItems());
 }  catch (\Exception $e){
     print_r($e);
 }

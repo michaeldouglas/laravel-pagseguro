@@ -21,9 +21,11 @@ class Payment extends Request
 {
 
     protected $dataItem;
-    private $item = array();
-    private $items = array();
-    private $childrenItems = array();
+    private   $reference = NULL;
+    private   $currency = NULL;
+    private   $item = array();
+    private   $items = array();
+    private   $childrenItems = array();
     
     
     /**
@@ -102,6 +104,31 @@ class Payment extends Request
             $this->items = $this->item[0]['items'];
         }else{
             $this->items = array();
+        }
+    }
+    
+    /**
+     * Cria uma referencia para o seu pagamento sera utilizar para indentificar o pagamento
+     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @return object|null
+     */
+    public function setPaymentReference($reference = NULL){
+        if(!is_null($reference)){
+            $this->reference = $reference;
+            return $this;
+        }
+    }
+    
+    /**
+     * Seta a moeda a ser utilizada para o pagamento
+     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @return object|null
+     */
+    public function setPaymentCurrency($currency = NULL)
+    {
+        if(!is_null($currency)){
+           $this->currency = $currency;
+            return $this; 
         }
     }
 }

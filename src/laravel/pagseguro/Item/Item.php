@@ -34,27 +34,31 @@ class Item
         if (!is_null($item) && is_array($item)) {
             switch ($item) {
                 case isset($item['id']):
-                    $this->id = $item['id'];
+                    $this->id = $this->setVerifyKeyItem($item, 'id');
                 case isset($item['description']):
-                    $this->description = $item['description'];
+                    $this->description = $this->setVerifyKeyItem($item, 'description');
 
                 case isset($item['quantity']):
-                    $this->quantity = $item['quantity'];
+                    $this->quantity = $this->setVerifyKeyItem($item, 'quantity');
 
                 case isset($item['amount']):
-                    $this->amount = $item['amount'];
+                    $this->amount = $this->setVerifyKeyItem($item, 'amount');
 
                 case isset($item['weight']):
-                    $this->weight = $item['weight'];
+                    $this->weight = $this->setVerifyKeyItem($item, 'weight');
 
                 case isset($item['shippingCost']):
-                    $this->shippingCost = $item['shippingCost'];
+                    $this->shippingCost = $this->setVerifyKeyItem($item, 'shippingCost');
                     break;
                 
                 default:
                     throw new Exception('Nenhum parametro encontrado!');
             }
         }
+    }
+    
+    private function setVerifyKeyItem($item, $key){
+        return (array_key_exists($key, $item) ? $item[$key] : null);
     }
 
     public function getItemId()
