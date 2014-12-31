@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8d9afdc3811f64e61cd5187fadd97cae",
+    "hash": "6fbd86903b38b09e80e3f13e5e08a9f2",
     "packages": [
         {
             "name": "illuminate/support",
@@ -685,7 +685,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "laravel/pagseguro": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
