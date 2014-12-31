@@ -1,53 +1,5 @@
 [
     {
-        "name": "slim/slim",
-        "version": "2.5.0",
-        "version_normalized": "2.5.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/codeguy/Slim.git",
-            "reference": "04958a10ed95bc7bc97568e573877d4f9b62db48"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/codeguy/Slim/zipball/04958a10ed95bc7bc97568e573877d4f9b62db48",
-            "reference": "04958a10ed95bc7bc97568e573877d4f9b62db48",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "suggest": {
-            "ext-mcrypt": "Required for HTTP cookie encryption"
-        },
-        "time": "2014-12-09 19:59:29",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Slim": "."
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Josh Lockhart",
-                "email": "info@joshlockhart.com",
-                "homepage": "http://www.joshlockhart.com/"
-            }
-        ],
-        "description": "Slim Framework, a PHP micro framework",
-        "homepage": "http://github.com/codeguy/Slim",
-        "keywords": [
-            "microframework",
-            "rest",
-            "router"
-        ]
-    },
-    {
         "name": "sebastian/version",
         "version": "1.0.3",
         "version_normalized": "1.0.3.0",
@@ -698,34 +650,43 @@
         ]
     },
     {
-        "name": "nategood/httpful",
-        "version": "0.2.17",
-        "version_normalized": "0.2.17.0",
+        "name": "illuminate/support",
+        "version": "v4.2.16",
+        "version_normalized": "4.2.16.0",
+        "target-dir": "Illuminate/Support",
         "source": {
             "type": "git",
-            "url": "https://github.com/nategood/httpful.git",
-            "reference": "7beda470b57250f60ce1b0179c5551620c3e43e6"
+            "url": "https://github.com/illuminate/support.git",
+            "reference": "015f51f4d8cb3d9a29e7fe7932843acf15232941"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nategood/httpful/zipball/7beda470b57250f60ce1b0179c5551620c3e43e6",
-            "reference": "7beda470b57250f60ce1b0179c5551620c3e43e6",
+            "url": "https://api.github.com/repos/illuminate/support/zipball/015f51f4d8cb3d9a29e7fe7932843acf15232941",
+            "reference": "015f51f4d8cb3d9a29e7fe7932843acf15232941",
             "shasum": ""
         },
         "require": {
-            "ext-curl": "*",
-            "php": ">=5.3"
+            "php": ">=5.4.0"
         },
         "require-dev": {
-            "phpunit/phpunit": "*"
+            "jeremeamia/superclosure": "~1.0.1",
+            "patchwork/utf8": "1.1.*"
         },
-        "time": "2014-08-24 21:57:36",
+        "time": "2014-12-19 18:02:33",
         "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.2-dev"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
             "psr-0": {
-                "Httpful": "src/"
-            }
+                "Illuminate\\Support": ""
+            },
+            "files": [
+                "Illuminate/Support/helpers.php"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -733,20 +694,9 @@
         ],
         "authors": [
             {
-                "name": "Nate Good",
-                "email": "me@nategood.com",
-                "homepage": "http://nategood.com"
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
             }
-        ],
-        "description": "A Readable, Chainable, REST friendly, PHP HTTP Client",
-        "homepage": "http://github.com/nategood/httpful",
-        "keywords": [
-            "api",
-            "curl",
-            "http",
-            "requests",
-            "rest",
-            "restful"
         ]
     }
 ]

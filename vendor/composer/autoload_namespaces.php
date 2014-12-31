@@ -6,8 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'laraPagSeguro' => array($baseDir . '/src'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
-    'Slim' => array($vendorDir . '/slim/slim'),
-    'Httpful' => array($vendorDir . '/nategood/httpful/src'),
+    'Laravel\\Pagseguro\\' => array($baseDir . '/src'),
+    'Illuminate\\Support' => array($vendorDir . '/illuminate/support'),
 );
