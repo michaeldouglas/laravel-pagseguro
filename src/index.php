@@ -1,7 +1,8 @@
 <?php
-
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/bootstrap.php';
+
+ini_set('display_errors','On');
+error_reporting(E_ALL);
 
 $dados = array(
     // -> PRODUTO
@@ -29,7 +30,11 @@ $dados = array(
     'shippingAddressCountry' => 'BRA'
 );
 
+$p = new \Laravel\Pagseguro\payment;
 
+echo 'tdsgfds';
+
+/*
 $url = "https://ws.pagseguro.uol.com.br/v2/checkout";
 $response = \Httpful\Request::post($url)
         ->body(http_build_query($dados))
@@ -41,3 +46,4 @@ $response = \Httpful\Request::post($url)
 $codeCompra = (string) $response->body->code[0];
 
 echo "<a href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code={$codeCompra}\">Redirecionar</a>";
+ * */
