@@ -23,15 +23,28 @@ $dados = array(
             'weight' => '100',
             'shippingCost' => null
         )
+    ),
+    'address' => array(
+        'cep'         => '04433130',
+        'rua'         => 'Rua benjamin vieira da silva',
+        'numero'      => '1077',
+        'complemento' => '',
+        'bairro'      => 'Centro',
+        'cidade'      => 'São Paulo',
+        'estado'      => 'SP',
+        'pais'        => 'BRA',
     )
 );
-
 
 $payment = new laravel\pagseguro\Payment;
 try{
     $payment->setPaymentCurrency('BRL')
             ->setPaymentReference('REF1')
-            ->setAddItem($dados);
+            ->setPaymentShippingType(1);
+
+    $payment->setPaymentAddress($dados);
+    $payment->setAddItem($dados);
+    
     echo "<pre>";
     print_r($payment->getPaymentItems());
 }  catch (\Exception $e){

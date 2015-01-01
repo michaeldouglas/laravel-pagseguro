@@ -21,13 +21,13 @@ class Payment extends Request
 {
 
     protected $dataItem;
-    private   $reference = NULL;
-    private   $currency = NULL;
-    private   $item = array();
-    private   $items = array();
-    private   $childrenItems = array();
-    
-    
+    private $reference = 'REF1';
+    private $currency = 'BRL';
+    private $shipping = NULL;
+    private $item = array();
+    private $items = array();
+    private $childrenItems = array();
+
     /**
      * Irá verificar se os dados de item fornecidos estão válidos e também
      * se no item contém mais de uma requisição de compra
@@ -39,7 +39,7 @@ class Payment extends Request
         $this->setValidateItem($dataItem);
         $this->setVerifyItem();
     }
-    
+
     /**
      * Validação dos dados de item
      * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
@@ -53,7 +53,7 @@ class Payment extends Request
             $this->dataItem = $dataItem;
         }
     }
-    
+
     /**
      * Retorna os items setados na adição
      * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
@@ -63,7 +63,7 @@ class Payment extends Request
     {
         return $this->items;
     }
-    
+
     /**
      * Verifica se o item e de um produto único ou se é um pacote de compra
      * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
@@ -81,7 +81,7 @@ class Payment extends Request
         array_push($this->item, $this->childrenItems);
         $this->setCreateItems();
     }
-    
+
     /**
      * Insere mais de um item a requisição de compra
      * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
@@ -93,32 +93,34 @@ class Payment extends Request
             $this->childrenItems[$iteratorPayments->key()][$key] = new Item($value);
         }
     }
-    
+
     /**
      * Cria o objeto de item
      * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
      * @return object|array
      */
-    private function setCreateItems(){
-        if( (array_key_exists(0, $this->item) && array_key_exists('items', $this->item[0])) == true ){
+    private function setCreateItems()
+    {
+        if ((array_key_exists(0, $this->item) && array_key_exists('items', $this->item[0])) == true) {
             $this->items = $this->item[0]['items'];
-        }else{
+        } else {
             $this->items = array();
         }
     }
-    
+
     /**
      * Cria uma referencia para o seu pagamento sera utilizar para indentificar o pagamento
      * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
      * @return object|null
      */
-    public function setPaymentReference($reference = NULL){
-        if(!is_null($reference)){
+    public function setPaymentReference($reference = NULL)
+    {
+        if (!is_null($reference)) {
             $this->reference = $reference;
             return $this;
         }
     }
-    
+
     /**
      * Seta a moeda a ser utilizada para o pagamento
      * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
@@ -126,9 +128,33 @@ class Payment extends Request
      */
     public function setPaymentCurrency($currency = NULL)
     {
-        if(!is_null($currency)){
-           $this->currency = $currency;
-            return $this; 
+        if (!is_null($currency)) {
+            $this->currency = $currency;
+            return $this;
         }
     }
+
+    public function setPaymentShippingType($shippingType = NULL)
+    {
+        if (!is_null($shippingType)) {
+            $this->shipping = $shippingType;
+            return $this;
+        }
+    }
+    
+    public function getCurrency(){
+        return $this->currency;
+    }
+    
+    public function getShipping(){
+        return $this->shipping;
+    }
+    /**
+     * 
+     * @todo Concluir a criação da lógica de separação do endereço!!!!!
+     */
+    public function setPaymentAddress(array $Address = null){
+        print_r($Address['address']);
+    }
+    
 }

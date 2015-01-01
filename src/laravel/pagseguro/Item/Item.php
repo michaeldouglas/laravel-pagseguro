@@ -29,7 +29,7 @@ class Item
      * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
      * @return void
      */
-    public function __construct(array $item = null)
+    public function __construct($item = null)
     {
         if (!is_null($item) && is_array($item)) {
             switch ($item) {
