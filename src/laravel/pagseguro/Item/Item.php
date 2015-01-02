@@ -14,6 +14,8 @@
 
 namespace laravel\pagseguro\Item;
 
+use laravel\pagseguro\Helper\Helper;
+
 class Item
 {
 
@@ -34,21 +36,21 @@ class Item
         if (!is_null($item) && is_array($item)) {
             switch ($item) {
                 case isset($item['id']):
-                    $this->id = $this->setVerifyKeyItem($item, 'id');
+                    $this->id = Helper::setVerifyKeyItem($item, 'id');
                 case isset($item['description']):
-                    $this->description = $this->setVerifyKeyItem($item, 'description');
+                    $this->description = Helper::setVerifyKeyItem($item, 'description');
 
                 case isset($item['quantity']):
-                    $this->quantity = $this->setVerifyKeyItem($item, 'quantity');
+                    $this->quantity = Helper::setVerifyKeyItem($item, 'quantity');
 
                 case isset($item['amount']):
-                    $this->amount = $this->setVerifyKeyItem($item, 'amount');
+                    $this->amount = Helper::setVerifyKeyItem($item, 'amount');
 
                 case isset($item['weight']):
-                    $this->weight = $this->setVerifyKeyItem($item, 'weight');
+                    $this->weight = Helper::setVerifyKeyItem($item, 'weight');
 
                 case isset($item['shippingCost']):
-                    $this->shippingCost = $this->setVerifyKeyItem($item, 'shippingCost');
+                    $this->shippingCost = Helper::setVerifyKeyItem($item, 'shippingCost');
                     break;
                 
                 default:

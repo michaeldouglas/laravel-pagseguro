@@ -15,18 +15,20 @@
 namespace laravel\pagseguro;
 
 use laravel\pagseguro\Request\Request,
-    laravel\pagseguro\Item\Item;
+    laravel\pagseguro\Item\Item,
+    laravel\pagseguro\Address\Address;
 
 class Payment extends Request
 {
 
     protected $dataItem;
-    private $reference = 'REF1';
-    private $currency = 'BRL';
-    private $shipping = NULL;
-    private $item = array();
-    private $items = array();
-    private $childrenItems = array();
+    private   $reference = 'REF1';
+    private   $currency = 'BRL';
+    private   $shipping = NULL;
+    private   $item = array();
+    private   $items = array();
+    private   $childrenItems = array();
+    protected $address = array();
 
     /**
      * Irá verificar se os dados de item fornecidos estão válidos e também
@@ -154,7 +156,9 @@ class Payment extends Request
      * @todo Concluir a criação da lógica de separação do endereço!!!!!
      */
     public function setPaymentAddress(array $Address = null){
-        print_r($Address['address']);
+        if(array_key_exists('address', $Address) && !is_null($Address)){
+            $this->address = new Address($Address['address']);
+        }
     }
     
 }
