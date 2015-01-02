@@ -6,3 +6,17 @@
 
 O laravel-pagseguro consome a API do PagSeguro e prove uma forma 
 simples de gerar o pagamento, a notificação e as transações de sua loja ou etc.
+
+## Instalação
+
+Para instalação principal abra o arquivo (composer.json) e insira a seguinte instrução:
+
+"require": {
+    "michael/laravelpagseguro": "dev-master"
+}
+
+Para instalação DEV abra o arquivo (composer.json) e insira a seguinte instrução:
+
+"require-dev": {
+    "michael/laravelpagseguro": "dev-master"
+}
