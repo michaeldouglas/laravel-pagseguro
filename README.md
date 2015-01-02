@@ -8,7 +8,7 @@ O laravel-pagseguro consome a API do PagSeguro e prove uma forma
 simples de gerar o pagamento, a notificação e as transações de sua loja ou etc.
 
 ## Manual PagSeguro
-    [http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf](http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf)
+[http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf](http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf)
 
 ## Instalação não DEV
 
