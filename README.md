@@ -12,7 +12,7 @@ simples de gerar o pagamento, a notificação e as transações de sua loja ou e
 
 ## Instalação não DEV
 
-Abra o arquivo (composer.json) e insira a seguinte instrução:
+Abra o arquivo `composer.json` e insira a seguinte instrução:
 
     "require": {
         "michael/laravelpagseguro": "dev-master"
@@ -20,7 +20,7 @@ Abra o arquivo (composer.json) e insira a seguinte instrução:
 
 ## Instalação DEV
 
-Abra o arquivo (composer.json) e insira a seguinte instrução:
+Abra o arquivo `composer.json` e insira a seguinte instrução:
 
     "require-dev": {
         "michael/laravelpagseguro": "dev-master"
