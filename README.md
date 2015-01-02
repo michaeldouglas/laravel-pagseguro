@@ -10,15 +10,17 @@ simples de gerar o pagamento, a notificação e as transações de sua loja ou e
 ## Manual PagSeguro
     http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf
 
-## Instalação
+## Instalação não DEV
 
-Para instalação principal abra o arquivo (composer.json) e insira a seguinte instrução:
+Abra o arquivo (composer.json) e insira a seguinte instrução:
 
     "require": {
         "michael/laravelpagseguro": "dev-master"
     }
 
-Para instalação DEV abra o arquivo (composer.json) e insira a seguinte instrução:
+## Instalação DEV
+
+Abra o arquivo (composer.json) e insira a seguinte instrução:
 
     "require-dev": {
         "michael/laravelpagseguro": "dev-master"
