@@ -28,7 +28,7 @@ class Payment extends Request
     private   $item = array();
     private   $items = array();
     private   $childrenItems = array();
-    protected $address = array();
+    public    $address = array();
 
     /**
      * Irá verificar se os dados de item fornecidos estão válidos e também
@@ -135,7 +135,12 @@ class Payment extends Request
             return $this;
         }
     }
-
+    
+    /**
+     * Seta a forma de envio do produto, por exemplo: SEDEX = 1
+     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @return object|null
+     */
     public function setPaymentShippingType($shippingType = NULL)
     {
         if (!is_null($shippingType)) {
@@ -148,17 +153,34 @@ class Payment extends Request
         return $this->currency;
     }
     
+    
+    /**
+     * Obtém a forma de envio
+     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @return object
+     */
     public function getShipping(){
         return $this->shipping;
     }
+    
     /**
-     * 
-     * @todo Concluir a criação da lógica de separação do endereço!!!!!
+     * Criação do objeto de endereço de envio
+     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @return object
      */
-    public function setPaymentAddress(array $Address = null){
+    public function setPaymentAddress(array $Address = NULL){
         if(array_key_exists('address', $Address) && !is_null($Address)){
             $this->address = new Address($Address['address']);
         }
     }
     
+    /**
+     * Obtém o endereço de envio do pagamento
+     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @return object
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
 }

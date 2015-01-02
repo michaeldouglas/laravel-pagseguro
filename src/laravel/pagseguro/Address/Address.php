@@ -66,7 +66,7 @@ class Address
             }
         }
     }
-    
+      
     public function getItemPostalCode()
     {
         return $this->postalCode;

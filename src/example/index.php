@@ -38,7 +38,10 @@ $dados = array(
 
 $payment = new laravel\pagseguro\Payment;
 try{
-    $payment->setPaymentCurrency('BRL')
+    $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
+    
+    $payment
+            ->setPaymentCurrency('BRL')
             ->setPaymentReference('REF1')
             ->setPaymentShippingType(1);
 
