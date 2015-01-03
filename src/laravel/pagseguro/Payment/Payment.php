@@ -12,7 +12,7 @@
  * @copyright  Laravel\PagSeguro
  */
 
-namespace laravel\pagseguro;
+namespace laravel\pagseguro\Payment;
 
 use laravel\pagseguro\Request\Request,
     laravel\pagseguro\Item\Item,

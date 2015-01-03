@@ -5,11 +5,13 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
+use laravel\pagseguro\Payment\PaymentRequest, laravel\pagseguro\Credentials\Credentials;
+
 $dados = array(
     'items' => array(
         'item1' => array(
             'id' => '0001',
-            'description' => 'Notebook Prata',
+            'description' => 'Notebook Prata 1',
             'quantity' => '1',
             'amount' => '10.00',
             'weight' => '1000',
@@ -18,6 +20,22 @@ $dados = array(
         'item2' => array(
             'id' => '0002',
             'description' => 'Notebook Prata 2',
+            'quantity' => '2',
+            'amount' => '5.00',
+            'weight' => '100',
+            'shippingCost' => null
+        ),
+        'item3' => array(
+            'id' => '0003',
+            'description' => 'Notebook Prata 3',
+            'quantity' => '2',
+            'amount' => '5.00',
+            'weight' => '100',
+            'shippingCost' => null
+        ),
+        'item4' => array(
+            'id' => '0004',
+            'description' => 'Notebook Prata 4',
             'quantity' => '2',
             'amount' => '5.00',
             'weight' => '100',
@@ -36,20 +54,10 @@ $dados = array(
     )
 );
 
-$payment = new laravel\pagseguro\Payment;
+$PaymentRequest = new PaymentRequest;
 try{
-    $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
-    
-    $payment
-            ->setPaymentCurrency('BRL')
-            ->setPaymentReference('REF1')
-            ->setPaymentShippingType(1);
-
-    $payment->setPaymentAddress($dados);
-    $payment->setAddItem($dados);
-    
-    echo "<pre>";
-    print_r($payment->getPaymentItems());
+    $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
+    $PaymentRequest->setPaymentRequest($dados, $credentials);
 }  catch (\Exception $e){
     print_r($e);
 }
