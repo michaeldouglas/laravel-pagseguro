@@ -46,11 +46,9 @@ class PaymentRequest extends Payment
     {
         $this->setPaymentCurrency('BRL')->setPaymentReference('REF1')->setPaymentShippingType(1);
         
-        $this->setPaymentAddress($this->dataPaymentRequest);
+        $this->setPaymentAddress($this->dataPaymentRequest)->setPaymentSender($this->dataPaymentRequest);
         $this->setAddItem($this->dataPaymentRequest);
 
-        echo "<pre>";
-        print_r($this->getPaymentItems());
     }
 
 }

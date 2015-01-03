@@ -1,5 +1,6 @@
 <?php
-use laravel\pagseguro\Payment\Payment;
+use laravel\pagseguro\Payment\Payment,
+    laravel\pagseguro\Payment\PaymentRequest;
 
 class ExceptionTest extends PHPUnit_Framework_TestCase
 {
@@ -76,5 +77,26 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     public function testExceptionCredentialParamEmailNull()
     {
         new laravel\pagseguro\Credentials\Credentials('651233CECD6304779B7570BA2D06', null);
+    }
+    
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Erro ao solicitar uma requisição de compra!
+     */
+    public function testExceptionPaymentRequestItemNUll()
+    {
+        $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
+        $PaymentRequest = new PaymentRequest;
+        $PaymentRequest->setPaymentRequest(NULL, $credentials);
+    }
+    
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage Erro ao solicitar uma requisição de compra!
+     */
+    public function testExceptionPaymentRequestNUll()
+    {
+        $PaymentRequest = new PaymentRequest;
+        $PaymentRequest->setPaymentRequest(NULL, NULL);
     }
 }
