@@ -25,3 +25,7 @@ Abra o arquivo `composer.json` e insira a seguinte instrução:
     "require-dev": {
         "michael/laravelpagseguro": "dev-master"
     }
+
+## Licença
+
+O Laravel PagSeguro utiliza a licença MIT, para saber mais leia no link: [MIT license](http://opensource.org/licenses/MIT)
