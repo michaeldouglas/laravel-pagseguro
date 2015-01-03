@@ -1,4 +1,6 @@
 <?php
+use laravel\pagseguro\Payment\Payment;
+
 class ExceptionTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -7,7 +9,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionPayment()
     {
-        $payment = new laravel\pagseguro\Payment;
+        $payment = new Payment;
         $payment->setAddItem($dados = array());
     }
     
@@ -17,7 +19,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionPaymentKey()
     {
-        $payment = new laravel\pagseguro\Payment;
+        $payment = new Payment;
         $payment->setAddItem($dados = array('teste'));
     }
     
@@ -27,7 +29,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionPaymentNULL()
     {
-        $payment = new laravel\pagseguro\Payment;
+        $payment = new Payment;
         $payment->setAddItem($dados = null);
     }
     
