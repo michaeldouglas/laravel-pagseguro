@@ -18,7 +18,7 @@ Abra o arquivo `composer.json` e insira a seguinte instrução:
         "michael/laravelpagseguro": "dev-master"
     }
 
-Após inserir no require o Laravel PagSeguro, você deverá executar o comando:
+Após inserir no require o `Laravel PagSeguro`, você deverá executar o comando:
 
     composer update
 
