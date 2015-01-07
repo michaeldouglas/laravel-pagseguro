@@ -22,7 +22,9 @@ Após inserir no require o `Laravel PagSeguro`, você deverá executar o comando
 
     composer update
 
-## Para adição do Service Provider `Laravel PagSeguro` você deverá abrir o arquivo `app/config/app.php` e inserir no array `providers` a seguinte instrução:
+## Service Provider Laravel PagSeguro
+
+Abra o arquivo `app/config/app.php` e adicione no array `providers` a seguinte instrução:
 
     'laravel\pagseguro\PagseguroServiceProvider'
 
