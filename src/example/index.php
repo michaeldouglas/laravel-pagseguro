@@ -46,6 +46,10 @@ $dados = array(
         'docnum' => '319.857.415-39',
     )
 );
+
+/**
+ * Fora da estrutura do Laravel
+ */
 $PaymentRequest = new PaymentRequest;
 try {
     $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
@@ -54,3 +58,12 @@ try {
 } catch (\Exception $e) {
     print_r($e->getMessage());
 }
+
+/**
+ * Em Laravel
+ * 
+ * $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
+ * PagSeguro::setPaymentRequest($dados, $credentials);
+ * echo '<pre>', print_r(PagSeguro::getPaymentItems(), 1), '</pre>';
+ * 
+ */
