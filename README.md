@@ -28,6 +28,13 @@ Abra o arquivo `app/config/app.php` e adicione no array `providers` a seguinte i
 
     'laravel\pagseguro\PagseguroServiceProvider'
 
+## Aliases do package
+
+Em seu arquivo `app/config/app.php` adicione no array `aliases` a seguinte instrução:
+
+    'PagSeguro'         => 'laravel\pagseguro\Facades\PagSeguro'
+
+
 ## Licença
 
 O Laravel PagSeguro utiliza a licença MIT, para saber mais leia no link: [MIT license](http://opensource.org/licenses/MIT)
