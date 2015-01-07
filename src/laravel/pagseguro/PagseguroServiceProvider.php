@@ -44,7 +44,7 @@ class PagseguroServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app['pagseguro'] = $this->app->share(function($app) {
-            return new PaymentRequest();
+            return new Payment\PaymentRequest();
         });
     }
 
