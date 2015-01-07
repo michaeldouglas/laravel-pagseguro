@@ -35,13 +35,13 @@ class Sender extends ValidateSender
                     $this->setVerifyName();
 
                 case isset($this->sender['email']):
-                    $this->email = Helper::setVerifyKeyItem($sender, 'email');
+                    $this->email = Helper::getValueOrDefault($sender, 'email');
 
                 case (isset($this->sender['codarea']) && isset($this->sender['numero'])):
                     $this->setVerifyPhone();
 
                 case (isset($this->sender['doctipo']) && isset($this->sender['docnum'])):
-                    $this->complement = Helper::setVerifyKeyItem($sender, 'complemento');
+                    $this->complement = Helper::getValueOrDefault($sender, 'complemento');
                     break;
 
                 default:
@@ -53,12 +53,12 @@ class Sender extends ValidateSender
     /**
      * Verifica se o nome do remetente está válido, se estiver correto seta o nome
      * do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return Exception
      */
     protected function setVerifyName()
     {
-        if ($this->setValidateName($this->sender['nome']) == false) {
+        if ($this->isValidName($this->sender['nome']) == false) {
             throw new \Exception('Nome do remetente inválido!');
         }
         $this->setName();
@@ -66,17 +66,17 @@ class Sender extends ValidateSender
     
     /**
      * Seta o nome do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
     private function setName()
     {
-        $this->name = Helper::setVerifyKeyItem($this->sender, 'nome');
+        $this->name = Helper::getValueOrDefault($this->sender, 'nome');
     }
     
     /**
      * Obtém o nome do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
     public function getName()
@@ -87,12 +87,12 @@ class Sender extends ValidateSender
     /**
      * Verifica se o telefone do remetente está válido, se estiver chama o método para
      * setar
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return Exception
      */
     private function setVerifyPhone()
     {
-        if ($this->setValidateTelephone($this->sender['codarea'], $this->sender['numero']) == false) {
+        if ($this->isValidTelephone($this->sender['codarea'], $this->sender['numero']) == false) {
             throw new \Exception('Telefone inválido!');
         }
 
@@ -101,17 +101,17 @@ class Sender extends ValidateSender
     
     /**
      * Seta o telefone do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
     private function setPhone()
     {
-        $this->numero = Helper::setVerifyKeyItem($this->sender, 'numero');
+        $this->numero = Helper::getValueOrDefault($this->sender, 'numero');
     }
     
     /**
      * Obtém o telefone do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
     public function getPhone()

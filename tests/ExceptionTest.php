@@ -11,9 +11,9 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     public function testExceptionPayment()
     {
         $payment = new Payment;
-        $payment->setAddItem($dados = array());
+        $payment->addItem($dados = array());
     }
-    
+
     /**
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Erro ao setar o item
@@ -21,9 +21,9 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     public function testExceptionPaymentKey()
     {
         $payment = new Payment;
-        $payment->setAddItem($dados = array('teste'));
+        $payment->addItem($dados = array('teste'));
     }
-    
+
     /**
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Erro ao setar o item
@@ -31,9 +31,9 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     public function testExceptionPaymentNULL()
     {
         $payment = new Payment;
-        $payment->setAddItem($dados = null);
+        $payment->addItem($dados = null);
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Dados de credencial inválidos!
@@ -42,7 +42,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     {
         new laravel\pagseguro\Credentials\Credentials(123456, 'michaeldouglas010790@gmail.com');
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Dados de credencial inválidos!
@@ -51,7 +51,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     {
         new laravel\pagseguro\Credentials\Credentials('651233CECD6304779B7570BA2D06', 'teste');
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Dados de credencial inválidos!
@@ -60,7 +60,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     {
         new laravel\pagseguro\Credentials\Credentials(null, null);
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Dados de credencial inválidos!
@@ -69,7 +69,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     {
         new laravel\pagseguro\Credentials\Credentials(null, 'michaeldouglas010790@gmail.com');
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Dados de credencial inválidos!
@@ -78,7 +78,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     {
         new laravel\pagseguro\Credentials\Credentials('651233CECD6304779B7570BA2D06', null);
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Erro ao solicitar uma requisição de compra!
@@ -87,9 +87,9 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     {
         $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
         $PaymentRequest = new PaymentRequest;
-        $PaymentRequest->setPaymentRequest(NULL, $credentials);
+        $PaymentRequest->setRequest(NULL, $credentials);
     }
-    
+
     /**
      * @expectedException Exception
      * @expectedExceptionMessage Erro ao solicitar uma requisição de compra!
@@ -97,6 +97,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
     public function testExceptionPaymentRequestNUll()
     {
         $PaymentRequest = new PaymentRequest;
-        $PaymentRequest->setPaymentRequest(NULL, NULL);
+        $PaymentRequest->setRequest(NULL, NULL);
     }
+
 }

@@ -16,9 +16,9 @@ namespace laravel\pagseguro\Sender;
 
 abstract class AbstractValidateSender
 {
-    public abstract function setValidateCPF($cpf = NULL);
-    public abstract function setValidateName($name = NULL);
-    public abstract function setValidateTelephone($areacode = NULL, $number = NULL);
-    public abstract function setValidateDocuments($documents = NULL);
-    public abstract function setValidateEmail($email = NULL);
+    public abstract function isValidCPF($cpf = NULL);
+    public abstract function isValidName($name = NULL);
+    public abstract function isValidTelephone($areacode = NULL, $number = NULL);
+    public abstract function isValidDocuments($documents = NULL);
+    public abstract function isValidEmail($email = NULL);
 }

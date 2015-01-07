@@ -17,18 +17,6 @@ class Helper
 {
 
     /**
-     * Use self::getValueOrDefault
-     * @deprecated
-     * @param array $item
-     * @param string $key
-     * @return mixed
-     */
-    public static function setVerifyKeyItem($item, $key)
-    {
-        return self::getValueOrDefault($item, $key, null);
-    }
-
-    /**
      * Get value by key or return default
      * @param array|object $object Object to extract
      * @param string $key Key name

@@ -19,46 +19,45 @@ use laravel\pagseguro\Payment\Payment,
 
 class PaymentRequest extends Payment
 {
+
     private $dataPaymentRequest;
-    
+
     /**
      * Verifica se os dados de requisição de compra estão corretos e se os objeto
      * de credencial foi fornecido como parametro
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|array|Exception
      */
-    public function setPaymentRequest(array $dataPaymentRequest = NULL, Credentials $credentials = null)
+    public function setRequest(
+        array $dataPaymentRequest = NULL,
+        Credentials $credentials = null)
     {
-        if (!is_null($dataPaymentRequest) && is_array($dataPaymentRequest) && ($credentials instanceof Credentials) ) {
+        if (
+            !is_null($dataPaymentRequest)
+            && is_array($dataPaymentRequest)
+            && ($credentials instanceof Credentials)
+        ) {
             $this->dataPaymentRequest = $dataPaymentRequest;
             $this->setCreatePaymentRequest();
         } else {
             throw new \Exception('Erro ao solicitar uma requisição de compra!');
         }
     }
-    
+
     /**
      * Cria a requisição de compra
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|array
      */
     public function setCreatePaymentRequest()
     {
-        $this->setPaymentCurrency('BRL')->setPaymentReference('REF1')->setPaymentShippingType(1);
-        
-        $this->setPaymentAddress($this->dataPaymentRequest)->setPaymentSender($this->dataPaymentRequest);
-        $this->setAddItem($this->dataPaymentRequest);
-
-    }
-    
-    /**
-     * Retorna os items setados na classe Payment
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
-     * @return object
-     */
-    public function getPaymentItems()
-    {
-        return parent::getPaymentItems();
+        $this
+            ->setCurrency('BRL')
+            ->setReference('REF1')
+            ->setShippingType(1)
+            ->setAddress($this->dataPaymentRequest)
+            ->setSender($this->dataPaymentRequest)
+            ->addItem($this->dataPaymentRequest);
     }
 
 }

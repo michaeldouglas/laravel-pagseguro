@@ -22,15 +22,50 @@ use laravel\pagseguro\Request\Request,
 class Payment extends Request
 {
 
+    /**
+     * @var array
+     */
     protected $dataItem;
-    private $reference     = 'REF1';
-    private $currency      = 'BRL';
-    private $shipping      = NULL;
-    private $item          = array();
-    private $items         = array();
+
+    /**
+     * @var string
+     */
+    private $reference = 'REF1';
+
+    /**
+     * @var string
+     */
+    private $currency = 'BRL';
+
+    /**
+     * @var int
+     */
+    private $shipping = NULL;
+
+    /**
+     * @var array
+     */
+    private $item = array();
+
+    /**
+     * @var array
+     */
+    private $items = array();
+
+    /**
+     * @var array
+     */
     private $childrenItems = array();
-    public $address        = array();
-    public $sender         = array();
+
+    /**
+     * @var array
+     */
+    public $address = array();
+
+    /**
+     * @var array
+     */
+    public $sender = array();
 
     /**
      * Irá verificar se os dados de item fornecidos estão válidos e também
@@ -38,20 +73,25 @@ class Payment extends Request
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|array
      */
-    public function setAddItem(array $dataItem = null)
+    public function addItem(array $dataItem = null)
     {
-        $this->setValidateItem($dataItem);
+        $this->isValidItem($dataItem);
         $this->setVerifyItem();
     }
 
     /**
      * Validação dos dados de item
+     * @todo array type verifier
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|InvalidArgumentException
      */
-    protected function setValidateItem($dataItem)
+    protected function isValidItem($dataItem)
     {
-        if ((is_null($dataItem) || count($dataItem) == 0 || array_key_exists('items', $dataItem) == false) == true) {
+        if (
+            is_null($dataItem)
+            || !count($dataItem)
+            || !array_key_exists('items', $dataItem)
+        ) {
             throw new \InvalidArgumentException('Erro ao setar o item');
         } else {
             $this->dataItem = $dataItem;
@@ -70,6 +110,7 @@ class Payment extends Request
 
     /**
      * Verifica se o item e de um produto único ou se é um pacote de compra
+     * @todo array type verifier
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|array
      */
@@ -105,7 +146,10 @@ class Payment extends Request
      */
     private function setCreateItems()
     {
-        if ((array_key_exists(0, $this->item) && array_key_exists('items', $this->item[0])) == true) {
+        if (
+            array_key_exists(0, $this->item)
+            && array_key_exists('items', $this->item[0])
+        ) {
             $this->items = $this->item[0]['items'];
         } else {
             $this->items = array();
@@ -117,12 +161,12 @@ class Payment extends Request
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|null
      */
-    public function setPaymentReference($reference = NULL)
+    public function setReference($reference = NULL)
     {
         if (!is_null($reference)) {
             $this->reference = $reference;
-            return $this;
         }
+        return $this;
     }
 
     /**
@@ -130,12 +174,12 @@ class Payment extends Request
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|null
      */
-    public function setPaymentCurrency($currency = NULL)
+    public function setCurrency($currency = NULL)
     {
         if (!is_null($currency)) {
             $this->currency = $currency;
-            return $this;
         }
+        return $this;
     }
 
     /**
@@ -143,12 +187,12 @@ class Payment extends Request
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|null
      */
-    public function setPaymentShippingType($shippingType = NULL)
+    public function setShippingType($shippingType = NULL)
     {
         if (!is_null($shippingType)) {
             $this->shipping = $shippingType;
-            return $this;
         }
+        return $this;
     }
 
     public function getCurrency()
@@ -171,12 +215,12 @@ class Payment extends Request
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
-    public function setPaymentAddress(array $Address = NULL)
+    public function setAddress(array $Address = NULL)
     {
         if (array_key_exists('address', $Address) && !is_null($Address)) {
             $this->address = new Address($Address['address']);
-            return $this;
         }
+        return $this;
     }
 
     /**
@@ -188,21 +232,25 @@ class Payment extends Request
     {
         return $this->address;
     }
-    
+
     /**
      * Cria o objeto de remetente de compra
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
-    public function setPaymentSender(array $sender = NULL){
-        if (array_key_exists('sender', $sender) && !is_null($sender)) {
+    public function setSender(array $sender = NULL){
+        if (
+            array_key_exists('sender', $sender)
+            && !is_null($sender)
+        ) {
             $this->sender = new Sender($sender['sender']);
         }
+        return $this;
     }
-    
+
     /**
      * Obtém o remetente da compra
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
     public function getSender()

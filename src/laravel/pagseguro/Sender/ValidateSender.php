@@ -21,10 +21,10 @@ class ValidateSender extends AbstractValidateSender
     
     /**
      * Verifica se o CPF do remetente está válido
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return bool
      */
-    public function setValidateCPF($value = NULL)
+    public function isValidCPF($value = NULL)
     {
         $er = '/^([0-9]{3})\.?([0-9]{3})\.?([0-9]{3})\-?([0-9]{2})$/';
         $preg = preg_match($er, $value);
@@ -69,10 +69,10 @@ class ValidateSender extends AbstractValidateSender
     
     /**
      * Verifica se o telefone do remetente está válido
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return bool
      */
-    public function setValidateTelephone($areacode = NULL, $number = NULL)
+    public function isValidTelephone($areacode = NULL, $number = NULL)
     {
         if((!preg_match('^[0-9]{4}-[0-9]{4}$^', $number)) || !is_int($areacode)){
             return false;
@@ -82,33 +82,30 @@ class ValidateSender extends AbstractValidateSender
     
     /**
      * Verifica se o documento do remetente está válido
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return bool
      */
-    public function setValidateDocuments($documents = NULL)
+    public function isValidDocuments($documents = NULL)
     {
         
     }
     
     /**
      * Verifica se o e-mail do remetente está válido
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return bool
      */
-    public function setValidateEmail($email = NULL)
+    public function isValidEmail($email = NULL)
     {
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            return false;
-        }
-        return true;
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
     
     /**
      * Verifica se o nome do remetente está válido
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return bool
      */
-    public function setValidateName($name = NULL)
+    public function isValidName($name = NULL)
     {
         $value = str_replace("'", "", $name);
         $er = '/^([A-Za-zÁ-ú]{2,})\s([A-Za-zÁ-ú\s]{2,})$/';

@@ -53,7 +53,7 @@ $dados = array(
 $PaymentRequest = new PaymentRequest;
 try {
     $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
-    $PaymentRequest->setPaymentRequest($dados, $credentials);
+    $PaymentRequest->setRequest($dados, $credentials);
     echo '<pre>',print_r($PaymentRequest->getPaymentItems(),1),'</pre>';
 } catch (\Exception $e) {
     print_r($e->getMessage());
@@ -63,7 +63,7 @@ try {
  * Em Laravel
  * 
  * $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
- * PagSeguro::setPaymentRequest($dados, $credentials);
+ * PagSeguro::setRequest($dados, $credentials);
  * echo '<pre>', print_r(PagSeguro::getPaymentItems(), 1), '</pre>';
  * 
  */

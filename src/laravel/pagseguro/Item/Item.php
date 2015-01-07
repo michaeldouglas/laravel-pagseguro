@@ -64,21 +64,21 @@ class Item
         if (!is_null($item) && is_array($item)) {
             switch ($item) {
                 case isset($item['id']):
-                    $this->id = Helper::setVerifyKeyItem($item, 'id');
+                    $this->id = Helper::getValueOrDefault($item, 'id');
                 case isset($item['description']):
-                    $this->description = Helper::setVerifyKeyItem($item, 'description');
+                    $this->description = Helper::getValueOrDefault($item, 'description');
 
                 case isset($item['quantity']):
-                    $this->quantity = Helper::setVerifyKeyItem($item, 'quantity');
+                    $this->quantity = Helper::getValueOrDefault($item, 'quantity');
 
                 case isset($item['amount']):
-                    $this->amount = Helper::setVerifyKeyItem($item, 'amount');
+                    $this->amount = Helper::getValueOrDefault($item, 'amount');
 
                 case isset($item['weight']):
-                    $this->weight = Helper::setVerifyKeyItem($item, 'weight');
+                    $this->weight = Helper::getValueOrDefault($item, 'weight');
 
                 case isset($item['shippingCost']):
-                    $this->shippingCost = Helper::setVerifyKeyItem($item, 'shippingCost');
+                    $this->shippingCost = Helper::getValueOrDefault($item, 'shippingCost');
                     break;
                 
                 default:
@@ -86,37 +86,33 @@ class Item
             }
         }
     }
-    
-    private function setVerifyKeyItem($item, $key){
-        return (array_key_exists($key, $item) ? $item[$key] : null);
-    }
 
-    public function getItemId()
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getItemDescription()
+    public function getDescription()
     {
         return $this->description;
     }
     
-    public function getItemQuantity()
+    public function getQuantity()
     {
         return $this->quantity;
     }
     
-    public function getItemAmount()
+    public function getAmount()
     {
         return $this->amount;
     }
     
-    public function getItemWeight()
+    public function getWeight()
     {
         return $this->weight;
     }
     
-    public function getItemShippingCost()
+    public function getShippingCost()
     {
         return $this->shippingCost;
     }
