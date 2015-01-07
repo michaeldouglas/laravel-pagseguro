@@ -16,7 +16,7 @@ namespace laravel\pagseguro;
 
 use Illuminate\Support\ServiceProvider;
 
-class pagseguroServiceProvider extends ServiceProvider
+class PagseguroServiceProvider extends ServiceProvider
 {
 
     /**
@@ -43,7 +43,7 @@ class pagseguroServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['laravelpagseguro'] = $this->app->share(function($app) {
+        $this->app['pagseguro'] = $this->app->share(function($app) {
             return new PaymentRequest();
         });
     }
@@ -55,7 +55,7 @@ class pagseguroServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('laravelpagseguro');
+        return array('pagseguro');
     }
 
 }
