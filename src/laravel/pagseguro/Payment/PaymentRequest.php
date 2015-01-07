@@ -50,5 +50,15 @@ class PaymentRequest extends Payment
         $this->setAddItem($this->dataPaymentRequest);
 
     }
+    
+    /**
+     * Retorna os items setados na classe Payment
+     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @return object
+     */
+    public function getPaymentItems()
+    {
+        return parent::getPaymentItems();
+    }
 
 }
