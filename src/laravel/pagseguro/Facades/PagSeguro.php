@@ -9,5 +9,5 @@ class PagSeguro extends Facade{
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'pagseguro'; }
+    protected static function getFacadeAccessor() { return 'PaymentRequest'; }
 } 
