@@ -12,23 +12,25 @@
  * @copyright  Laravel\PagSeguro
  */
 
-namespace laravel\pagseguro;
+namespace laravel\pagseguro\Payment;
 
 use laravel\pagseguro\Request\Request,
     laravel\pagseguro\Item\Item,
-    laravel\pagseguro\Address\Address;
+    laravel\pagseguro\Address\Address,
+    laravel\pagseguro\Sender\Sender;
 
 class Payment extends Request
 {
 
     protected $dataItem;
-    private   $reference = 'REF1';
-    private   $currency = 'BRL';
-    private   $shipping = NULL;
-    private   $item = array();
-    private   $items = array();
-    private   $childrenItems = array();
-    public    $address = array();
+    private $reference     = 'REF1';
+    private $currency      = 'BRL';
+    private $shipping      = NULL;
+    private $item          = array();
+    private $items         = array();
+    private $childrenItems = array();
+    public $address        = array();
+    public $sender         = array();
 
     /**
      * Irá verificar se os dados de item fornecidos estão válidos e também
@@ -135,7 +137,7 @@ class Payment extends Request
             return $this;
         }
     }
-    
+
     /**
      * Seta a forma de envio do produto, por exemplo: SEDEX = 1
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
@@ -148,32 +150,35 @@ class Payment extends Request
             return $this;
         }
     }
-    
-    public function getCurrency(){
+
+    public function getCurrency()
+    {
         return $this->currency;
     }
-    
-    
+
     /**
      * Obtém a forma de envio
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
-    public function getShipping(){
+    public function getShipping()
+    {
         return $this->shipping;
     }
-    
+
     /**
      * Criação do objeto de endereço de envio
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
-    public function setPaymentAddress(array $Address = NULL){
-        if(array_key_exists('address', $Address) && !is_null($Address)){
+    public function setPaymentAddress(array $Address = NULL)
+    {
+        if (array_key_exists('address', $Address) && !is_null($Address)) {
             $this->address = new Address($Address['address']);
+            return $this;
         }
     }
-    
+
     /**
      * Obtém o endereço de envio do pagamento
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
@@ -182,5 +187,26 @@ class Payment extends Request
     public function getAddress()
     {
         return $this->address;
+    }
+    
+    /**
+     * Cria o objeto de remetente de compra
+     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @return object
+     */
+    public function setPaymentSender(array $sender = NULL){
+        if (array_key_exists('sender', $sender) && !is_null($sender)) {
+            $this->sender = new Sender($sender['sender']);
+        }
+    }
+    
+    /**
+     * Obtém o remetente da compra
+     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @return object
+     */
+    public function getSender()
+    {
+        return $this->sender;
     }
 }

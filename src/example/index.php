@@ -5,11 +5,14 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
+use laravel\pagseguro\Payment\PaymentRequest,
+    laravel\pagseguro\Credentials\Credentials;
+
 $dados = array(
     'items' => array(
         'item1' => array(
             'id' => '0001',
-            'description' => 'Notebook Prata',
+            'description' => 'Notebook Prata 1',
             'quantity' => '1',
             'amount' => '10.00',
             'weight' => '1000',
@@ -25,31 +28,42 @@ $dados = array(
         )
     ),
     'address' => array(
-        'cep'         => '04433130',
-        'rua'         => 'Rua benjamin vieira da silva',
-        'numero'      => '1077',
+        'cep' => '04433130',
+        'rua' => 'Rua benjamin vieira da silva',
+        'numero' => '1077',
         'complemento' => '',
-        'bairro'      => 'Centro',
-        'cidade'      => 'São Paulo',
-        'estado'      => 'SP',
-        'pais'        => 'BRA',
+        'bairro' => 'Centro',
+        'cidade' => 'São Paulo',
+        'estado' => 'SP',
+        'pais' => 'BRA',
+    ),
+    'sender' => array(
+        'nome' => 'Teste do comprador',
+        'email' => 'michael.araujo@idealinvest.com.br',
+        'codarea' => 11,
+        'numero' => '5614-9351',
+        'doctipo' => 'CPF',
+        'docnum' => '319.857.415-39',
     )
 );
 
-$payment = new laravel\pagseguro\Payment;
-try{
-    $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
-    
-    $payment
-            ->setPaymentCurrency('BRL')
-            ->setPaymentReference('REF1')
-            ->setPaymentShippingType(1);
-
-    $payment->setPaymentAddress($dados);
-    $payment->setAddItem($dados);
-    
-    echo "<pre>";
-    print_r($payment->getPaymentItems());
-}  catch (\Exception $e){
-    print_r($e);
+/**
+ * Fora da estrutura do Laravel
+ */
+$PaymentRequest = new PaymentRequest;
+try {
+    $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
+    $PaymentRequest->setPaymentRequest($dados, $credentials);
+    echo '<pre>',print_r($PaymentRequest->getPaymentItems(),1),'</pre>';
+} catch (\Exception $e) {
+    print_r($e->getMessage());
 }
+
+/**
+ * Em Laravel
+ * 
+ * $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
+ * PagSeguro::setPaymentRequest($dados, $credentials);
+ * echo '<pre>', print_r(PagSeguro::getPaymentItems(), 1), '</pre>';
+ * 
+ */
