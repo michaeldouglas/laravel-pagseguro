@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\pagseguro;
+namespace laravel\pagseguro\Facades;
 
 use Illuminate\Support\Facades\Facade;
 class PagSeguro extends Facade{
