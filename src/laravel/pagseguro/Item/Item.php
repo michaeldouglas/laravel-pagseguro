@@ -1,9 +1,13 @@
 <?php
 
+namespace laravel\pagseguro\Item;
+
+use laravel\pagseguro\Helper\Helper;
+
 /**
  * Classe responsável pela criação do objeto de item
  *
- * @category   item
+ * @category   Item
  * @package    Laravel\PagSeguro\Item
  *
  * @author     Michael Douglas <michaeldouglas010790@gmail.com>
@@ -11,24 +15,48 @@
  *
  * @copyright  Laravel\PagSeguro
  */
-
-namespace laravel\pagseguro\Item;
-
-use laravel\pagseguro\Helper\Helper;
-
 class Item
 {
 
+    /**
+     * Item Unique Identifier (ID)
+     * @var integer|string
+     */
     private $id;
+    
+    /**
+     * Item Description (Descrição)
+     * @var string
+     */
     private $description;
+    
+    /**
+     * Item Quantity (Quantidade)
+     * @var int
+     */
     private $quantity;
+    
+    /**
+     * Item price (Preço unitário)
+     * @var float
+     */
     private $amount;
+    
+    /**
+     * Item Weight (Peso)
+     * @var float
+     */
     private $weight;
+    
+    /**
+     * Item Shipping Cost (Valor de Trasporte / Frete)
+     * @var float
+     */
     private $shippingCost;
 
     /**
      * Irá verificar o array de item e setar as propriedades do item
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return void
      */
     public function __construct($item = null)

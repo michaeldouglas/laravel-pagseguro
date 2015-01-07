@@ -33,7 +33,7 @@ class Payment extends Request
     /**
      * Irá verificar se os dados de item fornecidos estão válidos e também
      * se no item contém mais de uma requisição de compra
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|array
      */
     public function setAddItem(array $dataItem = null)
@@ -44,7 +44,7 @@ class Payment extends Request
 
     /**
      * Validação dos dados de item
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|InvalidArgumentException
      */
     protected function setValidateItem($dataItem)
@@ -58,7 +58,7 @@ class Payment extends Request
 
     /**
      * Retorna os items setados na adição
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
     public function getPaymentItems()
@@ -68,7 +68,7 @@ class Payment extends Request
 
     /**
      * Verifica se o item e de um produto único ou se é um pacote de compra
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|array
      */
     private function setVerifyItem()
@@ -86,7 +86,7 @@ class Payment extends Request
 
     /**
      * Insere mais de um item a requisição de compra
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|array
      */
     protected function setChildrenItems($iteratorPayments)
@@ -98,7 +98,7 @@ class Payment extends Request
 
     /**
      * Cria o objeto de item
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|array
      */
     private function setCreateItems()
@@ -112,7 +112,7 @@ class Payment extends Request
 
     /**
      * Cria uma referencia para o seu pagamento sera utilizar para indentificar o pagamento
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|null
      */
     public function setPaymentReference($reference = NULL)
@@ -125,7 +125,7 @@ class Payment extends Request
 
     /**
      * Seta a moeda a ser utilizada para o pagamento
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|null
      */
     public function setPaymentCurrency($currency = NULL)
@@ -138,7 +138,7 @@ class Payment extends Request
     
     /**
      * Seta a forma de envio do produto, por exemplo: SEDEX = 1
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|null
      */
     public function setPaymentShippingType($shippingType = NULL)
@@ -156,7 +156,7 @@ class Payment extends Request
     
     /**
      * Obtém a forma de envio
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
     public function getShipping(){
@@ -165,7 +165,7 @@ class Payment extends Request
     
     /**
      * Criação do objeto de endereço de envio
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
     public function setPaymentAddress(array $Address = NULL){
@@ -176,7 +176,7 @@ class Payment extends Request
     
     /**
      * Obtém o endereço de envio do pagamento
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
     public function getAddress()

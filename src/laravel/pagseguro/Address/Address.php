@@ -30,7 +30,7 @@ class Address
 
     /**
      * Irá verificar o array de item e setar as propriedades do item
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return void
      */
     public function __construct($item = null)

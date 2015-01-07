@@ -19,7 +19,7 @@ class Request
 
     /**
      * Para utilização das requisições é necessario que o Curl esteja ativo
-     * @author Michael Araujo <michaeldouglas010790@gmail.com.br>
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return void
      */
     public function __construct()
