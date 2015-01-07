@@ -1,6 +1,7 @@
 <?php
 use laravel\pagseguro\Payment\Payment,
-    laravel\pagseguro\Payment\PaymentRequest;
+    laravel\pagseguro\Payment\PaymentRequest,
+    laravel\pagseguro\Credentials\Credentials;
 
 class ExceptionTest extends PHPUnit_Framework_TestCase
 {
@@ -40,7 +41,11 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionCredentialParamInvalid()
     {
-        new laravel\pagseguro\Credentials\Credentials(123456, 'michaeldouglas010790@gmail.com');
+        $this->setExpectedException(
+            '\InvalidArgumentException',
+            Credentials::ERROR_INVALID_TOKEN
+        );
+        new Credentials(123456, 'michaeldouglas010790@gmail.com');
     }
 
     /**
@@ -49,7 +54,11 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionCredentialParamEmailInvalid()
     {
-        new laravel\pagseguro\Credentials\Credentials('651233CECD6304779B7570BA2D06', 'teste');
+        $this->setExpectedException(
+            '\InvalidArgumentException',
+            Credentials::ERROR_INVALID_EMAIL
+        );
+        new Credentials('651233CECD6304779B7570BA2D06', 'teste');
     }
 
     /**
@@ -58,7 +67,11 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionCredentialParamNull()
     {
-        new laravel\pagseguro\Credentials\Credentials(null, null);
+        $this->setExpectedException(
+            '\InvalidArgumentException',
+            Credentials::ERROR_INVALID_TOKEN
+        );
+        new Credentials(null, null);
     }
 
     /**
@@ -67,7 +80,11 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionCredentialParamTokenNull()
     {
-        new laravel\pagseguro\Credentials\Credentials(null, 'michaeldouglas010790@gmail.com');
+        $this->setExpectedException(
+            '\InvalidArgumentException',
+            Credentials::ERROR_INVALID_TOKEN
+        );
+        new Credentials(null, 'michaeldouglas010790@gmail.com');
     }
 
     /**
@@ -76,7 +93,11 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionCredentialParamEmailNull()
     {
-        new laravel\pagseguro\Credentials\Credentials('651233CECD6304779B7570BA2D06', null);
+        $this->setExpectedException(
+            '\InvalidArgumentException',
+            Credentials::ERROR_INVALID_EMAIL
+        );
+        new Credentials('651233CECD6304779B7570BA2D06', null);
     }
 
     /**
@@ -85,7 +106,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
      */
     public function testExceptionPaymentRequestItemNUll()
     {
-        $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
+        $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
         $PaymentRequest = new PaymentRequest;
         $PaymentRequest->setRequest(NULL, $credentials);
     }
