@@ -5,10 +5,10 @@ namespace laravel\pagseguro\Complements;
 use \Validator;
 
 /**
- * Easy Handling Trait
+ * Data Hydrator Trait
  *
  * @category   Components
- * @package    Laravel\PagSeguro\Address
+ * @package    Laravel\PagSeguro\Complements
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-08-02

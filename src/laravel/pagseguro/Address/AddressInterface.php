@@ -78,21 +78,21 @@ interface AddressInterface
     public function setPostalCode($postalCode);
 
     /**
-     * Set Neighborhood
+     * Set Street
      * @param string $street
      * @return string
      */
     public function setStreet($street);
 
     /**
-     * Set Neighborhood
+     * Set Number
      * @param string $number
      * @return string
      */
     public function setNumber($number);
 
     /**
-     * Set Neighborhood
+     * Set Complement
      * @param string $complement
      * @return string
      */
@@ -106,21 +106,21 @@ interface AddressInterface
     public function setNeighborhood($neighborhood);
 
     /**
-     * Set Neighborhood
+     * Set City
      * @param string $city
      * @return string
      */
     public function setCity($city);
 
     /**
-     * Set Neighborhood
+     * Set State
      * @param string $state
      * @return string
      */
     public function setState($state);
 
     /**
-     * Set Neighborhood
+     * Set Country
      * @param string $country
      * @return string
      */
