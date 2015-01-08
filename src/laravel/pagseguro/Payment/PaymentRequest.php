@@ -7,7 +7,7 @@
  * @package    Laravel\PagSeguro
  *
  * @author     Michael Douglas <michaeldouglas010790@gmail.com>
- * @since      : 02/01/2015ß
+ * @since      : 02/01/2015
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -58,6 +58,16 @@ class PaymentRequest extends Payment
             ->setAddress($this->dataPaymentRequest)
             ->setSender($this->dataPaymentRequest)
             ->addItem($this->dataPaymentRequest);
+    }
+
+    /**
+     * Retorna os items setados na adição
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return object
+     */
+    public function getPaymentItems()
+    {
+        return parent::getPaymentItems();
     }
 
 }
