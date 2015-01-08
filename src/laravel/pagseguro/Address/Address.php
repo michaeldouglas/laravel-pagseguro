@@ -177,7 +177,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Neighborhood
+     * Set Street
      * @param string $street
      * @return string
      */
@@ -188,7 +188,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Neighborhood
+     * Set Number
      * @param string $number
      * @return string
      */
@@ -199,7 +199,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Neighborhood
+     * Set Complement
      * @param string $complement
      * @return string
      */
@@ -221,7 +221,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Neighborhood
+     * Set City
      * @param string $city
      * @return string
      */
@@ -232,7 +232,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Neighborhood
+     * Set State
      * @param string $state
      * @return string
      */
@@ -243,7 +243,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Neighborhood
+     * Set Country
      * @param string $country
      * @return string
      */
