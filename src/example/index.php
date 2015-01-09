@@ -50,10 +50,10 @@ $dados = array(
 /**
  * Fora da estrutura do Laravel
  */
-$PaymentRequest = new PaymentRequest;
 try {
     $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
-    $PaymentRequest->setRequest($dados, $credentials);
+    $PaymentRequest = new PaymentRequest($credentials);
+    $PaymentRequest->setRequest($dados);
     echo '<pre>',print_r($PaymentRequest->getPaymentItems(),1),'</pre>';
 } catch (\Exception $e) {
     print_r($e->getMessage());

@@ -21,22 +21,32 @@ class PaymentRequest extends Payment
 {
 
     private $dataPaymentRequest;
-
+    
     /**
+     * Verifica se os dados de credencial da loja foram obtidos no config da Laravel PagSeguro
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return void
+     * @expectedException Exception
+     */
+    public function __construct(Credentials $credentials = null)
+    {
+        if ( ($credentials instanceof Credentials) === FALSE){
+            throw new \Exception('Erro ao credenciar a loja!');
+        }else{
+            return parent::__construct();
+        }
+    }
+
+   /**
      * Verifica se os dados de requisição de compra estão corretos e se os objeto
      * de credencial foi fornecido como parametro
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object|array|Exception
      */
-    public function setRequest(
-        array $dataPaymentRequest = NULL,
-        Credentials $credentials = null)
+    public function setRequest(array $dataPaymentRequest = NULL)
     {
-        if (
-            !is_null($dataPaymentRequest)
-            && is_array($dataPaymentRequest)
-            && ($credentials instanceof Credentials)
-        ) {
+        if (!is_null($dataPaymentRequest) && is_array($dataPaymentRequest))
+        {
             $this->dataPaymentRequest = $dataPaymentRequest;
             $this->setCreatePaymentRequest();
         } else {
