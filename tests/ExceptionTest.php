@@ -102,7 +102,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException Exception
-     * @expectedExceptionMessage Erro ao solicitar uma requisição de compra!
+     * @expectedExceptionMessage Erro ao credenciar a loja!
      */
     public function testExceptionPaymentRequestItemNUll()
     {
@@ -113,7 +113,7 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException Exception
-     * @expectedExceptionMessage Erro ao solicitar uma requisição de compra!
+     * @expectedExceptionMessage Erro ao credenciar a loja!
      */
     public function testExceptionPaymentRequestNUll()
     {
