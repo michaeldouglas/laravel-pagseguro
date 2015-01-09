@@ -24,9 +24,11 @@ class PagseguroServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
     
     protected $laravelPagSeguroCredential = null;
+    
+    const CONFIG = 'packages/michael/laravelpagseguro/laravelpagseguro.credentials';
 
     /**
      * Bootstrap the application events.
@@ -57,7 +59,7 @@ class PagseguroServiceProvider extends ServiceProvider
      * @return array
      */
     public function setCredentials(){
-        $this->laravelPagSeguroCredential = new Credentials\Credentials(\Config::get('pagseguro::laravelpagseguro.credentials.token'), \Config::get('pagseguro::laravelpagseguro.credentials.email'));
+        $this->laravelPagSeguroCredential = new Credentials\Credentials(\Config::get(self::CONFIG.'.token'), \Config::get(self::CONFIG.'.email'));
     }
 
     /**
