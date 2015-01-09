@@ -25,6 +25,8 @@ class PagseguroServiceProvider extends ServiceProvider
      * @var bool
      */
     protected $defer = false;
+    
+    protected $laravelPagSeguroCredential = null;
 
     /**
      * Bootstrap the application events.
@@ -44,8 +46,18 @@ class PagseguroServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app['pagseguro'] = $this->app->share(function($app) {
-            return new Payment\PaymentRequest();
+            $this->setCredentials();
+            return new Payment\PaymentRequest($this->laravelPagSeguroCredential);
         });
+    }
+    
+    /**
+     * Set Credentials Gateway Payment
+     *
+     * @return array
+     */
+    public function setCredentials(){
+        $this->laravelPagSeguroCredential = new Credentials\Credentials(\Config::get('pagseguro::pagseguro.credentials.token'), \Config::get('pagseguro::pagseguro.credentials.email'));
     }
 
     /**

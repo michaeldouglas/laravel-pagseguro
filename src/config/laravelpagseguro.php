@@ -1,8 +1,8 @@
 <?php
 return array(
     'credentials' => array(//SETA AS CREDENCIAIS DE SUA LOJA
-        'token' => '',
-        'email' => '',
+        'token' => null,
+        'email' => null,
     ),
     'currency' => array(//MOEDA QUE SERÁ UTILIZADA COMO MEIO DE PAGAMENTO
         'type' => 'BRL'
