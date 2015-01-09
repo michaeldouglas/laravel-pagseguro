@@ -51,8 +51,7 @@ $dados = array(
  * Fora da estrutura do Laravel
  */
 try {
-    $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
-    $PaymentRequest = new PaymentRequest($credentials);
+    $PaymentRequest = new PaymentRequest(new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com'));
     $PaymentRequest->setRequest($dados);
     echo '<pre>',print_r($PaymentRequest->getPaymentItems(),1),'</pre>';
 } catch (\Exception $e) {
@@ -62,8 +61,7 @@ try {
 /**
  * Em Laravel
  * 
- * $credentials = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
- * PagSeguro::setRequest($dados, $credentials);
+ * PagSeguro::setRequest($dados);
  * echo '<pre>', print_r(PagSeguro::getPaymentItems(), 1), '</pre>';
  * 
  */

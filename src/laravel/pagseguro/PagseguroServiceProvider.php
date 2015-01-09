@@ -44,9 +44,6 @@ class PagseguroServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app['pagseguro'] = $this->app->share(function($app) {
-            die;
-            $this->app['credentials'] = new laravel\pagseguro\Credentials\Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
-            $teste = \Config::get('pagseguro::laravelpagseguro.sandbox');
             return new Payment\PaymentRequest();
         });
     }
