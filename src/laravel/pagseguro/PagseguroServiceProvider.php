@@ -57,7 +57,7 @@ class PagseguroServiceProvider extends ServiceProvider
      * @return array
      */
     public function setCredentials(){
-        $this->laravelPagSeguroCredential = new Credentials\Credentials(\Config::get('pagseguro::pagseguro.credentials.token'), \Config::get('pagseguro::pagseguro.credentials.email'));
+        $this->laravelPagSeguroCredential = new Credentials\Credentials(\Config::get('pagseguro::laravelpagseguro.credentials.token'), \Config::get('pagseguro::laravelpagseguro.credentials.email'));
     }
 
     /**
