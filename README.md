@@ -34,6 +34,24 @@ Em seu arquivo `app/config/app.php` adicione no array `aliases` a seguinte instr
 
     'PagSeguro'         => 'laravel\pagseguro\Facades\PagSeguro'
 
+## Criação do configurador
+
+Agora você irá executar o comando de criação do configurador
+
+    php artisan config:publish michael/laravelpagseguro
+
+Se tudo ocorreu bem, a seguinte mensagem sera exibida:
+
+    Configuration published for package: michael/laravelpagseguro
+
+## Ajuste da configuração
+
+Abra o arquivo `app/config/packages/michael/laravelpagseguro/laravelpagseguro.php` altere o `token` e também o `e-mail`:
+
+    'credentials' => array(//SETA AS CREDENCIAIS DE SUA LOJA
+        'token' => null,
+        'email' => null,
+    )
 
 ## Licença
 
