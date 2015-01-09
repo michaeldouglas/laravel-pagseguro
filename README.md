@@ -36,7 +36,7 @@ Em seu arquivo `app/config/app.php` adicione no array `aliases` a seguinte instr
 
 ## Criação do configurador
 
-Agora você irá executar o comando de criação do configurador
+Agora você irá executar o comando:
 
     php artisan config:publish michael/laravelpagseguro
 
@@ -46,7 +46,7 @@ Se tudo ocorreu bem, a seguinte mensagem sera exibida:
 
 ## Ajuste da configuração
 
-Abra o arquivo `app/config/packages/michael/laravelpagseguro/laravelpagseguro.php` altere o `token` e também o `e-mail`:
+Abra o arquivo `app/config/packages/michael/laravelpagseguro/laravelpagseguro.php` altere o `token` e também o `e-mail` informando o da sua loja:
 
     'credentials' => array(//SETA AS CREDENCIAIS DE SUA LOJA
         'token' => null,
