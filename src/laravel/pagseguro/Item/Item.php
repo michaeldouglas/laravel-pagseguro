@@ -2,119 +2,282 @@
 
 namespace laravel\pagseguro\Item;
 
-use laravel\pagseguro\Helper\Helper;
+use \laravel\pagseguro\Complements\DataHydratorTrait;
 
 /**
- * Classe responsável pela criação do objeto de item
+ * Item Object
  *
  * @category   Item
  * @package    Laravel\PagSeguro\Item
  *
- * @author     Michael Douglas <michaeldouglas010790@gmail.com>
- * @since      : 30/12/2014
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Michael Douglas <michaeldouglas010790@gmail.com>
+ * @since      2014-12-30
  *
  * @copyright  Laravel\PagSeguro
  */
-class Item
+class Item implements ItemInterface
 {
 
     /**
      * Item Unique Identifier (ID)
      * @var integer|string
      */
-    private $id;
-    
+    protected $id;
+
     /**
      * Item Description (Descrição)
      * @var string
      */
-    private $description;
-    
+    protected $description;
+
     /**
      * Item Quantity (Quantidade)
      * @var int
      */
-    private $quantity;
-    
+    protected $quantity;
+
     /**
-     * Item price (Preço unitário)
+     * Item amount (Preço unitário)
      * @var float
      */
-    private $amount;
-    
+    protected $amount;
+
     /**
      * Item Weight (Peso)
      * @var float
      */
-    private $weight;
-    
+    protected $weight;
+
     /**
      * Item Shipping Cost (Valor de Trasporte / Frete)
      * @var float
      */
-    private $shippingCost;
+    protected $shippingCost;
 
     /**
-     * Irá verificar o array de item e setar as propriedades do item
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return void
+     * Item Width (Largura)
+     * @var float
      */
-    public function __construct($item = null)
+    protected $width;
+
+    /**
+     * Item Height (Altura)
+     * @var float
+     */
+    protected $height;
+
+    /**
+     * Item Lenght (Comprimento)
+     * @var float
+     */
+    protected $length;
+
+    /**
+     * @var array
+     */
+    protected $validationRules = [
+        'id' => 'Required|max:100',
+        'description' => 'Required|max:100',
+        'quantity' => 'Required|integer|between:1,999',
+        'amount' => 'Required|numeric|between:0,9999999',
+        'weight' => 'Integer|max:30000',
+        'shippingCost' => 'Numeric|between:0,9999999',
+        'width' => 'Required|max:2',
+        'height' => 'Required|max:50',
+        'length' => 'Required|max:50',
+    ];
+
+    use DataHydratorTrait;
+
+    /**
+     * Constructor
+     * @param array $data
+     */
+    public function __construct(array $data = [])
     {
-        if (!is_null($item) && is_array($item)) {
-            switch ($item) {
-                case isset($item['id']):
-                    $this->id = Helper::getValueOrDefault($item, 'id');
-                case isset($item['description']):
-                    $this->description = Helper::getValueOrDefault($item, 'description');
-
-                case isset($item['quantity']):
-                    $this->quantity = Helper::getValueOrDefault($item, 'quantity');
-
-                case isset($item['amount']):
-                    $this->amount = Helper::getValueOrDefault($item, 'amount');
-
-                case isset($item['weight']):
-                    $this->weight = Helper::getValueOrDefault($item, 'weight');
-
-                case isset($item['shippingCost']):
-                    $this->shippingCost = Helper::getValueOrDefault($item, 'shippingCost');
-                    break;
-                
-                default:
-                    throw new Exception('Nenhum parametro encontrado!');
-            }
+        if(count($data)) {
+            $this->hydrate($data);
         }
     }
 
+    /**
+     * Get Unique Identifier (ID)
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Get Description (Descrição)
+     * @return string
+     */
     public function getDescription()
     {
         return $this->description;
     }
-    
+
+    /**
+     * Get Quantity (Quantidade)
+     * @return int
+     */
     public function getQuantity()
     {
         return $this->quantity;
     }
-    
+
+    /**
+     * Get Amount (Preço unitário)
+     * @return float
+     */
     public function getAmount()
     {
         return $this->amount;
     }
-    
+
+    /**
+     * Get Weight (Peso)
+     * @return float
+     */
     public function getWeight()
     {
         return $this->weight;
     }
-    
+
+    /**
+     * Get Shipping Cost (Frete)
+     * @return float
+     */
     public function getShippingCost()
     {
         return $this->shippingCost;
+    }
+
+    /**
+     * Get Width (Largura)
+     * @return float
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * Get Height (Altura)
+     * @return float
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * Get Length (Comprimento)
+     * @return float
+     */
+    public function getLength()
+    {
+        return $this->length;
+    }
+
+    /**
+     * Set Unique Identifier (ID)
+     * @param int $id
+     * @return Item
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Set Description (Descrição)
+     * @param string $description
+     * @return Item
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * Set Quantity (Quantidade)
+     * @param int $quantity
+     * @return Item
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+        return $this;
+    }
+
+    /**
+     * Set Amount (Preço)
+     * @param float $amount
+     * @return Item
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+        return $this;
+    }
+
+    /**
+     * Set Weight (Peso)
+     * @param float $weight
+     * @return Item
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+        return $this;
+    }
+
+    /**
+     * Set Shipping Cost (Frete)
+     * @param float $shippingCost
+     * @return Item
+     */
+    public function setShippingCost($shippingCost)
+    {
+        $this->shippingCost = $shippingCost;
+        return $this;
+    }
+
+    /**
+     * Set Width (Largura)
+     * @param float $width
+     * @return Item
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+        return $this;
+    }
+
+    /**
+     * Set Height (Altura)
+     * @param float $height
+     * @return Item
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+        return $this;
+    }
+
+    /**
+     * Set Length (Comprimento)
+     * @param float $length
+     * @return Item
+     */
+    public function setLength($length)
+    {
+        $this->length = $length;
+        return $this;
     }
 
 }

@@ -1,5 +1,14 @@
 <?php
 
+namespace laravel\pagseguro\Payment;
+
+use laravel\pagseguro\Credentials\Credentials,
+    laravel\pagseguro\Address\Address,
+    laravel\pagseguro\Item\Item,
+    laravel\pagseguro\Item\ItemCollection,
+    laravel\pagseguro\Request\Request,
+    laravel\pagseguro\Sender\Sender;
+
 /**
  * Classe responsável por prover uma solicitação de pagamento
  *
@@ -11,14 +20,6 @@
  *
  * @copyright  Laravel\PagSeguro
  */
-
-namespace laravel\pagseguro\Payment;
-
-use laravel\pagseguro\Request\Request,
-    laravel\pagseguro\Item\Item,
-    laravel\pagseguro\Address\Address,
-    laravel\pagseguro\Sender\Sender;
-
 class Payment extends Request
 {
 
@@ -40,120 +41,74 @@ class Payment extends Request
     /**
      * @var int
      */
-    private $shipping = NULL;
+    private $shipping = 1;
+
+    /**
+     * @var ItemCollection
+     */
+    private $items;
+
+    /**
+     * @var Address
+     */
+    public $address;
 
     /**
      * @var array
      */
-    private $item = array();
+    public $sender;
 
     /**
-     * @var array
+     * @var Credentials
      */
-    private $items = array();
+    protected $credentials;
 
     /**
-     * @var array
+     * Verifica se os dados de credencial da loja foram obtidos no config da Laravel PagSeguro
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return void
+     * @expectedException Exception
      */
-    private $childrenItems = array();
+    public function __construct(Credentials $credentials = null)
+    {
+        $this->items = new ItemCollection([]);
+        if(!is_null($credentials)) {
+            $this->setCredentials($credentials);
+        }
+        parent::__construct();
+    }
 
     /**
-     * @var array
+     * Set Credentials
+     * @param Credentials $credentials
+     * @return PaymentRequest
      */
-    public $address = array();
-
-    /**
-     * @var array
-     */
-    public $sender = array();
+    public function setCredentials(Credentials $credentials)
+    {
+        $this->credentials = $credentials;
+        return $this;
+    }
 
     /**
      * Irá verificar se os dados de item fornecidos estão válidos e também
      * se no item contém mais de uma requisição de compra
+     * @param Item $item
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object|array
+     * @return Payment
      */
-    public function addItem(array $dataItem = null)
+    public function addItem(Item $item)
     {
-        $this->isValidItem($dataItem);
-        $this->setVerifyItem();
+        $this->items[] = $item;
+        return $this;
     }
 
     /**
-     * Validação dos dados de item
-     * @todo array type verifier
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object|InvalidArgumentException
+     * Get Items
+     * @return array
      */
-    protected function isValidItem($dataItem)
-    {
-        if (
-            is_null($dataItem)
-            || !count($dataItem)
-            || !array_key_exists('items', $dataItem)
-        ) {
-            throw new \InvalidArgumentException('Erro ao setar o item');
-        } else {
-            $this->dataItem = $dataItem;
-        }
-    }
-
-    /**
-     * Retorna os items setados na adição
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object
-     */
-    public function getPaymentItems()
+    public function getItems()
     {
         return $this->items;
-    }
-
-    /**
-     * Verifica se o item e de um produto único ou se é um pacote de compra
-     * @todo array type verifier
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object|array
-     */
-    private function setVerifyItem()
-    {
-        $iteratorPayments = new \RecursiveArrayIterator($this->dataItem);
-        while ($iteratorPayments->valid()) {
-            if ($iteratorPayments->hasChildren()) {
-                $this->setChildrenItems($iteratorPayments);
-            }
-            $iteratorPayments->next();
-        }
-        array_push($this->item, $this->childrenItems);
-        $this->setCreateItems();
-    }
-
-    /**
-     * Insere mais de um item a requisição de compra
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object|array
-     */
-    protected function setChildrenItems($iteratorPayments)
-    {
-        foreach ($iteratorPayments->getChildren() as $key => $value) {
-            $this->childrenItems[$iteratorPayments->key()][$key] = new Item($value);
-        }
-    }
-
-    /**
-     * Cria o objeto de item
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object|array
-     */
-    private function setCreateItems()
-    {
-        if (
-            array_key_exists(0, $this->item)
-            && array_key_exists('items', $this->item[0])
-        ) {
-            $this->items = $this->item[0]['items'];
-        } else {
-            $this->items = array();
-        }
     }
 
     /**
@@ -211,22 +166,21 @@ class Payment extends Request
     }
 
     /**
-     * Criação do objeto de endereço de envio
+     * Set Paymento Address (Seta endereço)
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object
+     * @param Address $address
+     * @return Payment
      */
-    public function setAddress(array $Address = NULL)
+    public function setAddress(Address $address)
     {
-        if (array_key_exists('address', $Address) && !is_null($Address)) {
-            $this->address = new Address($Address['address']);
-        }
+        $this->address = $address;
         return $this;
     }
 
     /**
      * Obtém o endereço de envio do pagamento
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object
+     * @return Address
      */
     public function getAddress()
     {
@@ -257,4 +211,5 @@ class Payment extends Request
     {
         return $this->sender;
     }
+
 }

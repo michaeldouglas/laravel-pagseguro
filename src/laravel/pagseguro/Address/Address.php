@@ -43,10 +43,10 @@ class Address implements AddressInterface
     protected $complement;
 
     /**
-     * Neighborhood (Bairro)
+     * District (Bairro)
      * @var string
      */
-    protected $neighborhood;
+    protected $district;
 
     /**
      * City (Cidade)
@@ -70,14 +70,14 @@ class Address implements AddressInterface
      * @var array
      */
     protected $validationRules = [
-        'postalCode' => 'Required|digits:8',
-        'street' => 'Required|max:255',
-        'number' => 'Required|max:50',
-        'complement' => 'max:255',
-        'neighborhood' => 'Required|max:255',
-        'city' => 'Required|max:255',
+        'postalCode' => 'Required|numeric|digits:8',
+        'street' => 'Required|max:80',
+        'number' => 'Required|max:20',
+        'complement' => 'max:40',
+        'district' => 'Required|max:60',
+        'city' => 'Required|min:2|max:60',
         'state' => 'Required|max:2',
-        'country' => 'Required|max:50',
+        'country' => 'Required|Max:3|in:BRA',
     ];
 
     use DataHydratorTrait;
@@ -94,7 +94,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get Postal Code
+     * Get Postal Code (CEP)
      * @return string
      */
     public function getPostalCode()
@@ -103,7 +103,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get Street
+     * Get Street (Rua)
      * @return string
      */
     public function getStreet()
@@ -112,7 +112,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get Number
+     * Get Number (Número)
      * @return string
      */
     public function getNumber()
@@ -121,7 +121,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get Complement
+     * Get Complement (Complemento)
      * @return string
      */
     public function getComplement()
@@ -130,16 +130,16 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get Neighborhood
+     * Get District (Bairro)
      * @return string
      */
-    public function getNeighborhood()
+    public function getDistrict()
     {
-        return $this->neighborhood;
+        return $this->district;
     }
 
     /**
-     * Get City
+     * Get City (Cidade)
      * @return string
      */
     public function getCity()
@@ -148,7 +148,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get State
+     * Get State (Estado)
      * @return string
      */
     public function getState()
@@ -157,7 +157,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Get Country
+     * Get Country (País)
      * @return string
      */
     public function getCountry()
@@ -166,7 +166,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set PostalCode
+     * Set Postal Code (CEP)
      * @param string $postalCode
      * @return string
      */
@@ -177,7 +177,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Street
+     * Set Street (Rua)
      * @param string $street
      * @return string
      */
@@ -188,7 +188,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Number
+     * Set Number (Número)
      * @param string $number
      * @return string
      */
@@ -199,7 +199,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Complement
+     * Set Complement (Complemento)
      * @param string $complement
      * @return string
      */
@@ -210,18 +210,18 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Neighborhood
-     * @param string $neighborhood
+     * Set District (Bairro)
+     * @param string $district
      * @return string
      */
-    public function setNeighborhood($neighborhood)
+    public function setDistrict($district)
     {
-        $this->neighborhood = $neighborhood;
+        $this->district = $district;
         return $this;
     }
 
     /**
-     * Set City
+     * Set City (Cidade)
      * @param string $city
      * @return string
      */
@@ -232,7 +232,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set State
+     * Set State (Estado)
      * @param string $state
      * @return string
      */
@@ -243,7 +243,7 @@ class Address implements AddressInterface
     }
 
     /**
-     * Set Country
+     * Set Country (País)
      * @param string $country
      * @return string
      */

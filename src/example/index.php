@@ -6,7 +6,8 @@ ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
 use laravel\pagseguro\Payment\PaymentRequest,
-    laravel\pagseguro\Credentials\Credentials;
+    laravel\pagseguro\Credentials\Credentials,
+    laravel\pagseguro\Facades\PagSeguroFacade as PagSeguro;
 
 $dados = array(
     'items' => array(
@@ -51,9 +52,16 @@ $dados = array(
  * Fora da estrutura do Laravel
  */
 try {
-    $PaymentRequest = new PaymentRequest(new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com'));
-    $PaymentRequest->setRequest($dados);
-    echo '<pre>',print_r($PaymentRequest->getPaymentItems(),1),'</pre>';
+    $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
+    $PaymentRequest = PagSeguro::createPaymentRequest();
+    $PaymentRequest
+        ->setCredentials($credentials)
+        ->addItem(PagSeguro::createItem($dados['items']['item1']))
+        ->addItem(PagSeguro::createItem($dados['items']['item2']))
+        ->setAddress(PagSeguro::createAddress($dados['address']))
+        ->setSender($dados) // in dev
+    ;
+    echo '<pre>',print_r($PaymentRequest->getItems(),1),'</pre>';
 } catch (\Exception $e) {
     print_r($e->getMessage());
 }
