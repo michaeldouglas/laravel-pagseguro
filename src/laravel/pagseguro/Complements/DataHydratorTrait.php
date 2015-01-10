@@ -11,7 +11,7 @@ use \Validator;
  * @package    Laravel\PagSeguro\Complements
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2015-08-02
+ * @since      2015-01-08
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -30,7 +30,7 @@ trait DataHydratorTrait
      */
     public function hydrate(array $data = [])
     {
-        $rules = $this->getValidationRules();
+        $rules = $this->getValidationRules()->getRules();
         $defaultData = array_fill_keys(array_keys($rules), null);
         $currentData = $this->toArray();
         $testData = array_merge(
@@ -64,47 +64,9 @@ trait DataHydratorTrait
     }
 
     /**
-     * Get Validate Rules
-     * @return array
+     * @return ValidationRulesInterface
      */
-    public function getValidationRules()
-    {
-        if(property_exists($this, 'validationRules')) {
-            return $this->validationRules;
-        }
-        return [];
-    }
-
-    /**
-     * Get Validate Messages
-     * @return array
-     */
-    public function getValidationMessages()
-    {
-        if(
-            property_exists($this, 'validationMessages')
-            && is_array($this->validationMessages)
-        ) {
-            return $this->validationMessages;
-        }
-        return [];
-    }
-
-    /**
-     * Set Validate Messages
-     * @param array $messages
-     * @return object
-     */
-    public function setValidationMessages(array $messages)
-    {
-        if(
-            property_exists($this, 'validationMessages')
-            && is_array($this->validationMessages)
-        ) {
-            $this->validationMessages = $messages;
-        }
-        return $this;
-    }
+    public abstract function getValidationRules();
 
     /**
      * Test Valid Data
@@ -112,9 +74,10 @@ trait DataHydratorTrait
      */
     public function isValid()
     {
-        $rules = $this->getValidationRules();
+        $vRules = $this->getValidationRules();
+        $rules = $vRules->getRules();
+        $messages = $vRules->getMessages();
         $currentData = $this->toArray();
-        $messages = $this->getValidationMessages();
         $this->validator = Validator::make($currentData, $rules, $messages);
         return $this->validator->passes();
     }
@@ -136,8 +99,8 @@ trait DataHydratorTrait
     public function toArray()
     {
         $cast = [];
-        $rules = $this->getValidationRules();
-        $it = new \ArrayIterator(array_keys($rules));
+        $rulesKeys = $this->getValidationRules()->getKeys();
+        $it = new \ArrayIterator($rulesKeys);
         while($it->valid()) {
             $key = $it->current();
             $method = 'get' . ucfirst($key);

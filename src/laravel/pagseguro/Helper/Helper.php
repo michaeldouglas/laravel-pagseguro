@@ -5,11 +5,11 @@ namespace laravel\pagseguro\Helper;
 /**
  * Helper with utils methods
  *
- * @category   Credentials
+ * @category   Helpers
  * @package    Laravel\PagSeguro
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      : 02/01/2015
+ * @since      2015-01-02
  *
  * @copyright  Laravel\PagSeguro
  */

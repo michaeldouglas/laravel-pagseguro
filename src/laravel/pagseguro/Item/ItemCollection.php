@@ -9,7 +9,7 @@ namespace laravel\pagseguro\Item;
  * @package    Laravel\PagSeguro\Item
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2014-12-30
+ * @since      2015-01-09
  *
  * @copyright  Laravel\PagSeguro
  */

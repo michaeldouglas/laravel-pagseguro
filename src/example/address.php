@@ -9,7 +9,7 @@ $addressData = [
     'street' => 'Rua da prata',
     'number' => '55',
     'complement' => '',
-    'neighborhood' => 'Jardim dos Camargos',
+    'district' => 'Jardim dos Camargos',
     'city' => 'Barueri',
     'state' => 'SP',
     'country' => 'Brasil',
@@ -17,4 +17,4 @@ $addressData = [
 $address = new Address($addressData);
 
 
-echo sprintf('DATA: %s',implode(', ', $address->toArray()));
+echo sprintf('DATA: %s',implode(', ', array_filter($address->toArray())));

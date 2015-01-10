@@ -16,7 +16,7 @@ use laravel\pagseguro\Credentials\Credentials,
  * @package    Laravel\PagSeguro
  *
  * @author     Michael Douglas <michaeldouglas010790@gmail.com>
- * @since      : 30/12/2014
+ * @since      2014-12-30
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -104,7 +104,7 @@ class Payment extends Request
 
     /**
      * Get Items
-     * @return array
+     * @return ItemCollection
      */
     public function getItems()
     {

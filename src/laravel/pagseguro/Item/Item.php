@@ -2,7 +2,7 @@
 
 namespace laravel\pagseguro\Item;
 
-use \laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait;
 
 /**
  * Item Object
@@ -71,21 +71,6 @@ class Item implements ItemInterface
      * @var float
      */
     protected $length;
-
-    /**
-     * @var array
-     */
-    protected $validationRules = [
-        'id' => 'Required|max:100',
-        'description' => 'Required|max:100',
-        'quantity' => 'Required|integer|between:1,999',
-        'amount' => 'Required|numeric|between:0,9999999',
-        'weight' => 'Integer|max:30000',
-        'shippingCost' => 'Numeric|between:0,9999999',
-        'width' => 'Required|max:2',
-        'height' => 'Required|max:50',
-        'length' => 'Required|max:50',
-    ];
 
     use DataHydratorTrait;
 
@@ -278,6 +263,15 @@ class Item implements ItemInterface
     {
         $this->length = $length;
         return $this;
+    }
+
+    /**
+     * Get Validation Rules
+     * @return ValidationRules
+     */
+    public function getValidationRules()
+    {
+        return new ValidationRules();
     }
 
 }

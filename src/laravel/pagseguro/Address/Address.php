@@ -2,7 +2,7 @@
 
 namespace laravel\pagseguro\Address;
 
-use \laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait;
 
 /**
  * Address Object
@@ -65,20 +65,6 @@ class Address implements AddressInterface
      * @var string
      */
     protected $country;
-
-    /**
-     * @var array
-     */
-    protected $validationRules = [
-        'postalCode' => 'Required|numeric|digits:8',
-        'street' => 'Required|max:80',
-        'number' => 'Required|max:20',
-        'complement' => 'max:40',
-        'district' => 'Required|max:60',
-        'city' => 'Required|min:2|max:60',
-        'state' => 'Required|max:2',
-        'country' => 'Required|Max:3|in:BRA',
-    ];
 
     use DataHydratorTrait;
 
@@ -251,6 +237,15 @@ class Address implements AddressInterface
     {
         $this->country = $country;
         return $this;
+    }
+
+    /**
+     * Get Validation Rules
+     * @return ValidationRules
+     */
+    public function getValidationRules()
+    {
+        return new ValidationRules();
     }
 
 }
