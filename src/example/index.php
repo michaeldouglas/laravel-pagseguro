@@ -77,7 +77,7 @@ try {
         ->setSender($dados) // in dev
     ;
     echo "<h1>Items</h1>";
-    echo '<pre>',print_r($PaymentRequest->getItems()->items,1),'</pre>';
+    echo '<pre>',print_r($PaymentRequest->items,1),'</pre>';
     echo "<hr />";
     
     echo "<h1>Endereço</h1>";

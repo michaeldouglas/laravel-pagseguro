@@ -46,7 +46,7 @@ class Payment extends Request
     /**
      * @var ItemCollection
      */
-    private $items;
+    public $items;
 
     /**
      * @var Address
