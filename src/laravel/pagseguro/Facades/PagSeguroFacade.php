@@ -41,5 +41,5 @@ class PagSeguroFacade
     {
         return new Payment();
     }
-
+    
 }

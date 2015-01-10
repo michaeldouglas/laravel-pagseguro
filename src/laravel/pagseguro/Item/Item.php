@@ -17,7 +17,12 @@ use laravel\pagseguro\Complements\DataHydratorTrait;
  */
 class Item implements ItemInterface
 {
-
+    
+    /**
+     * @var array
+     */
+    private $childrenItems = array();
+    
     /**
      * Item Unique Identifier (ID)
      * @var integer|string
@@ -80,8 +85,56 @@ class Item implements ItemInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
-            $this->hydrate($data);
+        if($this->isValidItem($data)){
+            $this->setVerifyItem($data);
+            $this->hydrate($this->items);
+        }
+    }
+    
+    /**
+     * Validação dos dados de item
+     * @todo array type verifier
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return object|InvalidArgumentException
+     */
+    protected function isValidItem($data)
+    {
+        if (
+            is_null($data)
+            || !count($data)
+        ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    /**
+     * Verifica se o item e de um produto único ou se é um pacote de compra
+     * @todo array type verifier
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return object|array
+     */
+    private function setVerifyItem($data)
+    {
+        $iteratorPayments = new \RecursiveArrayIterator($data);
+        while ($iteratorPayments->valid()) {
+            if ($iteratorPayments->hasChildren()) {
+                $this->setCreateItems($iteratorPayments);
+            }
+            $iteratorPayments->next();
+        }
+    }
+    
+    /**
+     * Insere mais de um item a requisição de compra
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return object|array
+     */
+    protected function setCreateItems($iteratorPayments)
+    {
+        foreach ($iteratorPayments->getChildren() as $key => $value) {
+            $this->items[$iteratorPayments->key()][$key] = $value;
         }
     }
 

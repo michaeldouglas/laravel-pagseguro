@@ -98,7 +98,7 @@ class Payment extends Request
      */
     public function addItem(Item $item)
     {
-        $this->items[] = $item;
+        $this->items = $item;
         return $this;
     }
 

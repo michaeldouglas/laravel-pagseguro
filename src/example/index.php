@@ -26,17 +26,33 @@ $dados = array(
             'amount' => '5.00',
             'weight' => '100',
             'shippingCost' => null
+        ),
+        'item3' => array(
+            'id' => '0003',
+            'description' => 'Notebook Prata 3',
+            'quantity' => '3',
+            'amount' => '8.00',
+            'weight' => '200',
+            'shippingCost' => null
+        ),
+        'item4' => array(
+            'id' => '0004',
+            'description' => 'Notebook Prata 4',
+            'quantity' => '4',
+            'amount' => '10.00',
+            'weight' => '300',
+            'shippingCost' => null
         )
     ),
     'address' => array(
-        'cep' => '04433130',
-        'rua' => 'Rua benjamin vieira da silva',
-        'numero' => '1077',
-        'complemento' => '',
-        'bairro' => 'Centro',
-        'cidade' => 'São Paulo',
-        'estado' => 'SP',
-        'pais' => 'BRA',
+        'postalCode' => '04433130',
+        'street' => 'Rua benjamin vieira da silva',
+        'number' => '1077',
+        'complement' => '',
+        'district' => 'Centro',
+        'city' => 'São Paulo',
+        'state' => 'SP',
+        'country' => 'BRA',
     ),
     'sender' => array(
         'nome' => 'Teste do comprador',
@@ -56,12 +72,22 @@ try {
     $PaymentRequest = PagSeguro::createPaymentRequest();
     $PaymentRequest
         ->setCredentials($credentials)
-        ->addItem(PagSeguro::createItem($dados['items']['item1']))
-        ->addItem(PagSeguro::createItem($dados['items']['item2']))
+        ->addItem(PagSeguro::createItem($dados['items']))
         ->setAddress(PagSeguro::createAddress($dados['address']))
         ->setSender($dados) // in dev
     ;
-    echo '<pre>',print_r($PaymentRequest->getItems(),1),'</pre>';
+    echo "<h1>Items</h1>";
+    echo '<pre>',print_r($PaymentRequest->getItems()->items,1),'</pre>';
+    echo "<hr />";
+    
+    echo "<h1>Endereço</h1>";
+    echo '<pre>',print_r($PaymentRequest->address,1),'</pre>';
+    echo "<hr />";
+    
+    echo "<h1>Remetente</h1>";
+    echo '<pre>',print_r($PaymentRequest->sender,1),'</pre>';
+    echo "<hr />";
+    
 } catch (\Exception $e) {
     print_r($e->getMessage());
 }
