@@ -46,17 +46,17 @@ class Payment extends Request
     /**
      * @var ItemCollection
      */
-    public $items;
+    protected $items;
 
     /**
      * @var Address
      */
-    public $address;
+    protected $address;
 
     /**
      * @var array
      */
-    public $sender;
+    protected $sender;
 
     /**
      * @var Credentials
@@ -98,7 +98,32 @@ class Payment extends Request
      */
     public function addItem(Item $item)
     {
-        $this->items = $item;
+        $this->items[] = $item;
+        return $this;
+    }
+
+    /**
+     * Set Item Collection (Set itens da requisição de pagamento)
+     * @param ItemCollection $itemCollection
+     * @author Isaque de Souza <isaquesb@gmail.com>
+     * @return Payment
+     */
+    public function setItemCollection(ItemCollection $itemCollection)
+    {
+        $this->items = $itemCollection;
+        return $this;
+    }
+
+    /**
+     * Set Item Collection From Array Type (Set itens da requisição de pagamento)
+     * @param array $itemCollection
+     * @author Isaque de Souza <isaquesb@gmail.com>
+     * @return Payment
+     */
+    public function setItemCollectionFromArray(array $itemCollection)
+    {
+        $collection = ItemCollection::factory($itemCollection);
+        $this->setItemCollection($collection);
         return $this;
     }
 

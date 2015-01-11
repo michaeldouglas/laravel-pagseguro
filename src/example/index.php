@@ -72,20 +72,20 @@ try {
     $PaymentRequest = PagSeguro::createPaymentRequest();
     $PaymentRequest
         ->setCredentials($credentials)
-        ->addItem(PagSeguro::createItem($dados['items']))
+        ->setItemCollectionFromArray($dados['items'])
         ->setAddress(PagSeguro::createAddress($dados['address']))
         ->setSender($dados) // in dev
     ;
     echo "<h1>Items</h1>";
-    echo '<pre>',print_r($PaymentRequest->items,1),'</pre>';
+    echo '<pre>',print_r($PaymentRequest->getItems(), 1),'</pre>';
     echo "<hr />";
     
     echo "<h1>Endereço</h1>";
-    echo '<pre>',print_r($PaymentRequest->address,1),'</pre>';
+    echo '<pre>',print_r($PaymentRequest->getAddress(), 1),'</pre>';
     echo "<hr />";
     
     echo "<h1>Remetente</h1>";
-    echo '<pre>',print_r($PaymentRequest->sender,1),'</pre>';
+    echo '<pre>',print_r($PaymentRequest->getSender(), 1),'</pre>';
     echo "<hr />";
     
 } catch (\Exception $e) {
