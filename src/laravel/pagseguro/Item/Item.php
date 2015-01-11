@@ -19,11 +19,6 @@ class Item implements ItemInterface
 {
     
     /**
-     * @var array
-     */
-    private $childrenItems = array();
-    
-    /**
      * Item Unique Identifier (ID)
      * @var integer|string
      */
