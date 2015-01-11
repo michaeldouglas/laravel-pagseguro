@@ -82,7 +82,6 @@ class Item implements ItemInterface
     {
         if($this->isValidItem($data)){
             $this->setVerifyItem($data);
-            $this->hydrate($this->items);
         }
     }
     
@@ -115,21 +114,9 @@ class Item implements ItemInterface
         $iteratorPayments = new \RecursiveArrayIterator($data);
         while ($iteratorPayments->valid()) {
             if ($iteratorPayments->hasChildren()) {
-                $this->setCreateItems($iteratorPayments);
+                $this->hydrate($iteratorPayments[$iteratorPayments->key()]);
             }
             $iteratorPayments->next();
-        }
-    }
-    
-    /**
-     * Insere mais de um item a requisição de compra
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object|array
-     */
-    protected function setCreateItems($iteratorPayments)
-    {
-        foreach ($iteratorPayments->getChildren() as $key => $value) {
-            $this->items[$iteratorPayments->key()][$key] = $value;
         }
     }
 
