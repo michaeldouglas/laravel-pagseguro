@@ -55,12 +55,18 @@ $dados = array(
         'country' => 'BRA',
     ),
     'sender' => array(
-        'nome' => 'Teste do comprador',
+        'name' => 'Teste do comprador',
         'email' => 'michael.araujo@idealinvest.com.br',
-        'codarea' => 11,
-        'numero' => '5614-9351',
-        'doctipo' => 'CPF',
-        'docnum' => '319.857.415-39',
+        'phone' => [
+            'areaCode' => 11,
+            'number' => '5614-9351',
+        ],
+        'documents' => [
+            [
+                'type' => 'CPF',
+                'number' => '31985741539',
+            ]
+        ],
     )
 );
 

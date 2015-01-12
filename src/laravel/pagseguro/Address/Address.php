@@ -11,7 +11,7 @@ use laravel\pagseguro\Complements\DataHydratorTrait;
  * @package    Laravel\PagSeguro\Address
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>, Michael Douglas <michaeldouglas010790@gmail.com>
- * @since      2015-08-01
+ * @since      2015-01-08
  *
  * @copyright  Laravel\PagSeguro
  */

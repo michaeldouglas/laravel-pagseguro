@@ -1,122 +1,178 @@
 <?php
 
+namespace laravel\pagseguro\Sender;
+
+use laravel\pagseguro\Complements\DataHydratorTrait,
+    laravel\pagseguro\Sender\Phone\Phone;
+
 /**
- * Classe responsável pelo objeto de remetente de compra
+ * Sender Object
  *
  * @category   Sender
  * @package    Laravel\PagSeguro\Sender
  *
- * @author     Michael Douglas <michaeldouglas010790@gmail.com>
- * @since      : 03/01/2015
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Michael Douglas <michaeldouglas010790@gmail.com>
+ * @since      2015-01-11
  *
  * @copyright  Laravel\PagSeguro
  */
-
-namespace laravel\pagseguro\Sender;
-
-use laravel\pagseguro\Sender\ValidateSender,
-    laravel\pagseguro\Helper\Helper;
-
-class Sender extends ValidateSender
+class Sender implements SenderInterface
 {
 
-    private   $name;
-    private   $email;
-    private   $numero;
-    private   $documents;
-    protected $sender;
+    /**
+     * E-mail
+     * @var string
+     */
+    protected $email;
 
-    public function __construct($sender = null)
+    /**
+     * Name (Nome)
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * Phone Number (Telefone)
+     * @var PhoneInterface
+     */
+    protected $phone;
+
+    /**
+     * Documents (Lista de Documentos: CPF)
+     * @var DocumentCollection
+     */
+    protected $documents;
+
+    /**
+     * Born Date (Data de nascimento)
+     * @var string
+     */
+    protected $bornDate;
+
+    use DataHydratorTrait;
+
+    /**
+     * Constructor
+     * @param array $data
+     */
+    public function __construct(array $data = [])
     {
-        if (!is_null($sender) && is_array($sender)) {
-            $this->sender = $sender;
-            switch ($this->sender) {
-                case isset($this->sender['nome']):
-                    $this->setVerifyName();
-
-                case isset($this->sender['email']):
-                    $this->email = Helper::getValueOrDefault($sender, 'email');
-
-                case (isset($this->sender['codarea']) && isset($this->sender['numero'])):
-                    $this->setVerifyPhone();
-
-                case (isset($this->sender['doctipo']) && isset($this->sender['docnum'])):
-                    $this->complement = Helper::getValueOrDefault($sender, 'complemento');
-                    break;
-
-                default:
-                    throw new \Exception('Nenhum parametro encontrado!');
-            }
+        if(count($data)) {
+            $this->hydrate($data);
         }
     }
-    
+
     /**
-     * Verifica se o nome do remetente está válido, se estiver correto seta o nome
-     * do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return Exception
+     * Get E-mail
+     * @return string
      */
-    protected function setVerifyName()
+    public function getEmail()
     {
-        if ($this->isValidName($this->sender['nome']) == false) {
-            throw new \Exception('Nome do remetente inválido!');
-        }
-        $this->setName();
+        return $this->email;
     }
-    
+
     /**
-     * Seta o nome do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object
-     */
-    private function setName()
-    {
-        $this->name = Helper::getValueOrDefault($this->sender, 'nome');
-    }
-    
-    /**
-     * Obtém o nome do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object
+     * Get Name (Nome)
+     * @return string
      */
     public function getName()
     {
         return $this->name;
     }
-    
-    /**
-     * Verifica se o telefone do remetente está válido, se estiver chama o método para
-     * setar
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return Exception
-     */
-    private function setVerifyPhone()
-    {
-        if ($this->isValidTelephone($this->sender['codarea'], $this->sender['numero']) == false) {
-            throw new \Exception('Telefone inválido!');
-        }
 
-        $this->setPhone();
-    }
-    
     /**
-     * Seta o telefone do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object
-     */
-    private function setPhone()
-    {
-        $this->numero = Helper::getValueOrDefault($this->sender, 'numero');
-    }
-    
-    /**
-     * Obtém o telefone do remetente
-     * @author Michael Araujo <michaeldouglas010790@gmail.com>
-     * @return object
+     * Get Phone (Telefone)
+     * @return PhoneInterface
      */
     public function getPhone()
     {
-        return $this->numero;
+        return $this->phone;
+    }
+
+    /**
+     * Get Documents (Lista de Documentos)
+     * @return DocumentCollection
+     */
+    public function getDocuments()
+    {
+        return $this->documents;
+    }
+
+    /**
+     * Get Born Date (Data de Nascimento)
+     * @return string
+     */
+    public function getBornDate()
+    {
+        return $this->bornDate;
+    }
+
+    /**
+     * Set Email
+     * @param string $email
+     * @return Address
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * Set Name
+     * @param string $name
+     * @return Address
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Set Phone (Telefone)
+     * @param PhoneInterface|array $phone
+     * @return Address
+     */
+    public function setPhone($phone)
+    {
+        if(!is_null($phone)) {
+            $this->phone = Phone::factory($phone);
+        } else {
+            $this->phone = null;
+        }
+        return $this;
+    }
+
+    /**
+     * Set Documents (Lista de Documentos)
+     * @param DocumentCollection|array|string $documents
+     * @return Address
+     */
+    public function setDocuments($documents)
+    {
+        $this->documents = $documents;
+        return $this;
+    }
+
+    /**
+     * Set Born Date (Data de nascimento)
+     * @param string $bornDate
+     * @return Address
+     */
+    public function setBornDate($bornDate)
+    {
+        $this->bornDate = $bornDate;
+        return $this;
+    }
+
+    /**
+     * Get Validation Rules
+     * @return ValidationRules
+     */
+    public function getValidationRules()
+    {
+        return new ValidationRules();
     }
 
 }
