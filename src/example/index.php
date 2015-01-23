@@ -5,9 +5,8 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-use laravel\pagseguro\Payment\PaymentRequest,
-    laravel\pagseguro\Credentials\Credentials,
-    laravel\pagseguro\Facades\PagSeguroFacade as PagSeguro;
+use laravel\pagseguro\Request\PaymentRequest,
+    laravel\pagseguro\Credentials\Credentials;
 
 $dados = array(
     'items' => array(
@@ -75,23 +74,19 @@ $dados = array(
  */
 try {
     $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
-    $PaymentRequest = PagSeguro::createPaymentRequest();
-    $PaymentRequest
-        ->setCredentials($credentials)
-        ->setItemCollectionFromArray($dados['items'])
-        ->setAddress(PagSeguro::createAddress($dados['address']))
-        ->setSender($dados) // in dev
-    ;
+    $request = new PaymentRequest($credentials);
+    $request->setRequest($dados);
+    
     echo "<h1>Items</h1>";
-    echo '<pre>',print_r($PaymentRequest->getItems(), 1),'</pre>';
+    echo '<pre>',print_r($request->getItems(), 1),'</pre>';
     echo "<hr />";
     
     echo "<h1>Endereço</h1>";
-    echo '<pre>',print_r($PaymentRequest->getAddress(), 1),'</pre>';
+    echo '<pre>',print_r($request->getAddress(), 1),'</pre>';
     echo "<hr />";
     
     echo "<h1>Remetente</h1>";
-    echo '<pre>',print_r($PaymentRequest->getSender(), 1),'</pre>';
+    echo '<pre>',print_r($request->getSender(), 1),'</pre>';
     echo "<hr />";
     
 } catch (\Exception $e) {
