@@ -97,4 +97,10 @@ class PaymentRequest extends Payment
         
         return $this;
     }
+    
+    public function sendRequest()
+    {
+        echo "<pre>";
+        print_r($this->data);
+    }
 }

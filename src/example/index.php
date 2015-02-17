@@ -25,22 +25,6 @@ $dados = array(
             'amount' => '5.00',
             'weight' => '100',
             'shippingCost' => null
-        ),
-        'item3' => array(
-            'id' => '0003',
-            'description' => 'Notebook Prata 3',
-            'quantity' => '3',
-            'amount' => '8.00',
-            'weight' => '200',
-            'shippingCost' => null
-        ),
-        'item4' => array(
-            'id' => '0004',
-            'description' => 'Notebook Prata 4',
-            'quantity' => '4',
-            'amount' => '10.00',
-            'weight' => '300',
-            'shippingCost' => null
         )
     ),
     'address' => array(
@@ -77,7 +61,9 @@ try {
     $request = new PaymentRequest($credentials);
     $request->setRequest($dados);
     
-    echo "<h1>Items</h1>";
+    $request->sendRequest();
+    
+    /*echo "<h1>Items</h1>";
     echo '<pre>',print_r($request->getItems(), 1),'</pre>';
     echo "<hr />";
     
@@ -87,7 +73,7 @@ try {
     
     echo "<h1>Remetente</h1>";
     echo '<pre>',print_r($request->getSender(), 1),'</pre>';
-    echo "<hr />";
+    echo "<hr />";*/
     
 } catch (\Exception $e) {
     print_r($e->getMessage());

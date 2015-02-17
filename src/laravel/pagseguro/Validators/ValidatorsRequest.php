@@ -22,7 +22,7 @@ trait ValidatorsRequest {
      * @return bool
      */
     public function _dataIsValid($data){
-        return ((is_array($data) && !is_null($data)) ? true : false);
+        return ((count($data) > 0 && is_array($data) && !is_null($data)) ? true : false);
     }
     
     /**
@@ -31,7 +31,7 @@ trait ValidatorsRequest {
      * @return bool
      */
     public function _dataAddressIsValid($data){
-        return ((is_array($data) && !is_null($data) && array_key_exists('address', $data)) ? true : false);
+        return ((count($data) > 0 && is_array($data) && !is_null($data) && array_key_exists('address', $data)) ? true : false);
     }
     
     /**
@@ -40,6 +40,6 @@ trait ValidatorsRequest {
      * @return bool
      */
     public function _dataCollectionIsValid($data){
-        return ((is_array($data) && !is_null($data) && array_key_exists('items', $data)) ? true : false);
+        return ((count($data) > 0 && is_array($data) && !is_null($data) && array_key_exists('items', $data)) ? true : false);
     }
 }
