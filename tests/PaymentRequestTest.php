@@ -61,5 +61,10 @@ class PaymentRequestTest extends PHPUnit_Framework_TestCase
     {
         $this->assertArrayHasKey('sender', $this->objectPaymentRequest->data);
     }
+    
+    public function testCallRequest()
+    {
+        $this->assertEquals(false, $this->objectPaymentRequest->sendReques());
+    }
 
 }

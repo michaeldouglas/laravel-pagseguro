@@ -61,7 +61,7 @@ try {
     $request = new PaymentRequest($credentials);
     $request->setRequest($dados);
     
-    $request->sendRequest();
+    print $request->sendRequest();
     
     /*echo "<h1>Items</h1>";
     echo '<pre>',print_r($request->getItems(), 1),'</pre>';

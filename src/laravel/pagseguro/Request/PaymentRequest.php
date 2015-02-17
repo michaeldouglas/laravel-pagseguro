@@ -16,7 +16,8 @@ namespace laravel\pagseguro\Request;
 use laravel\pagseguro\Payment\Payment,
     laravel\pagseguro\Credentials\Credentials,
     laravel\pagseguro\Validators\ValidatorsRequest as Validators,
-    laravel\pagseguro\Facades\PagSeguroFacade as PagSeguro;
+    laravel\pagseguro\Facades\PagSeguroFacade as PagSeguro,
+    laravel\pagseguro\Request\Request;
 
 class PaymentRequest extends Payment
 {
@@ -38,6 +39,7 @@ class PaymentRequest extends Payment
     public function __construct(Credentials $credentials = null)
     {
         $this->credentials = $credentials;
+        $this->request     = new Request;
     }
 
     /**
@@ -51,10 +53,10 @@ class PaymentRequest extends Payment
             $this->setFacadeAddress()->setCredentials($this->credentials)->setFacadeCollection()->setSender($this->data);
             return $this;
         }
-        
+
         return false;
     }
-    
+
     /**
      * Cria o objeto com os dados de requisição de compra
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
@@ -69,7 +71,7 @@ class PaymentRequest extends Payment
 
         return false;
     }
-    
+
     /**
      * Cria o objeto com os dados de endereço
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
@@ -77,13 +79,13 @@ class PaymentRequest extends Payment
      */
     private function setFacadeAddress()
     {
-        if($this->_dataAddressIsValid($this->data)) {
+        if ($this->_dataAddressIsValid($this->data)) {
             $this->setAddress(PagSeguro::createAddress($this->data['address']));
         }
-        
+
         return $this;
     }
-    
+
     /**
      * Cria o objeto com os dados de compra
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
@@ -91,16 +93,24 @@ class PaymentRequest extends Payment
      */
     private function setFacadeCollection()
     {
-        if($this->_dataCollectionIsValid($this->data)) {
+        if ($this->_dataCollectionIsValid($this->data)) {
             $this->setItemCollectionFromArray($this->data['items']);
         }
-        
+
         return $this;
     }
     
-    public function sendRequest()
+    /**
+     * Método para sobrecarga da chamada de requisição existe na classe Request
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return object
+     */
+    public function __call($name, $arguments = [])
     {
-        echo "<pre>";
-        print_r($this->data);
+        if (method_exists($this->request, $name)) {
+            return $this->request->$name($this, $arguments);
+        }
+        
+        return false;
     }
 }

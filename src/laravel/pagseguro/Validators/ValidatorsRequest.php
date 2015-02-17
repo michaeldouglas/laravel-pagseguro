@@ -42,4 +42,32 @@ trait ValidatorsRequest {
     public function _dataCollectionIsValid($data){
         return ((count($data) > 0 && is_array($data) && !is_null($data) && array_key_exists('items', $data)) ? true : false);
     }
+    
+    /**
+     * Verifica se o timeout é válido
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return bool
+     */
+    public function _verifyArgumentTimeout($data)
+    {
+        if(array_key_exists(0,$data)){
+            return ( (is_int($data[0]) && !is_null($data[0]) ) ? true : false);
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Verifica se o charset é válido
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return bool
+     */
+    public function _verifyArgumentCharset($data)
+    {
+        if(array_key_exists(1,$data)){
+            return ( (strlen($data[1]) > 0 && $data[0] != ' ' && !is_null($data[1]) ) ? true : false);
+        }
+        
+        return false;
+    }
 }
