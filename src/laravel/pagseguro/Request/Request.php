@@ -14,21 +14,25 @@
 
 namespace laravel\pagseguro\Request;
 
-use laravel\pagseguro\Validators\ValidatorsRequest as Validators;
+use laravel\pagseguro\Validators\ValidatorsRequest as Validators,
+    laravel\pagseguro\Request\RequestInterface;
 
-class Request
+class Request implements RequestInterface
 {
 
     use Validators;
 
     protected $httpPostField;
-    private $dataRequest;
-    private $_defineSizeFiel;
-    private $_contentLength;
-    private $_arguments;
-    private $_timeout;
-    private $_charset;
+    private   $dataRequest;
+    private   $_defineSizeFiel;
+    private   $_contentLength;
+    private   $_arguments;
+    private   $_timeout;
+    private   $_charset;
     protected $curl;
+    protected $_optionsMethod;
+    protected $_options;
+    protected $_objectRequest;
 
     const ARGSEPARATOR = '&';
 
@@ -59,7 +63,14 @@ class Request
 
         $this->setObjectCURL();
     }
-
+    
+    /**
+     * Método responsável por iniciar o curl para a requisição
+     * @copyright (c) 2015, Michael Araujo
+     * @access private
+     * @since 0.1
+     * @param void
+     */
     private function setObjectCURL()
     {
         $this->curl = curl_init();
@@ -74,8 +85,15 @@ class Request
      */
     protected function sendRequest(PaymentRequest $data, $arguments)
     {
-        $this->dataRequest = $data->data;
-        $this->_setArguments($arguments)->_setBuildQuery()->_setSizeBuildQuery()->_setContentLength();
+        $this->dataRequest = $data;
+        $this->_setArguments($arguments)
+                ->_setBuildQuery()
+                ->_setSizeBuildQuery()
+                ->_setContentLength()
+                ->_setMethodOptions()
+                ->_setOptions();
+        
+        $this->_request();
     }
 
     /**
@@ -89,7 +107,8 @@ class Request
     private function _setBuildQuery()
     {
         if (count($this->dataRequest) > 0) {
-            $this->httpPostField = http_build_query($this->dataRequest, '', self::ARGSEPARATOR);
+            $dataBuild = array_merge($this->dataRequest->credentials->__toArray(), $this->dataRequest->data);
+            $this->httpPostField = http_build_query($dataBuild, '', self::ARGSEPARATOR);
             return $this;
         }
 
@@ -234,7 +253,7 @@ class Request
      */
     private function _setCharset($charset = 'ISO-8859-1')
     {
-        $this->_charset = $charset;
+        $this->_charset = "Content-Type: application/x-www-form-urlencoded; charset={$charset}";
         return $this;
     }
     
@@ -249,10 +268,105 @@ class Request
     {
         return $this->_charset;
     }
-
-    protected function _request()
+    
+    /**
+     * Método responsável por setar o options de requisição
+     * @copyright (c) 2015, Michael Araujo
+     * @access private
+     * @since 0.1
+     * @param void
+     */
+    private function _setMethodOptions()
     {
+        $this->_optionsMethod = [
+            CURLOPT_POST       => true,
+            CURLOPT_POSTFIELDS => $this->httpPostField,
+        ];
         
+        return $this;
+    }
+    
+    /**
+     * Método responsável por obter o options de requisição
+     * @copyright (c) 2015, Michael Araujo
+     * @access private
+     * @since 0.1
+     * @param void
+     */
+    public function getMethodOptions()
+    {
+        return $this->_optionsMethod;
+    }
+    
+    /**
+     * @todo Ajustar o recebimento do parametro de URL
+     */
+    protected function _setOptions()
+    {
+        $this->_options = [
+            CURLOPT_HTTPHEADER => [
+                $this->_charset,
+                $this->_contentLength
+            ],
+            CURLOPT_URL => 'https://ws.pagseguro.uol.com.br/v2/checkout',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER => false,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false,
+            CURLOPT_CONNECTTIMEOUT => $this->_timeout
+        ];
+        
+        $this->_setRequest();
+    }
+    
+    /**
+     * Método responsável por unir os obtetos de options e optionsMethod para 
+     * requisição.
+     * @copyright (c) 2015, Michael Araujo
+     * @access protected
+     * @since 0.1
+     * @param object
+     */
+    protected function _setRequest()
+    {
+        $this->_objectRequest = array_replace($this->_options, $this->_optionsMethod);
+        
+        return $this;
+    }
+    
+    /**
+     * Método responsável por retornar as opções setadas para a requisição.
+     * @copyright (c) 2015, Michael Araujo
+     * @access public
+     * @since 0.1
+     * @param object
+     */
+    public function getOptions()
+    {
+        return $this->_options;
+    }
+    
+    /**
+     * Método responsável por retornar a requisição que sera feita ao PagSeguro
+     * @copyright (c) 2015, Michael Araujo
+     * @access public
+     * @since 0.1
+     * @param object
+     */
+    public function getRequest()
+    {
+        return $this->_objectRequest;
+    }
+
+    /**
+     * @todo Concluir as chamadas e verificações de erro
+     */
+    protected function _request()
+    {   
+        curl_setopt_array($this->curl, $this->_objectRequest);
+        curl_exec($this->curl);
+        
+        curl_close($this->curl);
     }
 
 }

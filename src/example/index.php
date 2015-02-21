@@ -50,14 +50,15 @@ $dados = array(
                 'number' => '31985741539',
             ]
         ],
-    )
+    ),
+    'type' => 'BRL'
 );
 
 /**
  * Fora da estrutura do Laravel
  */
 try {
-    $credentials = new Credentials('65821CECD6304779B7570BA2D06AD953', 'michaeldouglas010790@gmail.com');
+    $credentials = new Credentials('43ECEAEB8DBD4DC7B240E22DBA6540D2', 'michaeldouglas010790@gmail.com');
     $request = new PaymentRequest($credentials);
     $request->setRequest($dados);
     
