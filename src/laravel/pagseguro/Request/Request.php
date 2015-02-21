@@ -15,26 +15,30 @@
 namespace laravel\pagseguro\Request;
 
 use laravel\pagseguro\Validators\ValidatorsRequest as Validators,
-    laravel\pagseguro\Request\RequestInterface;
+    laravel\pagseguro\Request\RequestInterface,
+    laravel\pagseguro\Complements\DataHydratorTrait;
 
 class Request implements RequestInterface
 {
 
-    use Validators;
+    use Validators, DataHydratorTrait;
 
     protected $httpPostField;
     private   $dataRequest;
     private   $_defineSizeFiel;
     private   $_contentLength;
     private   $_arguments;
-    private   $_timeout;
-    private   $_charset;
+    private   $_timeout = 0;
+    private   $_charset = 'ISO-8859-1';
+    private   $_url = 'https://ws.pagseguro.uol.com.br/v2/checkout';
     protected $curl;
     protected $_optionsMethod;
     protected $_options;
     protected $_objectRequest;
 
     const ARGSEPARATOR = '&';
+    
+    public function getValidationRules(){}
 
     /**
      * Para utilização das requisições é necessario que o Curl esteja ativo
@@ -191,11 +195,13 @@ class Request implements RequestInterface
      */
     private function _setArguments(array $arguments = null)
     {
-        $this->_arguments = $arguments;
-        $this->_setSeparateArguments();
+        $this->_arguments = ( array_key_exists(0, $arguments) ? $arguments[0] : NULL );
+        if(!is_null($this->_arguments)){
+            $this->_setSeparateArguments();
+        }
         return $this;
     }
-    
+      
     /**
      * Método responsável por verificar os argumentos e separar TimeOut e 
      * Charset
@@ -206,16 +212,7 @@ class Request implements RequestInterface
      */
     protected function _setSeparateArguments()
     {
-        if ($this->_verifyArgumentTimeout($this->_arguments) && $this->_verifyArgumentCharset($this->_arguments)) {//Define os argumentos
-            $this->_setTimeout($this->_arguments[0])->_setCharset($this->_arguments[1]);
-        } else if ($this->_verifyArgumentTimeout($this->_arguments)) {
-            $this->_setTimeout($this->_arguments[0])->_setCharset();
-        } else if ($this->_verifyArgumentCharset($this->_arguments)) {
-            $this->_setTimeout()->_setCharset($this->_arguments[1]);
-        } else {
-            $this->_setTimeout()->_setCharset();
-        }
-
+        $this->_hydrate($this->_arguments, '_set');
         return $this;
     }
     
@@ -226,8 +223,11 @@ class Request implements RequestInterface
      * @since 0.1
      * @param void
      */
-    private function _setTimeout($timeOut = 0)
+    private function _setTimeout($timeOut)
     {
+        if(!$this->_verifyArgumentTimeout($timeOut)){
+            $timeOut = $this->_timeout;
+        }
         $this->_timeout = $timeOut;
         return $this;
     }
@@ -251,9 +251,12 @@ class Request implements RequestInterface
      * @since 0.1
      * @param void
      */
-    private function _setCharset($charset = 'ISO-8859-1')
+    private function _setCharset($charset)
     {
-        $this->_charset = "Content-Type: application/x-www-form-urlencoded; charset={$charset}";
+        if(!$this->_verifyArgumentCharset($charset)){
+            $charset = $this->_charset;
+        }
+        $this->_charset = $charset;
         return $this;
     }
     
@@ -269,6 +272,48 @@ class Request implements RequestInterface
         return $this->_charset;
     }
     
+    /**
+     * Método responsável por obter a string charset para a requisição
+     * @copyright (c) 2015, Michael Araujo
+     * @access public
+     * @since 0.1
+     * @param string contem a header para requisicao e tambem o tipo que o dado
+     * sera retornando
+     */
+    public function getStringCharset()
+    {
+        return "Content-Type: application/x-www-form-urlencoded; charset={$this->_charset}";
+    }
+    
+    /**
+     * Método responsável por setar a URL de requisição
+     * @copyright (c) 2015, Michael Araujo
+     * @access private
+     * @since 0.1
+     * @param object seta  a URL
+     */
+    private function _setURL($url)
+    {
+        if(!$this->_verifyURL($url)){
+            $url = $this->_url;
+        }
+        $this->_url = $url;
+        return $this;
+    }
+    
+    /**
+     * Método responsável por obter a URL de requisição
+     * @copyright (c) 2015, Michael Araujo
+     * @access public
+     * @since 0.1
+     * @param object contendo a url
+     */
+    public function getURL()
+    {
+        return $this->_url;
+    }
+
+
     /**
      * Método responsável por setar o options de requisição
      * @copyright (c) 2015, Michael Araujo
@@ -299,16 +344,21 @@ class Request implements RequestInterface
     }
     
     /**
-     * @todo Ajustar o recebimento do parametro de URL
+     * Método responsável por setar os dados de opção de para o envio da
+     * requisição.
+     * @copyright (c) 2015, Michael Araujo
+     * @access protected
+     * @since 0.1
+     * @param object
      */
     protected function _setOptions()
     {
         $this->_options = [
             CURLOPT_HTTPHEADER => [
-                $this->_charset,
+                $this->getStringCharset(),
                 $this->_contentLength
             ],
-            CURLOPT_URL => 'https://ws.pagseguro.uol.com.br/v2/checkout',
+            CURLOPT_URL => $this->_url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HEADER => false,
             CURLOPT_SSL_VERIFYPEER => false,

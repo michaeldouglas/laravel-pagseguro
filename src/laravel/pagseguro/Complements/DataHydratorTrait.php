@@ -47,13 +47,13 @@ trait DataHydratorTrait
      * @param array $data
      * @return void
      */
-    protected function _hydrate(array $data = [])
+    protected function _hydrate(array $data = [], $separator = 'set')
     {
         $it = new \ArrayIterator($data);
         while($it->valid()) {
             $key = $it->key();
             $value = $it->current();
-            $method = 'set' . ucfirst($key);
+            $method = $separator . ucfirst($key);
             if(method_exists($this, $method)) {
                 $this->{$method}($value);
             } else {

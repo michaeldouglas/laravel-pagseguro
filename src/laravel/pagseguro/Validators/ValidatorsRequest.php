@@ -50,11 +50,7 @@ trait ValidatorsRequest {
      */
     public function _verifyArgumentTimeout($data)
     {
-        if(array_key_exists(0,$data)){
-            return ( (is_int($data[0]) && !is_null($data[0]) ) ? true : false);
-        }
-        
-        return false;
+        return ( (is_int($data) && !is_null($data) ) ? true : false);
     }
     
     /**
@@ -64,10 +60,16 @@ trait ValidatorsRequest {
      */
     public function _verifyArgumentCharset($data)
     {
-        if(array_key_exists(1,$data)){
-            return ( (strlen($data[1]) > 0 && $data[0] != ' ' && !is_null($data[1]) ) ? true : false);
-        }
-        
-        return false;
+        return ( (strlen($data) > 0 && $data != ' ' && !is_null($data) ) ? true : false);
+    }
+    
+    /**
+     * Verifica se a URL é válida
+     * @author Michael Araujo <michaeldouglas010790@gmail.com>
+     * @return bool
+     */
+    public function _verifyURL($data)
+    {
+        return (filter_var($data, FILTER_VALIDATE_URL ) ? true : false);
     }
 }
