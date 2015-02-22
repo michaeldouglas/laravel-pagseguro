@@ -51,7 +51,7 @@ $dados = array(
             ]
         ],
     ),
-    'type' => 'BRL'
+    'currency' => 'BRL'
 );
 
 /**

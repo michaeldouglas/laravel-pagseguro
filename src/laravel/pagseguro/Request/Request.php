@@ -16,12 +16,13 @@ namespace laravel\pagseguro\Request;
 
 use laravel\pagseguro\Validators\ValidatorsRequest as Validators,
     laravel\pagseguro\Request\RequestInterface,
-    laravel\pagseguro\Complements\DataHydratorTrait;
+    laravel\pagseguro\Complements\DataHydratorTrait,
+    laravel\pagseguro\Complements\DataRequestHydrator;
 
 class Request implements RequestInterface
 {
 
-    use Validators, DataHydratorTrait;
+    use Validators, DataHydratorTrait, DataRequestHydrator;
 
     protected $httpPostField;
     private   $dataRequest;
@@ -111,7 +112,7 @@ class Request implements RequestInterface
     private function _setBuildQuery()
     {
         if (count($this->dataRequest) > 0) {
-            $dataBuild = array_merge($this->dataRequest->credentials->__toArray(), $this->dataRequest->data);
+            $dataBuild = array_merge($this->dataRequest->credentials->__toArray(), $this->separatorDataRequest($this->dataRequest->data));
             $this->httpPostField = http_build_query($dataBuild, '', self::ARGSEPARATOR);
             return $this;
         }
