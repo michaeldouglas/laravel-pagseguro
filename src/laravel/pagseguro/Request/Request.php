@@ -112,7 +112,7 @@ class Request implements RequestInterface
     private function _setBuildQuery()
     {
         if (count($this->dataRequest) > 0) {
-            $dataBuild = array_merge($this->dataRequest->credentials->__toArray(), $this->separatorDataRequest($this->dataRequest->data));
+            $dataBuild = array_merge($this->dataRequest->credentials->__toArray(), $this->separatorDataRequest($this->dataRequest));
             $this->httpPostField = http_build_query($dataBuild, '', self::ARGSEPARATOR);
             return $this;
         }
@@ -415,8 +415,8 @@ class Request implements RequestInterface
     protected function _request()
     {   
         curl_setopt_array($this->curl, $this->_objectRequest);
-        curl_exec($this->curl);
-        
+        $e = curl_exec($this->curl);
+        print_r($e);
         curl_close($this->curl);
     }
 

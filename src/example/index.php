@@ -11,20 +11,20 @@ use laravel\pagseguro\Request\PaymentRequest,
 $dados = array(
     'items' => array(
         'item1' => array(
-            'id' => '0001',
-            'description' => 'Notebook Prata 1',
-            'quantity' => '1',
-            'amount' => '10.00',
-            'weight' => '1000',
-            'shippingCost' => null
+            'itemId1' => '0001',
+            'itemDescription1' => 'Notebook Prata 1',
+            'itemQuantity1' => '1',
+            'itemAmount1' => '10.00',
+            'itemWeight1' => '1000',
+            'itemShippingCost1' => null
         ),
         'item2' => array(
-            'id' => '0002',
-            'description' => 'Notebook Prata 2',
-            'quantity' => '2',
-            'amount' => '5.00',
-            'weight' => '100',
-            'shippingCost' => null
+            'itemId2' => '0002',
+            'itemDescription2' => 'Notebook Prata 2',
+            'itemQuantity2' => '2',
+            'itemAmount2' => '5.00',
+            'itemWeight2' => '100',
+            'itemShippingCost2' => null
         )
     ),
     'address' => array(

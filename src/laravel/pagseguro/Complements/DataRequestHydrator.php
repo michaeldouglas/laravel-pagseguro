@@ -5,8 +5,6 @@ trait DataRequestHydrator
 {
     public function separatorDataRequest($data)
     {
-        $items = $data['items'];
-        unset($data['items']);
-        return array_merge($items, $data);
+        return array_merge($data->data['address'],  $data->data['items']);
     }
 }
