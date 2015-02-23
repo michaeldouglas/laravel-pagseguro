@@ -10,7 +10,7 @@ use laravel\pagseguro\Request\PaymentRequest,
 
 $dados = array(
     'items' => array(
-        'item1' => array(
+        'itemId1' => array(
             'itemId1' => '0001',
             'itemDescription1' => 'Notebook Prata 1',
             'itemQuantity1' => '1',
@@ -18,7 +18,7 @@ $dados = array(
             'itemWeight1' => '1000',
             'itemShippingCost1' => null
         ),
-        'item2' => array(
+        'itemId2' => array(
             'itemId2' => '0002',
             'itemDescription2' => 'Notebook Prata 2',
             'itemQuantity2' => '2',
@@ -61,11 +61,10 @@ try {
     $credentials = new Credentials('43ECEAEB8DBD4DC7B240E22DBA6540D2', 'michaeldouglas010790@gmail.com');
     $request = new PaymentRequest($credentials);
     $request->setRequest($dados);
-    
     print $request->sendRequest();
     
     /*echo "<h1>Items</h1>";
-    echo '<pre>',print_r($request->getItems(), 1),'</pre>';
+    
     echo "<hr />";
     
     echo "<h1>Endereço</h1>";

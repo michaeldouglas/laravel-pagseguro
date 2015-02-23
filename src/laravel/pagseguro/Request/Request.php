@@ -415,8 +415,12 @@ class Request implements RequestInterface
     protected function _request()
     {   
         curl_setopt_array($this->curl, $this->_objectRequest);
-        $e = curl_exec($this->curl);
-        print_r($e);
+        $result = curl_exec($this->curl);
+        
+        $xml = simplexml_load_string($result);
+        
+        print 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=' . $xml->code;
+        
         curl_close($this->curl);
     }
 
