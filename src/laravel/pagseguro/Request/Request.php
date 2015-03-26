@@ -26,6 +26,7 @@ class Request implements RequestInterface
 
     protected $httpPostField;
     private   $dataRequest;
+    public    $code;
     private   $_defineSizeFiel;
     private   $_contentLength;
     private   $_arguments;
@@ -98,7 +99,7 @@ class Request implements RequestInterface
                 ->_setMethodOptions()
                 ->_setOptions();
         
-        $this->_request();
+        return $this->_request();
     }
 
     /**
@@ -419,9 +420,26 @@ class Request implements RequestInterface
         
         $xml = simplexml_load_string($result);
         
-        print 'https://pagseguro.uol.com.br/v2/checkout/payment.html?code=' . $xml->code;
+        $error = curl_errno($this->curl);
+        
+        if($error){
+            $errorMessage = curl_error($this->curl);
+            throw new Exception("Erro: $errorMessage");
+        }
         
         curl_close($this->curl);
+        
+        $this->setCode($xml->code);
     }
-
+    
+    private function setCode( $code )
+    {
+        $this->code = $code;
+    }
+    
+    public function getCode()
+    {
+        return $this->code;
+    }
+    
 }

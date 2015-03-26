@@ -60,10 +60,13 @@ $dados = array(
 try {
     $credentials = new Credentials('43ECEAEB8DBD4DC7B240E22DBA6540D2', 'michaeldouglas010790@gmail.com');
     $request = new PaymentRequest($credentials);
-    $request->setRequest($dados);
-    print $request->sendRequest();
+    $request->setRequest($dados)->sendRequest();
+    $code = $request->request->getCode();
     
-    /*echo "<h1>Items</h1>";
+    echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code\"> Pagamento </a>";
+    
+    /* 
+     * echo "<h1>Items</h1>";
     
     echo "<hr />";
     
