@@ -3,7 +3,7 @@
 namespace laravel\pagseguro;
 
 use \laravel\pagseguro\Credentials\Credentials,
-    \laravel\pagseguro\Facades\PagSeguroFacade,
+    \laravel\pagseguro\Request\PaymentRequest,
     \Illuminate\Support\ServiceProvider,
     \Config;
 
@@ -52,7 +52,7 @@ class PagseguroServiceProvider extends ServiceProvider
     {
         $this->app['pagseguro'] = $this->app->share(function($app) {
             $this->loadCredentials();
-            return new PagSeguroFacade();
+            return new PaymentRequest($this->credentials);
         });
     }
 

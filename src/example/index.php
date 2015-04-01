@@ -85,7 +85,9 @@ try {
 /**
  * Em Laravel
  * 
- * PagSeguro::setRequest($dados);
- * echo '<pre>', print_r(PagSeguro::getPaymentItems(), 1), '</pre>';
+ * $request = PagSeguro::setRequest($dados);
+ * $request->sendRequest();
+ * $code = $request->request->getCode();
+ * echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code\"> Pagamento </a>";
  * 
  */
