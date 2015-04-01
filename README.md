@@ -106,7 +106,7 @@ $dados = array(
 );
 ```
 
-Após setar o array devemos setar ele para envio utilizando o método: `setRequest` da seguinte forma:
+Após setar o array, utilize o método: `setRequest` para criar a requisição de envio:
 
 ```
 $request = PagSeguro::setRequest($dados);
@@ -118,8 +118,7 @@ Para confirmar o envio utilize o método: `sendRequest` da seguinte forma:
 $request->sendRequest();
 ```
 
-Para obter o código de retorno da compra utilize o método: `getCode` sob o objeto `request` que é o responsável pela sua requisição,
-da seguinte forma:
+Para obter o código de retorno da compra, utilize o método: `getCode` sob o objeto `request` que é responsável pela sua requisição:
  
 ```
 $code = $request->request->getCode();
