@@ -54,6 +54,58 @@ Abra o arquivo `app/config/packages/michael/laravelpagseguro/laravelpagseguro.ph
         'email' => null,
     )
 
+## Exemplo de envio de requisição de compra
+
+O array de envio deverá ser montado com a seguinte estrutura:
+
+```
+$dados = array(
+    'items' => array(
+        'itemId1' => array(
+            'itemId1' => '0001',
+            'itemDescription1' => 'Notebook Prata 1',
+            'itemQuantity1' => '1',
+            'itemAmount1' => '10.00',
+            'itemWeight1' => '1000',
+            'itemShippingCost1' => null
+        ),
+        'itemId2' => array(
+            'itemId2' => '0002',
+            'itemDescription2' => 'Notebook Prata 2',
+            'itemQuantity2' => '2',
+            'itemAmount2' => '5.00',
+            'itemWeight2' => '100',
+            'itemShippingCost2' => null
+        )
+    ),
+    'address' => array(
+        'postalCode' => '04433130',
+        'street' => 'Rua benjamin vieira da silva',
+        'number' => '1077',
+        'complement' => '',
+        'district' => 'Centro',
+        'city' => 'São Paulo',
+        'state' => 'SP',
+        'country' => 'BRA',
+    ),
+    'sender' => array(
+        'name' => 'Teste do comprador',
+        'email' => 'michael.araujo@idealinvest.com.br',
+        'phone' => [
+            'areaCode' => 11,
+            'number' => '5614-9351',
+        ],
+        'documents' => [
+            [
+                'type' => 'CPF',
+                'number' => '31985741539',
+            ]
+        ],
+    ),
+    'currency' => 'BRL'
+);
+```
+
 ## Licença
 
 O Laravel PagSeguro utiliza a licença MIT, para saber mais leia no link: [MIT license](http://opensource.org/licenses/MIT)
