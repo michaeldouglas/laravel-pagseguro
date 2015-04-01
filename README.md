@@ -106,6 +106,31 @@ $dados = array(
 );
 ```
 
+Após setar o array devemos setar ele para envio utilizando o método: `setRequest` da seguinte forma:
+
+```
+$request = PagSeguro::setRequest($dados);
+```
+
+Para confirmar o envio utilize o método: `sendRequest` da seguinte forma:
+
+```
+$request->sendRequest();
+```
+
+Para obter o código de retorno da compra utilize o método: `getCode` sob o objeto `request` que é o responsável pela sua requisição,
+da seguinte forma:
+ 
+```
+$code = $request->request->getCode();
+```
+
+## Exemplo de URL de requisição com a variável `$code`
+
+```
+echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code\"> Pagamento </a>";   
+```
+
 ## Licença
 
 O Laravel PagSeguro utiliza a licença MIT, para saber mais leia no link: [MIT license](http://opensource.org/licenses/MIT)
