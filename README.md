@@ -127,7 +127,7 @@ $code = $request->request->getCode();
 ## Exemplo de URL de requisição com a variável `$code`
 
 ```
-echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code\"> Pagamento </a>";   
+<a target="_blank" href="https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code">Pagamento</a>;   
 ```
 
 ## Licença
