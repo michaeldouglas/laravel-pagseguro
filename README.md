@@ -49,7 +49,9 @@ php artisan config:publish michael/laravelpagseguro
 
 Se tudo ocorreu bem, a seguinte mensagem sera exibida:
 
-    Configuration published for package: michael/laravelpagseguro
+```php
+Configuration published for package: michael/laravelpagseguro
+```
 
 ## Ajuste da configuração
 
