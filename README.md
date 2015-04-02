@@ -50,7 +50,6 @@ Se tudo ocorreu bem, a seguinte mensagem sera exibida:
 Abra o arquivo `app/config/packages/michael/laravelpagseguro/laravelpagseguro.php` altere o `token` e também o `e-mail` informando o da sua loja:
 
 ```php
-
     'credentials' => array(//SETA AS CREDENCIAIS DE SUA LOJA
         'token' => null,
         'email' => null,
