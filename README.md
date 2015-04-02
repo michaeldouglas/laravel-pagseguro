@@ -120,7 +120,7 @@ $request->sendRequest();
 
 Para obter o código de retorno da compra, utilize o método: `getCode` sob o objeto `request` que é responsável pela sua requisição:
  
-```
+```php
 $code = $request->request->getCode();
 ```
 
