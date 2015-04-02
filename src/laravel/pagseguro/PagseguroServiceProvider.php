@@ -21,7 +21,7 @@ use \laravel\pagseguro\Credentials\Credentials,
 class PagseguroServiceProvider extends ServiceProvider
 {
 
-    const CREDENTIALS_CONFIG = 'packages/michael/laravelpagseguro/laravelpagseguro.credentials';
+    const CREDENTIALS_CONFIG = 'packages/michael/laravelpagseguro/laravelpagseguro';
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -62,7 +62,8 @@ class PagseguroServiceProvider extends ServiceProvider
      */
     public function loadCredentials()
     {
-        $config = Config::get(self::CREDENTIALS_CONFIG);
+        $credentials = self::CREDENTIALS_CONFIG.'.credentials';
+        $config = Config::get($credentials);
         $this->credentials = new Credentials($config['token'], $config['email']);
     }
 

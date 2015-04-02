@@ -1,5 +1,8 @@
 <?php
-return array(
+
+return [
+    'sandbox' => false,//DEFINI SE SERÁ UTILIZADO O AMBIENTE DE TESTES
+    
     'credentials' => [//SETA AS CREDENCIAIS DE SUA LOJA
         'email' => null,
         'token' => null,
@@ -11,4 +14,4 @@ return array(
         'idReference' => null
     ],
     'url' => 'https://ws.pagseguro.uol.com.br/v2/checkout',
-);
+];
