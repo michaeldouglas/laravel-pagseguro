@@ -21,7 +21,9 @@ Abra o arquivo `composer.json` e insira a seguinte instrução:
 
 Após inserir no require o `Laravel PagSeguro`, você deverá executar o comando:
 
-    composer update
+```composer
+composer update
+```
 
 ## Configuração do Service Provider
 
