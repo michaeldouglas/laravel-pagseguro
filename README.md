@@ -58,7 +58,7 @@ Abra o arquivo `app/config/packages/michael/laravelpagseguro/laravelpagseguro.ph
 
 O array de envio deverá ser montado com a seguinte estrutura:
 
-```
+```php
 $dados = array(
     'items' => array(
         'itemId1' => array(
@@ -108,13 +108,13 @@ $dados = array(
 
 Após setar o array, utilize o método: `setRequest` para criar a requisição de envio:
 
-```
+```php
 $request = PagSeguro::setRequest($dados);
 ```
 
 Para confirmar o envio utilize o método: `sendRequest` da seguinte forma:
 
-```
+```php
 $request->sendRequest();
 ```
 
@@ -126,8 +126,8 @@ $code = $request->request->getCode();
 
 ## Exemplo de URL de requisição com a variável `$code`
 
-```
-<a target="_blank" href="https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code">Pagamento</a>;   
+```php
+echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code\"> Pagamento </a>"; 
 ```
 
 ## Licença
