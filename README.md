@@ -27,19 +27,25 @@ Após inserir no require o `Laravel PagSeguro`, você deverá executar o comando
 
 Abra o arquivo `app/config/app.php` e adicione no array `providers` a seguinte instrução:
 
-    'laravel\pagseguro\PagseguroServiceProvider'
+```php
+'laravel\pagseguro\PagseguroServiceProvider'
+```
 
 ## Aliases do package
 
 Em seu arquivo `app/config/app.php` adicione no array `aliases` a seguinte instrução:
 
-    'PagSeguro'         => 'laravel\pagseguro\Facades\PagSeguro'
+```php
+'PagSeguro'         => 'laravel\pagseguro\Facades\PagSeguro'
+```
 
 ## Criação do configurador
 
 Agora você irá executar o comando:
 
-    php artisan config:publish michael/laravelpagseguro
+```php
+php artisan config:publish michael/laravelpagseguro
+```
 
 Se tudo ocorreu bem, a seguinte mensagem sera exibida:
 
