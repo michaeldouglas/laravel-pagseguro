@@ -1,5 +1,5 @@
 {
-    "name": "michael/laravel-pagseguro",
+    "name": "paulomartinhago/laravel-pagseguro",
     "description": "Biblioteca de integração com o gateway de pagamento PagSeguro.",
     "keywords": ["framework", "laravel", "Gateway Pagamento", "PagSeguro"],
     "license": "MIT",
@@ -28,6 +28,10 @@
         {
             "name": "Isaque de Souza",
             "email": "isaquesb@gmail.com"
+        },
+        {
+            "name": "Paulo Martinhago",
+            "email": "pmartinhago@gmail.com"
         }
     ],
     "config":{
