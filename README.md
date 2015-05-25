@@ -11,6 +11,15 @@ simples de gerar o pagamento, a notificação e as transações de sua loja ou e
 ## Manual PagSeguro
 [http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf](http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf)
 
+
+## Laravel compatibilidade
+
+ Laravel  | Traduzível
+:---------|:----------
+ 4.2.x    | 4.4.x
+ 4.1.x    | 4.4.x
+ 4.0.x    | 4.3.x
+
 ## Instalação
 
 Abra o arquivo `composer.json` e insira a seguinte instrução:
