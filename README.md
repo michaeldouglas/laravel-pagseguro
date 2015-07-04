@@ -18,8 +18,6 @@ simples de gerar o pagamento, a notificação e as transações de sua loja ou e
  Laravel  | Traduzível
 :---------|:----------
  5.0.x    | 5.1.x
- 4.2.x    | 4.4.x
- 4.1.x    | 4.4.x
 
 ## Instalação
 
