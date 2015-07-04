@@ -33,5 +33,5 @@
     "config":{
         "bin-dir": "bin/"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }

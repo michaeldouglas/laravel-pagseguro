@@ -17,9 +17,9 @@ simples de gerar o pagamento, a notificação e as transações de sua loja ou e
 
  Laravel  | Traduzível
 :---------|:----------
+ 5.0.x    | 5.1.x
  4.2.x    | 4.4.x
  4.1.x    | 4.4.x
- 4.0.x    | 4.3.x
 
 ## Instalação
 
@@ -40,18 +40,18 @@ Ou execute o comando:
 
 ## Configuração do Service Provider
 
-Abra o arquivo `app/config/app.php` e adicione no array `providers` a seguinte instrução:
+Abra o arquivo `config/app.php` e adicione no array `providers` a seguinte instrução:
 
 ```php
-'laravel\pagseguro\PagseguroServiceProvider'
+laravel\pagseguro\PagseguroServiceProvider::class
 ```
 
 ## Aliases do package
 
-Em seu arquivo `app/config/app.php` adicione no array `aliases` a seguinte instrução:
+Em seu arquivo `config/app.php` adicione no array `aliases` a seguinte instrução:
 
 ```php
-'PagSeguro'         => 'laravel\pagseguro\Facades\PagSeguro'
+'PagSeguro' => laravel\pagseguro\Facades\PagSeguro::class
 ```
 
 ## Criação do configurador
@@ -59,18 +59,18 @@ Em seu arquivo `app/config/app.php` adicione no array `aliases` a seguinte instr
 Agora você irá executar o comando:
 
 ```php
-php artisan config:publish michael/laravelpagseguro
+php artisan vendor:publish
 ```
 
 Se tudo ocorreu bem, a seguinte mensagem sera exibida:
 
 ```php
-Configuration published for package: michael/laravelpagseguro
+Copied File [/vendor/michael/laravelpagseguro/src/laravel/pagseguro/config/laravelpagseguro.php] To [/config/laravelpagseguro.php]
 ```
 
 ## Ajuste da configuração
 
-Abra o arquivo `app/config/packages/michael/laravelpagseguro/laravelpagseguro.php` altere o `token` e também o `e-mail` informando o da sua loja:
+Abra o arquivo `config/laravelpagseguro.php` altere o `token` e também o `e-mail` informando o da sua loja:
 
 ```php
     'credentials' => array(//SETA AS CREDENCIAIS DE SUA LOJA

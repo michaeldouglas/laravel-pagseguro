@@ -21,8 +21,6 @@ use \laravel\pagseguro\Credentials\Credentials,
 class PagseguroServiceProvider extends ServiceProvider
 {
 
-    const CREDENTIALS_CONFIG = 'packages/michael/laravelpagseguro/laravelpagseguro';
-
     /**
      * Indicates if loading of the provider is deferred.
      * @var bool
@@ -34,14 +32,14 @@ class PagseguroServiceProvider extends ServiceProvider
      */
     protected $credentials;
 
-
     /**
      * Bootstrap the application events.
      * @return void
      */
     public function boot()
     {
-        $this->package('laravel/pagseguro');
+        $this->publishes([__DIR__ . "/config/laravelpagseguro.php" => config_path('laravelpagseguro.php')]);
+        //$this->package('laravel/pagseguro');
     }
 
     /**
@@ -50,7 +48,7 @@ class PagseguroServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['pagseguro'] = $this->app->share(function($app) {
+        $this->app->bind('pagseguro', function () {
             $this->loadCredentials();
             return new PaymentRequest($this->credentials);
         });
@@ -62,9 +60,7 @@ class PagseguroServiceProvider extends ServiceProvider
      */
     public function loadCredentials()
     {
-        $credentials = self::CREDENTIALS_CONFIG.'.credentials';
-        $config = Config::get($credentials);
-        $this->credentials = new Credentials($config['token'], $config['email']);
+        $this->credentials = new Credentials(Config('laravelpagseguro.credentials.token'), Config('laravelpagseguro.credentials.email'));
     }
 
     /**
