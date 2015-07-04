@@ -32,7 +32,7 @@ interface SenderInterface
      * Get Name (Nome)
      * @return string
      */
-    public function getName();
+    public function getSenderName();
 
     /**
      * Get Phone (Telefone)
@@ -64,7 +64,7 @@ interface SenderInterface
      * @param string $name
      * @return Address
      */
-    public function setName($name);
+    public function setSenderName($name);
 
     /**
      * Set Phone (Telefone)

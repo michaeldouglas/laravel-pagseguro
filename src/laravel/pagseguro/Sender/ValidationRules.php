@@ -25,7 +25,7 @@ class ValidationRules implements ValidationRulesInterface
      */
     protected $rules = [
         'email' => 'Required',
-        'name' => 'Required',
+        'senderName' => 'Required',
         'documents' => 'Required',
         'phone' => 'Required',
         'bornDate' => 'Date',

@@ -12,9 +12,9 @@ $dados = array(
     'items' => array(
         'itemId1' => array(
             'itemId1' => '0001',
-            'itemDescription1' => 'Notebook Prata 1',
+            'itemDescription1' => 'Notebook Prata 1as',
             'itemQuantity1' => '1',
-            'itemAmount1' => '10.00',
+            'itemAmount1' => '12.00',
             'itemWeight1' => '1000',
             'itemShippingCost1' => null
         ),
@@ -38,7 +38,7 @@ $dados = array(
         'country' => 'BRA',
     ),
     'sender' => array(
-        'name' => 'Teste do comprador',
+        'senderName' => 'Michael Douglas Barbosa Araujo',
         'email' => 'michael.araujo@idealinvest.com.br',
         'phone' => [
             'areaCode' => 11,

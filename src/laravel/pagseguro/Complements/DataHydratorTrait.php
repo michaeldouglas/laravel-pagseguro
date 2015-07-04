@@ -30,7 +30,7 @@ trait DataHydratorTrait
      */
     public function hydrate(array $data = [])
     {
-        $rules = $this->getValidationRules()->getRules();
+        $rules = $this->getValidationRules()->getRules();      
         $defaultData = array_fill_keys(array_keys($rules), null);
         $currentData = $this->toArray();
         $testData = array_merge(

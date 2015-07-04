@@ -7,9 +7,9 @@ trait DataRequestHydrator
 
     public function separatorDataRequest($data)
     {
-        return array_merge($data->data, $this->getItemsSeparator($data));
+        return array_merge($this->setDataPagSeguro($data), $this->getItemsSeparator($data));
     }
-    
+
     private function getItemsSeparator($data)
     {
         $numberItem = 0;
@@ -24,5 +24,26 @@ trait DataRequestHydrator
         }
         return $dataItem;
     }
-    
+
+    protected function setDataPagSeguro($data)
+    {
+        $this->extractSenderName($data->data);
+        $this->clearArrObjectRequest($data->data, ['sender', 'address']);
+        return array_filter($data->data);
+    }
+
+    private function extractSenderName(&$data)
+    {
+        $keys = array_fill_keys(['senderName'], null);
+        $keySender = array_intersect_key($data['sender'], $keys);
+        $data['senderName'] = (array_key_exists('senderName', $keySender) ? $keySender['senderName'] : null);
+    }
+
+    private function clearArrObjectRequest(&$data, $arrClear)
+    {
+        foreach ($arrClear as $value) {
+            unset($data[$value]);
+        }
+    }
+
 }

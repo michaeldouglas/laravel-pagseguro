@@ -75,7 +75,7 @@ class Sender implements SenderInterface
      * Get Name (Nome)
      * @return string
      */
-    public function getName()
+    public function getSenderName()
     {
         return $this->name;
     }
@@ -123,7 +123,7 @@ class Sender implements SenderInterface
      * @param string $name
      * @return Address
      */
-    public function setName($name)
+    public function setSenderName($name)
     {
         $this->name = $name;
         return $this;
