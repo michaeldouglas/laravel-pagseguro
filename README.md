@@ -1,4 +1,4 @@
-## Laravel PagSeguro
+## Laravel PagSeguro - Atualizado para o Laravel 5.1
 
 [![Build Status](https://travis-ci.org/michaeldouglas/laravel-pagseguro.svg?branch=master)](https://travis-ci.org/michaeldouglas/laravel-pagseguro)
 [![Latest Unstable Version](https://poser.pugx.org/leaphly/cart-bundle/v/unstable.svg)](//packagist.org/packages/michael/laravelpagseguro)
