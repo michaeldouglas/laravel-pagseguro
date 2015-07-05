@@ -8,7 +8,7 @@
 [![Codacy Badge](https://www.codacy.com/project/badge/a358a57c8d4f4458b9d9055326f5a67c)](https://www.codacy.com/app/michaeldouglas010790/laravel-pagseguro)
 
 O laravel-pagseguro consome a API do PagSeguro e prove uma forma 
-simples de gerar o pagamento, a notificação e as transações de sua loja ou etc.
+simples de gerar o pagamento, a notificação e as transações de sua loja ou etc. 
 
 ## Manual PagSeguro
 [http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf](http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf)
