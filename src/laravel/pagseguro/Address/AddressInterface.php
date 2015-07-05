@@ -133,23 +133,4 @@ interface AddressInterface
      */
     public function hydrate(array $data = []);
 
-    /**
-     * Test Valid Data
-     * @return bool
-     */
-    public function isValid();
-
-    /**
-     * Get Validator
-     * Return only after hydrate
-     * @return null|Validator
-     */
-    public function getValidator();
-
-    /**
-     * Cast Array
-     * @return array
-     */
-    public function toArray();
-
 }
