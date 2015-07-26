@@ -22,13 +22,13 @@ class Phone implements PhoneInterface
      * Area Code
      * @var string
      */
-    protected $areaCode;
+    public $senderAreaCode;
 
     /**
      * Number
      * @var string
      */
-    protected $number;
+    protected $senderPhone;
 
     use DataHydratorTrait;
 
@@ -44,14 +44,14 @@ class Phone implements PhoneInterface
         } elseif(is_string($phone)) {
             $completeNum = preg_replace('/[^0-9]/', '', $phone);
             $phoneData = [
-                'areaCode' => substr($completeNum, 0, 2),
-                'number' => substr($completeNum, 0, 2),
+                'senderAreaCode' => substr($completeNum, 0, 2),
+                'senderPhone' => substr($completeNum, 0, 2),
             ];
             return new self($phoneData);
         } elseif(
             is_array($phone)
-            && array_key_exists('areaCode', $phone)
-            && array_key_exists('number', $phone)
+            && array_key_exists('senderAreaCode', $phone)
+            && array_key_exists('senderPhone', $phone)
         ) {
             return new self($phone);
         } else {
@@ -74,20 +74,20 @@ class Phone implements PhoneInterface
      * Get Area Code (DDD)
      * @return int
      */
-    public function getAreaCode()
+    public function getSenderAreaCode()
     {
-        return $this->areaCode;
+        return $this->senderAreaCode;
     }
 
     /**
      * Set Area Code (DDD)
-     * @param int $areaCode
+     * @param int $senderAreaCode
      * @return Phone
      */
-    public function setAreaCode($areaCode)
+    public function setSenderAreaCode($senderAreaCode)
     {
-        $filterNum = preg_replace('/[^0-9]/', '', $areaCode);
-        $this->areaCode = $filterNum;
+        $filterNum = preg_replace('/[^0-9]/', '', $senderAreaCode);
+        $this->senderAreaCode = $filterNum;
         return $this;
     }
 
@@ -95,20 +95,20 @@ class Phone implements PhoneInterface
      * Get Number
      * @return string
      */
-    public function getNumber()
+    public function getSenderPhone()
     {
-        return $this->number;
+        return $this->senderPhone;
     }
 
     /**
      * Set Number
-     * @param string $number
+     * @param string $senderPhone
      * @return Cpf
      */
-    public function setNumber($number)
+    public function setSenderPhone($senderPhone)
     {
-        $filterNum = preg_replace('/[^0-9]/', '', $number);
-        $this->number = $filterNum;
+        $filterNum = preg_replace('/[^0-9]/', '', $senderPhone);
+        $this->senderPhone = $filterNum;
         return $this;
     }
 

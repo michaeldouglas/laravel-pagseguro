@@ -22,27 +22,27 @@ interface PhoneInterface
      * Get Area Code (DDD)
      * @return int
      */
-    public function getAreaCode();
+    public function getSenderAreaCode();
 
     /**
      * Set Area Code (DDD)
-     * @param int $areaCode
+     * @param int $senderAreaCode
      * @return Phone
      */
-    public function setAreaCode($areaCode);
+    public function setSenderAreaCode($senderAreaCode);
 
     /**
      * Get Number
      * @return string
      */
-    public function getNumber();
+    public function getSenderPhone();
 
     /**
      * Set Number
-     * @param string $number
+     * @param string $senderPhone
      * @return Cpf
      */
-    public function setNumber($number);
+    public function setSenderPhone($senderPhone);
 
     /**
      * Proxies Data Hydrate

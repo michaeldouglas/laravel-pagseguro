@@ -23,8 +23,8 @@ class ValidationRules implements ValidationRulesInterface
      * @var array
      */
     protected $rules = [
-        'areaCode' => 'Required|numeric|digits:2',
-        'number' => 'Required|numeric|between:8,9',
+        'senderAreaCode' => 'Required|numeric|digits:2',
+        'senderPhone' => 'Required|numeric|between:8,9',
     ];
 
     /**
