@@ -8,7 +8,7 @@ use laravel\pagseguro\Complements\ValidationRulesInterface,
 /**
  * Validation Rules Object
  *
- * @category   Address
+ * @category   SenderDocument
  * @package    Laravel\PagSeguro\Address
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>

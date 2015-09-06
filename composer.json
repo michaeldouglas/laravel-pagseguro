@@ -10,7 +10,7 @@
         "lib-curl": "*",
         "lib-openssl": "*",
         "lib-libxml": "*",
-        "illuminate/support": "5.1.*"
+        "illuminate/validation": "5.1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.0.*"
@@ -26,7 +26,7 @@
             "email": "michaeldouglas010790@gmail.com"
         },
         {
-            "name": "Isaque de Souza",
+            "name": "Isaque de Souza Barbosa",
             "email": "isaquesb@gmail.com"
         }
     ],

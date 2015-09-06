@@ -21,7 +21,6 @@ class ValidationRules implements ValidationRulesInterface
 
     /**
      * @var array
-     * @todo
      */
     protected $rules = [
         'email' => 'Required',

@@ -7,6 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'laravel\\pagseguro\\' => array($baseDir . '/src'),
-    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
-    'Illuminate\\Support' => array($vendorDir . '/illuminate/support'),
+    'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
 );
