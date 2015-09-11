@@ -53,5 +53,44 @@ class CredentialsTest extends PHPUnit_Framework_TestCase
         );
         new Credentials('651233CECD6304779B7570BA2D06', null);
     }
-
+    
+    public function testShouldReturnAgivenToken()
+    {
+        $credentials = new Credentials(
+                '651233CECD6304779B7570BA2D06', 
+                'michaeldouglas010790@gmail.com'
+        );
+        $this->assertEquals('651233CECD6304779B7570BA2D06', $credentials->getToken());
+    }
+    
+    public function testShouldReturnAgivenEmail()
+    {
+        $credentials = new Credentials(
+                '651233CECD6304779B7570BA2D06', 
+                'michaeldouglas010790@gmail.com'
+        );
+        $this->assertEquals('michaeldouglas010790@gmail.com', $credentials->getEmail());
+    }
+    
+    public function testShouldValidateCredentials()
+    {
+        $credentials = new Credentials(
+                '651233CECD6304779B7570BA2D06', 
+                'michaeldouglas010790@gmail.com'
+        );
+        $this->assertTrue($credentials->isValid());
+    }
+    
+    public function testShouldReturnAnArrayWithAgivenCredential()
+    {
+        $credentials = new Credentials(
+                '651233CECD6304779B7570BA2D06', 
+                'michaeldouglas010790@gmail.com'
+        );
+        
+        $array = $credentials->__toArray();
+        
+        $this->assertEquals('651233CECD6304779B7570BA2D06', $array['token']);
+        $this->assertEquals('michaeldouglas010790@gmail.com', $array['email']);
+    }
 }
