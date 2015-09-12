@@ -1,12 +1,14 @@
 <?php
 
+namespace Tests\Credentials;
+
 use \laravel\pagseguro\Credentials\Credentials;
 
 /**
  * Credentials Test
  * @author     Michael Douglas <michaeldouglas010790@gmail.com>
  */
-class CredentialsTest extends PHPUnit_Framework_TestCase
+class CredentialsTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

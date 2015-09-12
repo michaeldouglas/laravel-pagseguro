@@ -1,16 +1,23 @@
 <?php
 
+namespace Tests\Address;
+
 use \laravel\pagseguro\Address\ValidationRules;
 
 /**
  * Address Validation Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class ValidationRulesTest extends PHPUnit_Framework_TestCase
+class ValidationRulesTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $rules;
 
+    /**
+     * @param string $rule
+     * @param mixed $value
+     * @return \Illuminate\Validation\Validator
+     */
     protected function validatorMake($rule, $value)
     {
         return new \Illuminate\Validation\Validator(
@@ -20,6 +27,10 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @param string $key
+     * @return mixed
+     */
     protected function getRule($key)
     {
         if(!$this->rules) {
@@ -29,6 +40,10 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
         return $this->rules[$key];
     }
 
+    /**
+     * Postal Code Data Provider
+     * @return array
+     */
     public function postalCodeProvider()
     {
         return [
@@ -43,7 +58,7 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider postalCodeProvider
      * @param mixed $value
-     * @param mixed $expected
+     * @param boolean $expected
      * @return array
      */
     public function testPostalCode($value, $expected)
@@ -53,6 +68,10 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $v->passes());
     }
 
+    /**
+     * Street Data Provider
+     * @return array
+     */
     public function streetProvider()
     {
         return [
@@ -76,6 +95,10 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $v->passes());
     }
 
+    /**
+     * Complement Data Provider
+     * @return array
+     */
     public function complementProvider()
     {
         return [
@@ -99,6 +122,10 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $v->passes());
     }
 
+    /**
+     * District Data Provider
+     * @return array
+     */
     public function districtProvider()
     {
         return [
@@ -122,6 +149,10 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $v->passes());
     }
 
+    /**
+     * City Data Provider
+     * @return array
+     */
     public function cityProvider()
     {
         return [
@@ -146,6 +177,10 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $v->passes());
     }
 
+    /**
+     * State Data Provider
+     * @return array
+     */
     public function stateProvider()
     {
         return [
@@ -168,6 +203,10 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $v->passes());
     }
 
+    /**
+     * Country Data Provider
+     * @return array
+     */
     public function countryProvider()
     {
         return [
@@ -183,7 +222,7 @@ class ValidationRulesTest extends PHPUnit_Framework_TestCase
      * @param mixed $expected
      * @return array
      */
-    public function countryState($value, $expected)
+    public function testCountry($value, $expected)
     {
         $rule = $this->getRule('country');
         $v = $this->validatorMake($rule, $value);

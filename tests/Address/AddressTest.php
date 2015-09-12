@@ -1,12 +1,14 @@
 <?php
 
+namespace Tests\Address;
+
 use \laravel\pagseguro\Address\Address;
 
 /**
  * Address Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class AddressTest extends PHPUnit_Framework_TestCase
+class AddressTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testEmptyAddress()
