@@ -85,7 +85,7 @@ class ValidationRulesTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider streetProvider
      * @param mixed $value
-     * @param mixed $expected
+     * @param boolean $expected
      * @return array
      */
     public function testStreet($value, $expected)
@@ -112,7 +112,7 @@ class ValidationRulesTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider complementProvider
      * @param mixed $value
-     * @param mixed $expected
+     * @param boolean $expected
      * @return array
      */
     public function testComplement($value, $expected)
@@ -139,7 +139,7 @@ class ValidationRulesTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider districtProvider
      * @param mixed $value
-     * @param mixed $expected
+     * @param boolean $expected
      * @return array
      */
     public function testDistrict($value, $expected)
@@ -167,7 +167,7 @@ class ValidationRulesTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider cityProvider
      * @param mixed $value
-     * @param mixed $expected
+     * @param boolean $expected
      * @return array
      */
     public function testCity($value, $expected)
@@ -193,7 +193,7 @@ class ValidationRulesTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider stateProvider
      * @param mixed $value
-     * @param mixed $expected
+     * @param boolean $expected
      * @return array
      */
     public function testState($value, $expected)
@@ -219,7 +219,7 @@ class ValidationRulesTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider countryProvider
      * @param mixed $value
-     * @param mixed $expected
+     * @param boolean $expected
      * @return array
      */
     public function testCountry($value, $expected)
