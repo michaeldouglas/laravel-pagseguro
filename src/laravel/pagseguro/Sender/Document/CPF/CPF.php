@@ -45,20 +45,6 @@ class CPF implements DocumentInterface
     }
 
     /**
-     * Data Hydrate
-     * @param array $data
-     * @return CPF
-     */
-    public function hydrate(array $data = array())
-    {
-        if(array_key_exists('type', $data)) {
-            unset($data['type']);
-        }
-        parent::hydrate($data);
-        return $this;
-    }
-
-    /**
      * Get Number
      * @return string
      */
@@ -86,6 +72,19 @@ class CPF implements DocumentInterface
         $filterNum = preg_replace('/[^0-9]/', '', $number);
         $padNum = str_pad($filterNum, 11, '0', STR_PAD_LEFT);
         $this->number = $padNum;
+        return $this;
+    }
+
+    /**
+     * Set Type
+     * @param string $type
+     * @return Cpf
+     */
+    protected function setType($type)
+    {
+        if ($type !== 'CPF') { // Restrict to Hydrate
+            throw new \InvalidArgumentException('Invalid CPF Type');
+        }
         return $this;
     }
 

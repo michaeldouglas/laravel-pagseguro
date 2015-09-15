@@ -23,8 +23,8 @@ class ValidationRules implements ValidationRulesInterface
      * @var array
      */
     protected $rules = [
-        'email' => 'Required',
-        'senderName' => 'Required',
+        'email' => 'Required|Email',
+        'senderName' => 'Required|min:2|max:50',
         'documents' => 'Required',
         'phone' => 'Required',
         'bornDate' => 'Date',

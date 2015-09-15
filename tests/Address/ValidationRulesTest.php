@@ -8,24 +8,8 @@ use \laravel\pagseguro\Address\ValidationRules;
  * Address Validation Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class ValidationRulesTest extends \PHPUnit_Framework_TestCase
+class ValidationRulesTest extends \Tests\ValidationRules
 {
-
-    protected $rules;
-
-    /**
-     * @param string $rule
-     * @param mixed $value
-     * @return \Illuminate\Validation\Validator
-     */
-    protected function validatorMake($rule, $value)
-    {
-        return new \Illuminate\Validation\Validator(
-            new \Symfony\Component\Translation\Translator('pt_BR'),
-            ['field' => $value],
-            ['field' => $rule]
-        );
-    }
 
     /**
      * @param string $key
