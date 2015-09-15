@@ -6,6 +6,8 @@ use laravel\pagseguro\Request\PaymentRequest,
 /**
  * PaymentRequest Test
  * @author     Michael Douglas <michaeldouglas010790@gmail.com>
+ * @covers laravel\pagseguro\Request\PaymentRequest
+ * @covers laravel\pagseguro\Credentials\Credentials
  */
 class PaymentRequestTest extends PHPUnit_Framework_TestCase
 {
