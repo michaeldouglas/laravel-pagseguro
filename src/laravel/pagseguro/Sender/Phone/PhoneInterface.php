@@ -2,8 +2,6 @@
 
 namespace laravel\pagseguro\Sender\Phone;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
-
 /**
  * Phone Interface
  *
