@@ -87,9 +87,9 @@ $dados = array(
     'items' => array(
         'itemId1' => array(
             'itemId1' => '0001',
-            'itemDescription1' => 'Notebook Prata 1',
+            'itemDescription1' => 'Notebook Prata 1as',
             'itemQuantity1' => '1',
-            'itemAmount1' => '10.00',
+            'itemAmount1' => '12.00',
             'itemWeight1' => '1000',
             'itemShippingCost1' => null
         ),
@@ -113,17 +113,12 @@ $dados = array(
         'country' => 'BRA',
     ),
     'sender' => array(
-        'name' => 'Teste do comprador',
-        'email' => 'michael.araujo@idealinvest.com.br',
+        'senderName' => 'Teste de compra',
+        'senderCPF' => '27781466870',
+        'senderEmail' => 'itteste@test.com',
         'phone' => [
-            'areaCode' => 11,
-            'number' => '5614-9351',
-        ],
-        'documents' => [
-            [
-                'type' => 'CPF',
-                'number' => '31985741539',
-            ]
+            'senderAreaCode' => 11,
+            'senderPhone' => '5614-9399',
         ],
     ),
     'currency' => 'BRL'
