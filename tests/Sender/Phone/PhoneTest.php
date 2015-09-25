@@ -8,6 +8,7 @@ use laravel\pagseguro\Sender\Phone\PhoneInterface;
 /**
  * Sender Phone Test
  * @author Isaque de Souza <isaquesb@gmail.com>
+ * @covers \laravel\pagseguro\Sender\Phone\Phone
  */
 class PhoneTest extends \PHPUnit_Framework_TestCase
 {

@@ -8,6 +8,7 @@ use \laravel\pagseguro\Item\ItemCollection;
 /**
  * Item Collection Test
  * @author Isaque de Souza <isaquesb@gmail.com>
+ * @covers \laravel\pagseguro\Item\ItemCollection
  */
 class ItemCollectionTest extends \PHPUnit_Framework_TestCase
 {

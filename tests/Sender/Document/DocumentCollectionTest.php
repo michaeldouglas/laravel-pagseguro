@@ -8,6 +8,7 @@ use \laravel\pagseguro\Sender\Document\DocumentCollection;
 /**
  * Document Collection Test
  * @author Isaque de Souza <isaquesb@gmail.com>
+ * @covers \laravel\pagseguro\Sender\Document\DocumentCollection
  */
 class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
 {

@@ -7,6 +7,7 @@ use \laravel\pagseguro\Item\Item;
 /**
  * Item Test
  * @author Isaque de Souza <isaquesb@gmail.com>
+ * @covers \laravel\pagseguro\Item\Item
  */
 class ItemTest extends \PHPUnit_Framework_TestCase
 {

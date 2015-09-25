@@ -7,6 +7,7 @@ use \laravel\pagseguro\Address\ValidationRules;
 /**
  * Address Validation Test
  * @author Isaque de Souza <isaquesb@gmail.com>
+ * @covers \laravel\pagseguro\Address\ValidationRules
  */
 class ValidationRulesTest extends \Tests\ValidationRules
 {

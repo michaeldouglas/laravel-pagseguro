@@ -7,6 +7,7 @@ use \laravel\pagseguro\Address\Address;
 /**
  * Address Test
  * @author Isaque de Souza <isaquesb@gmail.com>
+ * @covers \laravel\pagseguro\Address\Address
  */
 class AddressTest extends \PHPUnit_Framework_TestCase
 {

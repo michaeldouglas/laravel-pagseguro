@@ -7,6 +7,7 @@ use \laravel\pagseguro\Sender\Document\CPF\ValidationRules;
 /**
  * Sender Document Validation Test
  * @author Isaque de Souza <isaquesb@gmail.com>
+ * @covers \laravel\pagseguro\Sender\Document\CPF\ValidationRules
  */
 class ValidationRulesTest extends \Tests\ValidationRules
 {
