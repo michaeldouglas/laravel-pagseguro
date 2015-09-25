@@ -132,5 +132,4 @@ interface AddressInterface
      * @return object
      */
     public function hydrate(array $data = []);
-
 }

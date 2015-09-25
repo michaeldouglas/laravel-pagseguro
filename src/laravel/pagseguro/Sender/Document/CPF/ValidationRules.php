@@ -32,5 +32,4 @@ class ValidationRules implements ValidationRulesInterface
     protected $messages;
 
     use ValidationRulesTrait;
-
 }
