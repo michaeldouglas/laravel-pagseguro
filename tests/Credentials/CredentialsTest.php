@@ -7,6 +7,7 @@ use \laravel\pagseguro\Credentials\Credentials;
 /**
  * Credentials Test
  * @author     Michael Douglas <michaeldouglas010790@gmail.com>
+ * @covers \laravel\pagseguro\Credentials\Credentials
  */
 class CredentialsTest extends \PHPUnit_Framework_TestCase
 {

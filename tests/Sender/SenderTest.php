@@ -7,6 +7,7 @@ use \laravel\pagseguro\Sender\Sender;
 /**
  * Sender Test
  * @author Isaque de Souza <isaquesb@gmail.com>
+ * @covers \laravel\pagseguro\Sender\Sender
  */
 class SenderTest extends \PHPUnit_Framework_TestCase
 {

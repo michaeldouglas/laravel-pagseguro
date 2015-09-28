@@ -7,6 +7,7 @@ use \laravel\pagseguro\Sender\Document\CPF\CPF;
 /**
  * Sender Document CPF Test
  * @author Isaque de Souza <isaquesb@gmail.com>
+ * @covers \laravel\pagseguro\Sender\Document\CPF\CPF
  */
 class CPFTest extends \PHPUnit_Framework_TestCase
 {
