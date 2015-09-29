@@ -2,10 +2,10 @@
 
 namespace laravel\pagseguro;
 
-use \laravel\pagseguro\Credentials\Credentials,
-    \laravel\pagseguro\Request\PaymentRequest,
-    \Illuminate\Support\ServiceProvider,
-    \Config;
+use \laravel\pagseguro\Credentials\Credentials;
+use \laravel\pagseguro\Request\PaymentRequest;
+use \laravel\pagseguro\Config;
+use \Illuminate\Support\ServiceProvider;
 
 /**
  * Classe responsável por prover o serviço do Laravel PagSeguro ao Framework
@@ -59,7 +59,11 @@ class PagseguroServiceProvider extends ServiceProvider
      */
     public function loadCredentials()
     {
-        $this->credentials = new Credentials(Config('laravelpagseguro.credentials.token'), Config('laravelpagseguro.credentials.email'));
+        $credentials = Config::get('credentials');
+        $this->credentials = new Credentials(
+            $credentials['token'],
+            $credentials['email']
+        );
     }
 
     /**
@@ -70,5 +74,5 @@ class PagseguroServiceProvider extends ServiceProvider
     {
         return array('pagseguro');
     }
-
 }
+
