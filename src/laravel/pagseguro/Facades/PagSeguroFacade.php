@@ -35,7 +35,7 @@ class PagSeguroFacade
     }
 
     /**
-     * Create Item Colection Instance
+     * Create Item Collection Instance
      * @param array $data
      * @return ItemCollection
      * @throws \InvalidArgumentException
@@ -53,5 +53,4 @@ class PagSeguroFacade
     {
         return new Payment();
     }
-    
 }

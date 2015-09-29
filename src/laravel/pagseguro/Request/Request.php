@@ -14,10 +14,11 @@
 
 namespace laravel\pagseguro\Request;
 
-use laravel\pagseguro\Validators\ValidatorsRequest as Validators,
-    laravel\pagseguro\Request\RequestInterface,
-    laravel\pagseguro\Complements\DataHydratorTrait,
-    laravel\pagseguro\Complements\DataRequestHydrator;
+use laravel\pagseguro\Validators\ValidatorsRequest as Validators;
+use laravel\pagseguro\Request\RequestInterface;
+use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataRequestHydrator;
+use laravel\pagseguro\Config\Config;
 
 class Request implements RequestInterface
 {
@@ -32,7 +33,7 @@ class Request implements RequestInterface
     private   $_arguments;
     private   $_timeout = 0;
     private   $_charset = 'ISO-8859-1';
-    private   $_url = 'https://ws.pagseguro.uol.com.br/v2/checkout';
+    private   $_url;
     protected $curl;
     protected $_optionsMethod;
     protected $_options;
@@ -360,7 +361,7 @@ class Request implements RequestInterface
                 $this->getStringCharset(),
                 $this->_contentLength
             ],
-            CURLOPT_URL => $this->_url,
+            CURLOPT_URL => $this->getConfigUrl(),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_HEADER => false,
             CURLOPT_SSL_VERIFYPEER => false,
@@ -369,6 +370,21 @@ class Request implements RequestInterface
         ];
         
         $this->_setRequest();
+    }
+
+    /**
+     * @return string URL
+     */
+    protected function getConfigUrl()
+    {
+        $useSandbox = Config::get('use-sandbox');
+        $hosts = Config::get('host');
+        $urls = Config::get('url');
+        $hostKey = 'production';
+        if ($useSandbox) {
+            $hostKey = 'sandbox';
+        }
+        return $hosts[$hostKey] . $urls['checkout'];
     }
     
     /**
