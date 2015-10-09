@@ -85,7 +85,16 @@ class PhoneTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNotSame($phone->getValidationRules(), $validationRules);
     }
-
+    
+    public function testGenerateFormatedPhoneFromString()
+    {
+        $phoneFactory = new Phone();
+        $phone = $phoneFactory->factory('1112341234');
+        
+        $this->assertEquals($phone->getSenderAreaCode(), 11);
+        $this->assertEquals($phone->getSenderPhone(), 12341234);
+    }
+    
     public function phoneProvider()
     {
         return [
