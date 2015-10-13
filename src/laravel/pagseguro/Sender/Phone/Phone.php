@@ -45,7 +45,7 @@ class Phone implements PhoneInterface
             $completeNum = preg_replace('/[^0-9]/', '', $phone);
             $phoneData = [
                 'senderAreaCode' => substr($completeNum, 0, 2),
-                'senderPhone' => substr($completeNum, 0, 2),
+                'senderPhone' => substr($completeNum, 2, 9),
             ];
             return new self($phoneData);
         } elseif(
