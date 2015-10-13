@@ -27,10 +27,12 @@ class PaymentTest extends \PHPUnit_Framework_TestCase
             'matheus.marabesi@gmail.com'
         ));
         
-        $payment->setCredentials(new Credentials(
+        $paymentObject = $payment->setCredentials(new Credentials(
             '12312312aaajjhsisi$$as1',
             'matheus.marabesi@gmail.com'
         ));
+        
+        $this->assertInstanceOf(Payment::class, $paymentObject);
     }
     
     public function testShouldAddNewItem()
@@ -115,7 +117,7 @@ class PaymentTest extends \PHPUnit_Framework_TestCase
         $payment = new Payment();
         
         $address = new Address();
-        $address->setCity('São Paulos');
+        $address->setCity('São Paulo');
         
         $this->assertInstanceOf(
             '\laravel\pagseguro\Payment\Payment',
@@ -127,7 +129,7 @@ class PaymentTest extends \PHPUnit_Framework_TestCase
             $payment->getAddress()
         );
         
-        $this->assertEquals('São Paulos', $payment->getAddress()->getCity());
+        $this->assertEquals('São Paulo', $payment->getAddress()->getCity());
         $this->assertSame($address, $payment->getAddress());
     }
     

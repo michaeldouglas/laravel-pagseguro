@@ -2,6 +2,12 @@
 
 namespace Tests\Facades;
 
+use laravel\pagseguro\Address\Address;
+use laravel\pagseguro\Item\Item;
+use laravel\pagseguro\Item\ItemInterface;
+use laravel\pagseguro\Item\ItemCollection;
+use laravel\pagseguro\Payment\Payment;
+
 /**
  * @covers laravel\pagseguro\Facades\PagSeguroFacade
  */
@@ -11,7 +17,7 @@ class PagSeguroFacadeTest extends \PHPUnit_Framework_TestCase
     public function testShouldCreateAddressObjectToBeUsedWithoutArguments()
     {
         $this->assertInstanceOf(
-            '\laravel\pagseguro\Address\Address',
+            Address::class,
             \laravel\pagseguro\Facades\PagSeguroFacade::createAddress()
         );
     }
@@ -19,7 +25,7 @@ class PagSeguroFacadeTest extends \PHPUnit_Framework_TestCase
     public function testShouldCreateAddressObjectToBeUsedWithArguments()
     {
         $this->assertInstanceOf(
-            '\laravel\pagseguro\Address\Address',
+            Address::class,
             \laravel\pagseguro\Facades\PagSeguroFacade::createAddress([
                 'code' => 12
             ])
@@ -30,11 +36,11 @@ class PagSeguroFacadeTest extends \PHPUnit_Framework_TestCase
     {
         $item = \laravel\pagseguro\Facades\PagSeguroFacade::createItem();
         $this->assertInstanceOf(
-            '\laravel\pagseguro\Item\Item',
+            Item::class,
             $item
         );
         $this->assertInstanceOf(
-            '\laravel\pagseguro\Item\ItemInterface',
+            ItemInterface::class,
             $item
         );
     }
@@ -45,7 +51,7 @@ class PagSeguroFacadeTest extends \PHPUnit_Framework_TestCase
             'myItem' => 'myValue'
         ]);
         $this->assertInstanceOf(
-            '\laravel\pagseguro\Item\Item',
+            Item::class,
             $item
         );
     }
@@ -54,7 +60,7 @@ class PagSeguroFacadeTest extends \PHPUnit_Framework_TestCase
     {
         $item = \laravel\pagseguro\Facades\PagSeguroFacade::createItemCollection();
         $this->assertInstanceOf(
-            '\laravel\pagseguro\Item\ItemCollection',
+            ItemCollection::class,
             $item
         );
         $this->assertInstanceOf(
@@ -70,7 +76,7 @@ class PagSeguroFacadeTest extends \PHPUnit_Framework_TestCase
             'myArgument' => $item
         ]);
         $this->assertInstanceOf(
-            '\laravel\pagseguro\Item\ItemCollection',
+            ItemCollection::class,
             $itemCollection
         );
         $this->assertInstanceOf(
@@ -84,19 +90,15 @@ class PagSeguroFacadeTest extends \PHPUnit_Framework_TestCase
      */
     public function testShouldThrowAnExceptionWhenCreatesItemCollectionWithInvalidArgument()
     {
-        $itemCollection = \laravel\pagseguro\Facades\PagSeguroFacade::createItemCollection([
+        \laravel\pagseguro\Facades\PagSeguroFacade::createItemCollection([
             'myArgument' => 'myValue'
         ]);
-        $this->assertInstanceOf(
-            '\laravel\pagseguro\Item\ItemCollection',
-            $itemCollection
-        );
     }
     
     public function testShouldCreatePaymentObjectToBeUsed()
     {
         $this->assertInstanceOf(
-            '\laravel\pagseguro\Payment\Payment',
+            Payment::class,
             \laravel\pagseguro\Facades\PagSeguroFacade::createPaymentRequest()
         );
     }
