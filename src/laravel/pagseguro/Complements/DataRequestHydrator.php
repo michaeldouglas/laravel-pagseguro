@@ -29,9 +29,26 @@ trait DataRequestHydrator
     {
         $this->extractSenderName($data->data)->extractSenderCPF($data->data)
         ->extractSenderEmail($data->data)->extractSenderAreaCode($data->data)
+        ->extractPostalCode($data->data)->extractShippingType($data->data)
         ->extractSenderPhone($data->data, $data->sender);
         $this->clearArrObjectRequest($data->data, ['sender', 'address']);
         return array_filter($data->data);
+    }
+    
+    private function extractShippingType(&$data)
+    {
+        $keys = array_fill_keys(['shippingType'], null);
+        $keySender = array_intersect_key($data['address'], $keys);
+        $data['shippingType'] = (array_key_exists('shippingType', $keySender) ? $keySender['shippingType'] : null);
+        return $this;
+    }
+    
+    private function extractPostalCode(&$data)
+    {
+        $keys = array_fill_keys(['postalCode'], null);
+        $keySender = array_intersect_key($data['address'], $keys);
+        $data['shippingAddressPostalCode'] = (array_key_exists('postalCode', $keySender) ? $keySender['postalCode'] : null);
+        return $this;
     }
 
     private function extractSenderName(&$data)

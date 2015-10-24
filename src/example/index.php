@@ -28,7 +28,8 @@ $dados = array(
         )
     ),
     'address' => array(
-        'postalCode' => '04433130',
+        'shippingType' => 1,
+        'postalCode' => '04439070',
         'street' => 'Rua benjamin vieira da silva',
         'number' => '1077',
         'complement' => '',
@@ -53,7 +54,7 @@ $dados = array(
  * Fora da estrutura do Laravel
  */
 try {
-    $credentials = new Credentials('43ECEAEB8DBD4DC7B240E22DBA6540D2', 'michaeldouglas010790@gmail.com');
+    $credentials = new Credentials('F819078DDBFF4B0F87EFCFEDA85B2E59', 'michaeldouglas010790@gmail.com');
     $request = new PaymentRequest($credentials);
     $request->setRequest($dados)->sendRequest();
     $code = $request->request->getCode();

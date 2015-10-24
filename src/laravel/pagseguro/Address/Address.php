@@ -22,7 +22,7 @@ class Address implements AddressInterface
      * Postal Code (CEP)
      * @var string
      */
-    protected $postalCode;
+    protected $shippingAddressPostalCode;
 
     /**
      * Street (Rua)
@@ -65,6 +65,12 @@ class Address implements AddressInterface
      * @var string
      */
     protected $country;
+    
+    /**
+     * ShippingType
+     * @var int
+     */
+    protected $shippingType;
 
     use DataHydratorTrait;
 
@@ -85,7 +91,7 @@ class Address implements AddressInterface
      */
     public function getPostalCode()
     {
-        return $this->postalCode;
+        return $this->shippingAddressPostalCode;
     }
 
     /**
@@ -150,15 +156,24 @@ class Address implements AddressInterface
     {
         return $this->country;
     }
+    
+    /**
+     * Get ShippingType (Tipo de envio)
+     * @return int
+     */
+    public function getShippingType()
+    {
+        return $this->shippingType;
+    }
 
     /**
      * Set Postal Code (CEP)
-     * @param string $postalCode
+     * @param string $shippingAddressPostalCode
      * @return string
      */
-    public function setPostalCode($postalCode)
+    public function setPostalCode($shippingAddressPostalCode)
     {
-        $this->postalCode = $postalCode;
+        $this->shippingAddressPostalCode = $shippingAddressPostalCode;
         return $this;
     }
 
@@ -246,6 +261,18 @@ class Address implements AddressInterface
     public function getValidationRules()
     {
         return new ValidationRules();
+    }
+    
+    
+    /**
+     * Set ShippingType (Tipo do envio)
+     * @return int $shippingType
+     * @return int
+     */
+    public function setShippingType($shippingType)
+    {
+        $this->shippingType = $shippingType;
+        return $this;
     }
 
 }
