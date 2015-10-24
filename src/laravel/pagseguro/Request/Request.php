@@ -49,24 +49,6 @@ class Request implements RequestInterface
      */
     public function __construct()
     {
-        $this->setVerifyCurl();
-    }
-
-    /**
-     * Método responsável por verificar se o Curl esta ativo para utilização da 
-     * biblioteca
-     * @copyright (c) 2014, Michael Araujo
-     * @access private
-     * @since 0.1
-     * @param void
-     * @return Exception|bool
-     */
-    private function setVerifyCurl()
-    {
-        if (function_exists('curl_init') === false) {
-            throw new Exception('Erro não é possível encontrar a função CURL');
-        }
-
         $this->setObjectCURL();
     }
     
