@@ -16,6 +16,7 @@ class AddressTest extends \PHPUnit_Framework_TestCase
     {
         $o = new Address();
         $this->assertEquals([
+            'shippingType' => null,
             'postalCode' => null,
             'street' => null,
             'number' => null,
@@ -30,6 +31,7 @@ class AddressTest extends \PHPUnit_Framework_TestCase
     public function testFullAddress()
     {
         $data = [
+            'shippingType' => 1,
             'postalCode' => '06410000',
             'street' => 'Rua da prata',
             'number' => '55',
@@ -49,5 +51,6 @@ class AddressTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($data['city'], $o->getCity());
         $this->assertEquals($data['state'], $o->getState());
         $this->assertEquals($data['country'], $o->getCountry());
+        $this->assertEquals($data['shippingType'], $o->getShippingType());
     }
 }
