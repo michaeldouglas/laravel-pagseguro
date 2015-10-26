@@ -37,29 +37,16 @@ class Request implements RequestInterface
     protected $_optionsMethod;
     protected $_options;
     protected $_objectRequest;
-
     const ARGSEPARATOR = '&';
     
     public function getValidationRules(){}
 
     /**
-     * Para utilização das requisições é necessario que o Curl esteja ativo
+     * Cria o objeto curl para requisição
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return void
      */
     public function __construct()
-    {
-        $this->setObjectCURL();
-    }
-    
-    /**
-     * Método responsável por iniciar o curl para a requisição
-     * @copyright (c) 2015, Michael Araujo
-     * @access private
-     * @since 0.1
-     * @param void
-     */
-    private function setObjectCURL()
     {
         $this->curl = curl_init();
     }
@@ -74,12 +61,8 @@ class Request implements RequestInterface
     protected function sendRequest(PaymentRequest $data, $arguments)
     {
         $this->dataRequest = $data;
-        $this->_setArguments($arguments)
-                ->_setBuildQuery()
-                ->_setSizeBuildQuery()
-                ->_setContentLength()
-                ->_setMethodOptions()
-                ->_setOptions();
+        $this->_setArguments($arguments)->_setBuildQuery()->_setSizeBuildQuery()
+        ->_setContentLength()->_setMethodOptions()->_setOptions();
         
         return $this->_request();
     }

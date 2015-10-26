@@ -101,7 +101,7 @@ class PaymentRequest extends Payment
     }
     
     /**
-     * Método para sobrecarga da chamada de requisição existe na classe Request
+     * Método para sobrecarga de requisição
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return object
      */
