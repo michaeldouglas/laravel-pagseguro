@@ -103,6 +103,7 @@ $dados = array(
         )
     ),
     'address' => array(
+        'shippingType' => 1,
         'postalCode' => '04433130',
         'street' => 'Rua benjamin vieira da silva',
         'number' => '1077',
