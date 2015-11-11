@@ -32,7 +32,7 @@ class Request implements RequestInterface
     private   $_arguments;
     private   $_timeout = 0;
     private   $_charset = 'ISO-8859-1';
-    private   $_url = 'https://ws.pagseguro.uol.com.br/v2/checkout';
+    private   $_url;
     protected $curl;
     protected $_optionsMethod;
     protected $_options;
@@ -49,6 +49,8 @@ class Request implements RequestInterface
     public function __construct()
     {
         $this->curl = curl_init();
+        
+        $this->_url = Config('laravelpagseguro.url');
     }
 
     /**
