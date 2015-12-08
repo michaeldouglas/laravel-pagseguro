@@ -383,7 +383,22 @@ class Request implements RequestInterface
         curl_setopt_array($this->curl, $this->_objectRequest);
         $result = curl_exec($this->curl);
         
+        $errors = [];
+        libxml_use_internal_errors(true);
+
         $xml = simplexml_load_string($result);
+
+        if (count(libxml_get_errors()))
+        {
+
+            foreach(libxml_get_errors() as $error)
+            {
+                $errors[] = $error->message;
+            }
+
+            throw new \Exception("Error: ". implode("\n", $errors));
+        }
+
         
         $error = curl_errno($this->curl);
         
