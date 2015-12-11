@@ -41,13 +41,13 @@ class Notification implements NotificationInterface
         $args = func_get_args();
         $firstArg = reset($args);
         $data = is_array($firstArg) ? $firstArg : [];
-        if(count($args) === 2) {
+        if (count($args) === 2) {
             $data['notificationCode'] = $firstArg;
             $data['notificationType'] = end($args);
         } elseif (is_string($firstArg)) {
             $data['notificationCode'] = $firstArg;
         }
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }

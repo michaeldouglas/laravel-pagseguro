@@ -41,5 +41,4 @@ interface CredentialsInterface
      * @return string
      */
     public function getEmail();
-
 }

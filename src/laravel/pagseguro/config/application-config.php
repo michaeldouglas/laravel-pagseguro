@@ -59,4 +59,3 @@ return [
         'transactions-abandoned' => '/v2/transactions/abandoned',
     ],
 ];
-
