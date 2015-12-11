@@ -18,7 +18,7 @@ use laravel\pagseguro\Validators\ValidatorsRequest as Validators;
 use laravel\pagseguro\Request\RequestInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait;
 use laravel\pagseguro\Complements\DataRequestHydrator;
-use laravel\pagseguro\Config\Config;
+use laravel\pagseguro\Remote\Url\Resolver;
 
 class Request implements RequestInterface
 {
@@ -377,16 +377,10 @@ class Request implements RequestInterface
      */
     protected function getConfigUrl()
     {
-        $useSandbox = Config::get('use-sandbox');
-        $hosts = Config::get('host');
-        $urls = Config::get('url');
-        $hostKey = 'production';
-        if ($useSandbox) {
-            $hostKey = 'sandbox';
-        }
-        return $hosts[$hostKey] . $urls['checkout'];
+        $urlResolver = new Resolver();
+        return $urlResolver->getByKey('checkout');
     }
-    
+
     /**
      * Método responsável por unir os obtetos de options e optionsMethod para 
      * requisição.

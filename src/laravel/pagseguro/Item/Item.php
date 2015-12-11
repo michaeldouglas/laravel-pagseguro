@@ -80,7 +80,7 @@ class Item implements ItemInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }
@@ -273,5 +273,4 @@ class Item implements ItemInterface
     {
         return new ValidationRules();
     }
-
 }
