@@ -17,7 +17,8 @@ namespace laravel\pagseguro\Request;
 use laravel\pagseguro\Validators\ValidatorsRequest as Validators,
     laravel\pagseguro\Request\RequestInterface,
     laravel\pagseguro\Complements\DataHydratorTrait,
-    laravel\pagseguro\Complements\DataRequestHydrator;
+    laravel\pagseguro\Complements\DataRequestHydrator,
+    laravel\pagseguro\Proxy\Proxy;
 
 class Request implements RequestInterface
 {
@@ -48,7 +49,7 @@ class Request implements RequestInterface
      */
     public function __construct()
     {
-        $this->curl = curl_init();
+        $this->curl = (new Proxy('laravelpagseguro.proxy'))->getCurl();
     }
 
     /**

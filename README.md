@@ -150,6 +150,20 @@ $code = $request->request->getCode();
 echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code\"> Pagamento </a>"; 
 ```
 
+## Proxy
+
+Caso você precise de proxy para utilizar a Laravel PagSeguro configure com essas chaves:
+
+```php
+'proxy' => [//CONFIGURAÇÃO PARA PROXY
+        'user'     => NULL,
+        'password' => NULL,
+        'url'      => NULL,
+        'port'     => NULL,
+        'protocol' => NULL
+],
+```
+
 ## Licença
 
 O Laravel PagSeguro utiliza a licença MIT, para saber mais leia no link: [MIT license](http://opensource.org/licenses/MIT)
