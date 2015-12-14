@@ -56,7 +56,12 @@ class Proxy {
     
     protected function setArrayConfigProxy($keyConfigProxy = 'proxy')
     {
-        $this->configProxy = Config($keyConfigProxy);   
+        $this->configProxy = []; 
+        
+        if (class_exists('Config')) {//Verificação para config class do Laravel
+            $this->configProxy = Config($keyConfigProxy); 
+        }
+        
         return $this;
     }
     
