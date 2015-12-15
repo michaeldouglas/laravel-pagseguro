@@ -58,7 +58,7 @@ class Proxy {
     {
         $this->configProxy = []; 
         
-        if (class_exists('Config')) {//Verificação para config class do Laravel
+        if (class_exists('Config') && !is_null(Config($keyConfigProxy))) {//Verificação para config class do Laravel
             $this->configProxy = Config($keyConfigProxy); 
         }
         
