@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Transaction;
 
 use laravel\pagseguro\Credentials\CredentialsInterface as Credentials;
+use laravel\pagseguro\Remote\Transaction as RemoteTransaction;
 
 /**
  * Transaction Object
@@ -65,9 +66,11 @@ class Transaction implements TransactionInterface
 
     /**
      * Check transaction status
+     * @todo
      */
     public function check()
     {
-        
+        $remote = new RemoteTransaction();
+        $data = $remote->getStatus($this->code, $this->credentials);
     }
 }
