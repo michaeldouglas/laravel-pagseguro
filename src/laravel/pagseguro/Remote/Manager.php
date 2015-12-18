@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Remote;
 
 use laravel\pagseguro\Http\Request\Adapter\AdapterInterface;
+use laravel\pagseguro\Config\Config;
 
 /**
  * Remote Information Manager
@@ -38,11 +39,51 @@ class Manager
      */
     public static function getHttpAdapter()
     {
-        return self::$httpAdapter;
+        $adapter = self::$httpAdapter;
+        if (!$adapter) {
+            $adapter = self::$httpAdapter = self::buildHttpAdapter();
+        }
+        return $adapter;
     }
-    
+
+    /**
+     * Build Http Adapter by Application Config
+     * @return AdapterInterface
+     * @throws \RuntimeException
+     */
     public static function buildHttpAdapter()
     {
-        
+        $http = Config::get('http');
+        $adapterConfig = $http['adapter'];
+        $adapter = null;
+        if (is_array($adapterConfig)) {
+            $adapter = self::adapterArrayFactory($adapterConfig);
+        } elseif ($adapterConfig instanceof \Closure) {
+            $adapter = $adapterConfig();
+        }
+        if (!($adapter instanceof AdapterInterface)) {
+            throw new \RuntimeException('Invalid adapter object');
+        }
+        return $adapter;
+    }
+
+    /**
+     * 
+     * @param array $adapter
+     */
+    private static function adapterArrayFactory(array $adapter)
+    {
+        $type = reset($adapter);
+        $options = end($adapter);
+        if (!is_string($type) || !is_array($options)) {
+            throw new \InvalidArgumentException('Invalid adapter config');
+        }
+        $namespace = '\\laravel\\pagseguro\\Http\\Request\\Adapter\\';
+        $className = ucfirst($type);
+        $class = $namespace . $className;
+        if (!class_exists($class)) {
+            throw new \InvalidArgumentException('Invalid adapter: ' . $type);
+        }
+        return new $class($options);
     }
 }

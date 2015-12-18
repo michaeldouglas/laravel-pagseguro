@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Remote;
 
 use laravel\pagseguro\Credentials\CredentialsInterface;
+use laravel\pagseguro\Http\Response\Parser\Xml;
 
 /**
  * Remote Transaction Information
@@ -15,17 +16,27 @@ use laravel\pagseguro\Credentials\CredentialsInterface;
  *
  * @copyright  Laravel\PagSeguro
  */
-class Transaction
+class Transaction extends ConsumerAbstract
 {
 
     /**
-     * 
-     * @param CredentialsInterface $credential
+     * Get Transaction Status
      * @param string $code
+     * @param CredentialsInterface $credential
      * @return array|boolean Array with transaction info or FALSE on failure
      */
-    public function getStatus(CredentialsInterface $credential, $code)
+    public function getStatus($code, CredentialsInterface $credential)
     {
-        
+        $url = $this->getUrlTo('transactions');
+        $completeUrl = "{$url}/{$code}";
+        $request = $this->getRequest();
+        $credentialData = $this->getCredentialData($credential);
+        $response = $request->get($completeUrl, $credentialData);
+        if (!$response) {
+            throw new \RuntimeException('Transaction check failure');
+        }
+        $body = $response->getRawBody();
+        $parser = new Xml($body);
+        return $parser->toArray();
     }
 }

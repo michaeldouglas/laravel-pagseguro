@@ -44,6 +44,18 @@ return [
         'type' => 'BRL'
     ],
 
+    /**
+     * Adaptador de Requisições
+     */
+    'http' => [
+        'adapter' => [
+            'type' => 'curl',
+            'options' => [
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_0
+            ]
+        ],
+    ],
+
     /*
      * ATENÇÃO: Não altere as configurações abaixo
      * */
