@@ -13,6 +13,13 @@ simples de gerar o pagamento, a notificação e as transações de sua loja ou e
 ## Manual PagSeguro
 [http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf](http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf)
 
+## PHP compatibilidade
+
+ PHP 5    | PHP 7
+:---------|:----------
+ 5.4.x    | 7.0.x
+ 5.5.x    | 
+ 5.6.x    |
 
 ## Laravel compatibilidade
 
