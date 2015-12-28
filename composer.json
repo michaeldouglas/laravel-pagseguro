@@ -5,6 +5,7 @@
     "license": "MIT",
     "type": "library",
     "require": {
+        "php": ">=5.5.9",
         "ext-curl": "*",
         "php": ">=5.4.0",
         "lib-curl": "*",
@@ -29,6 +30,9 @@
             "email": "isaquesb@gmail.com"
         }
     ],
+    "scripts": {
+        "test:unit": "bin/phpunit -c phpunit.xml tests"
+    },
     "config":{
         "bin-dir": "bin/"
     },
