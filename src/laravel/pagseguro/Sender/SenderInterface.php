@@ -6,7 +6,7 @@ namespace laravel\pagseguro\Sender;
  * Sender Interface
  *
  * @category   Sender
- * @package    Laravel\PagSeguro\Address
+ * @package    Laravel\PagSeguro\Sender
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-08-11
@@ -112,5 +112,4 @@ interface SenderInterface
      * @return array
      */
     public function toArray();
-
 }

@@ -41,9 +41,6 @@ class Transaction implements TransactionInterface
      */
     public function __construct($code, Credentials $credentials, $check = true)
     {
-        if (!$credentials || !$credentials->isValid()) {
-            throw new \InvalidArgumentException('Invalid credentials');
-        }
         $this->credentials = $credentials;
         $this->setCode($code);
         if ($check && !$this->check()) {
@@ -71,6 +68,15 @@ class Transaction implements TransactionInterface
     public function check()
     {
         $remote = new RemoteTransaction();
-        $data = $remote->getStatus($this->code, $this->credentials);
+        $data = $remote->getStatus($this->getCode(), $this->credentials);
+    }
+
+    /**
+     * Get Code
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

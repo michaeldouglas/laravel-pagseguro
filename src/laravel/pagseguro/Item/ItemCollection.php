@@ -26,19 +26,18 @@ class ItemCollection extends \ArrayObject
     {
         $collectionItems = [];
         $it = new \ArrayIterator($data);
-        while($it->valid()) {
+        while ($it->valid()) {
             $item = $it->current();
-            if($item instanceof ItemInterface) {
+            if ($item instanceof ItemInterface) {
                 $collectionItems[] = $item;
             } elseif (is_array($item)) {
                 $collectionItems[] = new Item($item);
             } else {
                 $exptMsg = sprintf('Invalid item on key: %s', $it->key());
-                throw new \InvalidArgumentException ($exptMsg);
+                throw new \InvalidArgumentException($exptMsg);
             }
             $it->next();
         }
         return new self($collectionItems);
     }
-
 }

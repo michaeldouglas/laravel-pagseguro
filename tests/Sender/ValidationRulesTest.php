@@ -17,7 +17,7 @@ class ValidationRulesTest extends \Tests\ValidationRules
      */
     protected function getRule($key)
     {
-        if(!$this->rules) {
+        if (!$this->rules) {
             $o = new ValidationRules();
             $this->rules = $o->getRules();
         }

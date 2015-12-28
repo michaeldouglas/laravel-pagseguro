@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Sender\Phone;
 
 use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
 
 /**
  * Phone Object
@@ -29,8 +30,10 @@ class Phone implements PhoneInterface
      * @var string
      */
     protected $senderPhone;
-
-    use DataHydratorTrait;
+    
+    use DataHydratorTrait, ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Get Phone Instance
@@ -39,23 +42,22 @@ class Phone implements PhoneInterface
      */
     public static function factory($phone)
     {
-        if($phone instanceof PhoneInterface) {
+        if ($phone instanceof PhoneInterface) {
             return $phone;
-        } elseif(is_string($phone)) {
+        } elseif (is_string($phone)) {
             $completeNum = preg_replace('/[^0-9]/', '', $phone);
             $phoneData = [
                 'senderAreaCode' => substr($completeNum, 0, 2),
                 'senderPhone' => substr($completeNum, 0, 2),
             ];
             return new self($phoneData);
-        } elseif(
-            is_array($phone)
+        } elseif (is_array($phone)
             && array_key_exists('senderAreaCode', $phone)
             && array_key_exists('senderPhone', $phone)
         ) {
             return new self($phone);
         } else {
-            throw new \InvalidArgumentException ('Invalid Phone Data');
+            throw new \InvalidArgumentException('Invalid Phone Data');
         }
     }
 
@@ -65,7 +67,7 @@ class Phone implements PhoneInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }
@@ -120,5 +122,4 @@ class Phone implements PhoneInterface
     {
         return new ValidationRules();
     }
-
 }

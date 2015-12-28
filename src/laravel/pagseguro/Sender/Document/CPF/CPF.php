@@ -2,8 +2,9 @@
 
 namespace laravel\pagseguro\Sender\Document\CPF;
 
-use laravel\pagseguro\Complements\DataHydratorTrait,
-    laravel\pagseguro\Sender\Document\DocumentInterface;
+use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
+use laravel\pagseguro\Sender\Document\DocumentInterface;
 
 /**
  * CPF Document Object
@@ -31,7 +32,10 @@ class CPF implements DocumentInterface
      */
     private $type = 'CPF';
 
-    use DataHydratorTrait;
+    use DataHydratorTrait,
+        ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor
@@ -39,7 +43,7 @@ class CPF implements DocumentInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }
@@ -96,5 +100,4 @@ class CPF implements DocumentInterface
     {
         return new ValidationRules();
     }
-
 }

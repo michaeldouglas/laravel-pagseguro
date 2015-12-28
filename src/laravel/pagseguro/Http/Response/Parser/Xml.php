@@ -18,13 +18,13 @@ class Xml implements ParserInterface
 
     /**
      * Raw Data
-     * @var string 
+     * @var string
      */
     protected $rawData;
 
     /**
      * Parsed Data
-     * @var array 
+     * @var array
      */
     protected $data;
 
@@ -37,7 +37,7 @@ class Xml implements ParserInterface
         if (!is_string($rawData)) {
             throw new \InvalidArgumentException('Invalid raw data');
         }
-        $this->raw = $rawData;
+        $this->rawData = $rawData;
     }
 
     /**
@@ -47,14 +47,16 @@ class Xml implements ParserInterface
     protected function parse()
     {
         libxml_use_internal_errors(true);
-        $xml = simplexml_load_string($this->rawData, '\stdClass');
-        if (count(libxml_get_errors()))
-        {
+        $xml = simplexml_load_string($this->rawData, '\SimpleXMLElement');
+        if (count(libxml_get_errors())) {
             $errors = [];
-            foreach(libxml_get_errors() as $error) {
+            foreach (libxml_get_errors() as $error) {
                 $errors[] = $error->message;
             }
             throw new \RuntimeException('Error: '. implode("\n", $errors));
+        }
+        if (!$xml) {
+            throw new \RuntimeException('Invalid XML data');
         }
         $this->data = json_decode(json_encode((array) $xml), true);
     }

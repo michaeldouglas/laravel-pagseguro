@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Address;
 
 use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
 
 /**
  * Address Object
@@ -66,7 +67,9 @@ class Address implements AddressInterface
      */
     protected $country;
 
-    use DataHydratorTrait;
+    use DataHydratorTrait, ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor
@@ -74,7 +77,7 @@ class Address implements AddressInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }
@@ -247,5 +250,4 @@ class Address implements AddressInterface
     {
         return new ValidationRules();
     }
-
 }
