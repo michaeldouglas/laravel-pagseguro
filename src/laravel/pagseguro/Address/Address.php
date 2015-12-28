@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Address;
 
 use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
 
 /**
  * Address Object
@@ -72,7 +73,9 @@ class Address implements AddressInterface
      */
     protected $shippingType;
 
-    use DataHydratorTrait;
+    use DataHydratorTrait, ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor
@@ -80,7 +83,7 @@ class Address implements AddressInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }
@@ -262,8 +265,7 @@ class Address implements AddressInterface
     {
         return new ValidationRules();
     }
-    
-    
+
     /**
      * Set ShippingType (Tipo do envio)
      * @return int $shippingType
@@ -274,5 +276,4 @@ class Address implements AddressInterface
         $this->shippingType = $shippingType;
         return $this;
     }
-
 }

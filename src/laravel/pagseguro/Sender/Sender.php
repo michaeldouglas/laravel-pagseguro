@@ -2,8 +2,9 @@
 
 namespace laravel\pagseguro\Sender;
 
-use laravel\pagseguro\Complements\DataHydratorTrait,
-    laravel\pagseguro\Sender\Phone\Phone;
+use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
+use laravel\pagseguro\Sender\Phone\Phone;
 
 /**
  * Sender Object
@@ -49,7 +50,9 @@ class Sender implements SenderInterface
      */
     protected $bornDate;
 
-    use DataHydratorTrait;
+    use DataHydratorTrait, ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor
@@ -57,7 +60,7 @@ class Sender implements SenderInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }
@@ -136,7 +139,7 @@ class Sender implements SenderInterface
      */
     public function setPhone($phone)
     {
-        if(!is_null($phone)) {
+        if (!is_null($phone)) {
             $this->phone = Phone::factory($phone);
         } else {
             $this->phone = null;
@@ -174,5 +177,4 @@ class Sender implements SenderInterface
     {
         return new ValidationRules();
     }
-
 }

@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Notification;
 
 use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
 
 /**
  * Notification Object
@@ -30,7 +31,9 @@ class Notification implements NotificationInterface
      */
     protected $notificationType = 'transaction';
 
-    use DataHydratorTrait;
+    use DataHydratorTrait, ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor

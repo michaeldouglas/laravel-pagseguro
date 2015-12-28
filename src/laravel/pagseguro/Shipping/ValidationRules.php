@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\pagseguro\Sender;
+namespace laravel\pagseguro\Shipping;
 
 use laravel\pagseguro\Complements\ValidationRulesInterface;
 use laravel\pagseguro\Complements\ValidationRulesTrait;
@@ -9,10 +9,10 @@ use laravel\pagseguro\Complements\ValidationRulesTrait;
  * Validation Rules Object
  *
  * @category   Sender
- * @package    Laravel\PagSeguro\Sender
+ * @package    Laravel\PagSeguro\Address
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2015-01-11
+ * @since      2015-12-10
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -23,11 +23,9 @@ class ValidationRules implements ValidationRulesInterface
      * @var array
      */
     protected $rules = [
-        'email' => 'Required|Email',
-        'senderName' => 'Required|min:2|max:50',
-        'documents' => 'Required',
-        'phone' => 'Required',
-        'bornDate' => 'Date',
+        'address' => 'Required',
+        'cost' => 'Required|numeric|between:0,9999999',
+        'type' => 'Required|integer|between:1,999',
     ];
 
     /**

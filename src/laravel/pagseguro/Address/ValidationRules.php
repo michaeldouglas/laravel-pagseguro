@@ -2,8 +2,8 @@
 
 namespace laravel\pagseguro\Address;
 
-use laravel\pagseguro\Complements\ValidationRulesInterface,
-    laravel\pagseguro\Complements\ValidationRulesTrait;
+use laravel\pagseguro\Complements\ValidationRulesInterface;
+use laravel\pagseguro\Complements\ValidationRulesTrait;
 
 /**
  * Validation Rules Object
