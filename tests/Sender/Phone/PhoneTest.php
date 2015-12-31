@@ -2,7 +2,7 @@
 
 namespace Tests\Sender\Phone;
 
-use \laravel\pagseguro\Sender\Phone\Phone;
+use laravel\pagseguro\Sender\Phone\Phone;
 use laravel\pagseguro\Sender\Phone\PhoneInterface;
 
 /**

@@ -2,7 +2,7 @@
 
 namespace Tests\Item;
 
-use \laravel\pagseguro\Item\Item;
+use laravel\pagseguro\Item\Item;
 
 /**
  * Item Test

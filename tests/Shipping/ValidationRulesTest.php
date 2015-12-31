@@ -2,7 +2,7 @@
 
 namespace Tests\Shipping;
 
-use \laravel\pagseguro\Shipping\ValidationRules;
+use laravel\pagseguro\Shipping\ValidationRules;
 
 /**
  * Shipping Validation Test

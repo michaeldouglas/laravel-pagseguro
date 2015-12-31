@@ -2,7 +2,8 @@
 
 namespace laravel\pagseguro\Transaction\Information;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorProtectedTrait;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Sender\SenderInterface;
 use laravel\pagseguro\Shipping\ShippingInterface;
@@ -99,6 +100,10 @@ class Information
      */
     protected $shipping;
 
+    use DataHydratorTrait, DataHydratorProtectedTrait {
+        DataHydratorProtectedTrait::hydrate insteadof DataHydratorTrait;
+    }
+
     /**
      * Constructor
      * @param array $data
@@ -109,8 +114,6 @@ class Information
             $this->hydrate($data);
         }
     }
-
-    use DataHydratorTrait;
 
     /**
      * Transaction Code

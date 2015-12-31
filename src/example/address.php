@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use \laravel\pagseguro\Address\Address;
+use laravel\pagseguro\Address\Address;
 
 $addressData = [
     'postalCode' => '06410000',

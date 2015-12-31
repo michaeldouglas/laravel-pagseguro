@@ -2,9 +2,9 @@
 
 namespace laravel\pagseguro;
 
-use \laravel\pagseguro\Credentials\Credentials;
-use \laravel\pagseguro\Request\PaymentRequest;
-use \laravel\pagseguro\Config;
+use laravel\pagseguro\Credentials\Credentials;
+use laravel\pagseguro\Request\PaymentRequest;
+use laravel\pagseguro\Config;
 use \Illuminate\Support\ServiceProvider;
 
 /**

@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use \laravel\pagseguro\Http\Request\Adapter\CurlAdapter;
-use \laravel\pagseguro\Http\Request\Request;
+use laravel\pagseguro\Http\Request\Adapter\CurlAdapter;
+use laravel\pagseguro\Http\Request\Request;
 
 $adapter = new CurlAdapter([
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_0

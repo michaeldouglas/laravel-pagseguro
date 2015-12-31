@@ -2,7 +2,7 @@
 
 namespace Tests\Notification;
 
-use \laravel\pagseguro\Notification\Notification;
+use laravel\pagseguro\Notification\Notification;
 
 /**
  * Notification Test

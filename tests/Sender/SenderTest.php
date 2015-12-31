@@ -2,7 +2,7 @@
 
 namespace Tests\Sender;
 
-use \laravel\pagseguro\Sender\Sender;
+use laravel\pagseguro\Sender\Sender;
 
 /**
  * Sender Test
@@ -17,7 +17,7 @@ class SenderTest extends \PHPUnit_Framework_TestCase
         $o = new Sender();
         $this->assertEquals([
             'email' => null,
-            'senderName' => null,
+            'name' => null,
             'documents' => null,
             'phone' => null,
             'bornDate' => null,
@@ -28,7 +28,7 @@ class SenderTest extends \PHPUnit_Framework_TestCase
     {
         $data = [
             'email' => 'isaquesb@gmail.com',
-            'senderName' => 'Isaque de Souza',
+            'name' => 'Isaque de Souza',
             'documents' => null,
             'phone' => null,
             'bornDate' => '1988-03-21',
@@ -36,7 +36,7 @@ class SenderTest extends \PHPUnit_Framework_TestCase
         $o = new Sender($data);
         $this->assertEquals($data, $o->toArray());
         $this->assertEquals($data['email'], $o->getEmail());
-        $this->assertEquals($data['senderName'], $o->getSenderName());
+        $this->assertEquals($data['name'], $o->getName());
         $this->assertEquals($data['documents'], $o->getDocuments());
         $this->assertEquals($data['phone'], $o->getPhone());
         $this->assertEquals($data['bornDate'], $o->getBornDate());

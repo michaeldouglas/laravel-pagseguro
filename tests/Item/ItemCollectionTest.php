@@ -2,8 +2,8 @@
 
 namespace Tests\Item;
 
-use \laravel\pagseguro\Item\Item;
-use \laravel\pagseguro\Item\ItemCollection;
+use laravel\pagseguro\Item\Item;
+use laravel\pagseguro\Item\ItemCollection;
 
 /**
  * Item Collection Test

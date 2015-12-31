@@ -2,7 +2,7 @@
 
 namespace Tests\Item;
 
-use \laravel\pagseguro\Item\ValidationRules;
+use laravel\pagseguro\Item\ValidationRules;
 
 /**
  * Item Validation Test

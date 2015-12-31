@@ -2,8 +2,8 @@
 
 namespace Tests\Sender\Document;
 
-use \laravel\pagseguro\Sender\Document\CPF\CPF;
-use \laravel\pagseguro\Sender\Document\DocumentCollection;
+use laravel\pagseguro\Sender\Document\CPF\CPF;
+use laravel\pagseguro\Sender\Document\DocumentCollection;
 
 /**
  * Document Collection Test

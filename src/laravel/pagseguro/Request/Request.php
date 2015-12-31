@@ -16,7 +16,7 @@ namespace laravel\pagseguro\Request;
 
 use laravel\pagseguro\Validators\ValidatorsRequest as Validators;
 use laravel\pagseguro\Request\RequestInterface;
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\DataRequestHydrator;
 use laravel\pagseguro\Proxy\Proxy;
 use laravel\pagseguro\Config\Config;

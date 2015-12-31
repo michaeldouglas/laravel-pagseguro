@@ -2,7 +2,7 @@
 
 namespace Tests\Sender;
 
-use \laravel\pagseguro\Sender\ValidationRules;
+use laravel\pagseguro\Sender\ValidationRules;
 
 /**
  * Sender Validation Test
@@ -43,7 +43,7 @@ class ValidationRulesTest extends \Tests\ValidationRules
      * Sender Name Data Provider
      * @return array
      */
-    public function senderNameProvider()
+    public function nameProvider()
     {
         return [
             ['', false],
@@ -85,14 +85,14 @@ class ValidationRulesTest extends \Tests\ValidationRules
     }
 
     /**
-     * @dataProvider senderNameProvider
+     * @dataProvider nameProvider
      * @param mixed $value
      * @param boolean $expected
      * @return array
      */
-    public function testSenderName($value, $expected)
+    public function testName($value, $expected)
     {
-        $rule = $this->getRule('senderName');
+        $rule = $this->getRule('name');
         $v = $this->validatorMake($rule, $value);
         $this->assertEquals($expected, $v->passes());
     }

@@ -2,7 +2,8 @@
 
 namespace laravel\pagseguro\Transaction\Information;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorProtectedTrait;
 
 /**
  * Transaction Amounts Information Object
@@ -48,7 +49,9 @@ class Amounts
      */
     protected $extraamount;
 
-    use DataHydratorTrait;
+    use DataHydratorTrait, DataHydratorProtectedTrait {
+        DataHydratorProtectedTrait::hydrate insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor
@@ -56,7 +59,7 @@ class Amounts
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }

@@ -53,9 +53,9 @@ trait DataRequestHydrator
 
     private function extractSenderName(&$data)
     {
-        $keys = array_fill_keys(['senderName'], null);
+        $keys = array_fill_keys(['name'], null);
         $keySender = array_intersect_key($data['sender'], $keys);
-        $data['senderName'] = (array_key_exists('senderName', $keySender) ? $keySender['senderName'] : null);
+        $data['senderName'] = (array_key_exists('name', $keySender) ? $keySender['name'] : null);
         return $this;
     }
     
