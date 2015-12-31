@@ -2,7 +2,7 @@
 
 namespace Tests\Sender\Phone;
 
-use \laravel\pagseguro\Sender\Phone\ValidationRules;
+use laravel\pagseguro\Sender\Phone\ValidationRules;
 
 /**
  * Sender Phone Validation Test

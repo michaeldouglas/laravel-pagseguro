@@ -2,7 +2,7 @@
 
 namespace laravel\pagseguro\Facades;
 
-use \laravel\pagseguro\Address\Address,
+use laravel\pagseguro\Address\Address,
     \laravel\pagseguro\Item\Item,
     \laravel\pagseguro\Item\ItemCollection,
     \laravel\pagseguro\Payment\Payment;

@@ -2,7 +2,7 @@
 
 namespace Tests\Credentials;
 
-use \laravel\pagseguro\Credentials\Credentials;
+use laravel\pagseguro\Credentials\Credentials;
 
 /**
  * Credentials Test

@@ -8,8 +8,8 @@ use laravel\pagseguro\Complements\ValidationRulesTrait;
 /**
  * Validation Rules Object
  *
- * @category   Sender
- * @package    Laravel\PagSeguro\Address
+ * @category   Shipping
+ * @package    Laravel\PagSeguro\Shipping
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-12-10

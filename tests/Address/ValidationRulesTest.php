@@ -2,7 +2,7 @@
 
 namespace Tests\Address;
 
-use \laravel\pagseguro\Address\ValidationRules;
+use laravel\pagseguro\Address\ValidationRules;
 
 /**
  * Address Validation Test

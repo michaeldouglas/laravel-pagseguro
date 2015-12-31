@@ -32,6 +32,12 @@ class Transaction implements TransactionInterface
     protected $code;
 
     /**
+     * Transaction Information
+     * @var Information\Information
+     */
+    protected $information;
+
+    /**
      * Constructor
      * @param string $code Transaction code
      * @param Credentials $credentials
@@ -49,6 +55,15 @@ class Transaction implements TransactionInterface
     }
 
     /**
+     * Get Code
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
      * Transaction Code
      * @param string $code
      * @throws \InvalidArgumentException
@@ -63,20 +78,27 @@ class Transaction implements TransactionInterface
 
     /**
      * Check transaction status
-     * @todo
+     * @return bool
      */
     public function check()
     {
         $remote = new RemoteTransaction();
         $data = $remote->getStatus($this->getCode(), $this->credentials);
+        $factory = new Information\InformationFactory($data);
+        $this->information = $factory->getInformation();
+        return !is_null($this->information);
     }
 
     /**
-     * Get Code
-     * @return string
+     * Get Transaction Info
+     * @return Information\Information
+     * @throws \RuntimeException
      */
-    public function getCode()
+    public function getInformation()
     {
-        return $this->code;
+        if (is_null($this->information) && !$this->check()) {
+            throw new \RuntimeException('Check fail');
+        }
+        return $this->information;
     }
 }

@@ -2,7 +2,8 @@
 
 namespace laravel\pagseguro\Notification;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorConstructorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
 
 /**
@@ -31,7 +32,7 @@ class Notification implements NotificationInterface
      */
     protected $notificationType = 'transaction';
 
-    use DataHydratorTrait, ValidateTrait {
+    use DataHydratorTrait, DataHydratorConstructorTrait, ValidateTrait {
         ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
     }
 
@@ -41,18 +42,10 @@ class Notification implements NotificationInterface
      */
     public function __construct($data = [])
     {
-        $args = func_get_args();
-        $firstArg = reset($args);
-        $data = is_array($firstArg) ? $firstArg : [];
-        if (count($args) === 2) {
-            $data['notificationCode'] = $firstArg;
-            $data['notificationType'] = end($args);
-        } elseif (is_string($firstArg)) {
-            $data['notificationCode'] = $firstArg;
-        }
-        if (count($data)) {
-            $this->hydrate($data);
-        }
+        $this->hydrateMagic(
+            ['notificationCode', 'notificationType'],
+            func_get_args()
+        );
     }
 
     /**

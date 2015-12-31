@@ -2,7 +2,7 @@
 
 namespace laravel\pagseguro\Sender\Document\CPF;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
 use laravel\pagseguro\Sender\Document\DocumentInterface;
 

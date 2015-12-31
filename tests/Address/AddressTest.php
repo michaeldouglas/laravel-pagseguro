@@ -2,7 +2,7 @@
 
 namespace Tests\Address;
 
-use \laravel\pagseguro\Address\Address;
+use laravel\pagseguro\Address\Address;
 
 /**
  * Address Test

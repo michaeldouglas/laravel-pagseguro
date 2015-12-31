@@ -2,7 +2,7 @@
 
 namespace laravel\pagseguro\Sender;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
 use laravel\pagseguro\Sender\Phone\Phone;
 
@@ -78,7 +78,7 @@ class Sender implements SenderInterface
      * Get Name (Nome)
      * @return string
      */
-    public function getSenderName()
+    public function getName()
     {
         return $this->name;
     }
@@ -126,7 +126,7 @@ class Sender implements SenderInterface
      * @param string $name
      * @return Address
      */
-    public function setSenderName($name)
+    public function setName($name)
     {
         $this->name = $name;
         return $this;

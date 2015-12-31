@@ -2,7 +2,7 @@
 
 namespace Tests\Notification;
 
-use \laravel\pagseguro\Notification\ValidationRules;
+use laravel\pagseguro\Notification\ValidationRules;
 
 /**
  * Notification Validation Test

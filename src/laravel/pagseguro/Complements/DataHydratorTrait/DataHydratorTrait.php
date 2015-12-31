@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\pagseguro\Complements;
+namespace laravel\pagseguro\Complements\DataHydratorTrait;
 
 /**
  * Data Hydrator Trait
@@ -23,6 +23,16 @@ trait DataHydratorTrait
      */
     public function hydrate(array $data = [])
     {
+        return $this->doHydrate($data);
+    }
+
+    /**
+     * Proxies Data Hydrate
+     * @param array $data
+     * @return object
+     */
+    protected function doHydrate(array $data = [])
+    {
         $rules = $this->getHidratableVars();
         $defaultData = array_fill_keys(array_keys($rules), null);
         $currentData = $this->toArray();
@@ -31,17 +41,8 @@ trait DataHydratorTrait
             $currentData,
             array_intersect_key($data, $defaultData)
         );
-        $this->_hydrate($testData);
+        $this->bindHydrate($testData);
         return $this;
-    }
-
-    /**
-     * Get Hidratable Vars
-     * @return array
-     */
-    protected function getHidratableVars()
-    {
-        return get_object_vars($this);
     }
 
     /**
@@ -49,7 +50,7 @@ trait DataHydratorTrait
      * @param array $data
      * @return void
      */
-    protected function _hydrate(array $data = [])
+    protected function bindHydrate(array $data = [])
     {
         $it = new \ArrayIterator($data);
         while ($it->valid()) {
@@ -63,6 +64,15 @@ trait DataHydratorTrait
             }
             $it->next();
         }
+    }
+
+    /**
+     * Get Hidratable Vars
+     * @return array
+     */
+    protected function getHidratableVars()
+    {
+        return get_object_vars($this);
     }
 
     /**

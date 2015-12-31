@@ -2,7 +2,7 @@
 
 namespace laravel\pagseguro\Address;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
 
 /**

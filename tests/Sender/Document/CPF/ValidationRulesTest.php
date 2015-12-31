@@ -2,7 +2,7 @@
 
 namespace Tests\Sender\Document\CPF;
 
-use \laravel\pagseguro\Sender\Document\CPF\ValidationRules;
+use laravel\pagseguro\Sender\Document\CPF\ValidationRules;
 
 /**
  * Sender Document Validation Test
