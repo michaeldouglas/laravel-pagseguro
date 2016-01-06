@@ -28,8 +28,7 @@ trait DataRequestHydrator
     protected function setDataPagSeguro($data)
     {
         $this->extractSenderName($data->data)->extractSenderCPF($data->data)
-        ->extractSenderEmail($data->data)->extractSenderAreaCode($data->data)
-        ->extractPostalCode($data->data)->extractShippingType($data->data)
+        ->extractSenderEmail($data->data)->extractSenderAreacode($data->data)
         ->extractSenderPhone($data->data, $data->sender);
         $this->clearArrObjectRequest($data->data, ['sender', 'address']);
         return array_filter($data->data);
@@ -75,11 +74,11 @@ trait DataRequestHydrator
         return $this;
     }
     
-    private function extractSenderAreaCode(&$data)
+    private function extractSenderAreacode(&$data)
     {
-        $keys = array_fill_keys(['senderAreaCode'], null);
+        $keys = array_fill_keys(['senderAreacode'], null);
         $keySender = array_intersect_key($data['sender']['phone'], $keys);
-        $data['senderAreaCode'] = (array_key_exists('senderAreaCode', $keySender) ? $keySender['senderAreaCode'] : null);
+        $data['senderAreacode'] = (array_key_exists('senderAreacode', $keySender) ? $keySender['senderAreacode'] : null);
         return $this;
     }
     

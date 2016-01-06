@@ -28,7 +28,7 @@ class ValidationRulesTest extends \Tests\ValidationRules
      * Area Code Data Provider
      * @return array
      */
-    public function areaCodeProvider()
+    public function areacodeProvider()
     {
         return [
             ['', false],
@@ -58,14 +58,14 @@ class ValidationRulesTest extends \Tests\ValidationRules
     }
 
     /**
-     * @dataProvider areaCodeProvider
+     * @dataProvider areacodeProvider
      * @param mixed $value
      * @param boolean $expected
      * @return array
      */
-    public function testAreaCode($value, $expected)
+    public function testAreacode($value, $expected)
     {
-        $rule = $this->getRule('senderAreaCode');
+        $rule = $this->getRule('areacode');
         $v = $this->validatorMake($rule, $value);
         $this->assertEquals($expected, $v->passes());
     }
@@ -78,7 +78,7 @@ class ValidationRulesTest extends \Tests\ValidationRules
      */
     public function testPhone($value, $expected)
     {
-        $rule = $this->getRule('senderPhone');
+        $rule = $this->getRule('number');
         $v = $this->validatorMake($rule, $value);
         $this->assertEquals($expected, $v->passes());
     }

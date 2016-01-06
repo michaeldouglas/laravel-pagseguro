@@ -30,12 +30,12 @@ class Config
         }
         $data = static::$data;
         if (class_exists('\Config')) {
-            $data = \Config::get('laravelpagseguro');
+            $data = \Config::get('laravelpagseguro', $default);
         }
         if (is_null($data)) {
-            $data = include( __DIR__ . '/application-config.php');
+            $data = include(__DIR__ . '/application-config.php');
             static::$data = $data;
         }
-        return $data[$key];
+        return array_key_exists($key, $data) ? $data[$key] : $default;
     }
 }

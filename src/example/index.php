@@ -43,8 +43,8 @@ $dados = array(
         'senderCPF' => '27781466870',
         'senderEmail' => 'itteste@test.com',
         'phone' => [
-            'senderAreaCode' => 11,
-            'senderPhone' => '5614-9399',
+            'areacode' => '11',
+            'number' => '5614-9399',
         ],
     ),
     'currency' => 'BRL'
