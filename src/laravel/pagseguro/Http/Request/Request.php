@@ -239,7 +239,7 @@ class Request implements RequestInterface
      */
     protected function send($name, $arguments)
     {
-        if(count($arguments) < 1) {
+        if (count($arguments) < 1) {
             throw new \InvalidArgumentException('Unknown URL');
         }
         $this->setMethod($name);

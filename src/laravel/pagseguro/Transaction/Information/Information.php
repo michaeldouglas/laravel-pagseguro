@@ -275,7 +275,7 @@ class Information
         return $this;
     }
 
-    protected function setPaymentmethod(PaymentMehod $paymentmethod)
+    protected function setPaymentmethod(PaymentMethod $paymentmethod)
     {
         $this->paymentmethod = $paymentmethod;
         return $this;

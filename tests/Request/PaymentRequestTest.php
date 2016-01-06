@@ -48,7 +48,7 @@ class PaymentRequestTest extends PHPUnit_Framework_TestCase
 
     public function testDataSender()
     {
-        $this->dataTest = ['sender' => ['name' => 'Teste','email' => 'teste@teste.com.br','phone' => ['senderAreaCode' => 12, 'senderPhone' => '5615-9252',],'documents' => [['type' => 'CPF', 'number' => '39994806881',]]]];
+        $this->dataTest = ['sender' => ['name' => 'Teste','email' => 'teste@teste.com.br','phone' => ['areacode' => 12, 'number' => '5615-9252',],'documents' => [['type' => 'CPF', 'number' => '39994806881',]]]];
         $this->objectPaymentRequest->setRequest($this->dataTest);
         $this->assertArrayHasKey('sender', $this->objectPaymentRequest->data);
     }

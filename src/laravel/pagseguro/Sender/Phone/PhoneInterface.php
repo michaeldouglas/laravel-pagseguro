@@ -20,27 +20,27 @@ interface PhoneInterface
      * Get Area Code (DDD)
      * @return int
      */
-    public function getSenderAreaCode();
+    public function getAreacode();
 
     /**
      * Set Area Code (DDD)
-     * @param int $senderAreaCode
-     * @return Phone
+     * @param int $areacode
+     * @return PhoneInterface
      */
-    public function setSenderAreaCode($senderAreaCode);
+    public function setAreacode($areacode);
 
     /**
      * Get Number
      * @return string
      */
-    public function getSenderPhone();
+    public function getNumber();
 
     /**
      * Set Number
-     * @param string $senderPhone
-     * @return Cpf
+     * @param string $number
+     * @return PhoneInterface
      */
-    public function setSenderPhone($senderPhone);
+    public function setNumber($number);
 
     /**
      * Proxies Data Hydrate
@@ -67,5 +67,4 @@ interface PhoneInterface
      * @return array
      */
     public function toArray();
-
 }
