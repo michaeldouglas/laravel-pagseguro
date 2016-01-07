@@ -405,7 +405,7 @@ class Request implements RequestInterface
         
         if($error){
             $errorMessage = curl_error($this->curl);
-            throw new Exception("Erro: $errorMessage");
+            throw new \Exception("Erro: $errorMessage");
         }
         
         curl_close($this->curl);
