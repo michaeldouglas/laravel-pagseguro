@@ -1,4 +1,4 @@
-## Laravel PagSeguro - Atualizado para o Laravel 5.1
+## Laravel PagSeguro - Atualizado para o Laravel 5.2
 
 [![Build Status](https://travis-ci.org/michaeldouglas/laravel-pagseguro.svg?branch=master)](https://travis-ci.org/michaeldouglas/laravel-pagseguro)
 [![Total Downloads](https://poser.pugx.org/michael/laravelpagseguro/downloads)](https://packagist.org/packages/michael/laravelpagseguro)
@@ -23,9 +23,9 @@ simples de gerar o pagamento, a notificação e as transações de sua loja ou e
 
 ## Laravel compatibilidade
 
- Laravel  | Traduzível
-:---------|:----------
- 5.0.x    | 5.1.x
+ Laravel  | Traduzível | Traduzível
+:---------|:---------- | :----------
+ 5.2.x    | 5.1.x      | 5.0.x
 
 ## Instalação
 
