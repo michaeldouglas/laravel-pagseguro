@@ -10,7 +10,6 @@
         "lib-curl": "*",
         "lib-openssl": "*",
         "lib-libxml": "*",
-        "illuminate/validation": "5.1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.0.*"
