@@ -50,6 +50,7 @@ class InformationFactory
             'type',
             'status',
             'itemcount',
+            'installmentcount',
         ], null);
         $data = array_intersect_key($this->data, $map);
         $data['date'] = $this->getDate();
