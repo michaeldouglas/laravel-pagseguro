@@ -18,7 +18,8 @@ use laravel\pagseguro\Validators\ValidatorsRequest as Validators,
     laravel\pagseguro\Request\RequestInterface,
     laravel\pagseguro\Complements\DataHydratorTrait,
     laravel\pagseguro\Complements\DataRequestHydrator,
-    laravel\pagseguro\Proxy\Proxy;
+    laravel\pagseguro\Proxy\Proxy,
+    laravel\pagseguro\Error\LaravelError;
 
 class Request implements RequestInterface
 {
@@ -384,28 +385,15 @@ class Request implements RequestInterface
         curl_setopt_array($this->curl, $this->_objectRequest);
         $result = curl_exec($this->curl);
         
-        $errors = [];
-        libxml_use_internal_errors(true);
-
         $xml = simplexml_load_string($result);
-
-        if (count(libxml_get_errors()))
-        {
-
-            foreach(libxml_get_errors() as $error)
-            {
-                $errors[] = $error->message;
-            }
-
-            throw new \Exception("Error: ". implode("\n", $errors));
-        }
-
+        
+        (new LaravelError($xml))->verifyErrors()->ExceptionError();
         
         $error = curl_errno($this->curl);
         
         if($error){
             $errorMessage = curl_error($this->curl);
-            throw new \Exception("Erro: $errorMessage");
+            throw new Exception("Erro: $errorMessage");
         }
         
         curl_close($this->curl);
