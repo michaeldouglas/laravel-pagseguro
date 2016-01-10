@@ -65,4 +65,17 @@ class LaravelError
     {
         return json_decode(json_encode($xmlObject), TRUE);
     }
+        
+    /**
+     * Método responsável por verificar as permissões do usuário
+     * @copyright (c) 2016, Michael Araujo
+     * @access public
+     * @since 0.1
+     */
+    public function verifyUser()
+    {
+        if($this->xmlObject == "Unauthorized") {
+            throw new \Exception("Error: Usuário PagSeguro inválido, por favor, leia: https://pagseguro.uol.com.br/preferencias/integracoes.jhtml");
+        }
+    }
 }

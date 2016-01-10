@@ -385,6 +385,8 @@ class Request implements RequestInterface
         curl_setopt_array($this->curl, $this->_objectRequest);
         $result = curl_exec($this->curl);
         
+        (new LaravelError($result))->verifyUser();
+        
         $xml = simplexml_load_string($result);
         
         (new LaravelError($xml))->verifyErrors()->ExceptionError();
