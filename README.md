@@ -13,6 +13,11 @@ simples de gerar o pagamento, a notificação e as transações de sua loja ou e
 ## Manual PagSeguro
 [http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf](http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf)
 
+## Criação e configuração do usuário
+Antes de você utilizar o Laravel PagSeguro é importante você verificar se o seu usuário do PagSeguro está correto para a integração
+segue URL de configuração do usuário PagSeguro:
+[https://pagseguro.uol.com.br/preferencias/integracoes.jhtml](https://pagseguro.uol.com.br/preferencias/integracoes.jhtml)
+
 ## PHP compatibilidade
 
  PHP 5    | PHP 7
