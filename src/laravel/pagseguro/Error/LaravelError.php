@@ -19,7 +19,7 @@ class LaravelError
     protected $errors = [];
     protected $xmlObject;
     
-    public function __construct(\SimpleXMLElement $xmlObject) {
+    public function __construct($xmlObject) {
         $this->xmlObject = $xmlObject;
     }
     
