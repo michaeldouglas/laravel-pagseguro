@@ -24,7 +24,6 @@ class ValidationRules implements ValidationRulesInterface
      */
     protected $rules = [
         'postalCode' => 'Required|numeric|digits:8',
-        'shippingType' => 'Required|numeric',
         'street' => 'Required|max:80',
         'number' => 'Required|max:20',
         'complement' => 'max:40',

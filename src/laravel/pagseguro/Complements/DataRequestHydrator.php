@@ -33,20 +33,12 @@ trait DataRequestHydrator
         $this->clearArrObjectRequest($data->data, ['sender', 'address']);
         return array_filter($data->data);
     }
-    
-    private function extractShippingType(&$data)
-    {
-        $keys = array_fill_keys(['shippingType'], null);
-        $keySender = array_intersect_key($data['address'], $keys);
-        $data['shippingType'] = (array_key_exists('shippingType', $keySender) ? $keySender['shippingType'] : null);
-        return $this;
-    }
-    
+
     private function extractPostalCode(&$data)
     {
         $keys = array_fill_keys(['postalCode'], null);
         $keySender = array_intersect_key($data['address'], $keys);
-        $data['shippingAddressPostalCode'] = (array_key_exists('postalCode', $keySender) ? $keySender['postalCode'] : null);
+        $data['postalCode'] = (array_key_exists('postalCode', $keySender) ? $keySender['postalCode'] : null);
         return $this;
     }
 

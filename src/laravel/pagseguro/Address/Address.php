@@ -66,12 +66,6 @@ class Address implements AddressInterface
      * @var string
      */
     protected $country;
-    
-    /**
-     * ShippingType
-     * @var int
-     */
-    protected $shippingType;
 
     use DataHydratorTrait, ValidateTrait {
         ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
@@ -94,7 +88,7 @@ class Address implements AddressInterface
      */
     public function getPostalCode()
     {
-        return $this->shippingAddressPostalCode;
+        return $this->postalCode;
     }
 
     /**

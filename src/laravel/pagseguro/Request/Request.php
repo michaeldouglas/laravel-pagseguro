@@ -18,12 +18,9 @@ use laravel\pagseguro\Validators\ValidatorsRequest as Validators;
 use laravel\pagseguro\Request\RequestInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\DataRequestHydrator;
-<<<<<<< HEAD
 use laravel\pagseguro\Proxy\Proxy;
 use laravel\pagseguro\Config\Config;
 use laravel\pagseguro\Error\LaravelError;
-=======
->>>>>>> f3996ffdf95ea049a186cf3e2461383ae898fa9c
 use laravel\pagseguro\Remote\Url\Resolver;
 
 class Request implements RequestInterface
@@ -258,23 +255,7 @@ class Request implements RequestInterface
     {
         return "Content-Type: application/x-www-form-urlencoded; charset={$this->_charset}";
     }
-    
-    /**
-     * Método responsável por setar a URL de requisição
-     * @copyright (c) 2015, Michael Araujo
-     * @access private
-     * @since 0.1
-     * @param object seta  a URL
-     */
-    private function _setURL($url)
-    {
-        if(!$this->_verifyURL($url)){
-            $url = $this->_url;
-        }
-        $this->_url = $url;
-        return $this;
-    }
-    
+
     /**
      * Método responsável por obter a URL de requisição
      * @copyright (c) 2015, Michael Araujo
@@ -284,7 +265,7 @@ class Request implements RequestInterface
      */
     public function getURL()
     {
-        return $this->_url;
+        return $this->_url ? $this->_url : 'https://ws.pagseguro.uol.com.br/v2/checkout';
     }
 
 

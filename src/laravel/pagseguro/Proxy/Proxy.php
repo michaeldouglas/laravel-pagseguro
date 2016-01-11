@@ -2,7 +2,7 @@
 
 namespace laravel\pagseguro\Proxy;
 
-use \laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 
 /**
  * Classe responsável por setar proxy a requisição
