@@ -75,4 +75,3 @@ class PagseguroServiceProvider extends ServiceProvider
         return array('pagseguro');
     }
 }
-

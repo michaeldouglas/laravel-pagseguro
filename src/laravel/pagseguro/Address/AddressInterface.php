@@ -125,19 +125,6 @@ interface AddressInterface
      * @return string
      */
     public function setCountry($country);
-    
-    /**
-     * Set ShippingType (Tipo de envio)
-     * @return int
-     */
-    public function getShippingType();
-    
-    /**
-     * Set ShippingType (Tipo de envio)
-     * @param string $shippingType
-     * @return int
-     */
-    public function setShippingType($shippingType);
 
     /**
      * Proxies Data Hydrate

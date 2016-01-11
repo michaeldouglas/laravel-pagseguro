@@ -18,9 +18,12 @@ use laravel\pagseguro\Validators\ValidatorsRequest as Validators;
 use laravel\pagseguro\Request\RequestInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\DataRequestHydrator;
+<<<<<<< HEAD
 use laravel\pagseguro\Proxy\Proxy;
 use laravel\pagseguro\Config\Config;
 use laravel\pagseguro\Error\LaravelError;
+=======
+>>>>>>> f3996ffdf95ea049a186cf3e2461383ae898fa9c
 use laravel\pagseguro\Remote\Url\Resolver;
 
 class Request implements RequestInterface
