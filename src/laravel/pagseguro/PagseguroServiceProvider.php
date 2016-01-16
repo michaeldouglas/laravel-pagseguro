@@ -4,6 +4,7 @@ namespace laravel\pagseguro;
 
 use \laravel\pagseguro\Credentials\Credentials,
     \laravel\pagseguro\Request\PaymentRequest,
+    \laravel\pagseguro\Request\SessionPaymentRequest,
     \Illuminate\Support\ServiceProvider,
     \Config;
 
@@ -39,6 +40,9 @@ class PagseguroServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([__DIR__ . "/config/laravelpagseguro.php" => config_path('laravelpagseguro.php')]);
+        
+        #Registra os comandos da Laravel PagSeguro
+        $this->commands('\laravel\pagseguro\Commands\PagSeguroSessionPaymentCommand');
     }
 
     /**
@@ -50,6 +54,11 @@ class PagseguroServiceProvider extends ServiceProvider
         $this->app->bind('pagseguro', function () {
             $this->loadCredentials();
             return new PaymentRequest($this->credentials);
+        });
+        
+        #Registro para a classe de retorno de sessão de pagamento
+        $this->app->singleton('session', function(){
+        	return new SessionPaymentRequest();
         });
     }
 
