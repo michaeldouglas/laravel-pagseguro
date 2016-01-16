@@ -176,6 +176,12 @@ $code = $request->request->getCode();
 echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code\"> Pagamento </a>"; 
 ```
 
+## Lista de comandos
+
+Segue lista de comandos do Laravel PagSeguro
+
+> 1 - pagseguro:sessao-pagamento - Esse comando irá retornar a sessão de pagamento do usuário
+
 ## Licença
 
 O Laravel PagSeguro utiliza a licença MIT, para saber mais leia no link: [MIT license](http://opensource.org/licenses/MIT)
