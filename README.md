@@ -181,6 +181,11 @@ echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payme
 Lista de comandos **Laravel PagSeguro**
 
 > **1)** pagseguro:sessao-pagamento - Comando que retorna a sessão de pagamento do usuário
+> **call**
+
+```php
+php artisan pagseguro:sessao-pagamento
+```
 
 ## Licença
 
