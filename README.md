@@ -1,4 +1,4 @@
-## Laravel PagSeguro - Atualizado para o Laravel 5.1
+## Laravel PagSeguro - Atualizado para o Laravel 5.2
 
 [![Build Status](https://travis-ci.org/michaeldouglas/laravel-pagseguro.svg?branch=master)](https://travis-ci.org/michaeldouglas/laravel-pagseguro)
 [![Total Downloads](https://poser.pugx.org/michael/laravelpagseguro/downloads)](https://packagist.org/packages/michael/laravelpagseguro)
@@ -13,12 +13,24 @@ simples de gerar o pagamento, a notificação e as transações de sua loja ou e
 ## Manual PagSeguro
 [http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf](http://download.uol.com.br/pagseguro/docs/pagseguro-checkout-transparente.pdf)
 
+## Criação e configuração do usuário
+Antes de você utilizar o Laravel PagSeguro é importante você verificar se o seu usuário do PagSeguro está correto para a integração
+segue URL de configuração do usuário PagSeguro:
+[https://pagseguro.uol.com.br/preferencias/integracoes.jhtml](https://pagseguro.uol.com.br/preferencias/integracoes.jhtml)
+
+## PHP compatibilidade
+
+ PHP 5    | PHP 7
+:---------|:----------
+ 5.4.x    | 7.0.x
+ 5.5.x    | 
+ 5.6.x    |
 
 ## Laravel compatibilidade
 
- Laravel  | Traduzível
-:---------|:----------
- 5.0.x    | 5.1.x
+ Laravel  | Traduzível | Traduzível
+:---------|:---------- | :----------
+ 5.2.x    | 5.1.x      | 5.0.x
 
 ## Instalação
 
@@ -78,6 +90,20 @@ Abra o arquivo `config/laravelpagseguro.php` altere o `token` e também o `e-mai
     )
 ```
 
+## Proxy
+
+Caso você precise de proxy para utilizar a Laravel PagSeguro configure com essas chaves:
+
+```php
+'proxy' => [//CONFIGURAÇÃO PARA PROXY
+        'user'     => NULL,
+        'password' => NULL,
+        'url'      => NULL,
+        'port'     => NULL,
+        'protocol' => NULL
+],
+```
+
 ## Exemplo de envio de requisição de compra
 
 O array de envio deverá ser montado com a seguinte estrutura:
@@ -103,6 +129,7 @@ $dados = array(
         )
     ),
     'address' => array(
+        'shippingType' => 1,
         'postalCode' => '04433130',
         'street' => 'Rua benjamin vieira da silva',
         'number' => '1077',

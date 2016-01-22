@@ -18,6 +18,9 @@ use laravel\pagseguro\Validators\ValidatorsRequest as Validators;
 use laravel\pagseguro\Request\RequestInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\DataRequestHydrator;
+use laravel\pagseguro\Proxy\Proxy;
+use laravel\pagseguro\Config\Config;
+use laravel\pagseguro\Error\LaravelError;
 use laravel\pagseguro\Remote\Url\Resolver;
 
 class Request implements RequestInterface
@@ -38,49 +41,18 @@ class Request implements RequestInterface
     protected $_optionsMethod;
     protected $_options;
     protected $_objectRequest;
-
     const ARGSEPARATOR = '&';
     
     public function getValidationRules(){}
 
     /**
-     * Para utilização das requisições é necessario que o Curl esteja ativo
+     * Cria o objeto curl para requisição
      * @author Michael Araujo <michaeldouglas010790@gmail.com>
      * @return void
      */
     public function __construct()
     {
-        $this->setVerifyCurl();
-    }
-
-    /**
-     * Método responsável por verificar se o Curl esta ativo para utilização da 
-     * biblioteca
-     * @copyright (c) 2014, Michael Araujo
-     * @access private
-     * @since 0.1
-     * @param void
-     * @return Exception|bool
-     */
-    private function setVerifyCurl()
-    {
-        if (function_exists('curl_init') === false) {
-            throw new Exception('Erro não é possível encontrar a função CURL');
-        }
-
-        $this->setObjectCURL();
-    }
-    
-    /**
-     * Método responsável por iniciar o curl para a requisição
-     * @copyright (c) 2015, Michael Araujo
-     * @access private
-     * @since 0.1
-     * @param void
-     */
-    private function setObjectCURL()
-    {
-        $this->curl = curl_init();
+        $this->curl = (new Proxy('laravelpagseguro.proxy'))->getCurl();
     }
 
     /**
@@ -93,12 +65,8 @@ class Request implements RequestInterface
     protected function sendRequest(PaymentRequest $data, $arguments)
     {
         $this->dataRequest = $data;
-        $this->_setArguments($arguments)
-                ->_setBuildQuery()
-                ->_setSizeBuildQuery()
-                ->_setContentLength()
-                ->_setMethodOptions()
-                ->_setOptions();
+        $this->_setArguments($arguments)->_setBuildQuery()->_setSizeBuildQuery()
+        ->_setContentLength()->_setMethodOptions()->_setOptions();
         
         return $this->_request();
     }
@@ -287,23 +255,7 @@ class Request implements RequestInterface
     {
         return "Content-Type: application/x-www-form-urlencoded; charset={$this->_charset}";
     }
-    
-    /**
-     * Método responsável por setar a URL de requisição
-     * @copyright (c) 2015, Michael Araujo
-     * @access private
-     * @since 0.1
-     * @param object seta  a URL
-     */
-    private function _setURL($url)
-    {
-        if(!$this->_verifyURL($url)){
-            $url = $this->_url;
-        }
-        $this->_url = $url;
-        return $this;
-    }
-    
+
     /**
      * Método responsável por obter a URL de requisição
      * @copyright (c) 2015, Michael Araujo
@@ -313,7 +265,7 @@ class Request implements RequestInterface
      */
     public function getURL()
     {
-        return $this->_url;
+        return $this->_url ? $this->_url : 'https://ws.pagseguro.uol.com.br/v2/checkout';
     }
 
 
@@ -428,7 +380,11 @@ class Request implements RequestInterface
         curl_setopt_array($this->curl, $this->_objectRequest);
         $result = curl_exec($this->curl);
         
+        (new LaravelError($result))->verifyUser();
+        
         $xml = simplexml_load_string($result);
+        
+        (new LaravelError($xml))->verifyErrors()->ExceptionError();
         
         $error = curl_errno($this->curl);
         

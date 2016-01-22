@@ -38,10 +38,7 @@ class PagseguroServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__ . '/Config/application-config.php' => config_path('laravelpagseguro.php')
-        ]);
-        //$this->package('laravel/pagseguro');
+        $this->publishes([__DIR__ . "/config/laravelpagseguro.php" => config_path('laravelpagseguro.php')]);
     }
 
     /**
@@ -78,4 +75,3 @@ class PagseguroServiceProvider extends ServiceProvider
         return array('pagseguro');
     }
 }
-

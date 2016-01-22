@@ -22,6 +22,12 @@ class PaymentRequestTest extends PHPUnit_Framework_TestCase
         $this->objectPaymentRequest = new PaymentRequest($this->credentials);
     }
 
+    public function tearDown()
+    {
+        $this->credentials = null;
+        $this->objectPaymentRequest = null;
+    }
+    
     public function testSendRequest()
     {
         $this->assertInstanceOf('laravel\pagseguro\Request\PaymentRequest', $this->objectPaymentRequest);
@@ -57,5 +63,17 @@ class PaymentRequestTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals(false, $this->objectPaymentRequest->sendReques());
     }
-
+    
+    /*
+     * Verificar esse teste que tem objetivo de testar o método __call
+     * do objeto PaymentRequest. Esse método não é utizado em nenhum contexto
+     * pois a classe PaymentRequest extente a classe Request
+     */
+    public function testShouldCallRequestMethodWhenItDoesntExistsInPaymentObject()
+    {
+        $options = $this->objectPaymentRequest->getOptions();
+        
+        $this->assertNull($options);
+    }
+    
 }

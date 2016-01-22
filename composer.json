@@ -7,10 +7,11 @@
     "require": {
         "php": ">=5.5.9",
         "ext-curl": "*",
+        "php": ">=5.4.0",
         "lib-curl": "*",
         "lib-openssl": "*",
         "lib-libxml": "*",
-        "illuminate/validation": "5.1.*"
+        "illuminate/validation": ">=5.1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.0.*"

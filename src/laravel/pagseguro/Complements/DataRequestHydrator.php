@@ -34,6 +34,14 @@ trait DataRequestHydrator
         return array_filter($data->data);
     }
 
+    private function extractPostalCode(&$data)
+    {
+        $keys = array_fill_keys(['postalCode'], null);
+        $keySender = array_intersect_key($data['address'], $keys);
+        $data['postalCode'] = (array_key_exists('postalCode', $keySender) ? $keySender['postalCode'] : null);
+        return $this;
+    }
+
     private function extractSenderName(&$data)
     {
         $keys = array_fill_keys(['name'], null);
