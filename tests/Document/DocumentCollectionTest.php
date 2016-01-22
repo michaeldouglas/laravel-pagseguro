@@ -2,13 +2,13 @@
 
 namespace Tests\Sender\Document;
 
-use laravel\pagseguro\Sender\Document\CPF\CPF;
-use laravel\pagseguro\Sender\Document\DocumentCollection;
+use laravel\pagseguro\Document\CPF\CPF;
+use laravel\pagseguro\Document\DocumentCollection;
 
 /**
  * Document Collection Test
  * @author Isaque de Souza <isaquesb@gmail.com>
- * @covers \laravel\pagseguro\Sender\Document\DocumentCollection
+ * @covers \laravel\pagseguro\Document\DocumentCollection
  */
 class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
 {

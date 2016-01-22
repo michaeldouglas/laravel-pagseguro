@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\pagseguro\Shipping;
+namespace laravel\pagseguro\Phone;
 
 use laravel\pagseguro\Complements\ValidationRulesInterface;
 use laravel\pagseguro\Complements\ValidationRulesTrait;
@@ -8,11 +8,11 @@ use laravel\pagseguro\Complements\ValidationRulesTrait;
 /**
  * Validation Rules Object
  *
- * @category   Shipping
- * @package    Laravel\PagSeguro\Shipping
+ * @category   Phone
+ * @package    Laravel\PagSeguro\Phone
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2015-12-10
+ * @since      2015-01-11
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -23,9 +23,8 @@ class ValidationRules implements ValidationRulesInterface
      * @var array
      */
     protected $rules = [
-        'address' => 'Required',
-        'cost' => 'Required|numeric|between:0,9999999',
-        'type' => 'Required|integer|between:1,3',
+        'areacode' => 'Required|numeric|digits:2',
+        'number' => 'Required|digits_between:8,9',
     ];
 
     /**

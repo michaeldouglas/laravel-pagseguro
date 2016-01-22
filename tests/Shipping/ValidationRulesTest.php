@@ -32,12 +32,14 @@ class ValidationRulesTest extends \Tests\ValidationRules
     {
         return [
             ['', false],
-            ['12', true],
+            ['12', false],
             ['BBT', false],
             [1010, false],
             [-1, false],
             [0, false],
             [1, true],
+            [2, true],
+            [3, true],
         ];
     }
 

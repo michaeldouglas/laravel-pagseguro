@@ -107,7 +107,7 @@ class Status implements StatusInterface
 
     /**
      * If the transaction is finished
-     * @return boll Se a transação foi encerrada
+     * @return bool Se a transação foi encerrada
      */
     public function finished()
     {

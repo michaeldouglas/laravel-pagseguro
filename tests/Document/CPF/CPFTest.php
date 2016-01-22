@@ -2,12 +2,12 @@
 
 namespace Tests\Sender\Document\CPF;
 
-use laravel\pagseguro\Sender\Document\CPF\CPF;
+use laravel\pagseguro\Document\CPF\CPF;
 
 /**
  * Sender Document CPF Test
  * @author Isaque de Souza <isaquesb@gmail.com>
- * @covers \laravel\pagseguro\Sender\Document\CPF\CPF
+ * @covers \laravel\pagseguro\Document\CPF\CPF
  */
 class CPFTest extends \PHPUnit_Framework_TestCase
 {

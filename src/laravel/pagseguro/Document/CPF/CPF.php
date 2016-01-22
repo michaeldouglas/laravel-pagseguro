@@ -1,16 +1,16 @@
 <?php
 
-namespace laravel\pagseguro\Sender\Document\CPF;
+namespace laravel\pagseguro\Document\CPF;
 
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
-use laravel\pagseguro\Sender\Document\DocumentInterface;
+use laravel\pagseguro\Document\DocumentInterface;
 
 /**
  * CPF Document Object
  *
- * @category   SenderDocument
- * @package    Laravel\PagSeguro\Sender\Document\Cpf
+ * @category   Document
+ * @package    Laravel\PagSeguro\Document
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-01-11

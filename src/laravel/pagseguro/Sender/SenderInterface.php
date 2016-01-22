@@ -2,6 +2,9 @@
 
 namespace laravel\pagseguro\Sender;
 
+use laravel\pagseguro\Document\DocumentCollection;
+use laravel\pagseguro\Phone\PhoneInterface;
+
 /**
  * Sender Interface
  *
@@ -55,35 +58,35 @@ interface SenderInterface
     /**
      * Set Email
      * @param string $email
-     * @return Address
+     * @return SenderInterface
      */
     public function setEmail($email);
 
     /**
      * Set Name
      * @param string $name
-     * @return Address
+     * @return SenderInterface
      */
     public function setName($name);
 
     /**
      * Set Phone (Telefone)
      * @param PhoneInterface|array $phone
-     * @return Address
+     * @return SenderInterface
      */
     public function setPhone($phone);
 
     /**
      * Set Documents (Lista de Documentos)
      * @param DocumentCollection|array|string $documents
-     * @return Address
+     * @return SenderInterface
      */
     public function setDocuments($documents);
 
     /**
      * Set Born Date (Data de nascimento)
      * @param string $bornDate
-     * @return Address
+     * @return SenderInterface
      */
     public function setBornDate($bornDate);
 

@@ -3,6 +3,8 @@
 namespace Tests\Transaction\Information;
 
 use laravel\pagseguro\Credentials\Credentials;
+use laravel\pagseguro\Phone\Phone;
+use laravel\pagseguro\Transaction\Status\StatusInterface;
 use laravel\pagseguro\Transaction\Transaction;
 use laravel\pagseguro\Transaction\Information;
 use laravel\pagseguro\Http\Request\Adapter\AdapterInterface;
@@ -121,12 +123,35 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @depends testDateInstance
+     */
+    public function testDateData()
+    {
+        $info = $this->information->getDate();
+        $this->assertEquals('2011-02-10 16:13:41', $info->format('Y-m-d H:i:s'));
+    }
+
+    /**
      * @depends testInformationInstance
      */
     public function testItemsInstance()
     {
         $info = $this->information;
         $this->assertInstanceOf(ItemCollection::class, $info->getItems());
+    }
+
+    /**
+     * @depends testInformationInstance
+     */
+    public function testItemsData()
+    {
+        $info = $this->information->getItems();
+        $item = $info->offsetGet(0);
+        $this->assertEquals(2, $info->count());
+        $this->assertEquals('0001', $item->getId());
+        $this->assertEquals('Notebook Prata', $item->getDescription());
+        $this->assertEquals(1, $item->getQuantity());
+        $this->assertEquals(24300, $item->getAmount());
     }
 
     /**
@@ -139,6 +164,15 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @depends testLastEventInstance
+     */
+    public function testLastEventData()
+    {
+        $info = $this->information->getLasteventdate();
+        $this->assertEquals('2011-02-15 17:39:14', $info->format('Y-m-d H:i:s'));
+    }
+
+    /**
      * @depends testInformationInstance
      */
     public function testPaymentMethodInstance()
@@ -148,12 +182,33 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @depends testPaymentMethodInstance
+     */
+    public function testPaymentMethodData()
+    {
+        $info = $this->information->getPaymentmethod();
+        $this->assertEquals('Cartão de Crédito VISA', $info->getFullName());
+    }
+
+    /**
      * @depends testInformationInstance
      */
     public function testSenderInstance()
     {
         $info = $this->information;
         $this->assertInstanceOf(Sender::class, $info->getSender());
+    }
+
+    /**
+     * @depends testSenderInstance
+     */
+    public function testSenderData()
+    {
+        $info = $this->information->getSender();
+        $phone = new Phone(['areacode' => 11, 'number' => 56273440]);
+        $this->assertEquals('José Comprador', $info->getName());
+        $this->assertEquals('comprador@uol.com.br', $info->getEmail());
+        $this->assertEquals($phone, $info->getPhone());
     }
 
     /**
@@ -168,9 +223,29 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testInformationInstance
      */
+    public function testShippingData()
+    {
+        $info = $this->information->getShipping();
+        $this->assertEquals('Av. Brig. Faria Lima', $info->getAddress()->getStreet());
+        $this->assertEquals(1, $info->getType());
+        $this->assertEquals(21.69, $info->getCost());
+    }
+
+    /**
+     * @depends testInformationInstance
+     */
     public function testStatusInstance()
     {
         $info = $this->information;
         $this->assertInstanceOf(Status::class, $info->getStatus());
+    }
+
+    /**
+     * @depends testInformationInstance
+     */
+    public function testStatusData()
+    {
+        $info = $this->information->getStatus();
+        $this->assertEquals(new Status(StatusInterface::PAID), $info);
     }
 }

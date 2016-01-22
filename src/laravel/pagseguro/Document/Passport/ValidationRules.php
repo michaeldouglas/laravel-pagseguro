@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\pagseguro\Sender\Document\CPF;
+namespace laravel\pagseguro\Document\Passport;
 
 use laravel\pagseguro\Complements\ValidationRulesInterface,
     laravel\pagseguro\Complements\ValidationRulesTrait;
@@ -8,8 +8,8 @@ use laravel\pagseguro\Complements\ValidationRulesInterface,
 /**
  * Validation Rules Object
  *
- * @category   SenderDocument
- * @package    Laravel\PagSeguro\Address
+ * @category   Document
+ * @package    Laravel\PagSeguro\Document
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-01-10
@@ -23,7 +23,7 @@ class ValidationRules implements ValidationRulesInterface
      * @var array
      */
     protected $rules = [
-        'number' => 'Required|numeric|digits:11',
+        'number' => 'Required',
     ];
 
     /**

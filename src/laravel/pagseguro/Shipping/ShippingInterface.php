@@ -18,6 +18,10 @@ use laravel\pagseguro\Address\AddressInterface;
 interface ShippingInterface
 {
 
+    const TYPE_PAC = 1;
+    const TYPE_SEDEX = 2;
+    const TYPE_UNKNOW = 3;
+
     /**
      * Constructor
      * @param array $data

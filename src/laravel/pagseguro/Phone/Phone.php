@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\pagseguro\Sender\Phone;
+namespace laravel\pagseguro\Phone;
 
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
@@ -8,8 +8,8 @@ use laravel\pagseguro\Complements\ValidateTrait;
 /**
  * Phone Object
  *
- * @category   SenderPhone
- * @package    Laravel\PagSeguro\Sender\Phone
+ * @category   Phone
+ * @package    Laravel\PagSeguro\Phone
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-01-11

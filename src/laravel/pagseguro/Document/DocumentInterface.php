@@ -1,33 +1,20 @@
 <?php
 
-namespace laravel\pagseguro\Sender\Phone;
+namespace laravel\pagseguro\Document;
 
 /**
- * Phone Interface
+ * Document Interface
  *
- * @category   SenderPhone
- * @package    Laravel\PagSeguro\Sender\Phone
+ * @category   Document
+ * @package    Laravel\PagSeguro\Item
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-01-11
  *
  * @copyright  Laravel\PagSeguro
  */
-interface PhoneInterface
+interface DocumentInterface
 {
-
-    /**
-     * Get Area Code (DDD)
-     * @return int
-     */
-    public function getAreacode();
-
-    /**
-     * Set Area Code (DDD)
-     * @param int $areacode
-     * @return PhoneInterface
-     */
-    public function setAreacode($areacode);
 
     /**
      * Get Number
@@ -36,9 +23,15 @@ interface PhoneInterface
     public function getNumber();
 
     /**
+     * Get Type
+     * @return string
+     */
+    public function getType();
+
+    /**
      * Set Number
      * @param string $number
-     * @return PhoneInterface
+     * @return Cpf
      */
     public function setNumber($number);
 
@@ -67,4 +60,5 @@ interface PhoneInterface
      * @return array
      */
     public function toArray();
+
 }

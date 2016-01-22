@@ -49,40 +49,7 @@ $dados = array(
     'currency' => 'BRL'
 );
 
-/**
- * Fora da estrutura do Laravel
- */
-try {
-    $credentials = new Credentials('43ECEAEB8DBD4DC7B240E22DBA6540D2', 'michaeldouglas010790@gmail.com');
-    $request = new PaymentRequest($credentials);
-    $request->setRequest($dados)->sendRequest();
-    $code = $request->request->getCode();
-    
-    echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code\"> Pagamento </a>";
-    
-    /* 
-     * echo "<h1>Items</h1>";
-    
-    echo "<hr />";
-    
-    echo "<h1>Endereço</h1>";
-    echo '<pre>',print_r($request->getAddress(), 1),'</pre>';
-    echo "<hr />";
-    
-    echo "<h1>Remetente</h1>";
-    echo '<pre>',print_r($request->getSender(), 1),'</pre>';
-    echo "<hr />";*/
-    
-} catch (\Exception $e) {
-    print_r($e->getMessage());
-}
-
-/**
- * Em Laravel
- * 
- * $request = PagSeguro::setRequest($dados);
- * $request->sendRequest();
- * $code = $request->request->getCode();
- * echo "<a target=\"_blank\" href=\"https://pagseguro.uol.com.br/v2/checkout/payment.html?code=$code\"> Pagamento </a>";
- * 
- */
+$xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><checkout />');
+$xml->addChild('currency', 'BRL');
+$xml->addChild('items', '<item><id>1</id></item><item><id>2</id></item>');
+echo $xml->asXML();

@@ -1,13 +1,13 @@
 <?php
 
-namespace laravel\pagseguro\Sender\Document;
+namespace laravel\pagseguro\Document;
 
-use laravel\pagseguro\Sender\Document\CPF\CPF;
+use laravel\pagseguro\Document\CPF\CPF;
 
 /**
  * Document Collection Object
  *
- * @category   SenderDocument
+ * @category   Document
  * @package    Laravel\PagSeguro\Item
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>

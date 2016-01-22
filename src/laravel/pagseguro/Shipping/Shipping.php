@@ -109,6 +109,10 @@ class Shipping implements ShippingInterface
      */
     public function setType($type)
     {
+        $alloweds = [self::TYPE_PAC, self::TYPE_SEDEX, self::TYPE_UNKNOW];
+        if (!in_array($type, $alloweds)) {
+            throw new \InvalidArgumentException('Invalid shipping type');
+        }
         $this->type = $type;
         return $this;
     }

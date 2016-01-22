@@ -4,7 +4,7 @@ namespace laravel\pagseguro\Sender;
 
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
-use laravel\pagseguro\Sender\Phone\Phone;
+use laravel\pagseguro\Phone\Phone;
 
 /**
  * Sender Object

@@ -3,10 +3,10 @@
 namespace laravel\pagseguro\Credentials;
 
 /**
- * Credential Class to PagSeguro Operations
+ * Credential Object to PagSeguro Operations
  *
  * @category   Credentials
- * @package    Laravel\PagSeguro
+ * @package    Laravel\PagSeguro\Credentials
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-01-02
