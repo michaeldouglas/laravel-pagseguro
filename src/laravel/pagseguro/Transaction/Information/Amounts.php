@@ -23,31 +23,31 @@ class Amounts
      * Gross Amount
      * @var float
      */
-    protected $grossamount;
+    protected $grossAmount;
 
     /**
      * Discount Amount
      * @var float
      */
-    protected $discountamount;
+    protected $discountAmount;
 
     /**
      * Free Amount
      * @var float
      */
-    protected $feeamount;
+    protected $feeAmount;
 
     /**
      * Net Amount
      * @var float
      */
-    protected $netamount;
+    protected $netAmount;
 
     /**
      * Extra Amount
      * @var float
      */
-    protected $extraamount;
+    protected $extraAmount;
 
     use DataHydratorTrait, DataHydratorProtectedTrait {
         DataHydratorProtectedTrait::hydrate insteadof DataHydratorTrait;
@@ -60,82 +60,121 @@ class Amounts
     public function __construct(array $data = [])
     {
         if (count($data)) {
-            $this->hydrate($data);
+            $this->hydrate($this->normalizeCase($data));
         }
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    private function normalizeCase(array $data)
+    {
+        foreach ($data as $key => $value) {
+            $newCase = str_replace('amount', 'Amount', $key);
+            unset($data[$key]);
+            $data[$newCase] = $value;
+        }
+        return $data;
     }
 
     /**
      * Get Gross Amount
      * @return float
      */
-    public function getGrossamount()
+    public function getGrossAmount()
     {
-        return $this->grossamount;
+        return $this->grossAmount;
     }
 
     /**
      * Get Discount Amount
      * @return float
      */
-    public function getDiscountamount()
+    public function getDiscountAmount()
     {
-        return $this->discountamount;
+        return $this->discountAmount;
     }
 
     /**
      * Get Free Amount
      * @return float
      */
-    public function getFeeamount()
+    public function getFeeAmount()
     {
-        return $this->feeamount;
+        return $this->feeAmount;
     }
 
     /**
      * Get Net Amount
      * @return float
      */
-    public function getNetamount()
+    public function getNetAmount()
     {
-        return $this->netamount;
+        return $this->netAmount;
     }
 
     /**
      * Get Extra Amount
      * @return float
      */
-    public function getExtraamount()
+    public function getExtraAmount()
     {
-        return $this->extraamount;
+        return $this->extraAmount;
     }
 
-    protected function setGrossamount($grossamount)
+    /**
+     * Set Gross Amout
+     * @param float $grossAmount
+     * @return Amounts
+     */
+    protected function setGrossAmount($grossAmount)
     {
-        $this->grossamount = $grossamount;
+        $this->grossAmount = $grossAmount;
         return $this;
     }
 
-    protected function setDiscountamount($discountamount)
+    /**
+     * Set Discount Amount
+     * @param float $discountAmount
+     * @return Amounts
+     */
+    protected function setDiscountAmount($discountAmount)
     {
-        $this->discountamount = $discountamount;
+        $this->discountAmount = $discountAmount;
         return $this;
     }
 
-    protected function setFeeamount($feeamount)
+    /**
+     * Set Free Amount
+     * @param float $feeAmount
+     * @return Amounts
+     */
+    protected function setFeeAmount($feeAmount)
     {
-        $this->feeamount = $feeamount;
+        $this->feeAmount = $feeAmount;
         return $this;
     }
 
-    protected function setNetamount($netamount)
+    /**
+     * Set Net Amount
+     * @param float $netAmount
+     * @return Amounts
+     */
+    protected function setNetAmount($netAmount)
     {
-        $this->netamount = $netamount;
+        $this->netAmount = $netAmount;
         return $this;
     }
 
-    protected function setExtraamount($extraamount)
+    /**
+     * Set Extra Amount
+     * @param float $extraAmount
+     * @return Amounts
+     */
+    protected function setExtraAmount($extraAmount)
     {
-        $this->extraamount = $extraamount;
+        $this->extraAmount = $extraAmount;
         return $this;
     }
 }

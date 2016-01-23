@@ -52,17 +52,17 @@ trait DataHydratorTrait
      */
     protected function bindHydrate(array $data = [])
     {
-        $it = new \ArrayIterator($data);
-        while ($it->valid()) {
-            $key = $it->key();
-            $value = $it->current();
+        $itr = new \ArrayIterator($data);
+        while ($itr->valid()) {
+            $key = $itr->key();
+            $value = $itr->current();
             $method = 'set' . ucfirst($key);
             if (method_exists($this, $method)) {
                 $this->{$method}($value);
             } else {
                 $this->{$key} = $value;
             }
-            $it->next();
+            $itr->next();
         }
     }
 

@@ -49,4 +49,46 @@ interface RequestInterface
      * @return array Associative
      */
     public function getHeaders();
+
+    /**
+     * @param string $method
+     * @return RequestInterface
+     */
+    public function setMethod($method);
+
+    /**
+     * @param string $url
+     * @return RequestInterface
+     */
+    public function setUrl($url);
+
+    /**
+     * @param array|\JsonSerializable $params
+     * @return RequestInterface
+     */
+    public function setParams($params);
+
+    /**
+     * @param string $data
+     * @return RequestInterface
+     */
+    public function setData($data);
+
+    /**
+     * @param int $timeout
+     * @return RequestInterface
+     */
+    public function setTimeout($timeout);
+
+    /**
+     * @param string $charset
+     * @return RequestInterface
+     */
+    public function setCharset($charset);
+
+    /**
+     * @param array $headers
+     * @return RequestInterface
+     */
+    public function setHeaders(array $headers);
 }

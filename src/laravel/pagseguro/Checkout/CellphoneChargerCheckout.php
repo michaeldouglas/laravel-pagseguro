@@ -2,6 +2,9 @@
 
 namespace laravel\pagseguro\Checkout;
 
+use laravel\pagseguro\Checkout\Metadata\CellphoneCharger\CellphoneChargerInterface;
+use laravel\pagseguro\Checkout\Metadata\CellphoneCharger\Exporter;
+use laravel\pagseguro\Checkout\Metadata\MetadataCollection;
 use laravel\pagseguro\Phone\PhoneInterface;
 
 /**
@@ -15,8 +18,7 @@ use laravel\pagseguro\Phone\PhoneInterface;
  *
  * @copyright  Laravel\PagSeguro
  */
-class CellphoneChargerCheckout extends SimpleCheckout
-    implements CellphoneChargerCheckoutInterface
+class CellphoneCharger extends SimpleCheckout implements CellphoneChargerInterface
 {
 
     /**
@@ -34,11 +36,21 @@ class CellphoneChargerCheckout extends SimpleCheckout
 
     /**
      * @param PhoneInterface $phone
-     * @return CellphoneChargerCheckout
+     * @return CellphoneCharger
      */
     public function setPhone(PhoneInterface $phone)
     {
         $this->phone = $phone;
         return $this;
+    }
+
+    /**
+     * @return MetadataCollection
+     */
+    public function getMetadata()
+    {
+        $exporter = new Exporter($this);
+        $this->metadata = $exporter->getMetadata();
+        return parent::getMetadata();
     }
 }

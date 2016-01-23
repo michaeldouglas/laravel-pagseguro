@@ -42,6 +42,7 @@ class Notification implements NotificationInterface
      */
     public function __construct($data = [])
     {
+        $data = null;
         $this->hydrateMagic(
             ['notificationCode', 'notificationType'],
             func_get_args()

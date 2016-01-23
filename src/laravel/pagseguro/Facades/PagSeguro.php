@@ -20,5 +20,4 @@ class PagSeguro extends Facade
     {
         return 'pagseguro';
     }
-
 }

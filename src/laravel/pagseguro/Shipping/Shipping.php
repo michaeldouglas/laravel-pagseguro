@@ -64,7 +64,7 @@ class Shipping implements ShippingInterface
 
     /**
      * Get Cost
-     * @return cost
+     * @return float
      */
     public function getCost()
     {
@@ -83,7 +83,7 @@ class Shipping implements ShippingInterface
     /**
      * Set Address
      * @param AddressInterface $address
-     * @return \laravel\pagseguro\Sender\Shipping
+     * @return ShippingInterface
      */
     public function setAddress(AddressInterface $address)
     {
@@ -94,7 +94,7 @@ class Shipping implements ShippingInterface
     /**
      * Set Cost
      * @param float $cost
-     * @return \laravel\pagseguro\Sender\Shipping
+     * @return ShippingInterface
      */
     public function setCost($cost)
     {
@@ -105,7 +105,7 @@ class Shipping implements ShippingInterface
     /**
      * Set Type
      * @param int $type
-     * @return \laravel\pagseguro\Sender\Shipping
+     * @return ShippingInterface
      */
     public function setType($type)
     {

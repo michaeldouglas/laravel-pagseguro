@@ -136,14 +136,14 @@ class CurlAdapter implements AdapterInterface
      */
     public function dispatch(RequestInterface $request)
     {
-        $ch = curl_init();
+        $resource = curl_init();
         $options = $this->getRequestDispatchOptions($request);
-        curl_setopt_array($ch, $options);
-        $body = curl_exec($ch);
-        $status =  (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $error = curl_error($ch);
-        $errorNo = curl_errno($ch);
-        curl_close($ch);
+        curl_setopt_array($resource, $options);
+        $body = curl_exec($resource);
+        $status =  (int) curl_getinfo($resource, CURLINFO_HTTP_CODE);
+        $error = curl_error($resource);
+        $errorNo = curl_errno($resource);
+        curl_close($resource);
         $response = new Response();
         $response->setRawBody($body);
         $response->setHttpStatus($status);

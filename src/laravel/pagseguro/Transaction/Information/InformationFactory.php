@@ -124,9 +124,24 @@ class InformationFactory
      */
     public function getSender()
     {
-        $data = $this->data['sender'];
+        $data = $this->getSenderDataNormalized();
         $sender = new Sender($data);
         return $sender;
+    }
+
+    /**
+     * Key Case normalized
+     * @return array
+     */
+    private function getSenderDataNormalized()
+    {
+        $data = $this->data['sender'];
+        $phone = [
+            'areaCode' => $data['phone']['areacode'],
+            'number' => $data['phone']['number'],
+        ];
+        $data['phone'] = $phone;
+        return $data;
     }
 
     /**
@@ -164,10 +179,25 @@ class InformationFactory
      */
     public function getShipping()
     {
-        $data = $this->data['shipping'];
+        $data = $this->getShippingDataNormalized();
         $address = new Address($data['address']);
         $data['address'] = $address;
         $items = new Shipping($data);
         return $items;
+    }
+
+    /**
+     * Key Case normalized
+     * @return array
+     */
+    private function getShippingDataNormalized()
+    {
+        $data = $this->data['shipping'];
+        if (array_key_exists('postalcode', $data['address'])) {
+            $postalCode = $data['address']['postalcode'];
+            unset($data['address']['postalcode']);
+            $data['address']['postalCode'] = $postalCode;
+        }
+        return $data;
     }
 }

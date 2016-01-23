@@ -5,7 +5,6 @@ namespace laravel\pagseguro\Checkout\Statement\Xml;
 use laravel\pagseguro\Checkout\CheckoutInterface;
 use laravel\pagseguro\Checkout\Statement\StatementInterface;
 use laravel\pagseguro\Http\Request\RequestInterface;
-use laravel\pagseguro\Item\ItemInterface;
 
 /**
  * Checkout Statement Xml
@@ -40,7 +39,13 @@ class Xml implements StatementInterface
      */
     public function prepare(RequestInterface $request)
     {
-        // TODO: Implement prepare() method.
+        $xml = $this->getCheckoutAsXml();
+        $charset = $this->checkout->getCharset();
+        $request->setData($xml)
+            ->setCharset($charset)
+            ->setHeaders([
+                'Content-Type' => 'application/xml; charset=' . $charset
+            ]);
     }
 
     /**
@@ -56,6 +61,8 @@ class Xml implements StatementInterface
             $this->getReferenceXmlString() .
             $this->getSenderXmlString() .
             $this->getShippingXmlString() .
+            $this->getConfigXmlString() .
+            $this->getMetadataXmlString() .
             '</checkout>';
     }
 
@@ -113,6 +120,33 @@ class Xml implements StatementInterface
     private function getSenderXmlString()
     {
         $xmlItems = new XmlSender($this->checkout->getSender());
+        return $xmlItems->getXmlString();
+    }
+
+    /**
+     * @return string XML
+     */
+    private function getShippingXmlString()
+    {
+        $xmlItems = new XmlShipping($this->checkout->getShipping());
+        return $xmlItems->getXmlString();
+    }
+
+    /**
+     * @return string XML
+     */
+    private function getConfigXmlString()
+    {
+        $xmlItems = new XmlConfig($this->checkout);
+        return $xmlItems->getXmlString();
+    }
+
+    /**
+     * @return string XML
+     */
+    private function getMetadataXmlString()
+    {
+        $xmlItems = new XmlMetadata($this->checkout->getMetadata());
         return $xmlItems->getXmlString();
     }
 }

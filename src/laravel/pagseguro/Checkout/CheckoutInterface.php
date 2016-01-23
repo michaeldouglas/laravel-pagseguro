@@ -1,8 +1,11 @@
 <?php
 
 namespace laravel\pagseguro\Checkout;
+
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Receiver\ReceiverInterface;
+use laravel\pagseguro\Sender\SenderInterface;
+use laravel\pagseguro\Shipping\ShippingInterface;
 
 /**
  * Checkout Interface
@@ -34,9 +37,24 @@ interface CheckoutInterface
     public function getCurrency();
 
     /**
+     * @return float
+     */
+    public function getExtraAmount();
+
+    /**
      * @return ItemCollection
      */
     public function getItems();
+
+    /**
+     * @return float
+     */
+    public function getMaxUses();
+
+    /**
+     * @return float
+     */
+    public function getMaxAge();
 
     /**
      * @return MetadataCollection

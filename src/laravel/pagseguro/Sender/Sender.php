@@ -2,9 +2,12 @@
 
 namespace laravel\pagseguro\Sender;
 
+use laravel\pagseguro\Address\AddressInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
+use laravel\pagseguro\Document\DocumentCollection;
 use laravel\pagseguro\Phone\Phone;
+use laravel\pagseguro\Phone\PhoneInterface;
 
 /**
  * Sender Object
@@ -113,7 +116,7 @@ class Sender implements SenderInterface
     /**
      * Set Email
      * @param string $email
-     * @return Address
+     * @return AddressInterface
      */
     public function setEmail($email)
     {
@@ -124,7 +127,7 @@ class Sender implements SenderInterface
     /**
      * Set Name
      * @param string $name
-     * @return Address
+     * @return AddressInterface
      */
     public function setName($name)
     {
@@ -135,7 +138,7 @@ class Sender implements SenderInterface
     /**
      * Set Phone (Telefone)
      * @param PhoneInterface|array $phone
-     * @return Address
+     * @return AddressInterface
      */
     public function setPhone($phone)
     {
@@ -150,7 +153,7 @@ class Sender implements SenderInterface
     /**
      * Set Documents (Lista de Documentos)
      * @param DocumentCollection|array|string $documents
-     * @return Address
+     * @return AddressInterface
      */
     public function setDocuments($documents)
     {
@@ -161,7 +164,7 @@ class Sender implements SenderInterface
     /**
      * Set Born Date (Data de nascimento)
      * @param string $bornDate
-     * @return Address
+     * @return AddressInterface
      */
     public function setBornDate($bornDate)
     {

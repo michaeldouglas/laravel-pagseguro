@@ -21,24 +21,24 @@ class DocumentCollection extends \ArrayObject
     /**
      * Factory ItemCollection (Cria coleção de itens)
      * @param array $data Items
-     * @return ItemCollection
+     * @return DocumentCollection
      * @throws \InvalidArgumentException
      */
     public static function factory(array $data = [])
     {
         $collectionItems = [];
-        $it = new \ArrayIterator($data);
-        while($it->valid()) {
-            $item = $it->current();
-            if($item instanceof DocumentInterface) {
+        $itr = new \ArrayIterator($data);
+        while ($itr->valid()) {
+            $item = $itr->current();
+            if ($item instanceof DocumentInterface) {
                 $collectionItems[] = $item;
             } elseif (is_array($item)) {
-                $collectionItems[] = self::DocumentFactory($item);
+                $collectionItems[] = self::documentFactory($item);
             } else {
-                $exptMsg = sprintf('Invalid document on key: %s', $it->key());
-                throw new \InvalidArgumentException ($exptMsg);
+                $exptMsg = sprintf('Invalid document on key: %s', $itr->key());
+                throw new \InvalidArgumentException($exptMsg);
             }
-            $it->next();
+            $itr->next();
         }
         return new self($collectionItems);
     }
@@ -50,18 +50,16 @@ class DocumentCollection extends \ArrayObject
      * @return DocumentInterface
      * @throws \InvalidArgumentException
      */
-    public static function DocumentFactory(array $data)
+    public static function documentFactory(array $data)
     {
-        if(
-            !array_key_exists('type', $data)
+        if (!array_key_exists('type', $data)
             || !array_key_exists('number', $data)
             || empty($data['type'])
             || empty($data['number'])
         ) {
-            throw new \InvalidArgumentException ('Invalid document data');
+            throw new \InvalidArgumentException('Invalid document data');
         }
         unset($data['type']);
         return new CPF($data);
     }
-
 }

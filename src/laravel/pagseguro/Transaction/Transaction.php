@@ -21,7 +21,7 @@ class Transaction implements TransactionInterface
 
     /**
      * Credentials
-     * @var CredentialsInterface
+     * @var Credentials
      */
     protected $credentials;
 

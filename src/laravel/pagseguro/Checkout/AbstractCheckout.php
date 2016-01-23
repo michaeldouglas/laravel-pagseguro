@@ -28,6 +28,12 @@ abstract class AbstractCheckout
     protected $charset = 'UTF-8';
 
     /**
+     * Addition or Discount
+     * @var float
+     */
+    protected $extraAmount;
+
+    /**
      * @var int
      */
     protected $maxAge;
@@ -68,6 +74,7 @@ abstract class AbstractCheckout
      */
     public function __construct($data = [])
     {
+        $data = null;
         $this->hydrateMagic(
             [
                 'items', 'sender', 'shipping', 'currency',
@@ -97,6 +104,25 @@ abstract class AbstractCheckout
             throw new \InvalidArgumentException('Invalid charset');
         }
         $this->charset = $upper;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getExtraAmount()
+    {
+        return $this->extraAmount;
+    }
+
+    /**
+     * Set Addition or Discount
+     * @param float $extraAmount
+     * @return CheckoutInterface
+     */
+    public function setExtraAmount($extraAmount)
+    {
+        $this->extraAmount = $extraAmount;
         return $this;
     }
 
@@ -148,9 +174,11 @@ abstract class AbstractCheckout
      * @param MetadataCollection $metadata
      * @return CheckoutInterface
      */
-    protected function setMetadata(MetadataCollection $metadata)
+    protected function setMetadata($metadata)
     {
-        $this->metadata = $metadata;
+        if ($metadata && !($metadata instanceof MetadataCollection)) {
+            $this->metadata = $metadata;
+        }
         return $this;
     }
 

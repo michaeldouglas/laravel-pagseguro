@@ -2,6 +2,8 @@
 
 namespace laravel\pagseguro\Document;
 
+use laravel\pagseguro\Document\CPF\CPF;
+
 /**
  * Document Interface
  *
@@ -51,7 +53,7 @@ interface DocumentInterface
     /**
      * Get Validator
      * Return only after hydrate
-     * @return null|Validator
+     * @return null|\Illuminate\Validation\Validator
      */
     public function getValidator();
 
@@ -60,5 +62,4 @@ interface DocumentInterface
      * @return array
      */
     public function toArray();
-
 }

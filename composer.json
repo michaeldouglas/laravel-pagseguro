@@ -32,7 +32,7 @@
         }
     ],
     "scripts": {
-        "test:unit": "bin/phpunit -c phpunit.xml tests"
+        "test:unit": "bin/phpunit -c phpunit.xml tests/unit"
     },
     "config":{
         "bin-dir": "bin/"

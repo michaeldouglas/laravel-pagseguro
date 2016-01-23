@@ -3,7 +3,7 @@
 namespace laravel\pagseguro\Remote;
 
 use laravel\pagseguro\Credentials\CredentialsInterface;
-use laravel\pagseguro\Http\Response\Parser\Xml;
+use laravel\pagseguro\Parser\Xml;
 
 /**
  * Remote Transaction Information

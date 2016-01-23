@@ -37,7 +37,7 @@ interface ShippingInterface
 
     /**
      * Get Cost
-     * @return cost
+     * @return float
      */
     public function getCost();
 
@@ -50,21 +50,21 @@ interface ShippingInterface
     /**
      * Set Address
      * @param AddressInterface $address
-     * @return \laravel\pagseguro\Sender\Shipping
+     * @return ShippingInterface
      */
     public function setAddress(AddressInterface $address);
 
     /**
      * Set Cost
      * @param float $cost
-     * @return \laravel\pagseguro\Sender\Shipping
+     * @return ShippingInterface
      */
     public function setCost($cost);
 
     /**
      * Set Type
      * @param int $type
-     * @return \laravel\pagseguro\Sender\Shipping
+     * @return ShippingInterface
      */
     public function setType($type);
 
@@ -84,7 +84,7 @@ interface ShippingInterface
     /**
      * Get Validator
      * Return only after hydrate
-     * @return null|Validator
+     * @return null|\Illuminate\Validation\Validator
      */
     public function getValidator();
 

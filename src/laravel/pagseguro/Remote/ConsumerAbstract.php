@@ -21,7 +21,7 @@ abstract class ConsumerAbstract
 
     /**
      * Request Object
-     * @var Request 
+     * @var Request
      */
     protected $request;
 

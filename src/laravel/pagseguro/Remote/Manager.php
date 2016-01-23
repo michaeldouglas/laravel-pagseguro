@@ -20,7 +20,7 @@ class Manager
 {
 
     /**
-     * @var AdapterInterface 
+     * @var AdapterInterface
      */
     private static $httpAdapter;
 
@@ -68,7 +68,6 @@ class Manager
     }
 
     /**
-     * 
      * @param array $adapter
      */
     private static function adapterArrayFactory(array $adapter)

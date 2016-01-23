@@ -37,6 +37,7 @@ class Receiver implements ReceiverInterface
      */
     public function __construct($data = [])
     {
+        $data = null;
         $this->hydrateMagic(['email'], func_get_args());
     }
 

@@ -13,8 +13,38 @@ namespace laravel\pagseguro\Checkout\Metadata;
  *
  * @copyright  Laravel\PagSeguro
  */
-class MetadataCollection
+class MetadataCollection extends \ArrayObject
 {
+    /**
+     * Appends the value
+     * @param TagableInterface $value <p>
+     * The value being appended.
+     * </p>
+     * @return void
+     */
+    public function append($value)
+    {
+        if (!($value instanceof TagableInterface)) {
+            throw new \InvalidArgumentException('Invalid tagable object');
+        }
+        parent::append($value);
+    }
 
-
+    /**
+     * Sets the value at the specified index to newval
+     * @param mixed $index <p>
+     * The index being set.
+     * </p>
+     * @param TagableInterface $newval <p>
+     * The new value for the <i>index</i>.
+     * </p>
+     * @return void
+     */
+    public function offsetSet($index, $newval)
+    {
+        if (!($newval instanceof TagableInterface)) {
+            throw new \InvalidArgumentException('Invalid tagable object');
+        }
+        parent::offsetSet($index, $newval);
+    }
 }

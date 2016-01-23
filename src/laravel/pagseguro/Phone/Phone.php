@@ -4,6 +4,7 @@ namespace laravel\pagseguro\Phone;
 
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
+use laravel\pagseguro\Document\CPF\CPF;
 
 /**
  * Phone Object
@@ -21,9 +22,15 @@ class Phone implements PhoneInterface
 
     /**
      * Area Code
-     * @var string
+     * @var int
      */
-    protected $areacode;
+    protected $areaCode;
+
+    /**
+     * Country Code
+     * @var int
+     */
+    protected $countryCode = '55';
 
     /**
      * Number
@@ -45,14 +52,20 @@ class Phone implements PhoneInterface
         if ($phone instanceof PhoneInterface) {
             return $phone;
         } elseif (is_string($phone)) {
-            $completeNum = preg_replace('/[^0-9]/', '', $phone);
+            $matches = null;
+            $exp = '/^([\d]{2})?([\d]{2})([\d]{8,})$/';
+            preg_match($exp, preg_replace('/[^\d]/', '', $phone), $matches);
+            if (!$matches) {
+                throw new \InvalidArgumentException('Error on phone parse');
+            }
             $phoneData = [
-                'areacode' => substr($completeNum, 0, 2),
-                'phone' => substr($completeNum, 0, 2),
+                'areaCode' => $matches[2],
+                'countryCode' => $matches[1] ? $matches[1] : '55',
+                'number' => $matches[3],
             ];
             return new self($phoneData);
         } elseif (is_array($phone)
-            && array_key_exists('areacode', $phone)
+            && array_key_exists('areaCode', $phone)
             && array_key_exists('number', $phone)
         ) {
             return new self($phone);
@@ -76,20 +89,39 @@ class Phone implements PhoneInterface
      * Get Area Code (DDD)
      * @return int
      */
-    public function getAreacode()
+    public function getAreaCode()
     {
-        return $this->areacode;
+        return $this->areaCode;
     }
 
     /**
      * Set Area Code (DDD)
-     * @param int $areacode
+     * @param int $areaCode
      * @return Phone
      */
-    public function setAreacode($areacode)
+    public function setAreaCode($areaCode)
     {
-        $filterNum = preg_replace('/[^0-9]/', '', $areacode);
-        $this->areacode = $filterNum;
+        $filterNum = preg_replace('/[^\d]/', '', $areaCode);
+        $this->areaCode = $filterNum;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCountryCode()
+    {
+        return $this->countryCode;
+    }
+
+    /**
+     * @param int $countryCode
+     * @return Phone
+     */
+    public function setCountryCode($countryCode)
+    {
+        $filterNum = preg_replace('/[^\d]/', '', $countryCode);
+        $this->countryCode = $filterNum;
         return $this;
     }
 
@@ -109,7 +141,7 @@ class Phone implements PhoneInterface
      */
     public function setNumber($number)
     {
-        $filterNum = preg_replace('/[^0-9]/', '', $number);
+        $filterNum = preg_replace('/[^\d]/', '', $number);
         $this->number = $filterNum;
         return $this;
     }

@@ -1,6 +1,7 @@
 <?php
 
 namespace laravel\pagseguro\Checkout\Statement\Xml;
+
 use laravel\pagseguro\Document\DocumentInterface;
 use laravel\pagseguro\Sender\SenderInterface;
 
@@ -15,7 +16,7 @@ use laravel\pagseguro\Sender\SenderInterface;
  *
  * @copyright  Laravel\PagSeguro
  */
-class XmlSender
+class XmlSender implements XmlPartInterface
 {
     /**
      * @var SenderInterface
@@ -93,7 +94,7 @@ class XmlSender
             <number>%s</number>
         </phone>
 XML;
-        return sprintf($str, $phone->getAreacode(), $phone->getNumber());
+        return sprintf($str, $phone->getAreaCode(), $phone->getNumber());
     }
 
     /**

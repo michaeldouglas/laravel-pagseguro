@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Checkout\Statement\Xml;
 
 use laravel\pagseguro\Item\ItemCollection;
+use laravel\pagseguro\Item\ItemInterface;
 
 /**
  * Checkout Statement Xml Items
@@ -15,7 +16,7 @@ use laravel\pagseguro\Item\ItemCollection;
  *
  * @copyright  Laravel\PagSeguro
  */
-class XmlItems
+class XmlItems implements XmlPartInterface
 {
     /**
      * @var ItemCollection
@@ -63,7 +64,8 @@ class XmlItems
             %s
         </item>
 XML;
-        return sprintf($str,
+        return sprintf(
+            $str,
             $item->getId(),
             $item->getDescription(),
             $item->getAmount(),

@@ -26,15 +26,14 @@ class Helper
      */
     public static function getValueOrDefault($object, $key, $default = null)
     {
-        if(!is_string($key) || empty($key)) {
-            throw new \InvalidArgumentException ('Invalid key to extract');
+        if (!is_string($key) || empty($key)) {
+            throw new \InvalidArgumentException('Invalid key to extract');
         }
-        if(is_object($object) && isset($object->{$key})) {
+        if (is_object($object) && isset($object->{$key})) {
             return $object->{$key};
-        } elseif(is_array($object) && array_key_exists($key, $object)) {
+        } elseif (is_array($object) && array_key_exists($key, $object)) {
             return $object[$key];
         }
         return $default;
     }
-
 }

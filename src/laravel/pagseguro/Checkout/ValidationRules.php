@@ -23,9 +23,11 @@ class ValidationRules implements ValidationRulesInterface
      * @var array
      */
     protected $rules = [
-        'address' => 'Required',
         'currency' => 'Required|in:BRL',
+        'extraAmount' => 'Numeric',
         'items' => 'Required',
+        'sender' => 'Required',
+        'shipping' => 'Required',
         'notificationURL' => 'Url',
         'redirectURL' => 'Url',
         'reference' => 'String',

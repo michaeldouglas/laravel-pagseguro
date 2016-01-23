@@ -3,7 +3,6 @@
 namespace laravel\pagseguro;
 
 use laravel\pagseguro\Credentials\Credentials;
-use laravel\pagseguro\Request\PaymentRequest;
 use laravel\pagseguro\Config;
 use \Illuminate\Support\ServiceProvider;
 
@@ -49,7 +48,7 @@ class PagseguroServiceProvider extends ServiceProvider
     {
         $this->app->bind('pagseguro', function () {
             $this->loadCredentials();
-            return new PaymentRequest($this->credentials);
+            #return new PaymentRequest($this->credentials);
         });
     }
 
@@ -72,6 +71,6 @@ class PagseguroServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('pagseguro');
+        return ['pagseguro'];
     }
 }

@@ -95,12 +95,12 @@ class Credentials implements CredentialsInterface
     {
         return $this->email;
     }
-    
+
     /**
      * Return array credential
      * @return string
      */
-    public function __toArray()
+    public function toArray()
     {
         return ['email' => $this->email, 'token' => $this->token];
     }

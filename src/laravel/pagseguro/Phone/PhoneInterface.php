@@ -2,6 +2,8 @@
 
 namespace laravel\pagseguro\Phone;
 
+use Illuminate\Validation\Validator;
+
 /**
  * Phone Interface
  *
@@ -20,14 +22,27 @@ interface PhoneInterface
      * Get Area Code (DDD)
      * @return int
      */
-    public function getAreacode();
+    public function getAreaCode();
 
     /**
      * Set Area Code (DDD)
-     * @param int $areacode
+     * @param int $areaCode
      * @return PhoneInterface
      */
-    public function setAreacode($areacode);
+    public function setAreaCode($areaCode);
+
+    /**
+     * Get Country Code (DDI)
+     * @return int
+     */
+    public function getCountryCode();
+
+    /**
+     * Set Country Code (DDI)
+     * @param int $countryCode
+     * @return PhoneInterface
+     */
+    public function setCountryCode($countryCode);
 
     /**
      * Get Number
@@ -58,7 +73,7 @@ interface PhoneInterface
     /**
      * Get Validator
      * Return only after hydrate
-     * @return null|Validator
+     * @return null|\Illuminate\Validation\Validator
      */
     public function getValidator();
 

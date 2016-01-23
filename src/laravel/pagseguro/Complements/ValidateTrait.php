@@ -19,7 +19,7 @@ trait ValidateTrait
 {
 
     /**
-     * @var Validator
+     * @var \Illuminate\Validation\Validator
      */
     protected $validator;
 
@@ -54,7 +54,7 @@ trait ValidateTrait
     /**
      * Get Validator
      * Return only after hydrate
-     * @return null|Validator
+     * @return null|\Illuminate\Validation\Validator
      */
     public function getValidator()
     {
@@ -72,7 +72,7 @@ trait ValidateTrait
         }
         $data = [];
         foreach (get_object_vars($this) as $key) {
-            $data[$key] = $this->$key;
+            $data[$key] = $this->__get($key);
         }
         return $data;
     }

@@ -43,7 +43,7 @@ $dados = array(
         'senderCPF' => '27781466870',
         'senderEmail' => 'itteste@test.com',
         'phone' => [
-            'areacode' => '11',
+            'areaCode' => '11',
             'number' => '5614-9399',
         ],
     ),

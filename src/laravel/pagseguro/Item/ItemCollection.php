@@ -25,18 +25,18 @@ class ItemCollection extends \ArrayObject
     public static function factory(array $data = [])
     {
         $collectionItems = [];
-        $it = new \ArrayIterator($data);
-        while ($it->valid()) {
-            $item = $it->current();
+        $itr = new \ArrayIterator($data);
+        while ($itr->valid()) {
+            $item = $itr->current();
             if ($item instanceof ItemInterface) {
                 $collectionItems[] = $item;
             } elseif (is_array($item)) {
                 $collectionItems[] = new Item($item);
             } else {
-                $exptMsg = sprintf('Invalid item on key: %s', $it->key());
+                $exptMsg = sprintf('Invalid item on key: %s', $itr->key());
                 throw new \InvalidArgumentException($exptMsg);
             }
-            $it->next();
+            $itr->next();
         }
         return new self($collectionItems);
     }
