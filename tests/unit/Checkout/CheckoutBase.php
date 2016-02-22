@@ -26,7 +26,7 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $items = $this->getItem();
+        $items = $this->getItems();
         $sender = $this->getSender();
         $shipping = $this->getShipping();
         $this->checkout = new SimpleCheckout($items, $sender, $shipping);
@@ -35,7 +35,7 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
     /**
      * Get Items to Test
      */
-    public function getItem()
+    public function getItems()
     {
         return ItemCollection::factory([
             [
@@ -60,13 +60,13 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
         $data = [
             'email' => 'isaquesb@gmail.com',
             'name' => 'Isaque de Souza Barbosa',
-            'documents' => DocumentCollection::factory([
+            'documents' => [
                 [
                     'number' => '80808080822',
                     'type' => 'CPF'
                 ]
-            ]),
-            'phone' => Phone::factory('11985445522'),
+            ],
+            'phone' => '11985445522',
             'bornDate' => '1988-03-25',
         ];
         return new Sender($data);

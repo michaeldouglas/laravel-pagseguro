@@ -152,11 +152,14 @@ class Sender implements SenderInterface
 
     /**
      * Set Documents (Lista de Documentos)
-     * @param DocumentCollection|array|string $documents
+     * @param DocumentCollection|array $documents
      * @return AddressInterface
      */
     public function setDocuments($documents)
     {
+        if (is_array($documents)) {
+            $documents = DocumentCollection::factory($documents);
+        }
         $this->documents = $documents;
         return $this;
     }

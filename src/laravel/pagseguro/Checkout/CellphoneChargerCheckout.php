@@ -18,7 +18,7 @@ use laravel\pagseguro\Phone\PhoneInterface;
  *
  * @copyright  Laravel\PagSeguro
  */
-class CellphoneCharger extends SimpleCheckout implements CellphoneChargerInterface
+class CellphoneChargerCheckout extends SimpleCheckout implements CellphoneChargerInterface
 {
 
     /**
@@ -36,7 +36,7 @@ class CellphoneCharger extends SimpleCheckout implements CellphoneChargerInterfa
 
     /**
      * @param PhoneInterface $phone
-     * @return CellphoneCharger
+     * @return CellphoneChargerCheckout
      */
     public function setPhone(PhoneInterface $phone)
     {
