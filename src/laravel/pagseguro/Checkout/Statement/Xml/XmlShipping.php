@@ -40,7 +40,7 @@ class XmlShipping implements XmlPartInterface
         return
             '<shipping>' .
             $this->getTypeXmlString() .
-            $this->getAddressXmlString() .
+            $this->getAddressXmlString($this->shipping->getAddress()) .
             '</shipping>';
     }
 

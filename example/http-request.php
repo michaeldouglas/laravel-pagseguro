@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require '_prevent-access.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use laravel\pagseguro\Http\Request\Adapter\CurlAdapter;
 use laravel\pagseguro\Http\Request\Request;

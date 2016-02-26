@@ -78,7 +78,7 @@ class Manager
             throw new \InvalidArgumentException('Invalid adapter config');
         }
         $namespace = '\\laravel\\pagseguro\\Http\\Request\\Adapter\\';
-        $className = ucfirst($type);
+        $className = ucfirst($type) . 'Adapter';
         $class = $namespace . $className;
         if (!class_exists($class)) {
             throw new \InvalidArgumentException('Invalid adapter: ' . $type);

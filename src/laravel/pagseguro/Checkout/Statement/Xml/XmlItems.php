@@ -2,6 +2,7 @@
 
 namespace laravel\pagseguro\Checkout\Statement\Xml;
 
+use laravel\pagseguro\Complements\Filter\MoneyFilter;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Item\ItemInterface;
 
@@ -54,6 +55,7 @@ class XmlItems implements XmlPartInterface
      */
     private function getItemXmlString(ItemInterface $item)
     {
+        $moneyFilter = new MoneyFilter();
         $str = <<<XML
         <item>
             <id>%s</id>
@@ -68,7 +70,7 @@ XML;
             $str,
             $item->getId(),
             $item->getDescription(),
-            $item->getAmount(),
+            $moneyFilter->filter($item->getAmount()),
             $item->getQuantity(),
             $this->getItemShippingCostXmlString($item),
             $this->getItemWeightXmlString($item)
@@ -81,9 +83,10 @@ XML;
      */
     private function getItemShippingCostXmlString(ItemInterface $item)
     {
+        $moneyFilter = new MoneyFilter();
         $str = '<shippingCost>%s</shippingCost>';
         $value = $item->getShippingCost();
-        return !empty($value) ? sprintf($str, $value) : null;
+        return !empty($value) ? sprintf($str, $moneyFilter->filter($value)) : null;
     }
 
     /**

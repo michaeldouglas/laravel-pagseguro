@@ -106,7 +106,6 @@ class CurlAdapter implements AdapterInterface
         switch ($options[CURLOPT_CUSTOMREQUEST]) {
             case 'POST':
                 $options[CURLOPT_POSTFIELDS] = $request->getData();
-                break;
             case 'GET':
                 $glue = strpos($url, '?') !== false ? '&' : '?';
                 $url .= $params ? $glue . http_build_query($params) : null;

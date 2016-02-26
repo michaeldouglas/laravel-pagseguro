@@ -33,6 +33,7 @@ class CheckoutFacade
         $isCharger = array_key_exists('cellphone_charger', $data);
         $isSimple = !($isGamer || $isTravel || $isCharger);
         $this->multiTypeCheck($isGamer, $isTravel, $isCharger, $isSimple);
+        return $this->createSimpleCheckout($data);
     }
 
     /**

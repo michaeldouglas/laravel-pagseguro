@@ -4,6 +4,7 @@ namespace laravel\pagseguro\Transaction\Information;
 
 use laravel\pagseguro\Address\Address;
 use laravel\pagseguro\Sender\Sender;
+use laravel\pagseguro\Information\InformationAbstractFactory;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Shipping\Shipping;
 use laravel\pagseguro\Payment\Method\MethodInterface;
@@ -22,22 +23,8 @@ use laravel\pagseguro\Transaction\Status\Status;
  *
  * @copyright  Laravel\PagSeguro
  */
-class InformationFactory
+class InformationFactory extends InformationAbstractFactory
 {
-
-    /**
-     * @var array
-     */
-    protected $data;
-
-    /**
-     * Constructor
-     * @param array $data
-     */
-    public function __construct(array $data)
-    {
-        $this->data = $data;
-    }
 
     /**
      * @return Information
@@ -95,7 +82,7 @@ class InformationFactory
      */
     public function getLastEventDate()
     {
-        return $this->getInDateTime($this->data['lasteventdate']);
+        return $this->getDateTimeObject($this->data['lasteventdate']);
     }
 
     /**
@@ -104,18 +91,7 @@ class InformationFactory
      */
     public function getDate()
     {
-        return $this->getInDateTime($this->data['date']);
-    }
-
-    /**
-     * Get in \DateTime Object
-     * @param string $stringDate
-     * @return \DateTimeInterface
-     */
-    private function getInDateTime($stringDate)
-    {
-        $time = \str_replace('.000', '', $stringDate);
-        return \DateTime::createFromFormat(\DateTime::W3C, $time);
+        return $this->getDateTimeObject($this->data['date']);
     }
 
     /**

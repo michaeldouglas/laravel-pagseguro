@@ -38,4 +38,17 @@ class Config
         }
         return array_key_exists($key, $data) ? $data[$key] : $default;
     }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return mixed
+     */
+    public static function set($key, $value)
+    {
+        $default = static::get($key);
+        if ($default != $value) {
+            static::$data[$key] = $value;
+        }
+    }
 }

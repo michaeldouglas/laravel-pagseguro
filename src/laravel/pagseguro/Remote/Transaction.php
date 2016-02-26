@@ -36,6 +36,10 @@ class Transaction extends ConsumerAbstract
             throw new \RuntimeException('Transaction check failure');
         }
         $body = $response->getRawBody();
+        if ($response->getHttpStatus() !== 200) {
+            $error = 'Error on getStatus: ' . $response->getHttpStatus() . '-' . $body;
+            throw new \RuntimeException($error);
+        }
         $parser = new Xml($body);
         return $parser->toArray();
     }

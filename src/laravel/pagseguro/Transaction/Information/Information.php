@@ -2,8 +2,7 @@
 
 namespace laravel\pagseguro\Transaction\Information;
 
-use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
-use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorProtectedTrait;
+use laravel\pagseguro\Information\InformationAbstract;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Sender\SenderInterface;
 use laravel\pagseguro\Shipping\ShippingInterface;
@@ -20,7 +19,7 @@ use laravel\pagseguro\Payment\Method\MethodInterface as PaymentMethod;
  *
  * @copyright  Laravel\PagSeguro
  */
-class Information
+class Information extends InformationAbstract
 {
 
     /**
@@ -100,21 +99,6 @@ class Information
      */
     protected $shipping;
 
-    use DataHydratorTrait, DataHydratorProtectedTrait {
-        DataHydratorProtectedTrait::hydrate insteadof DataHydratorTrait;
-    }
-
-    /**
-     * Constructor
-     * @param array $data
-     */
-    public function __construct(array $data = [])
-    {
-        if (count($data)) {
-            $this->hydrate($data);
-        }
-    }
-
     /**
      * Transaction Code
      * @param string $code
@@ -122,7 +106,7 @@ class Information
      */
     protected function setCode($code)
     {
-        if (!\is_string($code) || \strlen($code) != 36) {
+        if (!\is_string($code)) {
             throw new \InvalidArgumentException('Invalid transaction code');
         }
         $this->code = $code;

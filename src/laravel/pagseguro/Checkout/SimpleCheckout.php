@@ -2,10 +2,12 @@
 
 namespace laravel\pagseguro\Checkout;
 
+use laravel\pagseguro\Credentials\CredentialsInterface;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Receiver\ReceiverInterface;
 use laravel\pagseguro\Sender\SenderInterface;
 use laravel\pagseguro\Shipping\ShippingInterface;
+use laravel\pagseguro\Remote\Checkout as RemoteCheckout;
 
 /**
  * Simple Checkout Object
@@ -135,5 +137,18 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
     {
         $this->shipping = $shipping;
         return $this;
+    }
+
+    /**
+     * Send Checkout
+     * @param CredentialsInterface $credentials
+     * @return array
+     */
+    public function send(CredentialsInterface $credentials)
+    {
+        $remote = new RemoteCheckout();
+        $data = $remote->send($this, $credentials);
+        $factory = new Information\InformationFactory($data);
+        return $factory->getInformation();
     }
 }

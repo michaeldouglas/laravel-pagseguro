@@ -85,7 +85,7 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
                 'district' => 'Jardim dos Camargos',
                 'city' => 'Barueri',
                 'state' => 'SP',
-                'country' => 'Brasil',
+                'country' => 'BRA',
             ]),
             'type' => 2,
             'cost' => 30.4,

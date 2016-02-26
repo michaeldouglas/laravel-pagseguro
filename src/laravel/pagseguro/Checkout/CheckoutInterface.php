@@ -2,6 +2,7 @@
 
 namespace laravel\pagseguro\Checkout;
 
+use laravel\pagseguro\Credentials\CredentialsInterface;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Receiver\ReceiverInterface;
 use laravel\pagseguro\Sender\SenderInterface;
@@ -90,4 +91,11 @@ interface CheckoutInterface
      * @return ShippingInterface
      */
     public function getShipping();
+
+    /**
+     * Send Checkout
+     * @param CredentialsInterface $credentials
+     * @return array
+     */
+    public function send(CredentialsInterface $credentials);
 }
