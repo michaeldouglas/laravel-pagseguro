@@ -49,6 +49,10 @@ class Config
         $default = static::get($key);
         if ($default != $value) {
             static::$data[$key] = $value;
+            if (class_exists('\Config')) {
+                $key = implode('.', (array) $key);
+                \Config::set('laravelpagseguro.' . $key, $value);
+            }
         }
     }
 }

@@ -2,9 +2,11 @@
 
 namespace laravel\pagseguro\Checkout\Facade;
 
+use laravel\pagseguro\Checkout\CellphoneChargerCheckout;
 use laravel\pagseguro\Checkout\Metadata\Gamer\GameInfo;
 use laravel\pagseguro\Checkout\Metadata\Travel\TravelInfo;
 use laravel\pagseguro\Checkout\SimpleCheckout;
+use laravel\pagseguro\Checkout\GamerCheckout;
 use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Phone\PhoneInterface;
 
@@ -33,6 +35,19 @@ class CheckoutFacade
         $isCharger = array_key_exists('cellphone_charger', $data);
         $isSimple = !($isGamer || $isTravel || $isCharger);
         $this->multiTypeCheck($isGamer, $isTravel, $isCharger, $isSimple);
+        if ($isGamer) {
+            $info = $data['game'];
+            unset($data['game']);
+            return $this->createGamerCheckout($data, $info);
+        } elseif ($isTravel) {
+            $info = $data['travel'];
+            unset($data['travel']);
+            return $this->createTravelCheckout($data, $info);
+        } elseif ($isCharger) {
+            $info = $data['cellphone_charger'];
+            unset($data['cellphone_charger']);
+            return $this->createCellPhoneChargerCheckout($data, $info);
+        }
         return $this->createSimpleCheckout($data);
     }
 
@@ -46,14 +61,16 @@ class CheckoutFacade
         if (!($gameInfo instanceof GameInfo)) {
             $gameInfo = new GameInfo($gameInfo);
         }
-        $checkout = new GamerCheckout($data);
+        $dataFacade = new DataFacade();
+        $checkoutData = $dataFacade->ensureInstances($data);
+        $checkout = new GamerCheckout($checkoutData);
         $checkout->setGameInfo($gameInfo);
         return $checkout;
     }
 
     /**
      * @param array $data
-     * @param array|GameInfo $gameInfo Keys:gameName|playerId|timeInGameDays
+     * @param array
      * @return GamerCheckout
      */
     public function createSimpleCheckout(array $data)

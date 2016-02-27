@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 $sandBoxCredentials = include '_sandbox-credentials.php';
 $credentialEmail = $sandBoxCredentials['email']; // Email
 $credentialKey = $sandBoxCredentials['key']; // Public Key
-$senderEmail = 'comprador-de-testes@sandbox.pagseguro.com.br'; // Sender-Email
+$senderEmail = 'gamer@sandbox.pagseguro.com.br'; // Sender-Email
 
 use laravel\pagseguro\Config\Config;
 use laravel\pagseguro\Credentials\Credentials;
@@ -21,41 +21,30 @@ use laravel\pagseguro\Checkout\Facade\CheckoutFacade;
 $data = [
     'items' => [
         [
-            'id' => '18',
-            'description' => 'Laravel PS Simple Checkout',
-            'quantity' => '1',
-            'amount' => '1.15',
-            'weight' => '45',
-            'shippingCost' => '3.5',
-            'width' => '50',
-            'height' => '45',
-            'length' => '60',
+            'id' => 20,
+            'description' => 'Game CASH',
+            'quantity' => 1,
+            'amount' => 15.6,
+            'shippingCost' => 0,
         ]
-    ],
-    'shipping' => [
-        'address' => [
-            'postalCode' => '06410030',
-            'street' => 'Rua da Selva',
-            'number' => '12',
-            'district' => 'Jardim dos Camargos',
-            'city' => 'Barueri',
-            'state' => 'SP',
-            'country' => 'BRA',
-        ],
-        'type' => 2,
-        'cost' => 30.4,
     ],
     'sender' => [
         'email' => $senderEmail,
         'name' => 'Isaque de Souza Barbosa',
         'documents' => [
             [
-                'number' => '80808080822',
+                'number' => '40404040411',
                 'type' => 'CPF'
             ]
         ],
         'phone' => '11985445522',
-        'bornDate' => '1988-03-25',
+        'bornDate' => '1988-03-21',
+    ],
+    'currency' => 'BRL',
+    'game' => [
+        'gameName' => 'PS LEGEND',
+        'playerId' => 'BR561546S4',
+        'timeInGameDays' => 360,
     ]
 ];
 

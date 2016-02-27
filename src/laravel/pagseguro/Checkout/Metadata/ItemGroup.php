@@ -47,15 +47,15 @@ class ItemGroup extends Item
     public function toXmlTag()
     {
         $str = <<<XML
-        <group>
+        <item>
             <key>%s</key>
             <value>%s</value>
-        </group>
+        </item>
 XML;
         $tag = <<<XML
-        <item>
+        <group>
             %s
-        </item>
+        </group>
 XML;
         $groups = [];
         foreach ($this->getValue() as $item) {

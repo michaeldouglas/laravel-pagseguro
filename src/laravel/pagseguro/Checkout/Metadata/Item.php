@@ -91,7 +91,7 @@ class Item implements TagableInterface
      */
     protected function setValue($value)
     {
-        if (empty($value) || !is_string($value)) {
+        if (empty($value) || !is_string($value) && !is_numeric($value)) {
             throw new \InvalidArgumentException('Invalid string value');
         }
         if (mb_strlen($value) > 100) {

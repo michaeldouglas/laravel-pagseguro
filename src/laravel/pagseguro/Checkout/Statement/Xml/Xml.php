@@ -119,7 +119,11 @@ class Xml implements StatementInterface
      */
     private function getSenderXmlString()
     {
-        $xmlItems = new XmlSender($this->checkout->getSender());
+        $sender = $this->checkout->getSender();
+        if (!$sender) {
+            return null;
+        }
+        $xmlItems = new XmlSender($sender);
         return $xmlItems->getXmlString();
     }
 
@@ -128,7 +132,11 @@ class Xml implements StatementInterface
      */
     private function getShippingXmlString()
     {
-        $xmlItems = new XmlShipping($this->checkout->getShipping());
+        $shipping = $this->checkout->getShipping();
+        if (!$shipping) {
+            return null;
+        }
+        $xmlItems = new XmlShipping($shipping);
         return $xmlItems->getXmlString();
     }
 

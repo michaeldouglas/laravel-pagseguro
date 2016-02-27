@@ -28,7 +28,7 @@ class XmlMetadata implements XmlPartInterface
      */
     public function __construct($metadata = null)
     {
-        if (!empty($this->metadata)) {
+        if (!empty($metadata)) {
             if (!($metadata instanceof MetadataCollection)) {
                 throw new \InvalidArgumentException('Invalid metadata');
             }

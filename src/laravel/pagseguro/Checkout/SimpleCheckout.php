@@ -61,8 +61,11 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
      * @param SenderInterface $sender
      * @return SimpleCheckout
      */
-    protected function setSender(SenderInterface $sender)
+    protected function setSender($sender)
     {
+        if (!is_null($sender) && !($sender instanceof SenderInterface)) {
+            throw new \InvalidArgumentException('Invalid Sender');
+        }
         $this->sender = $sender;
         return $this;
     }
@@ -115,8 +118,11 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
      * @param ReceiverInterface $receiver
      * @return SimpleCheckout
      */
-    public function setReceiver(ReceiverInterface $receiver)
+    public function setReceiver($receiver)
     {
+        if (!is_null($receiver) && !($receiver instanceof ReceiverInterface)) {
+            throw new \InvalidArgumentException('Invalid Receiver');
+        }
         $this->receiver = $receiver;
         return $this;
     }
@@ -133,8 +139,11 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
      * @param ShippingInterface $shipping
      * @return SimpleCheckout
      */
-    protected function setShipping(ShippingInterface $shipping)
+    protected function setShipping($shipping)
     {
+        if (!is_null($shipping) && !($shipping instanceof ShippingInterface)) {
+            throw new \InvalidArgumentException('Invalid Shipping');
+        }
         $this->shipping = $shipping;
         return $this;
     }
@@ -142,7 +151,7 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
     /**
      * Send Checkout
      * @param CredentialsInterface $credentials
-     * @return array
+     * @return \laravel\pagseguro\Checkout\Information\Information
      */
     public function send(CredentialsInterface $credentials)
     {

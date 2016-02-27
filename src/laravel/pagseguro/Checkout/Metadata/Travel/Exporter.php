@@ -142,11 +142,11 @@ class Exporter implements HasMetadataInterface
             $passCollection->append($item);
         }
         if ($cpf) {
-            $item = new Item(Item::KEY_PASSENGER_CPF, $cpf);
+            $item = new Item(Item::KEY_PASSENGER_CPF, $cpf->getNumber());
             $passCollection->append($item);
         }
         if ($passport) {
-            $item = new Item(Item::KEY_PASSENGER_PASSPORT, $passport);
+            $item = new Item(Item::KEY_PASSENGER_PASSPORT, $passport->getNumber());
             $passCollection->append($item);
         }
         if ($passCollection->count()) {

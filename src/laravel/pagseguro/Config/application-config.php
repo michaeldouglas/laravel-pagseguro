@@ -7,7 +7,7 @@ return [
     /*
      * Coloque abaixo as informações do seu cadastro no PagSeguro
      */
-    'credentials' => [//SETA AS CREDENCIAIS DE SUA LOJA
+    'credentials' => [//INFORME AS CREDENCIAIS PADRÕES DE SUA LOJA, MAS PORDERÁ SER ALTERADA EM RUNTIME
         'email' => null,
         'token' => null,
     ],
@@ -26,7 +26,7 @@ return [
         'redirect' => [
             'route-name' => 'pagseguro.redirect',
             /*
-             * Nome do parâmetro opctional para ID da Transação
+             * Nome do parâmetro opcional para ID da Transação
              * CASO VÁ USAR, CONFIGURAR O NOME NA SUA CONTA NO PAGSEGURO
              */
             'transaction_id_parameter_name' => null
@@ -51,7 +51,8 @@ return [
         'adapter' => [
             'type' => 'curl',
             'options' => [
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_0
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_0,
+                //CURLOPT_PROXY => 'http://user:pass@host:port', // PROXY OPTION
             ]
         ],
     ],
