@@ -19,15 +19,23 @@ class PagSeguroFacade
 
     /**
      * Get Default Credentials
+     * @param string $token
+     * @param string $email
+     * @return Credentials
+     */
+    public function createCredentials($token, $email)
+    {
+        return new Credentials($token, $email);
+    }
+
+    /**
+     * Get Default Credentials
      * @return Credentials
      */
     public function getCredentials()
     {
-        $credentialsData = Config::get('credentials');
-        return new Credentials(
-            $credentialsData['token'],
-            $credentialsData['email']
-        );
+        $data = Config::get('credentials');
+        return $this->createCredentials($data['token'], $data['email']);
     }
 
     /**
