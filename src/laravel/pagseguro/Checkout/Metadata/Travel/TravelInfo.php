@@ -45,10 +45,11 @@ class TravelInfo implements TravelInterface
      */
     public function __construct($data = [])
     {
+        $args = func_get_args();
         $data = null;
         $this->hydrateMagic(
             ['passengers', 'origin', 'destination'],
-            func_get_args()
+            $args
         );
     }
 

@@ -74,6 +74,7 @@ abstract class AbstractCheckout
      */
     public function __construct($data = [])
     {
+        $args = func_get_args();
         $data = null;
         $this->hydrateMagic(
             [
@@ -81,7 +82,7 @@ abstract class AbstractCheckout
                 'metadata', 'redirectURL', 'notificationURL',
                 'charset'
             ],
-            func_get_args()
+            $args
         );
     }
 

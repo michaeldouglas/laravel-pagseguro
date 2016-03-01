@@ -3,9 +3,8 @@
 namespace laravel\pagseguro\Facades;
 
 use laravel\pagseguro\Address\Address;
-use \laravel\pagseguro\Item\Item;
-use \laravel\pagseguro\Item\ItemCollection;
-use \laravel\pagseguro\Payment\Payment;
+use laravel\pagseguro\Item\Item;
+use laravel\pagseguro\Item\ItemCollection;
 
 /**
  * PagSeguro Facade
@@ -19,7 +18,7 @@ class PagSeguroFacade
      * @param array $data
      * @return Address
      */
-    public static function createAddress(array $data = [])
+    public function createAddress(array $data = [])
     {
         return new Address($data);
     }
@@ -29,7 +28,7 @@ class PagSeguroFacade
      * @param array $data
      * @return Item
      */
-    public static function createItem(array $data = [])
+    public function createItem(array $data = [])
     {
         return new Item($data);
     }
@@ -40,7 +39,7 @@ class PagSeguroFacade
      * @return ItemCollection
      * @throws \InvalidArgumentException
      */
-    public static function createItemCollection(array $data = [])
+    public function createItemCollection(array $data = [])
     {
         return ItemCollection::factory($data);
     }

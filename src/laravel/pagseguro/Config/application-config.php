@@ -25,13 +25,10 @@ return [
     'routes' => [
         'redirect' => [
             'route-name' => 'pagseguro.redirect',
-            /*
-             * Nome do parâmetro opcional para ID da Transação
-             * CASO VÁ USAR, CONFIGURAR O NOME NA SUA CONTA NO PAGSEGURO
-             */
-            'transaction_id_parameter_name' => null
         ],
         'notification' => [
+            'callback' => null, // Callable callback to Notification function (notificationInfo) : void {}
+            'credential' => 'default', // Callable resolve credential function (notificationCode) : Credentials {}
             'route-name' => 'pagseguro.notification',
         ],
     ],
@@ -66,8 +63,8 @@ return [
     ],
     'url' => [
         'checkout' => '/v2/checkout',
-        'notifications' => '/v3/transactions/notifications',
         'transactions' => '/v3/transactions',
+        'transactions-notifications' => '/v3/transactions/notifications',
         'transactions-history' => '/v2/transactions',
         'transactions-abandoned' => '/v2/transactions/abandoned',
     ],

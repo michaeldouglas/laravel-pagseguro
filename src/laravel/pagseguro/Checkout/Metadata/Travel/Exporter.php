@@ -61,8 +61,8 @@ class Exporter implements HasMetadataInterface
         MetadataCollection $metadataCollection,
         Place $place,
         $airportKey,
-        $cityKey)
-    {
+        $cityKey
+    ) {
         $airport = $place->getAirportCode();
         $city = $place->getCity();
         if ($airport) {
@@ -87,7 +87,8 @@ class Exporter implements HasMetadataInterface
                 $metadataCollection,
                 $place,
                 Item::KEY_DESTINATION_AIRPORT_CODE,
-                Item::KEY_DESTINATION_CITY);
+                Item::KEY_DESTINATION_CITY
+            );
         }
         return $this;
     }
@@ -104,7 +105,8 @@ class Exporter implements HasMetadataInterface
                 $metadataCollection,
                 $place,
                 Item::KEY_ORIGIN_AIRPORT_CODE,
-                Item::KEY_ORIGIN_CITY);
+                Item::KEY_ORIGIN_CITY
+            );
         }
         return $this;
     }
@@ -131,8 +133,8 @@ class Exporter implements HasMetadataInterface
      */
     private function appendPassenger(
         MetadataCollection $metadataCollection,
-        Passenger $passenger)
-    {
+        Passenger $passenger
+    ) {
         $name = $passenger->getName();
         $cpf = $passenger->getCpf();
         $passport = $passenger->getPassport();

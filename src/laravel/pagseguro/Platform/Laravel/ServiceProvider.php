@@ -3,8 +3,10 @@
 namespace laravel\pagseguro;
 
 use laravel\pagseguro\Credentials\Credentials;
-use laravel\pagseguro\Config;
-use \Illuminate\Support\ServiceProvider;
+use laravel\pagseguro\Config\Config;
+use Illuminate\Support\ServiceProvider as SupportServiceProvider;
+use laravel\pagseguro\Facades\PagSeguroFacade;
+use laravel\pagseguro\Platform\Laravel;
 
 /**
  * Classe responsável por prover o serviço do Laravel PagSeguro ao Framework
@@ -17,7 +19,7 @@ use \Illuminate\Support\ServiceProvider;
  *
  * @copyright  Laravel\PagSeguro
  */
-class PagseguroServiceProvider extends ServiceProvider
+class ServiceProvider extends SupportServiceProvider
 {
 
     /**
@@ -47,22 +49,12 @@ class PagseguroServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('pagseguro', function () {
-            $this->loadCredentials();
-            #return new PaymentRequest($this->credentials);
+            $platform = new Laravel();
+            $platform->registerNotificationCallback();
+            Config::usePlatform($platform);
+            $facade = new PagSeguroFacade();
+            return $facade;
         });
-    }
-
-    /**
-     * Load Credentials From Config
-     * @return void
-     */
-    public function loadCredentials()
-    {
-        $credentials = Config::get('credentials');
-        $this->credentials = new Credentials(
-            $credentials['token'],
-            $credentials['email']
-        );
     }
 
     /**

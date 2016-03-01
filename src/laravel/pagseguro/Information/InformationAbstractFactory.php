@@ -33,7 +33,7 @@ abstract class InformationAbstractFactory
     /**
      * @return Information
      */
-    public abstract function getInformation();
+    abstract public function getInformation();
 
     /**
      * Get DateTimeObject

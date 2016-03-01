@@ -45,10 +45,11 @@ class GameInfo implements GamerInterface
      */
     public function __construct($data = [])
     {
+        $args = func_get_args();
         $data = null;
         $this->hydrateMagic(
             ['gameName', 'playerId', 'timeInGameDays'],
-            func_get_args()
+            $args
         );
     }
 

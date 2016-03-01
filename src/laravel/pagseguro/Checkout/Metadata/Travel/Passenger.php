@@ -47,10 +47,11 @@ class Passenger
      */
     public function __construct($data = [])
     {
+        $args = func_get_args();
         $data = null;
         $this->hydrateMagic(
             ['name', 'cpf', 'passport'],
-            func_get_args()
+            $args
         );
     }
 

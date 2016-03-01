@@ -52,10 +52,11 @@ class Item implements TagableInterface
      */
     public function __construct($data = [])
     {
+        $args = func_get_args();
         $data = null;
         $this->hydrateMagic(
             ['key', 'value'],
-            func_get_args()
+            $args
         );
     }
 

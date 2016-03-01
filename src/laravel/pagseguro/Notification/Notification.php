@@ -5,6 +5,8 @@ namespace laravel\pagseguro\Notification;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorConstructorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
+use laravel\pagseguro\Credentials\CredentialsInterface;
+use laravel\pagseguro\Remote\Notification as RemoteNotification;
 
 /**
  * Notification Object
@@ -42,10 +44,11 @@ class Notification implements NotificationInterface
      */
     public function __construct($data = [])
     {
+        $args = func_get_args();
         $data = null;
         $this->hydrateMagic(
             ['notificationCode', 'notificationType'],
-            func_get_args()
+            $args
         );
     }
 
@@ -90,6 +93,23 @@ class Notification implements NotificationInterface
         }
         $this->notificationType = $type;
         return $this;
+    }
+
+    /**
+     * Check Information
+     * @param CredentialsInterface $credentials
+     * @return InformationFactory
+     */
+    public function check(CredentialsInterface $credentials)
+    {
+        $type = $this->getNotificationType();
+        $remote = new RemoteNotification();
+        $data = $remote->$type($this->getNotificationCode(), $credentials);
+        $factoryBase = '\laravel\pagseguro\%s\Information\InformationFactory';
+        $factoryClass = sprintf($factoryBase, ucfirst($type));
+        $factory = new $factoryClass($data);
+        $information = $factory->getInformation();
+        return $information;
     }
 
     /**

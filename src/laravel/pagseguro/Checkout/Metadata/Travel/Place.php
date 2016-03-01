@@ -40,10 +40,11 @@ class Place
      */
     public function __construct($data = [])
     {
+        $args = func_get_args();
         $data = null;
         $this->hydrateMagic(
             ['city', 'airportCode'],
-            func_get_args()
+            $args
         );
     }
 

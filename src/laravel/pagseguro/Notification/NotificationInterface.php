@@ -2,6 +2,9 @@
 
 namespace laravel\pagseguro\Notification;
 
+use laravel\pagseguro\Credentials\CredentialsInterface;
+use laravel\pagseguro\Transaction\Information\InformationFactory;
+
 /**
  * Notification Interface
  *
@@ -47,6 +50,13 @@ interface NotificationInterface
      * @return Notification
      */
     public function setNotificationType($type);
+
+    /**
+     * Check Information
+     * @param CredentialsInterface $credentials
+     * @return InformationFactory
+     */
+    public function check(CredentialsInterface $credentials);
 
     /**
      * Proxies Data Hydrate

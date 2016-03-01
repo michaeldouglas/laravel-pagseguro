@@ -103,8 +103,7 @@ class DataFacade
         if (!is_array($shipping)) {
             throw new \InvalidArgumentException('Invalid shipping data');
         }
-        if (
-            array_key_exists('address', $shipping)
+        if (array_key_exists('address', $shipping)
             && is_array($shipping['address'])
         ) {
             $shipping['address'] = new Address($shipping['address']);
