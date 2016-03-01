@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\pagseguro\Facades;
+namespace laravel\pagseguro\Platform\Laravel5;
 
 use Illuminate\Support\Facades\Facade;
 

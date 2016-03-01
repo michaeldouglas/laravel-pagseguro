@@ -1,12 +1,11 @@
 <?php
 
-namespace laravel\pagseguro;
+namespace laravel\pagseguro\Platform\Laravel5;
 
-use laravel\pagseguro\Credentials\Credentials;
 use laravel\pagseguro\Config\Config;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
 use laravel\pagseguro\Facades\PagSeguroFacade;
-use laravel\pagseguro\Platform\Laravel;
+use laravel\pagseguro\Platform\Laravel5;
 
 /**
  * Classe responsável por prover o serviço do Laravel PagSeguro ao Framework
@@ -29,11 +28,6 @@ class ServiceProvider extends SupportServiceProvider
     protected $defer = true;
 
     /**
-     * @var Credentials
-     */
-    protected $credentials;
-
-    /**
      * Bootstrap the application events.
      * @return void
      */
@@ -49,8 +43,7 @@ class ServiceProvider extends SupportServiceProvider
     public function register()
     {
         $this->app->bind('pagseguro', function () {
-            $platform = new Laravel();
-            $platform->registerNotificationCallback();
+            $platform = new Laravel5();
             Config::usePlatform($platform);
             $facade = new PagSeguroFacade();
             return $facade;

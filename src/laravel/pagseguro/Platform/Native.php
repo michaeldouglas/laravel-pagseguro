@@ -70,14 +70,6 @@ class Native implements PlatformInterface
     }
 
     /**
-     * @return void
-     */
-    public function registerNotificationRoute()
-    {
-        throw new \RuntimeException('Native not suport route');
-    }
-
-    /**
      * @param string $routeName
      * @return void
      */

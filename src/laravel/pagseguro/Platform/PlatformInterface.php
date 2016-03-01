@@ -50,11 +50,6 @@ interface PlatformInterface
     public function hasRouter();
 
     /**
-     * @return void
-     */
-    public function registerNotificationRoute();
-
-    /**
      * @param string $routeName
      * @return void
      */

@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Checkout\Facade;
 
 use laravel\pagseguro\Checkout\CellphoneChargerCheckout;
+use laravel\pagseguro\Checkout\CheckoutInterface;
 use laravel\pagseguro\Checkout\Metadata\Gamer\GameInfo;
 use laravel\pagseguro\Checkout\Metadata\Travel\TravelInfo;
 use laravel\pagseguro\Checkout\SimpleCheckout;

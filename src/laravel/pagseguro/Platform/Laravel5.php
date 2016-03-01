@@ -13,7 +13,7 @@ namespace laravel\pagseguro\Platform;
  *
  * @copyright  Laravel\PagSeguro
  */
-class Laravel implements PlatformInterface
+class Laravel5 implements PlatformInterface
 {
 
     /**
@@ -65,18 +65,6 @@ class Laravel implements PlatformInterface
     public function hasRouter()
     {
         return true;
-    }
-
-    /**
-     * @return void
-     */
-    public function registerNotificationRoute()
-    {
-        $controller = '\laravel\pagseguro\Notification\NotificationController';
-        \Route::get('/pagseguro/notification', "{$controller}@notification", [
-            'as' => 'pagseguro.notification',
-            'uses' => "{$controller}@notification"
-        ]);
     }
 
     /**

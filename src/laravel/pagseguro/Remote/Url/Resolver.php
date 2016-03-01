@@ -111,6 +111,10 @@ class Resolver
         if (!array_key_exists('route-name', $routeConfig)) {
             throw new \RuntimeException('Undefined key route-name');
         }
-        return $platform->getUrlByRoute($routeConfig['route-name']);
+        $routeName = $routeConfig['route-name'];
+        if (empty($routeName)) {
+            return null;
+        }
+        return $platform->getUrlByRoute($routeName);
     }
 }

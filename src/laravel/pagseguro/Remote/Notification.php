@@ -37,7 +37,7 @@ class Notification extends ConsumerAbstract
         }
         $body = $response->getRawBody();
         if ($response->getHttpStatus() !== 200) {
-            $error = 'Error on getStatus: ' . $response->getHttpStatus() . '-' . $body;
+            $error = 'Error on getStatus: ' . $response->getHttpStatus() . '-' . strip_tags($body);
             throw new \RuntimeException($error);
         }
         $parser = new Xml($body);

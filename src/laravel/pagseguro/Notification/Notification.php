@@ -88,6 +88,7 @@ class Notification implements NotificationInterface
      */
     public function setNotificationType($type)
     {
+        $type = strtolower($type);
         if ($type !== 'transaction') {
             throw new \InvalidArgumentException('Unsupported type:' . $type);
         }
