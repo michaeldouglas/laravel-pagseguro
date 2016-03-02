@@ -29,7 +29,7 @@ return [
         'notification' => [
             'callback' => null, // Callable callback to Notification function (notificationInfo) : void {}
             'credential' => 'default', // Callable resolve credential function (notificationCode) : Credentials {}
-            'route-name' => 'pagseguro.notification',
+            'route-name' => 'pagseguro.notification', // Cria uma rota com este nome
         ],
     ],
 

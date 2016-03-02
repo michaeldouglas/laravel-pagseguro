@@ -7,13 +7,8 @@ use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Transaction\Status\StatusInterface;
 use laravel\pagseguro\Transaction\Transaction;
 use laravel\pagseguro\Transaction\Information;
-use laravel\pagseguro\Http\Request\Adapter\AdapterInterface;
 use laravel\pagseguro\Http\Response\Response;
-use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Remote\Manager;
-use laravel\pagseguro\Payment\Method\MethodInterface;
-use laravel\pagseguro\Sender\Sender;
-use laravel\pagseguro\Shipping\Shipping;
 use laravel\pagseguro\Transaction\Status\Status;
 
 /**
@@ -42,7 +37,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     {
         $file = new \SplFileObject(__DIR__ . '/simple-response.xml', 'r');
         $this->xmlResponse = $file->fread($file->getSize());
-        $adapter = $this->getMockBuilder(AdapterInterface::class)->getMock();
+        $adapterClass = '\laravel\pagseguro\Http\Request\Adapter\AdapterInterface';
+        $adapter = $this->getMockBuilder($adapterClass)->getMock();
         $response = new Response();
         $response->setRawBody($this->xmlResponse)->setHttpStatus(200);
         $adapter->method('getResponse')->willReturn($response);
@@ -58,7 +54,7 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertNotEmpty($this->xmlResponse);
         $xml = simplexml_load_string($this->xmlResponse);
-        $this->assertInstanceOf(\SimpleXMLElement::class, $xml);
+        $this->assertInstanceOf('\SimpleXMLElement', $xml);
     }
 
     /**
@@ -75,7 +71,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testInformationInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf(Information\Information::class, $info);
+        $className = '\laravel\pagseguro\Transaction\Information\Information';
+        $this->assertInstanceOf($className, $info);
     }
 
     /**
@@ -97,7 +94,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testAmountInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf(Information\Amounts::class, $info->getAmounts());
+        $className = '\laravel\pagseguro\Transaction\Information\Amounts';
+        $this->assertInstanceOf($className, $info->getAmounts());
     }
 
     /**
@@ -119,7 +117,7 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testDateInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf(\DateTime::class, $info->getDate());
+        $this->assertInstanceOf('\DateTime', $info->getDate());
     }
 
     /**
@@ -137,7 +135,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testItemsInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf(ItemCollection::class, $info->getItems());
+        $className = '\laravel\pagseguro\Item\ItemCollection';
+        $this->assertInstanceOf($className, $info->getItems());
     }
 
     /**
@@ -160,7 +159,7 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testLastEventInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf(\DateTime::class, $info->getLasteventdate());
+        $this->assertInstanceOf('\DateTime', $info->getLasteventdate());
     }
 
     /**
@@ -178,7 +177,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testPaymentMethodInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf(MethodInterface::class, $info->getPaymentmethod());
+        $className = '\laravel\pagseguro\Payment\Method\MethodInterface';
+        $this->assertInstanceOf($className, $info->getPaymentmethod());
     }
 
     /**
@@ -196,7 +196,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testSenderInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf(Sender::class, $info->getSender());
+        $className = '\laravel\pagseguro\Sender\Sender';
+        $this->assertInstanceOf($className, $info->getSender());
     }
 
     /**
@@ -217,7 +218,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testShippingInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf(Shipping::class, $info->getShipping());
+        $className = '\laravel\pagseguro\Shipping\Shipping';
+        $this->assertInstanceOf($className, $info->getShipping());
     }
 
     /**
@@ -237,7 +239,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testStatusInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf(Status::class, $info->getStatus());
+        $className = '\laravel\pagseguro\Transaction\Status\Status';
+        $this->assertInstanceOf($className, $info->getStatus());
     }
 
     /**

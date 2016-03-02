@@ -21,12 +21,12 @@ class MethodFactory extends MethodAbstract
      * @var array
      */
     protected static $classMap = [
-        MethodInterface::TYPE_CREDIT_CARD => CreditCard\CreditCard::class,
-        MethodInterface::TYPE_BILLET => Billet\Billet::class,
-        MethodInterface::TYPE_TRANSFER => Transfer\Transfer::class,
-        MethodInterface::TYPE_PS_CREDIT => Extras\Extras::class,
-        MethodInterface::TYPE_OI_PAGGO => Extras\Extras::class,
-        MethodInterface::TYPE_DEPOSIT_ACCOUNT => DepositAccount\DepositAccount::class,
+        MethodInterface::TYPE_CREDIT_CARD => '\laravel\pagseguro\Payment\Method\CreditCard\CreditCard',
+        MethodInterface::TYPE_BILLET => '\laravel\pagseguro\Payment\Method\Billet\Billet',
+        MethodInterface::TYPE_TRANSFER => '\laravel\pagseguro\Payment\Method\Transfer\Transfer',
+        MethodInterface::TYPE_PS_CREDIT => '\laravel\pagseguro\Payment\Method\Extras\Extras',
+        MethodInterface::TYPE_OI_PAGGO => '\laravel\pagseguro\Payment\Method\Extras\Extras',
+        MethodInterface::TYPE_DEPOSIT_ACCOUNT => '\laravel\pagseguro\Payment\Method\DepositAccount\DepositAccount'
     ];
 
     /**

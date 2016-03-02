@@ -50,7 +50,7 @@ class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
             'type' => 'CPF'
         ];
         $o = DocumentCollection::factory([$item]);
-        $this->assertInstanceOf(DocumentCollection::class, $o);
+        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $o);
         $this->assertCount(1, $o);
         $this->assertEquals(new CPF($item), $o->offsetGet(0));
     }
@@ -64,7 +64,7 @@ class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
             'number' => '10987654321',
         ]);
         $o = DocumentCollection::factory([$item]);
-        $this->assertInstanceOf(DocumentCollection::class, $o);
+        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $o);
         $this->assertCount(1, $o);
         $this->assertEquals($item, $o->offsetGet(0));
     }
@@ -75,7 +75,7 @@ class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
     public function testWithEmpty()
     {
         $o = DocumentCollection::factory();
-        $this->assertInstanceOf(DocumentCollection::class, $o);
+        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $o);
         $this->assertCount(0, $o);
     }
 }

@@ -44,7 +44,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             MethodInterface::TYPE_CREDIT_CARD,
             CreditCardInterface::VISA
         );
-        $this->assertInstanceOf(CreditCardInterface::class, $method);
+        $className = '\laravel\pagseguro\Payment\Method\CreditCard\CreditCardInterface';
+        $this->assertInstanceOf($className, $method);
         $this->assertEquals(MethodInterface::TYPE_CREDIT_CARD, $method->getType());
         $this->assertEquals(CreditCardInterface::VISA, $method->getCode());
         $this->assertEquals('Cartão de Crédito', $method->getTypeName());
@@ -61,7 +62,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             MethodInterface::TYPE_BILLET,
             BilletInterface::BRADESCO
         );
-        $this->assertInstanceOf(BilletInterface::class, $method);
+        $className = '\laravel\pagseguro\Payment\Method\Billet\BilletInterface';
+        $this->assertInstanceOf($className, $method);
         $this->assertEquals(MethodInterface::TYPE_BILLET, $method->getType());
         $this->assertEquals(BilletInterface::BRADESCO, $method->getCode());
         $this->assertEquals('Boleto', $method->getTypeName());
@@ -78,7 +80,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             MethodInterface::TYPE_TRANSFER,
             TransferInterface::HSBC
         );
-        $this->assertInstanceOf(TransferInterface::class, $method);
+        $className = '\laravel\pagseguro\Payment\Method\Transfer\TransferInterface';
+        $this->assertInstanceOf($className, $method);
         $this->assertEquals(MethodInterface::TYPE_TRANSFER, $method->getType());
         $this->assertEquals(TransferInterface::HSBC, $method->getCode());
         $this->assertEquals('Transferência eletrônica', $method->getTypeName());
@@ -95,7 +98,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             MethodInterface::TYPE_PS_CREDIT,
             ExtrasInterface::PS_CREDIT
         );
-        $this->assertInstanceOf(ExtrasInterface::class, $method);
+        $className = '\laravel\pagseguro\Payment\Method\Extras\ExtrasInterface';
+        $this->assertInstanceOf($className, $method);
         $this->assertEquals(MethodInterface::TYPE_PS_CREDIT, $method->getType());
         $this->assertEquals(ExtrasInterface::PS_CREDIT, $method->getCode());
         $this->assertEquals('Saldo PagSeguro', $method->getTypeName());
@@ -112,7 +116,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             MethodInterface::TYPE_OI_PAGGO,
             ExtrasInterface::OI_PAGGO
         );
-        $this->assertInstanceOf(ExtrasInterface::class, $method);
+        $className = '\laravel\pagseguro\Payment\Method\Extras\ExtrasInterface';
+        $this->assertInstanceOf($className, $method);
         $this->assertEquals(MethodInterface::TYPE_OI_PAGGO, $method->getType());
         $this->assertEquals(ExtrasInterface::OI_PAGGO, $method->getCode());
         $this->assertEquals('Oi Paggo', $method->getTypeName());
@@ -129,7 +134,8 @@ class NotificationTest extends \PHPUnit_Framework_TestCase
             MethodInterface::TYPE_DEPOSIT_ACCOUNT,
             DepositAccountInterface::BANCO_DO_BRASIL
         );
-        $this->assertInstanceOf(DepositAccountInterface::class, $method);
+        $className = '\laravel\pagseguro\Payment\Method\DepositAccount\DepositAccountInterface';
+        $this->assertInstanceOf($className, $method);
         $this->assertEquals(MethodInterface::TYPE_DEPOSIT_ACCOUNT, $method->getType());
         $this->assertEquals(DepositAccountInterface::BANCO_DO_BRASIL, $method->getCode());
         $this->assertEquals('Depósito em conta', $method->getTypeName());

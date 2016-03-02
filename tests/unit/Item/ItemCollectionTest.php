@@ -47,7 +47,7 @@ class ItemCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $item = [];
         $itemCollection = ItemCollection::factory([$item]);
-        $this->assertInstanceOf(ItemCollection::class, $itemCollection);
+        $this->assertInstanceOf('\laravel\pagseguro\Item\ItemCollection', $itemCollection);
         $this->assertCount(1, $itemCollection);
         $this->assertEquals(new Item($item), $itemCollection->offsetGet(0));
     }
@@ -69,7 +69,7 @@ class ItemCollectionTest extends \PHPUnit_Framework_TestCase
             'length' => '333',
         ]);
         $collection = ItemCollection::factory([$item]);
-        $this->assertInstanceOf(ItemCollection::class, $collection);
+        $this->assertInstanceOf('\laravel\pagseguro\Item\ItemCollection', $collection);
         $this->assertCount(1, $collection);
         $this->assertEquals($item, $collection->offsetGet(0));
     }
@@ -80,7 +80,7 @@ class ItemCollectionTest extends \PHPUnit_Framework_TestCase
     public function testWithEmpty()
     {
         $collection = ItemCollection::factory();
-        $this->assertInstanceOf(ItemCollection::class, $collection);
+        $this->assertInstanceOf('\laravel\pagseguro\Item\ItemCollection', $collection);
         $this->assertCount(0, $collection);
     }
 }

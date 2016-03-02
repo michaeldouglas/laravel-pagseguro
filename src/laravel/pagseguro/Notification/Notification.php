@@ -7,6 +7,7 @@ use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorConstructorTrait
 use laravel\pagseguro\Complements\ValidateTrait;
 use laravel\pagseguro\Credentials\CredentialsInterface;
 use laravel\pagseguro\Remote\Notification as RemoteNotification;
+use laravel\pagseguro\Transaction\Information\InformationFactory;
 
 /**
  * Notification Object
@@ -99,7 +100,7 @@ class Notification implements NotificationInterface
     /**
      * Check Information
      * @param CredentialsInterface $credentials
-     * @return InformationFactory
+     * @return \laravel\pagseguro\Transaction\Information\Information
      */
     public function check(CredentialsInterface $credentials)
     {

@@ -17,7 +17,7 @@ segue URL de configuração do usuário PagSeguro:
 
 ## Compatibilidade
 
- PHP >= 5.4.0
+ PHP >= 5.4
  Laravel 5.x
 
 ## Instalação
@@ -25,7 +25,7 @@ segue URL de configuração do usuário PagSeguro:
 Abra o arquivo `composer.json` e insira a seguinte instrução:
 
     "require": {
-        "michael/laravelpagseguro": "1.0.0"
+        "michael/laravelpagseguro": "1.0.*"
     }
 
 Após inserir no require o `Laravel PagSeguro`, você deverá executar o comando:
@@ -35,7 +35,7 @@ Após inserir no require o `Laravel PagSeguro`, você deverá executar o comando
 
 Ou execute o comando:
 
-    composer require michael/laravelpagseguro
+    composer require michael/laravelpagseguro:1.*
 
 ## Configuração do Service Provider
 
@@ -156,7 +156,7 @@ $data = [
 Após setar o array, utilize o método: `createCheckoutFromArray` para criar a requisição de envio:
 
 ```php
-$request = PagSeguro::createCheckoutFromArray($data);
+$checkout = PagSeguro::checkout()->createFromArray($data);
 ```
 
 Para confirmar o envio utilize o método: `send` da seguinte forma:
@@ -170,17 +170,111 @@ if ($information) {
 }
 ```
 
+Informando metadados de Regarga de celular:
+
+```php
+// ....
+$data['cellphone_charger'] = '+5511980810000';
+$checkout = PagSeguro::checkout()->createFromArray($data);
+```
+
+Informando metadados para Dados de Viagem:
+
+```php
+// ....
+$data['travel'] = [
+  'passengers' => [
+      [
+          'name' => 'Isaque de Souza',
+          'cpf' => '40404040411',
+          'passport' => '4564897987'
+      ],
+      [
+          'name' => 'Michael Douglas',
+          'cpf' => '80808080822',
+      ]
+  ],
+  'origin' => [
+      'city' => 'SAO PAULO - SP',
+      'airportCode' => 'CGH', // Congonhas
+  ],
+  'destination' => [
+      'city' => 'RIO DE JANEIRO - RJ',
+      'airportCode' => 'SDU', // Santos Dumont
+  ]
+];
+$checkout = PagSeguro::checkout()->createFromArray($data);
+```
+
+Informando metadados para Jogos:
+
+```php
+// ....
+$data['game'] = [
+    'gameName' => 'PS LEGEND',
+    'playerId' => 'BR561546S4',
+    'timeInGameDays' => 360,
+];
+$checkout = PagSeguro::checkout()->createFromArray($data);
+```
+
+## Credenciais
+
 Para resgatar as credenciais padrões do arquivo você pode usar:
 
 ```php
-$credentials = PagSeguro::getCredentials();
+$credentials = PagSeguro::credentials()->get();
 ```
 
 Ou usar credenciais alternativas
 
 ```php
-$credentials = PagSeguro::createCredentials($token, $email);
+$credentials = PagSeguro::credentials()->create($token, $email);
 ```
+
+## Consultando uma Transação manualmente
+
+```php
+$credentials = PagSeguro::credentials()->get();
+$transaction = PagSeguro::transaction()->get($code, $credentials);
+$information = $transaction->getInformation();
+```
+
+## Recebendo Notificações de Transação
+
+Crie uma rota POST com o nome "pagseguro.notification" (Esta no config)
+
+```php
+Route::post('/pagseguro/notification', [
+    'uses' => '\laravel\pagseguro\Platform\Laravel5\NotificationController@notification',
+    'as' => 'pagseguro.notification',
+]);
+```
+
+Registre um callback (callable) no seu config laravelpagseguro.php
+
+```php
+'routes' => [
+    'notification' => [
+        'callback' => ['MyNotificationClass', 'myMethod'], // Callable
+        'credential' => 'default',
+        'route-name' => 'pagseguro.notification', // Nome da rota
+    ],
+],
+```
+
+Ou ....
+
+```php
+'routes' => [
+    'notification' => [
+        'callback' => function ($information) { // Callable
+            \Log::debug(print_r($information, 1));
+        },
+    ],
+],
+```
+
 ## Licença
 
 O Laravel PagSeguro utiliza a licença MIT, para saber mais leia no link: [MIT license](http://opensource.org/licenses/MIT)

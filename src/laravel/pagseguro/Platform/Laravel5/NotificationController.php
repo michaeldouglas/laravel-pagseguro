@@ -28,7 +28,7 @@ class NotificationController extends Controller
      */
     public function notification()
     {
-        \App::make('pagseguro');
+        \App::make('pagseguro'); // Register PagSeguro
         $platform = Config::getPlatform();
         $params = array_merge([
             'notificationCode' => null,
@@ -75,6 +75,7 @@ class NotificationController extends Controller
 
     /**
      * Notification Callback
+     * @param Informati
      */
     private function notify($info)
     {
