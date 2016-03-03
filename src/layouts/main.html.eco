@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="Laravel Pag Seguro : Integração com o gateway de pagamento pagseguro, para utilização do Laravel">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <%- @getBlock("styles").add(["/styles/stylesheet.css"]).toHTML() %>
 
-    <title>Laravel Pag Seguro</title>
+    <title>Laravel PagSeguro - Documentação</title>
   </head>
 
   <body>
@@ -38,12 +38,9 @@
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Laravel Pag Seguro maintained by <a href="https://github.com/michaeldouglas">michaeldouglas</a></p>
+        <p class="copyright">Laravel Pag Seguro maintained by <a href="https://github.com/michaeldouglas">michaeldouglas</a>, <a href="https://github.com/isaquesb">isaquesb</a> e <a href="https://github.com/marabesi">marabesi</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
-    
-
   </body>
 </html>
