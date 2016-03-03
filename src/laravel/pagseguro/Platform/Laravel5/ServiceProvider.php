@@ -4,7 +4,7 @@ namespace laravel\pagseguro\Platform\Laravel5;
 
 use laravel\pagseguro\Config\Config;
 use Illuminate\Support\ServiceProvider as SupportServiceProvider;
-use laravel\pagseguro\Facades\PagSeguroFacade;
+use laravel\pagseguro\Facades\PagSeguro as PagSeguroFacade;
 use laravel\pagseguro\Platform\Laravel5;
 
 /**

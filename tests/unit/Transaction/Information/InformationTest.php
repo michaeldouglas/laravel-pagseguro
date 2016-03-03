@@ -35,8 +35,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $file = new \SplFileObject(__DIR__ . '/simple-response.xml', 'r');
-        $this->xmlResponse = $file->fread($file->getSize());
+        $file = __DIR__ . '/simple-response.xml';
+        $this->xmlResponse = file_get_contents($file);
         $adapterClass = '\laravel\pagseguro\Http\Request\Adapter\AdapterInterface';
         $adapter = $this->getMockBuilder($adapterClass)->getMock();
         $response = new Response();

@@ -153,7 +153,7 @@ $data = [
 ];
 ```
 
-Após setar o array, utilize o método: `createCheckoutFromArray` para criar a requisição de envio:
+Após ter os dados, utilize o método: `createFromArray` para criar o objeto de checkout:
 
 ```php
 $checkout = PagSeguro::checkout()->createFromArray($data);
@@ -170,7 +170,7 @@ if ($information) {
 }
 ```
 
-Informando metadados de Regarga de celular:
+Informando metadados de Recarga de celular:
 
 ```php
 // ....
@@ -178,7 +178,7 @@ $data['cellphone_charger'] = '+5511980810000';
 $checkout = PagSeguro::checkout()->createFromArray($data);
 ```
 
-Informando metadados para Dados de Viagem:
+Informando metadados para Dados de viagem:
 
 ```php
 // ....
