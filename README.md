@@ -25,7 +25,7 @@ segue URL de configuração do usuário PagSeguro:
 Abra o arquivo `composer.json` e insira a seguinte instrução:
 
     "require": {
-        "michael/laravelpagseguro": "1.0.*"
+        "michael/laravelpagseguro": "dev-master"
     }
 
 Após inserir no require o `Laravel PagSeguro`, você deverá executar o comando:
@@ -35,7 +35,7 @@ Após inserir no require o `Laravel PagSeguro`, você deverá executar o comando
 
 Ou execute o comando:
 
-    composer require michael/laravelpagseguro:1.*
+    composer require michael/laravelpagseguro:dev-master
 
 ## Configuração do Service Provider
 
