@@ -30,11 +30,6 @@
             "email": "isaquesb@gmail.com"
         }
     ],
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.0"
-        }
-    },
     "scripts": {
         "test:unit": "phpunit -c phpunit.xml tests/unit"
     },
