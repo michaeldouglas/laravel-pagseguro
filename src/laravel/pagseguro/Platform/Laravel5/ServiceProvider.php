@@ -33,7 +33,7 @@ class ServiceProvider extends SupportServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__ . '/config/laravelpagseguro.php' => config_path('laravelpagseguro.php')]);
+        $this->publishes([__DIR__ . '/../../Config/laravelpagseguro.php' => config_path('laravelpagseguro.php')]);
     }
 
     /**
