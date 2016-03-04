@@ -3,8 +3,6 @@
 namespace laravel\pagseguro\Checkout;
 
 use laravel\pagseguro\Checkout\Metadata\Travel\TravelInfo;
-use laravel\pagseguro\Checkout\Metadata\Travel\Exporter;
-use laravel\pagseguro\Checkout\Metadata\MetadataCollection;
 
 /**
  * Travel Checkout Object
@@ -42,13 +40,13 @@ class TravelCheckout extends SimpleCheckout
     }
 
     /**
-     * @return MetadataCollection
+     * @return Metadata\MetadataCollection
      */
     public function getMetadata()
     {
         $travelInfo = $this->getTravelInfo();
         if (!is_null($travelInfo)) {
-            $exporter = new Exporter($travelInfo);
+            $exporter = new Metadata\Travel\Exporter($travelInfo);
             $this->metadata = $exporter->getMetadata();
         }
         return parent::getMetadata();

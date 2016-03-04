@@ -21,15 +21,15 @@ use laravel\pagseguro\Checkout\Facade\CheckoutFacade;
 $data = [
     'items' => [
         [
-            'id' => '18',
+            'id' => 18,
             'description' => 'Laravel PS Simple Checkout',
-            'quantity' => '1',
-            'amount' => '1.15',
-            'weight' => '45',
-            'shippingCost' => '3.5',
-            'width' => '50',
-            'height' => '45',
-            'length' => '60',
+            'quantity' => 1,
+            'shippingCost' => 3.5,
+            'width' => 50,
+            'weight' => 45,
+            'height' => 45,
+            'length' => 60,
+            'amount' => 1.15,
         ]
     ],
     'shipping' => [

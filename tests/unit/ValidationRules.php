@@ -80,4 +80,20 @@ class ValidationRules extends \PHPUnit_Framework_TestCase
         $data[1] = [-1, true];
         return $data;
     }
+
+    /**
+     * @return array
+     */
+    protected function emptyRequired()
+    {
+        return ['', false];
+    }
+
+    /**
+     * @return array
+     */
+    protected function emptyUnrequired()
+    {
+        return ['', true];
+    }
 }

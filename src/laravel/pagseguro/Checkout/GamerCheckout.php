@@ -3,8 +3,6 @@
 namespace laravel\pagseguro\Checkout;
 
 use laravel\pagseguro\Checkout\Metadata\Gamer\GameInfo;
-use laravel\pagseguro\Checkout\Metadata\Gamer\Exporter;
-use laravel\pagseguro\Checkout\Metadata\MetadataCollection;
 
 /**
  * Gamer Checkout Object
@@ -42,13 +40,13 @@ class GamerCheckout extends SimpleCheckout
     }
 
     /**
-     * @return MetadataCollection
+     * @return Metadata\MetadataCollection
      */
     public function getMetadata()
     {
         $gameInfo = $this->getGameInfo();
         if (!is_null($gameInfo)) {
-            $exporter = new Exporter($gameInfo);
+            $exporter = new Metadata\Gamer\Exporter($gameInfo);
             $this->metadata = $exporter->getMetadata();
         }
         return parent::getMetadata();
