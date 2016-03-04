@@ -12,14 +12,12 @@
   </head>
 
   <body>
-
-    <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/michaeldouglas/laravel-pagseguro">View on GitHub</a>
 
           <h1 id="project_title">Laravel Pag Seguro</h1>
-          <h2 id="project_tagline">Integração com o gateway de pagamento pagseguro, para utilização do Laravel</h2>
+          <h2 id="project_tagline"><%= @document.subtitle %></h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/michaeldouglas/laravel-pagseguro/zipball/master">Download this project as a .zip file</a>
@@ -28,14 +26,12 @@
         </header>
     </div>
 
-    <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>Laravel Pag Seguro</p>
+        <%- @content %>
       </section>
     </div>
 
-    <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
         <p class="copyright">Laravel Pag Seguro maintained by <a href="https://github.com/michaeldouglas">michaeldouglas</a>, <a href="https://github.com/isaquesb">isaquesb</a> e <a href="https://github.com/marabesi">marabesi</a></p>
