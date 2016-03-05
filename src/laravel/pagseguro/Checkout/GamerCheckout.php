@@ -2,8 +2,6 @@
 
 namespace laravel\pagseguro\Checkout;
 
-use laravel\pagseguro\Checkout\Metadata\Gamer\GameInfo;
-
 /**
  * Gamer Checkout Object
  *
@@ -19,12 +17,12 @@ class GamerCheckout extends SimpleCheckout
 {
 
     /**
-     * @var GameInfo
+     * @var Metadata\Gamer\GameInfo
      */
     protected $gameInfo;
 
     /**
-     * @return GameInfo
+     * @return Metadata\Gamer\GameInfo
      */
     public function getGameInfo()
     {
@@ -32,9 +30,9 @@ class GamerCheckout extends SimpleCheckout
     }
 
     /**
-     * @param GameInfo $gameInfo
+     * @param Metadata\Gamer\GameInfo $gameInfo
      */
-    public function setGameInfo(GameInfo $gameInfo)
+    public function setGameInfo(Metadata\Gamer\GameInfo $gameInfo)
     {
         $this->gameInfo = $gameInfo;
     }

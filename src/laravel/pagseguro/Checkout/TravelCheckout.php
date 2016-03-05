@@ -2,7 +2,6 @@
 
 namespace laravel\pagseguro\Checkout;
 
-use laravel\pagseguro\Checkout\Metadata\Travel\TravelInfo;
 
 /**
  * Travel Checkout Object
@@ -19,12 +18,12 @@ class TravelCheckout extends SimpleCheckout
 {
 
     /**
-     * @var TravelInfo
+     * @var Metadata\Travel\TravelInfo
      */
     protected $travelInfo;
 
     /**
-     * @return TravelInfo
+     * @return Metadata\Travel\TravelInfo
      */
     public function getTravelInfo()
     {
@@ -32,9 +31,9 @@ class TravelCheckout extends SimpleCheckout
     }
 
     /**
-     * @param TravelInfo $travelInfo
+     * @param Metadata\Travel\TravelInfo $travelInfo
      */
-    public function setTravelInfo(TravelInfo $travelInfo)
+    public function setTravelInfo(Metadata\Travel\TravelInfo $travelInfo)
     {
         $this->travelInfo = $travelInfo;
     }
