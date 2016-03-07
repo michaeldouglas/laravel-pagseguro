@@ -36,14 +36,14 @@ class InformationFactory extends InformationAbstractFactory
             'reference',
             'type',
             'status',
-            'itemcount',
-            'installmentcount',
+            'itemCount',
+            'installmentCount',
         ], null);
         $data = array_intersect_key($this->data, $map);
         $data['date'] = $this->getDate();
         $data['status'] = $this->getStatus();
-        $data['lasteventdate'] = $this->getLastEventDate();
-        $data['paymentmethod'] = $this->getPaymentMethod();
+        $data['lastEventDate'] = $this->getLastEventDate();
+        $data['paymentMethod'] = $this->getPaymentMethod();
         $data['amounts'] = $this->getAmounts();
         $data['sender'] = $this->getSender();
         $data['shipping'] = $this->getShipping();
@@ -66,7 +66,7 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getPaymentMethod()
     {
-        $data = $this->data['paymentmethod'];
+        $data = $this->data['paymentMethod'];
         if (!array_key_exists('type', $data)
             || !array_key_exists('code', $data)
         ) {
@@ -82,7 +82,7 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getLastEventDate()
     {
-        return $this->getDateTimeObject($this->data['lasteventdate']);
+        return $this->getDateTimeObject($this->data['lastEventDate']);
     }
 
     /**
@@ -113,7 +113,7 @@ class InformationFactory extends InformationAbstractFactory
     {
         $data = $this->data['sender'];
         $phone = [
-            'areaCode' => $data['phone']['areacode'],
+            'areaCode' => $data['phone']['areaCode'],
             'number' => $data['phone']['number'],
         ];
         $data['phone'] = $phone;
@@ -127,11 +127,11 @@ class InformationFactory extends InformationAbstractFactory
     public function getAmounts()
     {
         $map = array_fill_keys([
-            'grossamount',
-            'discountamount',
-            'feeamount',
-            'netamount',
-            'extraamount',
+            'grossAmount',
+            'discountAmount',
+            'feeAmount',
+            'netAmount',
+            'extraAmount',
         ], null);
         $data = array_intersect_key($this->data, $map);
         $amounts = new Amounts($data);

@@ -21,8 +21,19 @@ class Checkout
     public function createFromArray(array $data)
     {
         $resolver = new Resolver();
-        $data['redirectURL'] = $resolver->getRedirectURL();
-        $data['notificationURL'] = $resolver->getNotificationURL();
+		
+		if (!isset($data['redirectURL']))
+		{
+			$data['redirectURL'] = $resolver->getRedirectURL();
+		}
+		
+        if (!isset($data['notificationURL']))
+        {
+			$data['notificationURL'] = $resolver->getNotificationURL();
+		}
+        
+        // array_filter: If no callback is supplied, all entries of array 
+        // equal to FALSE will be removed.
         $createData = array_filter($data);
         $facade = new CheckoutFacade();
         $checkout = $facade->createFromArray($createData);
