@@ -3,7 +3,7 @@
 namespace laravel\pagseguro\Facades;
 
 use laravel\pagseguro\Config\Config;
-use laravel\pagseguro\Credentials\Credentials as PagSeguriCredentials;
+use laravel\pagseguro\Credentials\Credentials as PagSeguroCredentials;
 
 /**
  * Credentials Facade
@@ -20,7 +20,7 @@ class Credentials
      */
     public function create($token, $email)
     {
-        return new PagSeguriCredentials($token, $email);
+        return new PagSeguroCredentials($token, $email);
     }
 
     /**
