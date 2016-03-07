@@ -28,6 +28,11 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
      * @var string
      */
     protected $currency = 'BRL';
+    
+    /**
+     * @var string
+     */
+    protected $reference;
 
     /**
      * @var ItemCollection
@@ -147,6 +152,25 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
         $this->shipping = $shipping;
         return $this;
     }
+
+    /**
+     * @param String $reference
+     * @return SimpleCheckout
+     */
+    public function setReference($reference)
+    {
+		$this->reference = $reference;
+	}
+	
+	
+    /**
+     * @return String $reference
+     */
+    public function getReference()
+    {
+		return $this->reference;
+	}
+	
 
     /**
      * Send Checkout
