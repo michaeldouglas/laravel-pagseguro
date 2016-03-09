@@ -16,7 +16,7 @@ namespace laravel\pagseguro\Checkout\Metadata;
 class ItemGroup extends Item
 {
     /**
-     * @var string
+     * @var array
      */
     protected $value = [];
 

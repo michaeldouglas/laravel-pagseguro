@@ -2,7 +2,6 @@
 
 namespace laravel\pagseguro\Checkout;
 
-
 /**
  * Travel Checkout Object
  *
@@ -17,37 +16,5 @@ namespace laravel\pagseguro\Checkout;
 class TravelCheckout extends SimpleCheckout
 {
 
-    /**
-     * @var Metadata\Travel\TravelInfo
-     */
-    protected $travelInfo;
-
-    /**
-     * @return Metadata\Travel\TravelInfo
-     */
-    public function getTravelInfo()
-    {
-        return $this->travelInfo;
-    }
-
-    /**
-     * @param Metadata\Travel\TravelInfo $travelInfo
-     */
-    public function setTravelInfo(Metadata\Travel\TravelInfo $travelInfo)
-    {
-        $this->travelInfo = $travelInfo;
-    }
-
-    /**
-     * @return Metadata\MetadataCollection
-     */
-    public function getMetadata()
-    {
-        $travelInfo = $this->getTravelInfo();
-        if (!is_null($travelInfo)) {
-            $exporter = new Metadata\Travel\Exporter($travelInfo);
-            $this->metadata = $exporter->getMetadata();
-        }
-        return parent::getMetadata();
-    }
+    use HasInfoTrait;
 }

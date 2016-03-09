@@ -39,7 +39,7 @@ class TravelFacade
         $dataFacade = new DataFacade();
         $checkoutData = $dataFacade->ensureInstances($data);
         $checkout = new TravelCheckout($checkoutData);
-        $checkout->setTravelInfo($travelInfo);
+        $checkout->setInfo($travelInfo);
         return $checkout;
     }
 

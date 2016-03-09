@@ -69,7 +69,7 @@ class Item implements TagableInterface
     }
 
     /**
-     * @return string
+     * @return string|array Array on groups
      */
     public function getValue()
     {

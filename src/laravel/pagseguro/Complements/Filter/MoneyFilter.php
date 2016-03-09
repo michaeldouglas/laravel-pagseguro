@@ -16,6 +16,10 @@ namespace laravel\pagseguro\Complements\Filter;
 class MoneyFilter
 {
 
+    /**
+     * @param float $value
+     * @return string|float
+     */
     public function filter($value)
     {
         if (empty($value)) {
