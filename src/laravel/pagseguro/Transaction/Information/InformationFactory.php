@@ -39,7 +39,7 @@ class InformationFactory extends InformationAbstractFactory
             'itemCount',
             'installmentCount',
         ], null);
-        $data = array_intersect_key($this->normalizedkeys($this->data), $map);
+        $data = array_intersect_key($this->normalizedCase($this->data), $map);
         $data['date'] = $this->getDate();
         $data['status'] = $this->getStatus();
         $data['lastEventDate'] = $this->getLastEventDate();
@@ -55,7 +55,7 @@ class InformationFactory extends InformationAbstractFactory
      * Normalize data Keys
      * @return array
      */
-    public function normalizedkeys($data)
+    private function normalizedCase($data)
     {
         $newData = [];
         $map = [
