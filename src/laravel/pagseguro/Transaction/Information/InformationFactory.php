@@ -36,19 +36,40 @@ class InformationFactory extends InformationAbstractFactory
             'reference',
             'type',
             'status',
-            'itemcount',
-            'installmentcount',
+            'itemCount',
+            'installmentCount',
         ], null);
-        $data = array_intersect_key($this->data, $map);
+        $data = array_intersect_key($this->normalizedkeys($this->data), $map);
         $data['date'] = $this->getDate();
         $data['status'] = $this->getStatus();
-        $data['lasteventdate'] = $this->getLastEventDate();
-        $data['paymentmethod'] = $this->getPaymentMethod();
+        $data['lastEventDate'] = $this->getLastEventDate();
+        $data['paymentMethod'] = $this->getPaymentMethod();
         $data['amounts'] = $this->getAmounts();
         $data['sender'] = $this->getSender();
         $data['shipping'] = $this->getShipping();
         $data['items'] = $this->getItems();
         return new Information($data);
+    }
+
+    /**
+     * Normalize data Keys
+     * @return array
+     */
+    public function normalizedkeys($data)
+    {
+        $newData = [];
+        $map = [
+            'count' => 'Count',
+            'method' => 'Method',
+            'eventdate' => 'EventDate',
+        ];
+        $mapFrom = array_keys($map);
+        $mapTo = array_values($map);
+        foreach ($data as $key => $value) {
+            $normaized = str_replace($mapFrom, $mapTo, $key);
+            $newData[$normaized] = $value;
+        }
+        return $newData;
     }
 
     /**
