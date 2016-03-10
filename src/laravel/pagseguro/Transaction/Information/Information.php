@@ -56,13 +56,13 @@ class Information extends InformationAbstract
      * Last Event Date
      * @var \DateTime
      */
-    protected $lasteventdate;
+    protected $lastEventDate;
 
     /**
      * Payment Method
      * @var PaymentMethod
      */
-    protected $paymentmethod;
+    protected $paymentMethod;
 
     /**
      * @var Amounts
@@ -73,13 +73,13 @@ class Information extends InformationAbstract
      * Installment Amount
      * @var int
      */
-    protected $installmentcount;
+    protected $installmentCount;
 
     /**
      * Item Count
      * @var int
      */
-    protected $itemcount;
+    protected $itemCount;
 
     /**
      * Items
@@ -161,18 +161,18 @@ class Information extends InformationAbstract
      * Get Last event date
      * @return \DateTime
      */
-    public function getLasteventdate()
+    public function getLastEventDate()
     {
-        return $this->lasteventdate;
+        return $this->lastEventDate;
     }
 
     /**
      * Get Payment Method
      * @return PaymentMethod
      */
-    public function getPaymentmethod()
+    public function getPaymentMethod()
     {
-        return $this->paymentmethod;
+        return $this->paymentMethod;
     }
 
     /**
@@ -188,18 +188,18 @@ class Information extends InformationAbstract
      * Get Installment Count
      * @return int
      */
-    public function getInstallmentcount()
+    public function getInstallmentCount()
     {
-        return $this->installmentcount;
+        return $this->installmentCount;
     }
 
     /**
      * Get Item Count
      * @return int
      */
-    public function getItemcount()
+    public function getItemCount()
     {
-        return $this->itemcount;
+        return $this->itemCount;
     }
 
     /**
@@ -270,22 +270,22 @@ class Information extends InformationAbstract
     }
 
     /**
-     * @param \DateTime $lasteventdate
+     * @param \DateTime $lastEventDate
      * @return Information
      */
-    protected function setLasteventdate($lasteventdate)
+    protected function setLastEventDate($lastEventDate)
     {
-        $this->lasteventdate = $lasteventdate;
+        $this->lastEventDate = $lastEventDate;
         return $this;
     }
 
     /**
-     * @param PaymentMethod $paymentmethod
+     * @param PaymentMethod $paymentMethod
      * @return Information
      */
-    protected function setPaymentmethod(PaymentMethod $paymentmethod)
+    protected function setPaymentMethod(PaymentMethod $paymentMethod)
     {
-        $this->paymentmethod = $paymentmethod;
+        $this->paymentMethod = $paymentMethod;
         return $this;
     }
 
@@ -300,22 +300,22 @@ class Information extends InformationAbstract
     }
 
     /**
-     * @param int $installmentcount
+     * @param int $installmentCount
      * @return Information
      */
-    protected function setInstallmentcount($installmentcount)
+    protected function setInstallmentCount($installmentCount)
     {
-        $this->installmentcount = $installmentcount;
+        $this->installmentCount = $installmentCount;
         return $this;
     }
 
     /**
-     * @param int $itemcount
+     * @param int $itemCount
      * @return Information
      */
-    protected function setItemcount($itemcount)
+    protected function setItemCount($itemCount)
     {
-        $this->itemcount = $itemcount;
+        $this->itemCount = $itemCount;
         return $this;
     }
 

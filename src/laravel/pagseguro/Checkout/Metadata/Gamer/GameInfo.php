@@ -2,6 +2,7 @@
 
 namespace laravel\pagseguro\Checkout\Metadata\Gamer;
 
+use laravel\pagseguro\Checkout\Metadata\InfoInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorConstructorTrait;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorProtectedTrait;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
@@ -17,7 +18,7 @@ use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
  *
  * @copyright  Laravel\PagSeguro
  */
-class GameInfo implements GamerInterface
+class GameInfo implements GamerInterface, InfoInterface
 {
 
     /**

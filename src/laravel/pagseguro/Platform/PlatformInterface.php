@@ -51,7 +51,7 @@ interface PlatformInterface
 
     /**
      * @param string $routeName
-     * @return void
+     * @return string
      */
     public function getUrlByRoute($routeName);
 }

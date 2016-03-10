@@ -30,13 +30,14 @@ class ValidationRulesTest extends \laravel\pagseguro\Tests\Unit\ValidationRules
      */
     public function codeProvider()
     {
-        return [
-            ['', false],
+        $data = [
             ['012345678901234567890123456789012345678', true],
             ['0123ABC7890123456789012345678901234567D', true],
             ['0123456789012345678901234567890123456789', false],
             ['01234567890123456789012345678901234567', false],
         ];
+        $data[] = $this->emptyRequired();
+        return $data;
     }
 
     /**

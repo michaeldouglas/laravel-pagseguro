@@ -40,9 +40,9 @@ class Exporter implements HasMetadataInterface
     public function getMetadata()
     {
         $metadataCollection = new MetadataCollection([]);
-        $this->appendGameName($metadataCollection)
-            ->appendPlayerId($metadataCollection)
-            ->appendTimeInGame($metadataCollection);
+        $this->appendGameName($metadataCollection);
+        $this->appendPlayerId($metadataCollection);
+        $this->appendTimeInGame($metadataCollection);
         if (!$metadataCollection->count()) {
             return null;
         }
@@ -51,7 +51,7 @@ class Exporter implements HasMetadataInterface
 
     /**
      * @param MetadataCollection $metadataCollection
-     * @return Exporter
+     * @return void
      */
     private function appendGameName(MetadataCollection $metadataCollection)
     {
@@ -60,12 +60,11 @@ class Exporter implements HasMetadataInterface
             $item = new Item(Item::KEY_GAME_NAME, $gameName);
             $metadataCollection->append($item);
         }
-        return $this;
     }
 
     /**
      * @param MetadataCollection $metadataCollection
-     * @return Exporter
+     * @return void
      */
     private function appendPlayerId(MetadataCollection $metadataCollection)
     {
@@ -74,12 +73,11 @@ class Exporter implements HasMetadataInterface
             $item = new Item(Item::KEY_PLAYER_ID, $playerId);
             $metadataCollection->append($item);
         }
-        return $this;
     }
 
     /**
      * @param MetadataCollection $metadataCollection
-     * @return Exporter
+     * @return void
      */
     private function appendTimeInGame(MetadataCollection $metadataCollection)
     {
@@ -88,6 +86,5 @@ class Exporter implements HasMetadataInterface
             $item = new Item(Item::KEY_TIME_IN_GAME_DAYS, $timeInGameDays);
             $metadataCollection->append($item);
         }
-        return $this;
     }
 }

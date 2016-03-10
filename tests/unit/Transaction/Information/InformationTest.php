@@ -82,8 +82,8 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     {
         $info = $this->information;
         $this->assertEquals('9E884542-81B3-4419-9A75-BCC6FB495EF1', $info->getCode());
-        $this->assertEquals(1, $info->getInstallmentcount());
-        $this->assertEquals(2, $info->getItemcount());
+        $this->assertEquals(1, $info->getInstallmentCount());
+        $this->assertEquals(2, $info->getItemCount());
         $this->assertEquals(1, $info->getType());
         $this->assertEquals('REF1234', $info->getReference());
     }
@@ -104,11 +104,11 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testAmountData()
     {
         $info = $this->information->getAmounts();
-        $this->assertEquals(49900, $info->getGrossamount());
-        $this->assertEquals(0, $info->getDiscountamount());
-        $this->assertEquals(1.1, $info->getFeeamount());
-        $this->assertEquals(49909, $info->getNetamount());
-        $this->assertEquals(5, $info->getExtraamount());
+        $this->assertEquals(49900, $info->getGrossAmount());
+        $this->assertEquals(0, $info->getDiscountAmount());
+        $this->assertEquals(1.1, $info->getFeeAmount());
+        $this->assertEquals(49909, $info->getNetAmount());
+        $this->assertEquals(5, $info->getExtraAmount());
     }
 
     /**
@@ -159,7 +159,7 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     public function testLastEventInstance()
     {
         $info = $this->information;
-        $this->assertInstanceOf('\DateTime', $info->getLasteventdate());
+        $this->assertInstanceOf('\DateTime', $info->getLastEventDate());
     }
 
     /**
@@ -167,7 +167,7 @@ class InformationTest extends \PHPUnit_Framework_TestCase
      */
     public function testLastEventData()
     {
-        $info = $this->information->getLasteventdate();
+        $info = $this->information->getLastEventDate();
         $this->assertEquals('2011-02-15 17:39:14', $info->format('Y-m-d H:i:s'));
     }
 
@@ -178,7 +178,7 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     {
         $info = $this->information;
         $className = '\laravel\pagseguro\Payment\Method\MethodInterface';
-        $this->assertInstanceOf($className, $info->getPaymentmethod());
+        $this->assertInstanceOf($className, $info->getPaymentMethod());
     }
 
     /**
@@ -186,7 +186,7 @@ class InformationTest extends \PHPUnit_Framework_TestCase
      */
     public function testPaymentMethodData()
     {
-        $info = $this->information->getPaymentmethod();
+        $info = $this->information->getPaymentMethod();
         $this->assertEquals('Cartão de Crédito VISA', $info->getFullName());
     }
 

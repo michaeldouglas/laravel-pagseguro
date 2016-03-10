@@ -69,6 +69,7 @@ class Manager
 
     /**
      * @param array $adapter
+     * @return AdapterInterface
      */
     private static function adapterArrayFactory(array $adapter)
     {

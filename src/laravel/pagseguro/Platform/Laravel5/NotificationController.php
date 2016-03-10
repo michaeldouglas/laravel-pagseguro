@@ -48,6 +48,7 @@ class NotificationController extends Controller
 
     /**
      * Get Credential
+     * @param string $notificationCode
      * @return CredentialsInterface
      */
     private function getCredentialsTo($notificationCode)

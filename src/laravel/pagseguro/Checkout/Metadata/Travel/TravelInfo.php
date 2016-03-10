@@ -2,6 +2,7 @@
 
 namespace laravel\pagseguro\Checkout\Metadata\Travel;
 
+use laravel\pagseguro\Checkout\Metadata\InfoInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorConstructorTrait;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorProtectedTrait;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
@@ -17,7 +18,7 @@ use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
  *
  * @copyright  Laravel\PagSeguro
  */
-class TravelInfo implements TravelInterface
+class TravelInfo implements TravelInterface, InfoInterface
 {
 
     /**

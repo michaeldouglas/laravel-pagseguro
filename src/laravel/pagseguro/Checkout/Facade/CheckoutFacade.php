@@ -65,7 +65,7 @@ class CheckoutFacade
         $dataFacade = new DataFacade();
         $checkoutData = $dataFacade->ensureInstances($data);
         $checkout = new GamerCheckout($checkoutData);
-        $checkout->setGameInfo($gameInfo);
+        $checkout->setInfo($gameInfo);
         return $checkout;
     }
 

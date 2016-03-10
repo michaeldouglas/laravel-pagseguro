@@ -30,15 +30,15 @@ class ItemTest extends \PHPUnit_Framework_TestCase
     public function testFullItem()
     {
         $data = [
-            'id' => '1',
             'description' => 'Laravel PS',
             'quantity' => '777',
-            'amount' => '888',
             'weight' => '999',
             'shippingCost' => '666',
-            'width' => '555',
+            'width' => 555,
             'height' => '444',
             'length' => '333',
+            'amount' => '888',
+            'id' => 1,
         ];
         $item = new Item($data);
         $this->assertEquals($data, $item->toArray());

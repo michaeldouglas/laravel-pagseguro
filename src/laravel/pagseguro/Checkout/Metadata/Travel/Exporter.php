@@ -41,9 +41,9 @@ class Exporter implements HasMetadataInterface
     public function getMetadata()
     {
         $metadataCollection = new MetadataCollection([]);
-        $this->appendDestination($metadataCollection)
-            ->appendOrigin($metadataCollection)
-            ->appendPassengers($metadataCollection);
+        $this->appendDestination($metadataCollection);
+        $this->appendOrigin($metadataCollection);
+        $this->appendPassengers($metadataCollection);
         if (!$metadataCollection->count()) {
             return null;
         }
@@ -77,7 +77,7 @@ class Exporter implements HasMetadataInterface
 
     /**
      * @param MetadataCollection $metadataCollection
-     * @return Exporter
+     * @return void
      */
     private function appendDestination(MetadataCollection $metadataCollection)
     {
@@ -90,12 +90,11 @@ class Exporter implements HasMetadataInterface
                 Item::KEY_DESTINATION_CITY
             );
         }
-        return $this;
     }
 
     /**
      * @param MetadataCollection $metadataCollection
-     * @return Exporter
+     * @return void
      */
     private function appendOrigin(MetadataCollection $metadataCollection)
     {
@@ -108,12 +107,11 @@ class Exporter implements HasMetadataInterface
                 Item::KEY_ORIGIN_CITY
             );
         }
-        return $this;
     }
 
     /**
      * @param MetadataCollection $metadataCollection
-     * @return Exporter
+     * @return void
      */
     private function appendPassengers(MetadataCollection $metadataCollection)
     {
@@ -123,13 +121,12 @@ class Exporter implements HasMetadataInterface
                 $this->appendPassenger($metadataCollection, $passenger);
             }
         }
-        return $this;
     }
 
     /**
      * @param MetadataCollection $metadataCollection
      * @param Passenger $passenger
-     * @return Exporter
+     * @return void
      */
     private function appendPassenger(
         MetadataCollection $metadataCollection,
