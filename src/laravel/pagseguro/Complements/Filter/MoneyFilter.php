@@ -28,6 +28,6 @@ class MoneyFilter
         if (!is_numeric($value)) {
             throw new \InvalidArgumentException('Invalid numeric type');
         }
-        return number_format($value, 2);
+        return number_format($value, 2, '.', '');
     }
 }
