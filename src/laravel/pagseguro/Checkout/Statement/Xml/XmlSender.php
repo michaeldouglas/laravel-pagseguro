@@ -104,14 +104,15 @@ XML;
     {
         $str = '<documents>%s</documents>';
         $documentsStr = [];
-        $iterator = $this->sender->getDocuments()->getIterator();
+        $docs = $this->sender->getDocuments();
+        if (!$docs || !$docs->count()) {
+            return null;
+        }
+        $iterator = $docs->getIterator();
         while ($iterator->valid()) {
             $document = $iterator->current();
             $documentsStr[] = $this->getDocumentXmlString($document);
             $iterator->next();
-        }
-        if (!count($documentsStr)) {
-            return null;
         }
         return sprintf($str, implode('', $documentsStr));
     }
