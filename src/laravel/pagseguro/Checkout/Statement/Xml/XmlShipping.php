@@ -4,6 +4,7 @@ namespace laravel\pagseguro\Checkout\Statement\Xml;
 
 use laravel\pagseguro\Address\AddressInterface;
 use laravel\pagseguro\Shipping\ShippingInterface;
+use laravel\pagseguro\Complements\Filter\MoneyFilter;
 
 /**
  * Checkout Statement Xml Shipping
@@ -40,6 +41,7 @@ class XmlShipping implements XmlPartInterface
         return
             '<shipping>' .
             $this->getTypeXmlString() .
+            $this->getCostXmlString() .
             $this->getAddressXmlString($this->shipping->getAddress()) .
             '</shipping>';
     }
@@ -51,6 +53,20 @@ class XmlShipping implements XmlPartInterface
     {
         $str = '<type>%s</type>';
         return sprintf($str, $this->shipping->getType());
+    }
+
+    /**
+     * @return string XML
+     */
+    private function getCostXmlString()
+    {
+        $cost = $this->shipping->getCost();
+        $moneyFilter = new MoneyFilter();
+        if (!$cost) {
+            return null;
+        }
+        $str = '<cost>%s</cost>';
+        return sprintf($str, $moneyFilter->filter($cost));
     }
 
     /**
