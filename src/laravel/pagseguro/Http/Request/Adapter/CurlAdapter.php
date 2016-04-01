@@ -83,8 +83,7 @@ class CurlAdapter implements AdapterInterface
         }
         $headers['Content-Type'] .= '; charset=' . $request->getCharset();
         if ($isPostOrPut) {
-            $charset = $request->getCharset();
-            $headers['Content-Length'] = mb_strlen($data, $charset);
+            $headers['Content-Length'] = strlen($data);
         }
         return $this->prepareHeaders($headers);
     }
