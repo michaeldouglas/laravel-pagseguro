@@ -103,7 +103,7 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getLastEventDate()
     {
-        return $this->getDateTimeObject($this->data['lasteventdate']);
+        return $this->getDateTimeObject($this->data['lastEventDate']);
     }
 
     /**
@@ -134,7 +134,7 @@ class InformationFactory extends InformationAbstractFactory
     {
         $data = $this->data['sender'];
         $phone = [
-            'areaCode' => $data['phone']['areacode'],
+            'areaCode' => $data['phone']['areaCode'],
             'number' => $data['phone']['number'],
         ];
         $data['phone'] = $phone;
@@ -165,7 +165,7 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getItems()
     {
-        $data = $this->data['items']['item'];
+        $data = $this->data['items'];
         $items = ItemCollection::factory($data);
         return $items;
     }
@@ -191,8 +191,8 @@ class InformationFactory extends InformationAbstractFactory
     {
         $data = $this->data['shipping'];
         if (array_key_exists('postalcode', $data['address'])) {
-            $postalCode = $data['address']['postalcode'];
-            unset($data['address']['postalcode']);
+            $postalCode = $data['address']['postalCode'];
+            unset($data['address']['postalCode']);
             $data['address']['postalCode'] = $postalCode;
         }
         return $data;
