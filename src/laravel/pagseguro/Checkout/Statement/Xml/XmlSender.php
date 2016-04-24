@@ -37,6 +37,7 @@ class XmlSender implements XmlPartInterface
      */
     public function getXmlString()
     {
+        //Todo: Added hash to transparent checkout
         return
             '<sender>' .
             $this->getEmailXmlString() .
@@ -44,7 +45,17 @@ class XmlSender implements XmlPartInterface
             $this->getPhoneXmlString() .
             $this->getDocumentsXmlString() .
             $this->getBornDateXmlString() .
+            $this->getHashXmlString() .
             '</sender>';
+    }
+
+    /**
+     * @return string XML
+     */
+    private function getHashXmlString()
+    {
+        $str = '<hash>%s</hash>';
+        return sprintf($str, $this->sender->getHash());
     }
 
     /**

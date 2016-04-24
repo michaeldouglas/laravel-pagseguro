@@ -23,4 +23,6 @@ class Transaction
         $transaction = new PagSeguroTransaction($code, $credentials, $autoCheck);
         return $transaction;
     }
+
+
 }

@@ -26,6 +26,12 @@ interface SenderInterface
     public function __construct(array $data = []);
 
     /**
+     * Get Hash
+     * @return string
+     */
+    public function getHash();
+
+    /**
      * Get E-mail
      * @return string
      */
@@ -54,6 +60,13 @@ interface SenderInterface
      * @return string
      */
     public function getBornDate();
+
+    /**
+     * Set Hash
+     * @param string $hash
+     * @return SenderInterface
+     */
+    public function setHash($hash);
 
     /**
      * Set Email

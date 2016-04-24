@@ -40,4 +40,12 @@ class PagSeguro
     {
         return new Transaction();
     }
+
+    /**
+     * @return Transaction
+     */
+    public function session()
+    {
+        return new Session();
+    }
 }

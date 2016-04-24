@@ -23,6 +23,7 @@ class ValidationRules implements ValidationRulesInterface
      * @var array
      */
     protected $rules = [
+        'hash' => 'String',
         'email' => 'Required|Email',
         'name' => 'Required|min:2|max:50',
         'documents' => 'Required',

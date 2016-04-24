@@ -8,6 +8,7 @@ use laravel\pagseguro\Checkout\Metadata\Gamer\GameInfo;
 use laravel\pagseguro\Checkout\Metadata\Travel\TravelInfo;
 use laravel\pagseguro\Checkout\SimpleCheckout;
 use laravel\pagseguro\Checkout\GamerCheckout;
+use laravel\pagseguro\Checkout\TransparentCheckout;
 use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Phone\PhoneInterface;
 
@@ -34,8 +35,9 @@ class CheckoutFacade
         $isGamer = array_key_exists('game', $data);
         $isTravel = array_key_exists('travel', $data);
         $isCharger = array_key_exists('cellphone_charger', $data);
-        $isSimple = !($isGamer || $isTravel || $isCharger);
-        $this->multiTypeCheck($isGamer, $isTravel, $isCharger, $isSimple);
+        $isTransparent = array_key_exists('transparent', $data);
+        $isSimple = !($isGamer || $isTravel || $isCharger || $isTransparent);
+        $this->multiTypeCheck($isGamer, $isTravel, $isCharger, $isTransparent, $isSimple);
         if ($isGamer) {
             $info = $data['game'];
             unset($data['game']);
@@ -48,6 +50,10 @@ class CheckoutFacade
             $info = $data['cellphone_charger'];
             unset($data['cellphone_charger']);
             return $this->createCellPhoneChargerCheckout($data, $info);
+        } elseif ($isTransparent) {
+            $info = $data['transparent'];
+            unset($data['transparent']);
+            return $this->createTransparentCheckout($data, $info);
         }
         return $this->createSimpleCheckout($data);
     }
@@ -78,6 +84,15 @@ class CheckoutFacade
     {
         $dataFacade = new DataFacade();
         $checkoutData = $dataFacade->ensureInstances($data);
+        $checkout = new SimpleCheckout($checkoutData);
+        return $checkout;
+    }
+
+    public function createTransparentCheckout(array $data, $transparentInfo)
+    {
+        //Todo: Implement TransparentCheckout
+        $dataFacade = new DataFacade();
+        $checkoutData = $dataFacade->ensureInstances($transparentInfo);
         $checkout = new SimpleCheckout($checkoutData);
         return $checkout;
     }

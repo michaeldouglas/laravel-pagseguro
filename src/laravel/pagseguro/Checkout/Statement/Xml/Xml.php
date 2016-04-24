@@ -39,7 +39,8 @@ class Xml implements StatementInterface
      */
     public function prepare(RequestInterface $request)
     {
-        $xml = $this->getCheckoutAsXml();
+        $xml = $this->checkout->getPaymentMode() === 'default' ? $this->getPaymentAsXml() : $this->getCheckoutAsXml();
+
         $charset = $this->checkout->getCharset();
         $request->setData($xml)
             ->setCharset($charset)
@@ -69,10 +70,48 @@ class Xml implements StatementInterface
     /**
      * @return string XML
      */
+    private function getPaymentAsXml()
+    {
+        return
+            $this->getTagXmlString() . '<payment>' .
+            $this->getPaymentModeXmlString() .
+            $this->getPaymentMethodXmlString() .
+            $this->getReceiverXmlString() .
+            $this->getCurrencyXmlString() .
+            $this->getItemsXmlString() .
+            $this->getReferenceXmlString() .
+            $this->getSenderXmlString() .
+            $this->getShippingXmlString() .
+            $this->getConfigXmlString() .
+            '</payment>';
+
+    }
+
+    /**
+     * @return string XML
+     */
     private function getTagXmlString()
     {
         $str = '<?xml version="1.0" encoding="%s" standalone="yes"?>';
         return sprintf($str, $this->checkout->getCharset());
+    }
+
+    /**
+     * @return string XML
+     */
+    private function getPaymentModeXmlString()
+    {
+        $str = '<mode>%s</mode>';
+        return sprintf($str, $this->checkout->getPaymentMode());
+    }
+
+    /**
+     * @return string XML
+     */
+    private function getPaymentMethodXmlString()
+    {
+        $str = '<method>%s</method>';
+        return sprintf($str, $this->checkout->getPaymentMethod());
     }
 
     /**

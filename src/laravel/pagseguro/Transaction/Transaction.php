@@ -101,4 +101,5 @@ class Transaction implements TransactionInterface
         }
         return $this->information;
     }
+
 }

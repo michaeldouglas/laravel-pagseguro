@@ -23,6 +23,10 @@ use laravel\pagseguro\Remote\Checkout as RemoteCheckout;
 class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
 {
 
+    protected $paymentMode = 'default';
+
+    protected $paymentMethod = 'boleto';
+
     /**
      * Only BRL
      * @var string
@@ -48,6 +52,38 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
      * @var ReceiverInterface
      */
     protected $receiver;
+
+    /**
+     * @return string
+     */
+    public function getPaymentMode()
+    {
+        return $this->paymentMode;
+    }
+
+    /**
+     * @param string $paymentMode
+     */
+    public function setPaymentMode($paymentMode)
+    {
+        $this->paymentMode = $paymentMode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param string $paymentMethod
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
+    }
 
     /**
      * @return SenderInterface
@@ -159,5 +195,17 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
         $data = $remote->send($this, $credentials);
         $factory = new Information\InformationFactory($data);
         return $factory->getInformation();
+    }
+
+    /**
+     * Send Checkout Transparent
+     * @param CredentialsInterface $credentials
+     * @return \laravel\pagseguro\Checkout\Information\Information
+     */
+    public function transparent(CredentialsInterface $credentials)
+    {
+        $remote = new RemoteCheckout();
+        $data = $remote->transparent($this, $credentials);
+        return $data;
     }
 }

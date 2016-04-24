@@ -32,4 +32,5 @@ interface TransactionInterface
      * @return Information\Information
      */
     public function getInformation();
+
 }

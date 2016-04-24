@@ -24,6 +24,12 @@ class Sender implements SenderInterface
 {
 
     /**
+     * Hash
+     * @var string
+     */
+    protected $hash;
+
+    /**
      * E-mail
      * @var string
      */
@@ -69,6 +75,14 @@ class Sender implements SenderInterface
     }
 
     /**
+     * @return string
+     */
+    public function getHash()
+    {
+        return $this->hash;
+    }
+
+    /**
      * Get E-mail
      * @return string
      */
@@ -111,6 +125,14 @@ class Sender implements SenderInterface
     public function getBornDate()
     {
         return $this->bornDate;
+    }
+
+    /**
+     * @param string $hash
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
     }
 
     /**

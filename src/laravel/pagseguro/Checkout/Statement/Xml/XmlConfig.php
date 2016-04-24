@@ -36,9 +36,10 @@ class XmlConfig implements XmlPartInterface
      */
     public function getXmlString()
     {
+        //Todo: Test if transparent checkout require redirectURl
         return
             $this->getExtraAmountXmlString() .
-            $this->getRedirectURLXmlString() .
+            //$this->getRedirectURLXmlString() .
             $this->getNotificationURLXmlString() .
             $this->getMaxUsesXmlString() .
             $this->getMaxAgeXmlString();

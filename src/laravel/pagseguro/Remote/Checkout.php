@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Remote;
 
 use laravel\pagseguro\Checkout\CheckoutInterface;
+use laravel\pagseguro\Checkout\SimpleCheckout;
 use laravel\pagseguro\Credentials\CredentialsInterface;
 use laravel\pagseguro\Checkout\Statement\Xml\Xml as XmlStatement;
 use laravel\pagseguro\Parser\Xml;
@@ -52,6 +53,30 @@ class Checkout extends ConsumerAbstract
         return $data;
     }
 
+    public function transparent(CheckoutInterface $checkout, CredentialsInterface $credential)
+    {
+        $url = $this->getUrlTo('checkout-transparent');
+        $request = $this->getRequest();
+        $this->prepareStatement($checkout, $request);
+        $credentialData = $this->getCredentialData($credential);
+        $response = $request->post($url, $credentialData);
+        if (!$response) {
+            throw new \RuntimeException('Checkout transparent failure');
+        }
+        $body = $response->getRawBody();
+        if ($response->getHttpStatus() !== 200) {
+            $error = 'Error on transparent: ' . $response->getHttpStatus() . '-' . $body;
+
+            $parser = new Xml($body);
+            $data = $parser->toArray();
+
+            throw new \RuntimeException($error);
+        }
+        $parser = new Xml($body);
+        $data = $parser->toArray();
+        return $data;
+    }
+
     /**
      * Prepare Request With Statement
      * @param CheckoutInterface $checkout
@@ -62,4 +87,6 @@ class Checkout extends ConsumerAbstract
         $stmt = new XmlStatement($checkout);
         $stmt->prepare($request);
     }
+
+
 }

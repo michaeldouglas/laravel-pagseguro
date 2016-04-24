@@ -92,10 +92,21 @@ interface CheckoutInterface
      */
     public function getShipping();
 
+    public function getPaymentMode();
+
+    public function getPaymentMethod();
+
     /**
      * Send Checkout
      * @param CredentialsInterface $credentials
      * @return array
      */
     public function send(CredentialsInterface $credentials);
+
+    /**
+     * Send Checkout
+     * @param CredentialsInterface $credentials
+     * @return array
+     */
+    public function transparent(CredentialsInterface $credentials);
 }
