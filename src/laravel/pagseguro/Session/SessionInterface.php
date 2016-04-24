@@ -3,12 +3,15 @@
 namespace laravel\pagseguro\Session;
 
 /**
- * Created by PhpStorm.
- * User: ealves
- * Date: 21/04/16
- * Time: 16:26
+ * Session Interface
+ *
+ * @category   Session
+ * @package    Laravel\PagSeguro\Transaction
+ *
+ * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ *
+ * @copyright  Laravel\PagSeguro
  */
-
 
 interface SessionInterface
 {

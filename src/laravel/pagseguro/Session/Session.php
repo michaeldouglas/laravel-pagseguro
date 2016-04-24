@@ -6,15 +6,13 @@ use laravel\pagseguro\Credentials\CredentialsInterface as Credentials;
 use laravel\pagseguro\Remote\Session as RemoteSession;
 
 /**
- * Transaction Object
+ * Session Object
  *
- * @category   Transaction
+ * @category   Session
  * @package    Laravel\PagSeguro\Session
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2015-09-15
+ * @author     Eduardo Alves <eduardoalves.info@gmail.com>
  *
- * @copyright  Laravel\PagSeguro
  */
 class Session implements SessionInterface
 {
