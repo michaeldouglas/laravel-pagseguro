@@ -58,6 +58,7 @@ class Checkout extends ConsumerAbstract
         $url = $this->getUrlTo('checkout-transparent');
         $request = $this->getRequest();
         $this->prepareStatement($checkout, $request);
+        dd($request->getData());
         $credentialData = $this->getCredentialData($credential);
         $response = $request->post($url, $credentialData);
         if (!$response) {
@@ -66,10 +67,6 @@ class Checkout extends ConsumerAbstract
         $body = $response->getRawBody();
         if ($response->getHttpStatus() !== 200) {
             $error = 'Error on transparent: ' . $response->getHttpStatus() . '-' . $body;
-
-            $parser = new Xml($body);
-            $data = $parser->toArray();
-
             throw new \RuntimeException($error);
         }
         $parser = new Xml($body);

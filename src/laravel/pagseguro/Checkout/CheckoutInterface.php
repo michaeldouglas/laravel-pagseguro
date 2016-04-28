@@ -92,6 +92,11 @@ interface CheckoutInterface
      */
     public function getShipping();
 
+    /**
+     * @return CreditCardInterface
+     */
+    public function getCreditCard();
+
     public function getPaymentMode();
 
     public function getPaymentMethod();

@@ -9,6 +9,7 @@ use laravel\pagseguro\Checkout\Metadata\Travel\TravelInfo;
 use laravel\pagseguro\Checkout\SimpleCheckout;
 use laravel\pagseguro\Checkout\GamerCheckout;
 use laravel\pagseguro\Checkout\TransparentCheckout;
+use laravel\pagseguro\CreditCard\CreditCard;
 use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Phone\PhoneInterface;
 
@@ -88,12 +89,22 @@ class CheckoutFacade
         return $checkout;
     }
 
-    public function createTransparentCheckout(array $data, $transparentInfo)
+    public function createTransparentCheckout(array $data, $info)
     {
+        /*if (!($info['creditCard'] instanceof CreditCard)) {
+            $creditCard = new CreditCard($info['creditCard']);
+        }*/
+
         //Todo: Implement TransparentCheckout
         $dataFacade = new DataFacade();
-        $checkoutData = $dataFacade->ensureInstances($transparentInfo);
+        $checkoutData = $dataFacade->ensureInstances($info);
+        //dd($checkoutData);
         $checkout = new SimpleCheckout($checkoutData);
+        //$creditCard = new CreditCard($info['creditCard']);
+        dd($checkout->getCreditCard());
+        //dd($checkout->getSender());
+        dd($checkout);
+        $checkout->setPaymentMethod($checkoutData['paymentMethod']);
         return $checkout;
     }
 
@@ -130,13 +141,15 @@ class CheckoutFacade
      * @param bool $isGamer
      * @param bool $isTravel
      * @param bool $isCharger
+     * @param bool $isTransparent
      * @param bool $isSimple
      */
-    private function multiTypeCheck($isGamer, $isTravel, $isCharger, $isSimple)
+    private function multiTypeCheck($isGamer, $isTravel, $isCharger, $isTransparent, $isSimple)
     {
         $counter = ((int)$isGamer) +
             ((int)$isTravel) +
             ((int)$isCharger) +
+            ((int)$isTransparent) +
             ((int)$isSimple);
         if ($counter > 1) {
             throw new \InvalidArgumentException('Two or more checkout types detected');

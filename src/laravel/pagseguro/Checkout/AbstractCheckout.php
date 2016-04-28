@@ -78,7 +78,7 @@ abstract class AbstractCheckout
         $data = null;
         $this->hydrateMagic(
             [
-                'paymentMode', 'paymentMethod', 'items', 'sender', 'shipping', 'currency',
+                'paymentMode', 'paymentMethod', 'creditCard', 'items', 'sender', 'shipping', 'currency',
                 'metadata', 'redirectURL', 'notificationURL',
                 'charset'
             ],

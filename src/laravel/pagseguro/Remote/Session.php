@@ -35,10 +35,9 @@ class Session extends ConsumerAbstract
         }
         $body = $response->getRawBody();
         if ($response->getHttpStatus() !== 200) {
-            $error = 'Error on setSession: ' . $response->getHttpStatus() . '-' . $body;
+            $error = 'Error on getSession: ' . $response->getHttpStatus() . '-' . $body;
             throw new \RuntimeException($error);
         }
-        //Todo: Add parser to session response
         $parser = new Xml($body);
         return $parser->toArray();
     }

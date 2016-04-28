@@ -6,6 +6,7 @@ use laravel\pagseguro\Credentials\CredentialsInterface;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Receiver\ReceiverInterface;
 use laravel\pagseguro\Sender\SenderInterface;
+use laravel\pagseguro\CreditCard\CreditCardInterface;
 use laravel\pagseguro\Shipping\ShippingInterface;
 use laravel\pagseguro\Remote\Checkout as RemoteCheckout;
 
@@ -25,7 +26,7 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
 
     protected $paymentMode = 'default';
 
-    protected $paymentMethod = 'boleto';
+    public $paymentMethod;
 
     /**
      * Only BRL
@@ -42,6 +43,11 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
      * @var SenderInterface
      */
     protected $sender;
+
+    /**
+     * @var CreditCardInterface
+     */
+    protected $creditCard;
 
     /**
      * @var ShippingInterface
@@ -103,6 +109,27 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
             throw new \InvalidArgumentException('Invalid Sender');
         }
         $this->sender = $sender;
+        return $this;
+    }
+
+    /**
+     * @return CreditCardInterface
+     */
+    public function getCreditCard()
+    {
+        return $this->creditCard;
+    }
+
+    /**
+     * @param CreditCardInterface $creditCard
+     * @return SimpleCheckout
+     */
+    protected function setCreditCard($creditCard)
+    {
+        if (!is_null($creditCard) && !($creditCard instanceof CreditCardInterface)) {
+            throw new \InvalidArgumentException('Invalid CreditCard');
+        }
+        $this->creditCard = $creditCard;
         return $this;
     }
 
@@ -205,6 +232,7 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
     public function transparent(CredentialsInterface $credentials)
     {
         $remote = new RemoteCheckout();
+        //dd($this);
         $data = $remote->transparent($this, $credentials);
         return $data;
     }

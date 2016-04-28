@@ -82,6 +82,7 @@ class Xml implements StatementInterface
             $this->getReferenceXmlString() .
             $this->getSenderXmlString() .
             $this->getShippingXmlString() .
+            $this->getCreditCardXmlString() .
             $this->getConfigXmlString() .
             '</payment>';
 
@@ -176,6 +177,20 @@ class Xml implements StatementInterface
             return null;
         }
         $xmlItems = new XmlShipping($shipping);
+        return $xmlItems->getXmlString();
+    }
+
+    /**
+     * @return string XML
+     */
+    private function getCreditCardXmlString()
+    {
+        $creditCard = $this->checkout->getCreditCard();
+        //dd($creditCard);
+        if (!$creditCard) {
+            return null;
+        }
+        $xmlItems = new XmlCreditCard($creditCard);
         return $xmlItems->getXmlString();
     }
 

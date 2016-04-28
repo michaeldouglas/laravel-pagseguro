@@ -1,8 +1,7 @@
 <?php
 
-namespace laravel\pagseguro\Sender;
+namespace laravel\pagseguro\CreditCard;
 
-use laravel\pagseguro\Address\AddressInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
 use laravel\pagseguro\Document\DocumentCollection;
@@ -10,30 +9,24 @@ use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Phone\PhoneInterface;
 
 /**
- * Sender Object
+ * CreditCard Object
  *
- * @category   Sender
- * @package    Laravel\PagSeguro\Sender
+ * @category   CreditCard
+ * @package    Laravel\PagSeguro\CreditCard
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>, Michael Douglas <michaeldouglas010790@gmail.com>
  * @since      2015-01-11
  *
  * @copyright  Laravel\PagSeguro
  */
-class Sender implements SenderInterface
+class CreditCard implements CreditCardInterface
 {
 
     /**
      * Hash
      * @var string
      */
-    protected $hash;
-
-    /**
-     * E-mail
-     * @var string
-     */
-    protected $email;
+    protected $token;
 
     /**
      * Name (Nome)
@@ -77,18 +70,9 @@ class Sender implements SenderInterface
     /**
      * @return string
      */
-    public function getHash()
+    public function getToken()
     {
-        return $this->hash;
-    }
-
-    /**
-     * Get E-mail
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
+        return $this->token;
     }
 
     /**
@@ -128,24 +112,11 @@ class Sender implements SenderInterface
     }
 
     /**
-     * Set Hash
-     * @param string $hash
-     * @return Hash
+     * @param string $token
      */
-    public function setHash($hash)
+    public function setToken($token)
     {
-        $this->hash = $hash;
-    }
-
-    /**
-     * Set Email
-     * @param string $email
-     * @return AddressInterface
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-        return $this;
+        $this->token = $token;
     }
 
     /**
