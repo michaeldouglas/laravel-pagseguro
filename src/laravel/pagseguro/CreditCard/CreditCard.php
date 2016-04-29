@@ -2,6 +2,7 @@
 
 namespace laravel\pagseguro\CreditCard;
 
+use laravel\pagseguro\Address\AddressInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
 use laravel\pagseguro\Document\DocumentCollection;
@@ -47,10 +48,16 @@ class CreditCard implements CreditCardInterface
     protected $documents;
 
     /**
-     * Born Date (Data de nascimento)
+     * Birth Date (Data de nascimento)
      * @var string
      */
-    protected $bornDate;
+    protected $birthDate;
+
+    /**
+     * BillingAddress
+     * @var AddressInterface
+     */
+    protected $billingAddress;
 
     use DataHydratorTrait, ValidateTrait {
         ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
@@ -103,20 +110,31 @@ class CreditCard implements CreditCardInterface
     }
 
     /**
-     * Get Born Date (Data de Nascimento)
+     * Get Birth Date (Data de Nascimento)
      * @return string
      */
-    public function getBornDate()
+    public function getBirthDate()
     {
-        return $this->bornDate;
+        return $this->birthDate;
     }
 
     /**
+     * @return mixed
+     */
+    public function getBillingAddress()
+    {
+        return $this->billingAddress;
+    }
+
+    /**
+     * Set Token
      * @param string $token
+     * @return Token
      */
     public function setToken($token)
     {
         $this->token = $token;
+        return $this;
     }
 
     /**
@@ -160,13 +178,24 @@ class CreditCard implements CreditCardInterface
     }
 
     /**
-     * Set Born Date (Data de nascimento)
-     * @param string $bornDate
+     * Set Birth Date (Data de nascimento)
+     * @param string $birthDate
      * @return AddressInterface
      */
-    public function setBornDate($bornDate)
+    public function setBirthDate($birthDate)
     {
-        $this->bornDate = $bornDate;
+        $this->birthDate = $birthDate;
+        return $this;
+    }
+
+    /**
+     * Set Billing Address
+     * @param mixed $billingAddress
+     * @return AddressInterface
+     */
+    public function setBillingAddress(AddressInterface $billingAddress)
+    {
+        $this->billingAddress = $billingAddress;
         return $this;
     }
 

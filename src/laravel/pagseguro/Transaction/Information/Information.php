@@ -228,6 +228,16 @@ class Information extends InformationAbstract
     }
 
     /**
+     * Get CreditCard
+     * @return CreditCardInterface
+     */
+    public function getCreditCard()
+    {
+        return $this->creditCard;
+    }
+
+
+    /**
      * Get Shipping
      * @return ShippingInterface
      */

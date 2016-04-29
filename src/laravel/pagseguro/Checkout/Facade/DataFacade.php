@@ -128,6 +128,11 @@ class DataFacade
         if (!is_array($creditCard)) {
             throw new \InvalidArgumentException('Invalid credit card data');
         }
+        if (array_key_exists('billingAddress', $creditCard)
+            && is_array($creditCard['billingAddress'])
+        ) {
+            $creditCard['billingAddress'] = new Address($creditCard['billingAddress']);
+        }
         return new CreditCard($creditCard);
     }
 }

@@ -91,20 +91,15 @@ class CheckoutFacade
 
     public function createTransparentCheckout(array $data, $info)
     {
-        /*if (!($info['creditCard'] instanceof CreditCard)) {
-            $creditCard = new CreditCard($info['creditCard']);
-        }*/
-
         //Todo: Implement TransparentCheckout
         $dataFacade = new DataFacade();
         $checkoutData = $dataFacade->ensureInstances($info);
         //dd($checkoutData);
         $checkout = new SimpleCheckout($checkoutData);
-        //$creditCard = new CreditCard($info['creditCard']);
-        dd($checkout->getCreditCard());
-        //dd($checkout->getSender());
-        dd($checkout);
+
+        $checkout->setCreditCard($checkoutData['creditCard']);
         $checkout->setPaymentMethod($checkoutData['paymentMethod']);
+
         return $checkout;
     }
 

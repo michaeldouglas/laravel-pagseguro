@@ -40,14 +40,14 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
     protected $items;
 
     /**
-     * @var SenderInterface
-     */
-    protected $sender;
-
-    /**
      * @var CreditCardInterface
      */
     protected $creditCard;
+
+    /**
+     * @var SenderInterface
+     */
+    protected $sender;
 
     /**
      * @var ShippingInterface
@@ -124,7 +124,7 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
      * @param CreditCardInterface $creditCard
      * @return SimpleCheckout
      */
-    protected function setCreditCard($creditCard)
+    public function setCreditCard($creditCard)
     {
         if (!is_null($creditCard) && !($creditCard instanceof CreditCardInterface)) {
             throw new \InvalidArgumentException('Invalid CreditCard');

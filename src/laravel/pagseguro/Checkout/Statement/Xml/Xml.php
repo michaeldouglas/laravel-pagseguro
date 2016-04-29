@@ -186,7 +186,6 @@ class Xml implements StatementInterface
     private function getCreditCardXmlString()
     {
         $creditCard = $this->checkout->getCreditCard();
-        //dd($creditCard);
         if (!$creditCard) {
             return null;
         }

@@ -2,6 +2,7 @@
 
 namespace laravel\pagseguro\CreditCard;
 
+use laravel\pagseguro\Address\AddressInterface;
 use laravel\pagseguro\Document\DocumentCollection;
 use laravel\pagseguro\Phone\PhoneInterface;
 
@@ -50,10 +51,16 @@ interface CreditCardInterface
     public function getDocuments();
 
     /**
-     * Get Born Date (Data de Nascimento)
+     * Get Birth Date (Data de Nascimento)
      * @return string
      */
-    public function getBornDate();
+    public function getBirthDate();
+
+    /**
+     * Get Billing Address (Lista de Documentos)
+     * @return AddressInterface
+     */
+    public function getBillingAddress();
 
     /**
      * Set Token
@@ -84,11 +91,13 @@ interface CreditCardInterface
     public function setDocuments($documents);
 
     /**
-     * Set Born Date (Data de nascimento)
-     * @param string $bornDate
+     * Set Birth Date (Data de nascimento)
+     * @param string $birthDate
      * @return SenderInterface
      */
-    public function setBornDate($bornDate);
+    public function setBirthDate($birthDate);
+
+    public function setBillingAddress(AddressInterface $billingAddress);
 
     /**
      * Proxies Data Hydrate

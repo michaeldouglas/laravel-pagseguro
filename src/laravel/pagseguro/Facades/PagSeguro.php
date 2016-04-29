@@ -1,6 +1,7 @@
 <?php
 
 namespace laravel\pagseguro\Facades;
+use laravel\pagseguro\CreditCard\CreditCard;
 
 /**
  * PagSeguro Facade
@@ -31,6 +32,14 @@ class PagSeguro
     public function item()
     {
         return new Item();
+    }
+
+    /**
+     * @return Item
+     */
+    public function creditCard()
+    {
+        return new CreditCard();
     }
 
     /**

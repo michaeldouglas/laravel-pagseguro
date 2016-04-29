@@ -2,6 +2,7 @@
 
 namespace laravel\pagseguro\Checkout\Statement\Xml;
 
+use laravel\pagseguro\Address\AddressInterface;
 use laravel\pagseguro\Document\DocumentInterface;
 use laravel\pagseguro\CreditCard\CreditCardInterface;
 
@@ -41,13 +42,21 @@ class XmlCreditCard implements XmlPartInterface
         return
             '<creditCard>' .
             $this->getTokenXmlString() .
-            $this->getNameXmlString() .
-            $this->getPhoneXmlString() .
-            $this->getDocumentsXmlString() .
-            $this->getBornDateXmlString() .
+            $this->getInstallmentXmlString() .
+            $this->getHolderXmlString() .
+            $this->getBillingAddressXmlString($this->creditCard->getBillingAddress()) .
             '</creditCard>';
     }
 
+    private function getHolderXmlString()
+    {
+        return '<holder>' .
+            $this->getNameXmlString() .
+            $this->getPhoneXmlString() .
+            $this->getDocumentsXmlString() .
+            $this->getBirthDateXmlString() .
+            '</holder>';
+    }
     /**
      * @return string XML
      */
@@ -57,6 +66,19 @@ class XmlCreditCard implements XmlPartInterface
         return sprintf($str, $this->creditCard->getToken());
     }
 
+    private function getInstallmentXmlString()
+    {
+        //Todo: Implment Installment
+        //$installment = $this->creditCard->getInstallment();
+        /*$str = '<installment>%s</installment>';
+        return sprintf($str, $installment->ge);*/
+
+        return '<installment>' .
+            '<quantity>4</quantity>' .
+            '<value>112.5</value>' .
+        '</installment>';
+    }
+    
     /**
      * @return string XML
      */
@@ -69,14 +91,14 @@ class XmlCreditCard implements XmlPartInterface
     /**
      * @return string XML
      */
-    private function getBornDateXmlString()
+    private function getBirthDateXmlString()
     {
-        $date = $this->creditCard->getBornDate();
+        $date = $this->creditCard->getBirthDate();
         if (!$date) {
             return null;
         }
         $dateObj = \DateTime::createFromFormat('Y-m-d', $date);
-        $str = '<bornDate>%s</bornDate>';
+        $str = '<birthDate>%s</birthDate>';
         return sprintf($str, $dateObj->format('d/m/Y'));
     }
 
@@ -131,5 +153,36 @@ XML;
         </document>
 XML;
         return sprintf($str, $document->getType(), $document->getNumber());
+    }
+
+    /**
+     * @param AddressInterface $billingAddress
+     * @return string XML
+     */
+    private function getBillingAddressXmlString(AddressInterface $billingAddress)
+    {
+        $str = <<<XML
+        <billingAddress>
+            <street>%s</street>
+            <number>%s</number>
+            <complement>%s</complement>
+            <district>%s</district>
+            <postalCode>%s</postalCode>
+            <city>%s</city>
+            <state>%s</state>
+            <country>%s</country>
+        </billingAddress>
+XML;
+        return sprintf(
+            $str,
+            $billingAddress->getStreet(),
+            $billingAddress->getNumber(),
+            $billingAddress->getComplement(),
+            $billingAddress->getDistrict(),
+            $billingAddress->getPostalCode(),
+            $billingAddress->getCity(),
+            $billingAddress->getState(),
+            $billingAddress->getCountry()
+        );
     }
 }

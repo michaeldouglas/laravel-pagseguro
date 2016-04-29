@@ -27,7 +27,8 @@ class ValidationRules implements ValidationRulesInterface
         'name' => 'Required|min:2|max:50',
         'documents' => 'Required',
         'phone' => 'Required',
-        'bornDate' => 'Date'
+        'birthDate' => 'Date',
+        'billingAddress' => 'Required'
     ];
 
     /**

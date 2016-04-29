@@ -58,7 +58,7 @@ class Checkout extends ConsumerAbstract
         $url = $this->getUrlTo('checkout-transparent');
         $request = $this->getRequest();
         $this->prepareStatement($checkout, $request);
-        dd($request->getData());
+        //dd($request->getData());
         $credentialData = $this->getCredentialData($credential);
         $response = $request->post($url, $credentialData);
         if (!$response) {
