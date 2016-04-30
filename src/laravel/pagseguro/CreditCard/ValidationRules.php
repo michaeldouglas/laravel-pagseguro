@@ -11,8 +11,8 @@ use laravel\pagseguro\Complements\ValidationRulesTrait;
  * @category   CreditCard
  * @package    Laravel\PagSeguro\CreditCard
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2015-01-11
+ * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ * @since      2016-04-21
  *
  * @copyright  Laravel\PagSeguro
  */

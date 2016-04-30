@@ -19,8 +19,16 @@ use laravel\pagseguro\Complements\ValidateTrait;
 class Installment implements InstallmentInterface
 {
 
+    /**
+     * Quantity
+     * @var int
+     */
     protected $quantity;
 
+    /**
+     * Value
+     * @var int
+     */
     protected $value;
 
     use DataHydratorTrait, ValidateTrait {
@@ -60,7 +68,8 @@ class Installment implements InstallmentInterface
     }
 
     /**
-     * @return mixed
+     * Get Quantity
+     * @return int
      */
     public function getQuantity()
     {
@@ -68,15 +77,19 @@ class Installment implements InstallmentInterface
     }
 
     /**
-     * @param mixed $quantity
+     * Set Quantity
+     * @param int $quantity
+     * @return Installment
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get Value
+     * @return int
      */
     public function getValue()
     {
@@ -84,11 +97,14 @@ class Installment implements InstallmentInterface
     }
 
     /**
-     * @param mixed $value
+     * Set Value
+     * @param int $value
+     * @return Installment
      */
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
     }
 
     /**
@@ -99,6 +115,5 @@ class Installment implements InstallmentInterface
     {
         return new ValidationRules();
     }
-
 
 }

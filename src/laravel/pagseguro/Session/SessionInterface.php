@@ -9,6 +9,7 @@ namespace laravel\pagseguro\Session;
  * @package    Laravel\PagSeguro\Transaction
  *
  * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ * @since      2016-04-21
  *
  * @copyright  Laravel\PagSeguro
  */

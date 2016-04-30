@@ -16,7 +16,7 @@ use laravel\pagseguro\Remote\Checkout as RemoteCheckout;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2016-01-12
  *
  * @copyright  Laravel\PagSeguro
@@ -24,8 +24,14 @@ use laravel\pagseguro\Remote\Checkout as RemoteCheckout;
 class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
 {
 
+    /**
+     * @var string
+     */
     protected $paymentMode = 'default';
 
+    /**
+     * @var string
+     */
     public $paymentMethod;
 
     /**
@@ -232,7 +238,6 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
     public function transparent(CredentialsInterface $credentials)
     {
         $remote = new RemoteCheckout();
-        //dd($this);
         $data = $remote->transparent($this, $credentials);
         return $data;
     }

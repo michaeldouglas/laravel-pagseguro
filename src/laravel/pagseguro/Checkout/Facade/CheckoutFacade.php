@@ -9,7 +9,6 @@ use laravel\pagseguro\Checkout\Metadata\Travel\TravelInfo;
 use laravel\pagseguro\Checkout\SimpleCheckout;
 use laravel\pagseguro\Checkout\GamerCheckout;
 use laravel\pagseguro\Checkout\TransparentCheckout;
-use laravel\pagseguro\CreditCard\CreditCard;
 use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Phone\PhoneInterface;
 
@@ -19,7 +18,7 @@ use laravel\pagseguro\Phone\PhoneInterface;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>,  Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2016-01-12
  *
  * @copyright  Laravel\PagSeguro

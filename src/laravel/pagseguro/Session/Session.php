@@ -12,6 +12,7 @@ use laravel\pagseguro\Remote\Session as RemoteSession;
  * @package    Laravel\PagSeguro\Session
  *
  * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ * @since      2016-04-21
  *
  */
 class Session implements SessionInterface

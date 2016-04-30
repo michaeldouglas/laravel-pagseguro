@@ -6,6 +6,7 @@ use laravel\pagseguro\Address\AddressInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
 use laravel\pagseguro\CreditCard\Installment\Installment;
+use laravel\pagseguro\CreditCard\Installment\InstallmentInterface;
 use laravel\pagseguro\Document\DocumentCollection;
 use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Phone\PhoneInterface;
@@ -16,8 +17,8 @@ use laravel\pagseguro\Phone\PhoneInterface;
  * @category   CreditCard
  * @package    Laravel\PagSeguro\CreditCard
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>, Michael Douglas <michaeldouglas010790@gmail.com>
- * @since      2015-01-11
+ * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ * @since      2016-04-21
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -25,11 +26,15 @@ class CreditCard implements CreditCardInterface
 {
 
     /**
-     * Hash
+     * Token
      * @var string
      */
     protected $token;
 
+    /**
+     * Installment (Prestação)
+     * @var InstallmentInterface
+     */
     protected $installment;
     
     /**
@@ -78,6 +83,7 @@ class CreditCard implements CreditCardInterface
     }
 
     /**
+     * Get Token
      * @return string
      */
     public function getToken()
@@ -86,7 +92,8 @@ class CreditCard implements CreditCardInterface
     }
 
     /**
-     * @return mixed
+     * Get Installment (Prestação)
+     * @return InstallmentInterface
      */
     public function getInstallment()
     {
@@ -130,7 +137,8 @@ class CreditCard implements CreditCardInterface
     }
 
     /**
-     * @return mixed
+     * Get Billing Address
+     * @return AddressInterface
      */
     public function getBillingAddress()
     {
@@ -140,7 +148,7 @@ class CreditCard implements CreditCardInterface
     /**
      * Set Token
      * @param string $token
-     * @return Token
+     * @return CreditCard
      */
     public function setToken($token)
     {
@@ -150,8 +158,8 @@ class CreditCard implements CreditCardInterface
 
     /**
      * Set Installment $installment
-     * @param mixed $installment
-     * @return Installment
+     * @param InstallmentInterface $installment
+     * @return CreditCardInterface
      */
     public function setInstallment($installment)
     {
@@ -165,7 +173,7 @@ class CreditCard implements CreditCardInterface
     /**
      * Set Name
      * @param string $name
-     * @return AddressInterface
+     * @return CreditCardInterface
      */
     public function setName($name)
     {
@@ -176,7 +184,7 @@ class CreditCard implements CreditCardInterface
     /**
      * Set Phone (Telefone)
      * @param PhoneInterface|array $phone
-     * @return AddressInterface
+     * @return CreditCardInterface
      */
     public function setPhone($phone)
     {
@@ -191,7 +199,7 @@ class CreditCard implements CreditCardInterface
     /**
      * Set Documents (Lista de Documentos)
      * @param DocumentCollection|array $documents
-     * @return AddressInterface
+     * @return CreditCardInterface
      */
     public function setDocuments($documents)
     {
@@ -205,7 +213,7 @@ class CreditCard implements CreditCardInterface
     /**
      * Set Birth Date (Data de nascimento)
      * @param string $birthDate
-     * @return AddressInterface
+     * @return CreditCardInterface
      */
     public function setBirthDate($birthDate)
     {
@@ -215,8 +223,8 @@ class CreditCard implements CreditCardInterface
 
     /**
      * Set Billing Address
-     * @param mixed $billingAddress
-     * @return AddressInterface
+     * @param AddressInterface $billingAddress
+     * @return CreditCardInterface
      */
     public function setBillingAddress(AddressInterface $billingAddress)
     {

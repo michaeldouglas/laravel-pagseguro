@@ -11,7 +11,7 @@ use laravel\pagseguro\Sender\SenderInterface;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2016-01-12
  *
  * @copyright  Laravel\PagSeguro
@@ -37,7 +37,6 @@ class XmlSender implements XmlPartInterface
      */
     public function getXmlString()
     {
-        //Todo: Added hash to transparent checkout
         return
             '<sender>' .
             $this->getEmailXmlString() .
@@ -54,6 +53,10 @@ class XmlSender implements XmlPartInterface
      */
     private function getHashXmlString()
     {
+        $hash = $this->sender->getHash();
+        if(!$hash) {
+            return null;
+        }
         $str = '<hash>%s</hash>';
         return sprintf($str, $this->sender->getHash());
     }

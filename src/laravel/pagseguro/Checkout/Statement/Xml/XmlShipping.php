@@ -12,7 +12,7 @@ use laravel\pagseguro\Complements\Filter\MoneyFilter;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2016-01-12
  *
  * @copyright  Laravel\PagSeguro
@@ -76,8 +76,8 @@ class XmlShipping implements XmlPartInterface
     private function getAddressXmlString(AddressInterface $address)
     {
         //Todo: Change postal code pattern for different services
-        // This is because /v2/transactions (POST) use postalCode (kamel case)
-        // intead postalcode (lower case) in /v2/checkout. WTF!?
+        // This is because /v2/transactions (POST) use postalCode (Camel case)
+        // instead postalcode (lower case) in /v2/checkout. WTF!?
 
         $str = <<<XML
         <address>

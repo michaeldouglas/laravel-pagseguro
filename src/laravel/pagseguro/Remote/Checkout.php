@@ -14,7 +14,7 @@ use laravel\pagseguro\Http\Request\RequestInterface;
  * @category   Remote
  * @package    Laravel\PagSeguro\Remote
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2015-12-10
  *
  * @copyright  Laravel\PagSeguro

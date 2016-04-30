@@ -6,7 +6,7 @@ use laravel\pagseguro\Credentials\CredentialsInterface;
 use laravel\pagseguro\Parser\Xml;
 
 /**
- * Remote Transaction Information
+ * Remote Session
  *
  * @category   Remote
  * @package    Laravel\PagSeguro\Remote
@@ -19,7 +19,7 @@ class Session extends ConsumerAbstract
 {
 
     /**
-     * Set Session Status
+     * Get Session Id
      * @param CredentialsInterface $credential
      * @return array|boolean Array with session info or FALSE on failure
      */

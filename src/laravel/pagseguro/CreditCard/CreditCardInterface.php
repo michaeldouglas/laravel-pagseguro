@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\CreditCard;
 
 use laravel\pagseguro\Address\AddressInterface;
+use laravel\pagseguro\CreditCard\Installment\InstallmentInterface;
 use laravel\pagseguro\Document\DocumentCollection;
 use laravel\pagseguro\Phone\PhoneInterface;
 
@@ -12,8 +13,8 @@ use laravel\pagseguro\Phone\PhoneInterface;
  * @category   CreditCard
  * @package    Laravel\PagSeguro\CreditCard
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2015-08-11
+ * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ * @since      2016-04-21
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -32,6 +33,10 @@ interface CreditCardInterface
      */
     public function getToken();
 
+    /**
+     * Get Installment
+     * @return InstallmentInterface
+     */
     public function getInstallment();
 
     /**
@@ -71,6 +76,11 @@ interface CreditCardInterface
      */
     public function setToken($token);
 
+    /**
+     * Set Installment
+     * @param InstallmentInterface|array $installment
+     * @return CreditCardInterface
+     */
     public function setInstallment($installment);
 
     /**
@@ -101,6 +111,11 @@ interface CreditCardInterface
      */
     public function setBirthDate($birthDate);
 
+    /**
+     * Set Billing Address
+     * @param AddressInterface $billingAddress
+     * @return CreditCardInterface
+     */
     public function setBillingAddress(AddressInterface $billingAddress);
 
     /**

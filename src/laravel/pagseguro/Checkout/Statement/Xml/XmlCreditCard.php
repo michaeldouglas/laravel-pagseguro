@@ -12,8 +12,8 @@ use laravel\pagseguro\CreditCard\CreditCardInterface;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2016-01-12
+ * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ * @since      2016-04-21
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -38,7 +38,6 @@ class XmlCreditCard implements XmlPartInterface
      */
     public function getXmlString()
     {
-        //Todo: Added token to transparent checkout
         return
             '<creditCard>' .
             $this->getTokenXmlString() .
@@ -48,6 +47,9 @@ class XmlCreditCard implements XmlPartInterface
             '</creditCard>';
     }
 
+    /**
+     * @return string XML
+     */
     private function getHolderXmlString()
     {
         return '<holder>' .
@@ -57,6 +59,7 @@ class XmlCreditCard implements XmlPartInterface
             $this->getBirthDateXmlString() .
             '</holder>';
     }
+
     /**
      * @return string XML
      */
@@ -66,6 +69,9 @@ class XmlCreditCard implements XmlPartInterface
         return sprintf($str, $this->creditCard->getToken());
     }
 
+    /**
+     * @return string XML
+     */
     private function getInstallmentXmlString()
     {
         $installment = $this->creditCard->getInstallment();

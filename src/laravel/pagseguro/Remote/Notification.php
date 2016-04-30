@@ -6,7 +6,7 @@ use laravel\pagseguro\Credentials\CredentialsInterface;
 use laravel\pagseguro\Parser\Xml;
 
 /**
- * Remote Transaction Information
+ * Remote Notification
  *
  * @category   Remote
  * @package    Laravel\PagSeguro\Remote
