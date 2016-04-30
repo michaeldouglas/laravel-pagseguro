@@ -75,10 +75,6 @@ class XmlShipping implements XmlPartInterface
      */
     private function getAddressXmlString(AddressInterface $address)
     {
-        //Todo: Change postal code pattern for different services
-        // This is because /v2/transactions (POST) use postalCode (Camel case)
-        // instead postalcode (lower case) in /v2/checkout. WTF!?
-
         $str = <<<XML
         <address>
             <street>%s</street>

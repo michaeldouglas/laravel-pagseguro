@@ -27,7 +27,7 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
     /**
      * @var string
      */
-    protected $paymentMode = 'default';
+    protected $paymentMode;
 
     /**
      * @var string

@@ -95,6 +95,7 @@ class CheckoutFacade
         $checkoutData = $dataFacade->ensureInstances($info);
         $checkout = new SimpleCheckout($checkoutData);
 
+        $checkout->setPaymentMode('default');
         $checkout->setCreditCard($checkoutData['creditCard']);
         $checkout->setPaymentMethod($checkoutData['paymentMethod']);
 
