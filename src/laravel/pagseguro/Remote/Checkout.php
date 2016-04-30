@@ -3,7 +3,6 @@
 namespace laravel\pagseguro\Remote;
 
 use laravel\pagseguro\Checkout\CheckoutInterface;
-use laravel\pagseguro\Checkout\SimpleCheckout;
 use laravel\pagseguro\Credentials\CredentialsInterface;
 use laravel\pagseguro\Checkout\Statement\Xml\Xml as XmlStatement;
 use laravel\pagseguro\Parser\Xml;
@@ -58,7 +57,6 @@ class Checkout extends ConsumerAbstract
         $url = $this->getUrlTo('checkout-transparent');
         $request = $this->getRequest();
         $this->prepareStatement($checkout, $request);
-        //dd($request->getData());
         $credentialData = $this->getCredentialData($credential);
         $response = $request->post($url, $credentialData);
         if (!$response) {

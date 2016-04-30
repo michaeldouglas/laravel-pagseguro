@@ -68,15 +68,20 @@ class XmlCreditCard implements XmlPartInterface
 
     private function getInstallmentXmlString()
     {
-        //Todo: Implment Installment
-        //$installment = $this->creditCard->getInstallment();
-        /*$str = '<installment>%s</installment>';
-        return sprintf($str, $installment->ge);*/
+        $installment = $this->creditCard->getInstallment();
 
-        return '<installment>' .
-            '<quantity>4</quantity>' .
-            '<value>112.5</value>' .
-        '</installment>';
+        if (!$installment) {
+            return null;
+        }
+
+        $str = <<<XML
+        <installment>
+            <quantity>%s</quantity>
+            <value>%s</value>
+        </installment>
+XML;
+
+        return sprintf($str, $installment->getQuantity(), $installment->getValue());
     }
     
     /**

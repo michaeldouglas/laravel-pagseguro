@@ -2,8 +2,6 @@
 
 namespace laravel\pagseguro\Phone;
 
-use Illuminate\Validation\Validator;
-
 /**
  * Phone Interface
  *

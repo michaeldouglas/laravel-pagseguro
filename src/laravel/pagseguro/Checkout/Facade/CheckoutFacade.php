@@ -94,7 +94,6 @@ class CheckoutFacade
         //Todo: Implement TransparentCheckout
         $dataFacade = new DataFacade();
         $checkoutData = $dataFacade->ensureInstances($info);
-        //dd($checkoutData);
         $checkout = new SimpleCheckout($checkoutData);
 
         $checkout->setCreditCard($checkoutData['creditCard']);

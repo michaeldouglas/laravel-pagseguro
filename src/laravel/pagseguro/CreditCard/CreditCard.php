@@ -5,6 +5,7 @@ namespace laravel\pagseguro\CreditCard;
 use laravel\pagseguro\Address\AddressInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
+use laravel\pagseguro\CreditCard\Installment\Installment;
 use laravel\pagseguro\Document\DocumentCollection;
 use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Phone\PhoneInterface;
@@ -29,6 +30,8 @@ class CreditCard implements CreditCardInterface
      */
     protected $token;
 
+    protected $installment;
+    
     /**
      * Name (Nome)
      * @var string
@@ -80,6 +83,14 @@ class CreditCard implements CreditCardInterface
     public function getToken()
     {
         return $this->token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInstallment()
+    {
+        return $this->installment;
     }
 
     /**
@@ -137,6 +148,20 @@ class CreditCard implements CreditCardInterface
         return $this;
     }
 
+    /**
+     * Set Installment $installment
+     * @param mixed $installment
+     * @return Installment
+     */
+    public function setInstallment($installment)
+    {
+        if (is_array($installment)) {
+            $installment = Installment::factory($installment);
+        }
+        $this->installment = $installment;
+        return $this;
+    }
+    
     /**
      * Set Name
      * @param string $name

@@ -32,6 +32,8 @@ interface CreditCardInterface
      */
     public function getToken();
 
+    public function getInstallment();
+
     /**
      * Get Name (Nome)
      * @return string
@@ -68,6 +70,8 @@ interface CreditCardInterface
      * @return SenderInterface
      */
     public function setToken($token);
+
+    public function setInstallment($installment);
 
     /**
      * Set Name

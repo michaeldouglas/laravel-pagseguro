@@ -25,6 +25,7 @@ class ValidationRules implements ValidationRulesInterface
     protected $rules = [
         'token' => 'Required',
         'name' => 'Required|min:2|max:50',
+        'installment' => 'Required',
         'documents' => 'Required',
         'phone' => 'Required',
         'birthDate' => 'Date',
