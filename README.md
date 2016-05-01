@@ -308,7 +308,7 @@ Atenção para o atributo 'bank', o qual é a identificação do Banco gerado at
 $data['transparent'] = [
     'paymentMode' => 'default',
     'paymentMethod' => 'eft',
-    'bank' = 'itau';
+    'bank' = 'itau',
     'items' => [
         [
             'id' => '1',
@@ -357,7 +357,6 @@ Atenção para o atributo 'token', o qual é a representação do cartão de cr�
 $data['transparent'] = [
     'paymentMode' => 'default',
     'paymentMethod' => 'creditCard',
-    'bank' = 'itau';
     'items' => [
         [
             'id' => '1',
