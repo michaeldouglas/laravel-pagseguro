@@ -35,6 +35,11 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
     public $paymentMethod;
 
     /**
+     * @var string
+     */
+    protected $bank;
+
+    /**
      * Only BRL
      * @var string
      */
@@ -95,6 +100,22 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
     public function setPaymentMethod($paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBank()
+    {
+        return $this->bank;
+    }
+
+    /**
+     * @param string $bank
+     */
+    public function setBank($bank)
+    {
+        $this->bank = $bank;
     }
 
     /**

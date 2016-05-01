@@ -76,6 +76,7 @@ class Xml implements StatementInterface
             $this->getTagXmlString() . '<payment>' .
             $this->getPaymentModeXmlString() .
             $this->getPaymentMethodXmlString() .
+            $this->getBankXmlString() .
             $this->getReceiverXmlString() .
             $this->getCurrencyXmlString() .
             $this->getItemsXmlString() .
@@ -113,6 +114,15 @@ class Xml implements StatementInterface
     {
         $str = '<method>%s</method>';
         return sprintf($str, $this->checkout->getPaymentMethod());
+    }
+
+    private function getBankXmlString()
+    {
+        $bank = $this->checkout->getBank();
+        if(!$bank) {
+            return null;
+        }
+        return sprintf('<bank><name>%s</name></bank>', $bank);
     }
 
     /**

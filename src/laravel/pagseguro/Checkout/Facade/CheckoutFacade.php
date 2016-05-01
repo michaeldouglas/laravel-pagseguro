@@ -96,8 +96,15 @@ class CheckoutFacade
         $checkout = new SimpleCheckout($checkoutData);
 
         $checkout->setPaymentMode('default');
-        $checkout->setCreditCard($checkoutData['creditCard']);
         $checkout->setPaymentMethod($checkoutData['paymentMethod']);
+
+        if(isset($checkoutData['creditCard'])) {
+            $checkout->setCreditCard($checkoutData['creditCard']);
+        }
+
+        if(isset($info['bank'])) {
+            $checkout->setBank($info['bank']);
+        }
 
         return $checkout;
     }

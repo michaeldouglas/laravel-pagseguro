@@ -108,6 +108,11 @@ interface CheckoutInterface
     public function getPaymentMethod();
 
     /**
+     * @return string
+     */
+    public function getBank();
+
+    /**
      * Send Checkout
      * @param CredentialsInterface $credentials
      * @return array
