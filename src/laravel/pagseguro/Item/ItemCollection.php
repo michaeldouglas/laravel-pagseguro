@@ -28,6 +28,11 @@ class ItemCollection extends \ArrayObject
         $itr = new \ArrayIterator($data);
         while ($itr->valid()) {
             $item = $itr->current();
+
+            if ((is_array($item) == FALSE) && is_array($data)){
+                $item = $data;
+            }
+            
             if ($item instanceof ItemInterface) {
                 $collectionItems[] = $item;
             } elseif (is_array($item)) {
