@@ -31,7 +31,7 @@
         }
     ],
     "scripts": {
-        "test:unit": "phpunit -c phpunit.xml tests/unit"
+        "test:unit": "phpunit -c phpunit.xml tests/unit --coverage-html=./tests/phpunit"
     },
     "config":{
         "bin-dir": "bin/"

@@ -60,22 +60,8 @@ class Amounts
     public function __construct(array $data = [])
     {
         if (count($data)) {
-            $this->hydrate($this->normalizeCase($data));
+            $this->hydrate($data);
         }
-    }
-
-    /**
-     * @param array $data
-     * @return array
-     */
-    private function normalizeCase(array $data)
-    {
-        foreach ($data as $key => $value) {
-            $newCase = str_replace('amount', 'Amount', $key);
-            unset($data[$key]);
-            $data[$newCase] = $value;
-        }
-        return $data;
     }
 
     /**
