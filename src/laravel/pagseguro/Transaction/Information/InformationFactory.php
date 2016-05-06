@@ -87,7 +87,7 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getPaymentMethod()
     {
-        $data = $this->data['paymentmethod'];
+        $data = $this->data['paymentMethod'];
         if (!array_key_exists('type', $data)
             || !array_key_exists('code', $data)
         ) {
@@ -103,7 +103,7 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getLastEventDate()
     {
-        return $this->getDateTimeObject($this->data['lasteventdate']);
+        return $this->getDateTimeObject($this->data['lastEventDate']);
     }
 
     /**
@@ -134,7 +134,7 @@ class InformationFactory extends InformationAbstractFactory
     {
         $data = $this->data['sender'];
         $phone = [
-            'areaCode' => $data['phone']['areacode'],
+            'areaCode' => $data['phone']['areaCode'],
             'number' => $data['phone']['number'],
         ];
         $data['phone'] = $phone;
