@@ -64,7 +64,6 @@ class ValidationRulesTest extends \laravel\pagseguro\Tests\Unit\ValidationRules
     public function bornDateProvider()
     {
         return [
-            ['', true],
             ['21/03/1988', false],
             ['1988-03-21', true],
             [1, false],
