@@ -2,13 +2,8 @@
 
 namespace laravel\pagseguro\Tests\Unit\Checkout;
 
-use laravel\pagseguro\Address\Address;
 use laravel\pagseguro\Checkout\SimpleCheckout;
-use laravel\pagseguro\Document\DocumentCollection;
-use laravel\pagseguro\Item\ItemCollection;
-use laravel\pagseguro\Phone\Phone;
-use laravel\pagseguro\Sender\Sender;
-use laravel\pagseguro\Shipping\Shipping;
+use laravel\pagseguro\Facades\Checkout;
 
 /**
  * Checkout Test Base
@@ -26,10 +21,14 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $items = $this->getItems();
-        $sender = $this->getSender();
-        $shipping = $this->getShipping();
-        $this->checkout = new SimpleCheckout($items, $sender, $shipping);
+        $facade = new Checkout();
+        $this->checkout = $facade->createFromArray([
+            'items' => $this->getItems(),
+            'sender' => $this->getSender(),
+            'shipping' => $this->getShipping(),
+            'redirectURL' => 'http://www.meusite.com.br',
+            'notificationURL' => 'http://www.meusite.com.br/notification'
+        ]);
     }
 
     /**
@@ -37,7 +36,7 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
      */
     public function getItems()
     {
-        return ItemCollection::factory([
+        return [
             [
                 'id' => '18',
                 'description' => 'Laravel PS',
@@ -49,7 +48,7 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
                 'height' => '445',
                 'length' => '669',
             ],
-        ]);
+        ];
     }
 
     /**
@@ -57,7 +56,7 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
      */
     public function getSender()
     {
-        $data = [
+        return [
             'email' => 'isaquesb@gmail.com',
             'name' => 'Isaque de Souza Barbosa',
             'documents' => [
@@ -69,7 +68,6 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
             'phone' => '11985445522',
             'bornDate' => '1988-03-25',
         ];
-        return new Sender($data);
     }
 
     /**
@@ -77,8 +75,8 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
      */
     public function getShipping()
     {
-        $data = [
-            'address' => new Address([
+        return [
+            'address' => [
                 'postalCode' => '06410030',
                 'street' => 'Rua da Selva',
                 'number' => '12',
@@ -86,10 +84,9 @@ class CheckoutBase extends \PHPUnit_Framework_TestCase
                 'city' => 'Barueri',
                 'state' => 'SP',
                 'country' => 'BRA',
-            ]),
+            ],
             'type' => 2,
             'cost' => 30.4,
         ];
-        return new Shipping($data);
     }
 }

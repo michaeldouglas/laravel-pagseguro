@@ -27,6 +27,22 @@ class InformationFactory extends InformationAbstractFactory
 {
 
     /**
+     * @var
+     */
+    private $normalizer;
+
+    /**
+     * Constructor
+     * @param array $data
+     */
+    public function __construct(array $data)
+    {
+        $this->normalizer = new InformationNormalizer();
+        $normalized = $this->normalizer->transactionNormalized($data);
+        parent::__construct($normalized);
+    }
+
+    /**
      * @return Information
      */
     public function getInformation()
@@ -39,7 +55,7 @@ class InformationFactory extends InformationAbstractFactory
             'itemCount',
             'installmentCount',
         ], null);
-        $data = array_intersect_key($this->normalizedCase($this->data), $map);
+        $data = array_intersect_key($this->data, $map);
         $data['date'] = $this->getDate();
         $data['status'] = $this->getStatus();
         $data['lastEventDate'] = $this->getLastEventDate();
@@ -49,27 +65,6 @@ class InformationFactory extends InformationAbstractFactory
         $data['shipping'] = $this->getShipping();
         $data['items'] = $this->getItems();
         return new Information($data);
-    }
-
-    /**
-     * Normalize data Keys
-     * @return array
-     */
-    private function normalizedCase($data)
-    {
-        $newData = [];
-        $map = [
-            'count' => 'Count',
-            'method' => 'Method',
-            'eventdate' => 'EventDate',
-        ];
-        $mapFrom = array_keys($map);
-        $mapTo = array_values($map);
-        foreach ($data as $key => $value) {
-            $normaized = str_replace($mapFrom, $mapTo, $key);
-            $newData[$normaized] = $value;
-        }
-        return $newData;
     }
 
     /**
@@ -87,7 +82,7 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getPaymentMethod()
     {
-        $data = $this->data['paymentmethod'];
+        $data = $this->data['paymentMethod'];
         if (!array_key_exists('type', $data)
             || !array_key_exists('code', $data)
         ) {
@@ -103,7 +98,7 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getLastEventDate()
     {
-        return $this->getDateTimeObject($this->data['lasteventdate']);
+        return $this->getDateTimeObject($this->data['lastEventDate']);
     }
 
     /**
@@ -133,11 +128,9 @@ class InformationFactory extends InformationAbstractFactory
     private function getSenderDataNormalized()
     {
         $data = $this->data['sender'];
-        $phone = [
-            'areaCode' => $data['phone']['areacode'],
-            'number' => $data['phone']['number'],
-        ];
-        $data['phone'] = $phone;
+        if (array_key_exists('phone', $data) && is_array($data['phone'])) {
+            $data['phone'] = $this->normalizer->phoneNormalized($data['phone']);
+        }
         return $data;
     }
 
@@ -155,7 +148,8 @@ class InformationFactory extends InformationAbstractFactory
             'extraamount',
         ], null);
         $data = array_intersect_key($this->data, $map);
-        $amounts = new Amounts($data);
+        $normalized = $this->normalizer->amountNormalized($data);
+        $amounts = new Amounts($normalized);
         return $amounts;
     }
 
@@ -166,6 +160,9 @@ class InformationFactory extends InformationAbstractFactory
     public function getItems()
     {
         $data = $this->data['items']['item'];
+        if (1 == $this->data['itemCount']) {
+            $data = [$this->data['items']['item']];
+        }
         $items = ItemCollection::factory($data);
         return $items;
     }
@@ -176,25 +173,10 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getShipping()
     {
-        $data = $this->getShippingDataNormalized();
+        $data = $this->normalizer->shippingNormalized($this->data['shipping']);
         $address = new Address($data['address']);
         $data['address'] = $address;
         $items = new Shipping($data);
         return $items;
-    }
-
-    /**
-     * Key Case normalized
-     * @return array
-     */
-    private function getShippingDataNormalized()
-    {
-        $data = $this->data['shipping'];
-        if (array_key_exists('postalcode', $data['address'])) {
-            $postalCode = $data['address']['postalcode'];
-            unset($data['address']['postalcode']);
-            $data['address']['postalCode'] = $postalCode;
-        }
-        return $data;
     }
 }

@@ -134,24 +134,50 @@ class CurlAdapter implements AdapterInterface
      */
     public function dispatch(RequestInterface $request)
     {
+        $response = $this->processRequest($request);
+        if ($response) {
+            $this->response = $response;
+        }
+        return $response;
+    }
+
+    /**
+     * @param int $status
+     * @param string $body
+     * @param int $errorNo
+     * @param string $error
+     * @return ResponseInterface
+     */
+    private function makeResponse($status, $body, $errorNo, $error)
+    {
+        $response = new Response();
+        $response->setRawBody($body);
+        $response->setHttpStatus($status);
+        if (!empty($error)) {
+            $errors = [$errorNo => $error];
+            $response->setErrors($errors);
+        }
+        return $response;
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @return ResponseInterface|bool FALSE on failure
+     */
+    private function processRequest(RequestInterface $request)
+    {
         $resource = curl_init();
         $options = $this->getRequestDispatchOptions($request);
         curl_setopt_array($resource, $options);
         $body = curl_exec($resource);
+        if ($body === false) {
+            return false;
+        }
         $status =  (int) curl_getinfo($resource, CURLINFO_HTTP_CODE);
         $error = curl_error($resource);
         $errorNo = curl_errno($resource);
         curl_close($resource);
-        $response = new Response();
-        $response->setRawBody($body);
-        $response->setHttpStatus($status);
-        $errors = [];
-        if (!empty($error)) {
-            $errors[$errorNo] = $error;
-            $response->setErrors($errors);
-        }
-        $this->response = $response;
-        return $body !== false;
+        return $this->makeResponse($status, $body, $errorNo, $error);
     }
 
     /**
