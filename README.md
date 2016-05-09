@@ -1,4 +1,4 @@
-## Laravel PagSeguro - 1.0.1
+## Laravel PagSeguro - 1.0.2
 
 [![Build Status](https://travis-ci.org/michaeldouglas/laravel-pagseguro.svg?branch=master)](https://travis-ci.org/michaeldouglas/laravel-pagseguro)
 [![Total Downloads](https://poser.pugx.org/michael/laravelpagseguro/downloads)](https://packagist.org/packages/michael/laravelpagseguro)
