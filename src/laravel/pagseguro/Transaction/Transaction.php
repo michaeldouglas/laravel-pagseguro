@@ -70,7 +70,7 @@ class Transaction implements TransactionInterface
      */
     protected function setCode($code)
     {
-        if (!\is_string($code) || \strlen($code) != 36) {
+        if (!\is_string($code)) {
             throw new \InvalidArgumentException('Invalid transaction code');
         }
         $this->code = $code;
