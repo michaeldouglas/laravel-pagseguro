@@ -15,9 +15,9 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \InvalidArgumentException Invalid
      */
-    public function testWithInvalidTransactionCode()
+    public function testWithNumericTransactionCode()
     {
         $credential = new Credentials('ASD', 'isaquesb@gmail.com');
-        new Transaction('0121313', $credential, false);
+        new Transaction(123456, $credential, false);
     }
 }
