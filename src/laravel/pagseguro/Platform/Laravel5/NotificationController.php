@@ -3,8 +3,8 @@
 namespace laravel\pagseguro\Platform\Laravel5;
 
 use laravel\pagseguro\Config\Config;
+use laravel\pagseguro\Facades\PagSeguro;
 use laravel\pagseguro\Credentials\CredentialsInterface;
-use laravel\pagseguro\Facades\PagSeguroFacade;
 use laravel\pagseguro\Notification\Notification;
 use laravel\pagseguro\Remote\Url\Resolver;
 use Illuminate\Routing\Controller;
@@ -60,8 +60,8 @@ class NotificationController extends Controller
             $callback = $config['credential'];
         }
         if ($callback === 'default') {
-            $facade = new PagSeguroFacade();
-            return $facade->getCredentials();
+            $facade = new PagSeguro();
+            return $facade->credentials()->get();
         }
         if (!is_callable($callback)) {
             throw new \RuntimeException('Credentials is a not valid PHP callback');
