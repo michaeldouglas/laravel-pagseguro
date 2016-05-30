@@ -162,7 +162,8 @@ $checkout = PagSeguro::checkout()->createFromArray($data);
 Para confirmar o envio utilize o método: `send` da seguinte forma:
 
 ```php
-$information = $request->send($credentials); // Retorna um objeto de laravel\pagseguro\Checkout\Information\Information
+$checkout = PagSeguro::checkout()->createFromArray($data);
+$information = $checkout->send($credentials); // Retorna um objeto de laravel\pagseguro\Checkout\Information\Information
 if ($information) {
     print_r($information->getCode());
     print_r($information->getDate());
