@@ -69,6 +69,23 @@ class InformationNormalizer
     }
 
     /**
+     * @param array $documentsInfo
+     * @return array|null
+     */
+    public function documentsNormalized($documentsInfo)
+    {
+        if (!is_array($documentsInfo)) {
+            return null;
+        }
+        $allDocs = [];
+        foreach ($documentsInfo as $documentInfo) {
+            $this->changeKeys('value', 'number', $documentInfo);
+            $allDocs[] = $documentInfo;
+        }
+        return $allDocs;
+    }
+
+    /**
      * Shipping Key Case normalized
      * @param array $data
      * @return array

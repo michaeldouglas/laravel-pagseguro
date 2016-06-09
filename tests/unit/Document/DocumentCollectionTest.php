@@ -49,10 +49,10 @@ class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
             'number' => '10987654321',
             'type' => 'CPF'
         ];
-        $o = DocumentCollection::factory([$item]);
-        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $o);
-        $this->assertCount(1, $o);
-        $this->assertEquals(new CPF($item), $o->offsetGet(0));
+        $collection = DocumentCollection::factory([$item]);
+        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $collection);
+        $this->assertCount(1, $collection);
+        $this->assertEquals(new CPF($item), $collection->offsetGet(0));
     }
 
     /**
@@ -63,10 +63,10 @@ class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
         $item = new CPF([
             'number' => '10987654321',
         ]);
-        $o = DocumentCollection::factory([$item]);
-        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $o);
-        $this->assertCount(1, $o);
-        $this->assertEquals($item, $o->offsetGet(0));
+        $collection = DocumentCollection::factory([$item]);
+        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $collection);
+        $this->assertCount(1, $collection);
+        $this->assertEquals($item, $collection->offsetGet(0));
     }
 
     /**
@@ -74,8 +74,20 @@ class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testWithEmpty()
     {
-        $o = DocumentCollection::factory();
-        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $o);
-        $this->assertCount(0, $o);
+        $collection = DocumentCollection::factory();
+        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $collection);
+        $this->assertCount(0, $collection);
+    }
+
+    /**
+     * Test With Empty Data
+     * @expectedException \InvalidArgumentException
+     */
+    public function testDocumentFactoryEmptyNumber()
+    {
+        DocumentCollection::documentFactory([
+            'number' => null,
+            'type' => 'CPF'
+        ]);
     }
 }

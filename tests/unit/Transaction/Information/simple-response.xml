@@ -38,6 +38,12 @@
             <areacode>11</areacode>
             <number>56273440</number>
         </phone>
+        <documents>
+            <document>
+                <type>CPF</type>
+                <value>40404040411</value>
+            </document>
+        </documents>
     </sender>
     <shipping>
         <address>

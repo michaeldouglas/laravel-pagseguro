@@ -207,9 +207,12 @@ class InformationTest extends \PHPUnit_Framework_TestCase
     {
         $info = $this->information->getSender();
         $phone = new Phone(['areaCode' => 11, 'number' => 56273440]);
+        $docs = $info->getDocuments();
         $this->assertEquals('José Comprador', $info->getName());
         $this->assertEquals('comprador@uol.com.br', $info->getEmail());
         $this->assertEquals($phone, $info->getPhone());
+        $this->assertCount(1, $docs);
+        $this->assertEquals('40404040411', $docs->offsetGet(0)->getNumber());
     }
 
     /**
