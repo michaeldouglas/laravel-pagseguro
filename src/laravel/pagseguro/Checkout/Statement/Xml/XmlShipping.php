@@ -81,7 +81,7 @@ class XmlShipping implements XmlPartInterface
             <number>%s</number>
             <complement>%s</complement>
             <district>%s</district>
-            <postalcode>%s</postalcode>
+            <postalCode>%s</postalCode>
             <city>%s</city>
             <state>%s</state>
             <country>%s</country>
