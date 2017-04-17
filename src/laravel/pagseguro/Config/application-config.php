@@ -7,7 +7,7 @@ return [
     /*
      * Coloque abaixo as informações do seu cadastro no PagSeguro
      */
-    'credentials' => [//INFORME AS CREDENCIAIS PADRÕES DE SUA LOJA, MAS PORDERÁ SER ALTERADA EM RUNTIME
+    'credentials-default' => [//INFORME AS CREDENCIAIS PADRÕES DE SUA LOJA, MAS PORDERÁ SER ALTERADA EM RUNTIME
         'email' => null,
         'token' => null,
     ],
@@ -28,7 +28,8 @@ return [
         ],
         'notification' => [
             'callback' => null, // Callable callback to Notification function (notificationInfo) : void {}
-            'credential' => 'default', // Callable resolve credential function (notificationCode) : Credentials {}
+            'credential-default' => 'default', // Callable resolve credential function (notificationCode) : Credentials {}
+            'credential-other' => ['ClassPath/ClassName', 'callbackFunction'], // Callable resolve credential function (notificationCode) : Credentials {}
             'route-name' => 'pagseguro.notification', // Criar uma rota com este nome
         ],
     ],

@@ -29,7 +29,7 @@ class Credentials
      */
     public function get()
     {
-        $data = Config::get('credentials');
+        $data = Config::get('credentials-default');
         return $this->create($data['token'], $data['email']);
     }
 }

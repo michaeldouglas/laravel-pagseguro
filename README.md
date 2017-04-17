@@ -259,7 +259,8 @@ Registre um callback (callable) no seu config laravelpagseguro.php
 'routes' => [
     'notification' => [
         'callback' => ['MyNotificationClass', 'myMethod'], // Callable
-        'credential' => 'default',
+        'credential-default' => 'default',
+        'credential-other' => ['ClassPath/ClassName', 'callbackFunction'],
         'route-name' => 'pagseguro.notification', // Nome da rota
     ],
 ],

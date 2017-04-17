@@ -33,17 +33,19 @@ class NotificationController extends Controller
         $params = array_merge([
             'notificationCode' => null,
             'notificationType' => null,
+            'system'           => null,
         ], $platform->getUrlParameters());
         $code = $params['notificationCode'];
         $type = $params['notificationType'];
+        $system = $params['system'];
         if (empty($code) || empty($type)) {
             $platform->abort();
             return;
         }
-        $credential = $this->getCredentialsTo($code);
+        $credential = $this->getCredentialsTo($code, $system);
         $notification = new Notification($code, $type);
         $info = $notification->check($credential);
-        $this->notify($info);
+        $this->notify($info, $system);
     }
 
     /**
@@ -51,13 +53,13 @@ class NotificationController extends Controller
      * @param string $notificationCode
      * @return CredentialsInterface
      */
-    private function getCredentialsTo($notificationCode)
+    private function getCredentialsTo($notificationCode, $system = 'default')
     {
         $resolver = new Resolver();
         $config = $resolver->getRouteConfig('notification');
         $callback = null;
-        if (array_key_exists('credential', $config)) {
-            $callback = $config['credential'];
+        if (array_key_exists('credential-' . $system, $config)) {
+            $callback = $config['credential-' . $system];
         }
         if ($callback === 'default') {
             $facade = new PagSeguro();
@@ -76,9 +78,11 @@ class NotificationController extends Controller
 
     /**
      * Notification Callback
-     * @param Informati
+     * @param $info
+     * @param $system
+     * @internal param $Informati
      */
-    private function notify($info)
+    private function notify($info, $system)
     {
         $isCallable = false;
         $resolver = new Resolver();
@@ -91,7 +95,7 @@ class NotificationController extends Controller
             throw new \RuntimeException('Callback is a not valid PHP callback');
         }
         if ($isCallable) {
-            call_user_func_array($callback, [$info]);
+            call_user_func_array($callback, [$info, $system]);
         }
     }
 }
