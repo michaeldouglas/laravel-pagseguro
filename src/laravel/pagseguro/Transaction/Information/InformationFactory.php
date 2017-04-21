@@ -144,11 +144,11 @@ class InformationFactory extends InformationAbstractFactory
     public function getAmounts()
     {
         $map = array_fill_keys([
-            'grossamount',
-            'discountamount',
-            'feeamount',
-            'netamount',
-            'extraamount',
+            'grossAmount',
+            'discountAmount',
+            'feeAmount',
+            'netAmount',
+            'extraAmount',
         ], null);
         $data = array_intersect_key($this->data, $map);
         $normalized = $this->normalizer->amountNormalized($data);
