@@ -2,6 +2,7 @@
 
 namespace laravel\pagseguro\Transaction\Information;
 
+use laravel\pagseguro\CreditCard\CreditCardInterface;
 use laravel\pagseguro\Information\InformationAbstract;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Sender\SenderInterface;
@@ -92,6 +93,12 @@ class Information extends InformationAbstract
      * @var SenderInterface
      */
     protected $sender;
+
+    /**
+     * Sender
+     * @var SenderInterface
+     */
+    protected $creditCard;
 
     /**
      * Shipping
@@ -221,6 +228,16 @@ class Information extends InformationAbstract
     }
 
     /**
+     * Get CreditCard
+     * @return CreditCardInterface
+     */
+    public function getCreditCard()
+    {
+        return $this->creditCard;
+    }
+
+
+    /**
      * Get Shipping
      * @return ShippingInterface
      */
@@ -336,6 +353,16 @@ class Information extends InformationAbstract
     protected function setSender(SenderInterface $sender)
     {
         $this->sender = $sender;
+        return $this;
+    }
+
+    /**
+     * @param CreditCardInterface $creditCard
+     * @return Information
+     */
+    protected function setCreditCard(CreditCardInterface $creditCard)
+    {
+        $this->creditCard = $creditCard;
         return $this;
     }
 

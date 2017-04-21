@@ -8,6 +8,7 @@ use laravel\pagseguro\Checkout\Metadata\Gamer\GameInfo;
 use laravel\pagseguro\Checkout\Metadata\Travel\TravelInfo;
 use laravel\pagseguro\Checkout\SimpleCheckout;
 use laravel\pagseguro\Checkout\GamerCheckout;
+use laravel\pagseguro\Checkout\TransparentCheckout;
 use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Phone\PhoneInterface;
 
@@ -17,7 +18,7 @@ use laravel\pagseguro\Phone\PhoneInterface;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>,  Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2016-01-12
  *
  * @copyright  Laravel\PagSeguro
@@ -34,8 +35,9 @@ class CheckoutFacade
         $isGamer = array_key_exists('game', $data);
         $isTravel = array_key_exists('travel', $data);
         $isCharger = array_key_exists('cellphone_charger', $data);
-        $isSimple = !($isGamer || $isTravel || $isCharger);
-        $this->multiTypeCheck($isGamer, $isTravel, $isCharger, $isSimple);
+        $isTransparent = array_key_exists('transparent', $data);
+        $isSimple = !($isGamer || $isTravel || $isCharger || $isTransparent);
+        $this->multiTypeCheck($isGamer, $isTravel, $isCharger, $isTransparent, $isSimple);
         if ($isGamer) {
             $info = $data['game'];
             unset($data['game']);
@@ -48,6 +50,10 @@ class CheckoutFacade
             $info = $data['cellphone_charger'];
             unset($data['cellphone_charger']);
             return $this->createCellPhoneChargerCheckout($data, $info);
+        } elseif ($isTransparent) {
+            $info = $data['transparent'];
+            unset($data['transparent']);
+            return $this->createTransparentCheckout($data, $info);
         }
         return $this->createSimpleCheckout($data);
     }
@@ -79,6 +85,27 @@ class CheckoutFacade
         $dataFacade = new DataFacade();
         $checkoutData = $dataFacade->ensureInstances($data);
         $checkout = new SimpleCheckout($checkoutData);
+        return $checkout;
+    }
+
+    public function createTransparentCheckout(array $data, $info)
+    {
+        //Todo: Implement TransparentCheckout
+        $dataFacade = new DataFacade();
+        $checkoutData = $dataFacade->ensureInstances($info);
+        $checkout = new SimpleCheckout($checkoutData);
+
+        $checkout->setPaymentMode('default');
+        $checkout->setPaymentMethod($checkoutData['paymentMethod']);
+
+        if(isset($checkoutData['creditCard'])) {
+            $checkout->setCreditCard($checkoutData['creditCard']);
+        }
+
+        if(isset($info['bank'])) {
+            $checkout->setBank($info['bank']);
+        }
+
         return $checkout;
     }
 
@@ -115,13 +142,15 @@ class CheckoutFacade
      * @param bool $isGamer
      * @param bool $isTravel
      * @param bool $isCharger
+     * @param bool $isTransparent
      * @param bool $isSimple
      */
-    private function multiTypeCheck($isGamer, $isTravel, $isCharger, $isSimple)
+    private function multiTypeCheck($isGamer, $isTravel, $isCharger, $isTransparent, $isSimple)
     {
         $counter = ((int)$isGamer) +
             ((int)$isTravel) +
             ((int)$isCharger) +
+            ((int)$isTransparent) +
             ((int)$isSimple);
         if ($counter > 1) {
             throw new \InvalidArgumentException('Two or more checkout types detected');

@@ -1,22 +1,24 @@
 <?php
 
-namespace laravel\pagseguro\Sender;
+namespace laravel\pagseguro\CreditCard;
 
+use laravel\pagseguro\Address\AddressInterface;
+use laravel\pagseguro\CreditCard\Installment\InstallmentInterface;
 use laravel\pagseguro\Document\DocumentCollection;
 use laravel\pagseguro\Phone\PhoneInterface;
 
 /**
- * Sender Interface
+ * CreditCard Interface
  *
- * @category   Sender
- * @package    Laravel\PagSeguro\Sender
+ * @category   CreditCard
+ * @package    Laravel\PagSeguro\CreditCard
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2015-08-11
+ * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ * @since      2016-04-21
  *
  * @copyright  Laravel\PagSeguro
  */
-interface SenderInterface
+interface CreditCardInterface
 {
 
     /**
@@ -26,16 +28,16 @@ interface SenderInterface
     public function __construct(array $data = []);
 
     /**
-     * Get Hash
+     * Get Token
      * @return string
      */
-    public function getHash();
+    public function getToken();
 
     /**
-     * Get E-mail
-     * @return string
+     * Get Installment
+     * @return InstallmentInterface
      */
-    public function getEmail();
+    public function getInstallment();
 
     /**
      * Get Name (Nome)
@@ -56,24 +58,30 @@ interface SenderInterface
     public function getDocuments();
 
     /**
-     * Get Born Date (Data de Nascimento)
+     * Get Birth Date (Data de Nascimento)
      * @return string
      */
-    public function getBornDate();
+    public function getBirthDate();
 
     /**
-     * Set Hash
-     * @param string $hash
-     * @return SenderInterface
+     * Get Billing Address (Lista de Documentos)
+     * @return AddressInterface
      */
-    public function setHash($hash);
+    public function getBillingAddress();
 
     /**
-     * Set Email
-     * @param string $email
+     * Set Token
+     * @param string $token
      * @return SenderInterface
      */
-    public function setEmail($email);
+    public function setToken($token);
+
+    /**
+     * Set Installment
+     * @param InstallmentInterface|array $installment
+     * @return CreditCardInterface
+     */
+    public function setInstallment($installment);
 
     /**
      * Set Name
@@ -97,11 +105,18 @@ interface SenderInterface
     public function setDocuments($documents);
 
     /**
-     * Set Born Date (Data de nascimento)
-     * @param string $bornDate
+     * Set Birth Date (Data de nascimento)
+     * @param string $birthDate
      * @return SenderInterface
      */
-    public function setBornDate($bornDate);
+    public function setBirthDate($birthDate);
+
+    /**
+     * Set Billing Address
+     * @param AddressInterface $billingAddress
+     * @return CreditCardInterface
+     */
+    public function setBillingAddress(AddressInterface $billingAddress);
 
     /**
      * Proxies Data Hydrate

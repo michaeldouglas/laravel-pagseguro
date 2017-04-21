@@ -1,40 +1,42 @@
 <?php
 
-namespace laravel\pagseguro\Sender;
+namespace laravel\pagseguro\CreditCard;
 
 use laravel\pagseguro\Address\AddressInterface;
 use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
 use laravel\pagseguro\Complements\ValidateTrait;
+use laravel\pagseguro\CreditCard\Installment\Installment;
+use laravel\pagseguro\CreditCard\Installment\InstallmentInterface;
 use laravel\pagseguro\Document\DocumentCollection;
 use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Phone\PhoneInterface;
 
 /**
- * Sender Object
+ * CreditCard Object
  *
- * @category   Sender
- * @package    Laravel\PagSeguro\Sender
+ * @category   CreditCard
+ * @package    Laravel\PagSeguro\CreditCard
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>, Michael Douglas <michaeldouglas010790@gmail.com>
- * @since      2015-01-11
+ * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ * @since      2016-04-21
  *
  * @copyright  Laravel\PagSeguro
  */
-class Sender implements SenderInterface
+class CreditCard implements CreditCardInterface
 {
 
     /**
-     * Hash
+     * Token
      * @var string
      */
-    protected $hash;
+    protected $token;
 
     /**
-     * E-mail
-     * @var string
+     * Installment (Prestação)
+     * @var InstallmentInterface
      */
-    protected $email;
-
+    protected $installment;
+    
     /**
      * Name (Nome)
      * @var string
@@ -54,10 +56,16 @@ class Sender implements SenderInterface
     protected $documents;
 
     /**
-     * Born Date (Data de nascimento)
+     * Birth Date (Data de nascimento)
      * @var string
      */
-    protected $bornDate;
+    protected $birthDate;
+
+    /**
+     * BillingAddress
+     * @var AddressInterface
+     */
+    protected $billingAddress;
 
     use DataHydratorTrait, ValidateTrait {
         ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
@@ -75,20 +83,21 @@ class Sender implements SenderInterface
     }
 
     /**
+     * Get Token
      * @return string
      */
-    public function getHash()
+    public function getToken()
     {
-        return $this->hash;
+        return $this->token;
     }
 
     /**
-     * Get E-mail
-     * @return string
+     * Get Installment (Prestação)
+     * @return InstallmentInterface
      */
-    public function getEmail()
+    public function getInstallment()
     {
-        return $this->email;
+        return $this->installment;
     }
 
     /**
@@ -119,39 +128,52 @@ class Sender implements SenderInterface
     }
 
     /**
-     * Get Born Date (Data de Nascimento)
+     * Get Birth Date (Data de Nascimento)
      * @return string
      */
-    public function getBornDate()
+    public function getBirthDate()
     {
-        return $this->bornDate;
+        return $this->birthDate;
     }
 
     /**
-     * Set Hash
-     * @param string $hash
-     * @return Hash
-     */
-    public function setHash($hash)
-    {
-        $this->hash = $hash;
-    }
-
-    /**
-     * Set Email
-     * @param string $email
+     * Get Billing Address
      * @return AddressInterface
      */
-    public function setEmail($email)
+    public function getBillingAddress()
     {
-        $this->email = $email;
+        return $this->billingAddress;
+    }
+
+    /**
+     * Set Token
+     * @param string $token
+     * @return CreditCard
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
         return $this;
     }
 
     /**
+     * Set Installment $installment
+     * @param InstallmentInterface $installment
+     * @return CreditCardInterface
+     */
+    public function setInstallment($installment)
+    {
+        if (is_array($installment)) {
+            $installment = Installment::factory($installment);
+        }
+        $this->installment = $installment;
+        return $this;
+    }
+    
+    /**
      * Set Name
      * @param string $name
-     * @return AddressInterface
+     * @return CreditCardInterface
      */
     public function setName($name)
     {
@@ -162,7 +184,7 @@ class Sender implements SenderInterface
     /**
      * Set Phone (Telefone)
      * @param PhoneInterface|array $phone
-     * @return AddressInterface
+     * @return CreditCardInterface
      */
     public function setPhone($phone)
     {
@@ -177,7 +199,7 @@ class Sender implements SenderInterface
     /**
      * Set Documents (Lista de Documentos)
      * @param DocumentCollection|array $documents
-     * @return AddressInterface
+     * @return CreditCardInterface
      */
     public function setDocuments($documents)
     {
@@ -189,13 +211,24 @@ class Sender implements SenderInterface
     }
 
     /**
-     * Set Born Date (Data de nascimento)
-     * @param string $bornDate
-     * @return AddressInterface
+     * Set Birth Date (Data de nascimento)
+     * @param string $birthDate
+     * @return CreditCardInterface
      */
-    public function setBornDate($bornDate)
+    public function setBirthDate($birthDate)
     {
-        $this->bornDate = $bornDate;
+        $this->birthDate = $birthDate;
+        return $this;
+    }
+
+    /**
+     * Set Billing Address
+     * @param AddressInterface $billingAddress
+     * @return CreditCardInterface
+     */
+    public function setBillingAddress(AddressInterface $billingAddress)
+    {
+        $this->billingAddress = $billingAddress;
         return $this;
     }
 

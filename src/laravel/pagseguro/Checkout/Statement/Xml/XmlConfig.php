@@ -10,7 +10,7 @@ use laravel\pagseguro\Checkout\CheckoutInterface;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2016-01-12
  *
  * @copyright  Laravel\PagSeguro
@@ -36,6 +36,7 @@ class XmlConfig implements XmlPartInterface
      */
     public function getXmlString()
     {
+        //Todo: Test if transparent checkout require redirectURl
         return
             $this->getExtraAmountXmlString() .
             $this->getRedirectURLXmlString() .

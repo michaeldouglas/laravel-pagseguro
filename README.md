@@ -93,6 +93,19 @@ Caso você precise de proxy para utilizar a Laravel PagSeguro descomente e confi
     ],
 ],
 ```
+## Credenciais
+
+Para resgatar as credenciais padrões do arquivo você pode usar:
+
+```php
+$credentials = PagSeguro::credentials()->get();
+```
+
+Ou usar credenciais alternativas
+
+```php
+$credentials = PagSeguro::credentials()->create($token, $email);
+```
 
 ## Exemplo de envio de requisição de compra
 
@@ -220,18 +233,195 @@ $data['game'] = [
 $checkout = PagSeguro::checkout()->createFromArray($data);
 ```
 
-## Credenciais
+## Checkout Transparente
 
-Para resgatar as credenciais padrões do arquivo você pode usar:
+#### Iniciando uma sessão de pagamento
+
+Para iniciar um Checkout Transparente é necessário ter um ID de sessão válido. O exemplo abaixo demonstra como gerar um ID.
 
 ```php
 $credentials = PagSeguro::credentials()->get();
+$session = PagSeguro::session()->get($credentials);
+$session = $session->get();
 ```
 
-Ou usar credenciais alternativas
+#### Exemplo de checkout transparente para Boleto
+
+Atenção para o atributo 'hash', o qual é a identificação do comprador gerado através da API JavaScript do PagSeguro.
 
 ```php
-$credentials = PagSeguro::credentials()->create($token, $email);
+$data['transparent'] = [
+    'paymentMode' => 'default',
+    'paymentMethod' => 'boleto',
+    'items' => [
+        [
+            'id' => '1',
+            'description' => 'Teste Boleto',
+            'quantity' => '1',
+            'amount' => '122.30',
+        ]
+    ],
+    'shipping' => [
+        'address' => [
+            'postalCode' => '01452002',
+            'street' => 'Rua Leonardo Arruda',
+            'number' => '12',
+            'district' => 'Jardim dos Camargos',
+            'city' => 'Barueri',
+            'state' => 'SP',
+            'country' => 'BRA',
+        ],
+        'type' => 3,
+        'cost' => 0.00
+    ],
+    'sender' => [
+        'email' => 'sender@gmail.com',
+        'name' => 'Eduardo Alves',
+        'documents' => [
+            [
+                'number' => '01234567890',
+                'type' => 'CPF'
+            ]
+        ],
+        'phone' => '11985445522',
+        'bornDate' => '1988-03-21',
+        'hash' => 'abc123'
+    ]
+];
+```
+
+Após ter os dados, utilize o método: `createFromArray` para criar o objeto de checkout:
+
+```php
+$checkout = PagSeguro::checkout()->createFromArray($data);
+```
+
+Para confirmar o envio utilize o método: `transparent` da seguinte forma:
+
+```php
+$transparent = $checkout->transparent(PagSeguro::credentials()->get());
+```
+
+#### Exemplo de checkout transparente para Débito Online
+
+Atenção para o atributo 'bank', o qual é a identificação do Banco gerado através da API JavaScript do PagSeguro.
+
+```php
+$data['transparent'] = [
+    'paymentMode' => 'default',
+    'paymentMethod' => 'eft',
+    'bank' = 'itau',
+    'items' => [
+        [
+            'id' => '1',
+            'description' => 'Teste Débito Online',
+            'quantity' => '1',
+            'amount' => '122.30'
+        ]
+    ],
+    'shipping' => [
+        'address' => [
+            'postalCode' => '01452002',
+            'street' => 'Rua Leonardo Arruda',
+            'number' => '12',
+            'district' => 'Jardim dos Camargos',
+            'city' => 'Barueri',
+            'state' => 'SP',
+            'country' => 'BRA'
+        ],
+        'type' => 3,
+        'cost' => 0.00
+    ],
+    'sender' => [
+        'email' => 'sender@gmail.com',
+        'name' => 'Eduardo Alves',
+        'documents' => [
+            [
+                'number' => '01234567890',
+                'type' => 'CPF'
+            ]
+        ],
+        'phone' => '11985445522',
+        'bornDate' => '1988-03-21',
+        'hash' => 'abc123'
+    ]
+];
+
+$checkout = PagSeguro::checkout()->createFromArray($data);
+$transparent = $checkout->transparent(PagSeguro::credentials()->get());
+```
+
+#### Exemplo de checkout transparente para Cartão de Crédito
+
+Atenção para o atributo 'token', o qual é a representação do cartão de crédito gerado através da API JavaScript do PagSeguro.
+
+```php
+$data['transparent'] = [
+    'paymentMode' => 'default',
+    'paymentMethod' => 'creditCard',
+    'items' => [
+        [
+            'id' => '1',
+            'description' => 'Teste Cartão de Crédito',
+            'quantity' => '1',
+            'amount' => '122.30'
+        ]
+    ],
+    'shipping' => [
+        'address' => [
+            'postalCode' => '01452002',
+            'street' => 'Rua Leonardo Arruda',
+            'number' => '12',
+            'district' => 'Jardim dos Camargos',
+            'city' => 'Barueri',
+            'state' => 'SP',
+            'country' => 'BRA'
+        ],
+        'type' => 3,
+        'cost' => 0.00
+    ],
+    'sender' => [
+        'email' => 'sender@gmail.com',
+        'name' => 'Eduardo Alves',
+        'documents' => [
+            [
+                'number' => '01234567890',
+                'type' => 'CPF'
+            ]
+        ],
+        'phone' => '11985445522',
+        'bornDate' => '1988-03-21',
+        'hash' => 'abc123'
+    ],
+    'creditCard' = [
+        'token' => '95112EE828D94278BD394E91C4388F20',
+        'name' => 'Comprador Teste',
+        'installment' => [
+            'quantity' => '1',
+            'value' => '122.30'
+        ],
+        'documents' => [
+            [
+                'number' => '01234567890',
+                'type' => 'CPF'
+            ]
+        ],
+        'phone' => '11985445522',
+        'birthDate' => '1988-03-21',
+        'billingAddress' => [
+            'postalCode' => '01452002',
+            'street' => 'Rua Leonardo Arruda',
+            'number' => '12',
+            'district' => 'Jardim dos Camargos',
+            'city' => 'Barueri',
+            'state' => 'SP',
+            'country' => 'BRA'
+        ],
+    ];
+];
+
+$checkout = PagSeguro::checkout()->createFromArray($data);
+$transparent = $checkout->transparent(PagSeguro::credentials()->get());
 ```
 
 ## Consultando uma Transação manualmente

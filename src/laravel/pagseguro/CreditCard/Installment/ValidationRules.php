@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\pagseguro\Sender;
+namespace laravel\pagseguro\CreditCard\Installment;
 
 use laravel\pagseguro\Complements\ValidationRulesInterface;
 use laravel\pagseguro\Complements\ValidationRulesTrait;
@@ -8,11 +8,11 @@ use laravel\pagseguro\Complements\ValidationRulesTrait;
 /**
  * Validation Rules Object
  *
- * @category   Sender
- * @package    Laravel\PagSeguro\Sender
+ * @category   Installment
+ * @package    Laravel\PagSeguro\CreditCard\Installment
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      2015-01-11
+ * @author     Eduardo Alves <eduardoalves.info@gmail.com>
+ * @since      2016-04-21
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -23,12 +23,8 @@ class ValidationRules implements ValidationRulesInterface
      * @var array
      */
     protected $rules = [
-        'hash' => 'String',
-        'email' => 'Required|Email',
-        'name' => 'Required|min:2|max:50',
-        'documents' => 'Required',
-        'phone' => 'Required',
-        'bornDate' => 'Date',
+        'quantity' => 'Required',
+        'value' => 'Required'
     ];
 
     /**

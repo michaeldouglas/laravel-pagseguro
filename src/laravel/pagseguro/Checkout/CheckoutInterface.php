@@ -14,7 +14,7 @@ use laravel\pagseguro\Shipping\ShippingInterface;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2016-01-12
  *
  * @copyright  Laravel\PagSeguro
@@ -93,9 +93,36 @@ interface CheckoutInterface
     public function getShipping();
 
     /**
+     * @return CreditCardInterface
+     */
+    public function getCreditCard();
+
+    /**
+     * @return string
+     */
+    public function getPaymentMode();
+
+    /**
+     * @return string
+     */
+    public function getPaymentMethod();
+
+    /**
+     * @return string
+     */
+    public function getBank();
+
+    /**
      * Send Checkout
      * @param CredentialsInterface $credentials
      * @return array
      */
     public function send(CredentialsInterface $credentials);
+
+    /**
+     * Send Checkout
+     * @param CredentialsInterface $credentials
+     * @return array
+     */
+    public function transparent(CredentialsInterface $credentials);
 }

@@ -6,6 +6,7 @@ use laravel\pagseguro\Credentials\CredentialsInterface;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Receiver\ReceiverInterface;
 use laravel\pagseguro\Sender\SenderInterface;
+use laravel\pagseguro\CreditCard\CreditCardInterface;
 use laravel\pagseguro\Shipping\ShippingInterface;
 use laravel\pagseguro\Remote\Checkout as RemoteCheckout;
 
@@ -15,13 +16,28 @@ use laravel\pagseguro\Remote\Checkout as RemoteCheckout;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2016-01-12
  *
  * @copyright  Laravel\PagSeguro
  */
 class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
 {
+
+    /**
+     * @var string
+     */
+    protected $paymentMode;
+
+    /**
+     * @var string
+     */
+    public $paymentMethod;
+
+    /**
+     * @var string
+     */
+    protected $bank;
 
     /**
      * Only BRL
@@ -33,6 +49,11 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
      * @var ItemCollection
      */
     protected $items;
+
+    /**
+     * @var CreditCardInterface
+     */
+    protected $creditCard;
 
     /**
      * @var SenderInterface
@@ -48,6 +69,54 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
      * @var ReceiverInterface
      */
     protected $receiver;
+
+    /**
+     * @return string
+     */
+    public function getPaymentMode()
+    {
+        return $this->paymentMode;
+    }
+
+    /**
+     * @param string $paymentMode
+     */
+    public function setPaymentMode($paymentMode)
+    {
+        $this->paymentMode = $paymentMode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param string $paymentMethod
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBank()
+    {
+        return $this->bank;
+    }
+
+    /**
+     * @param string $bank
+     */
+    public function setBank($bank)
+    {
+        $this->bank = $bank;
+    }
 
     /**
      * @return SenderInterface
@@ -67,6 +136,27 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
             throw new \InvalidArgumentException('Invalid Sender');
         }
         $this->sender = $sender;
+        return $this;
+    }
+
+    /**
+     * @return CreditCardInterface
+     */
+    public function getCreditCard()
+    {
+        return $this->creditCard;
+    }
+
+    /**
+     * @param CreditCardInterface $creditCard
+     * @return SimpleCheckout
+     */
+    public function setCreditCard($creditCard)
+    {
+        if (!is_null($creditCard) && !($creditCard instanceof CreditCardInterface)) {
+            throw new \InvalidArgumentException('Invalid CreditCard');
+        }
+        $this->creditCard = $creditCard;
         return $this;
     }
 
@@ -159,5 +249,17 @@ class SimpleCheckout extends AbstractCheckout implements CheckoutInterface
         $data = $remote->send($this, $credentials);
         $factory = new Information\InformationFactory($data);
         return $factory->getInformation();
+    }
+
+    /**
+     * Send Checkout Transparent
+     * @param CredentialsInterface $credentials
+     * @return \laravel\pagseguro\Checkout\Information\Information
+     */
+    public function transparent(CredentialsInterface $credentials)
+    {
+        $remote = new RemoteCheckout();
+        $data = $remote->transparent($this, $credentials);
+        return $data;
     }
 }

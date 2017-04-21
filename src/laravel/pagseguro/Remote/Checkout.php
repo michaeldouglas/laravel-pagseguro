@@ -14,7 +14,7 @@ use laravel\pagseguro\Http\Request\RequestInterface;
  * @category   Remote
  * @package    Laravel\PagSeguro\Remote
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2015-12-10
  *
  * @copyright  Laravel\PagSeguro
@@ -52,6 +52,26 @@ class Checkout extends ConsumerAbstract
         return $data;
     }
 
+    public function transparent(CheckoutInterface $checkout, CredentialsInterface $credential)
+    {
+        $url = $this->getUrlTo('checkout-transparent');
+        $request = $this->getRequest();
+        $this->prepareStatement($checkout, $request);
+        $credentialData = $this->getCredentialData($credential);
+        $response = $request->post($url, $credentialData);
+        if (!$response) {
+            throw new \RuntimeException('Checkout transparent failure');
+        }
+        $body = $response->getRawBody();
+        if ($response->getHttpStatus() !== 200) {
+            $error = 'Error on transparent: ' . $response->getHttpStatus() . '-' . $body;
+            throw new \RuntimeException($error);
+        }
+        $parser = new Xml($body);
+        $data = $parser->toArray();
+        return $data;
+    }
+
     /**
      * Prepare Request With Statement
      * @param CheckoutInterface $checkout
@@ -62,4 +82,6 @@ class Checkout extends ConsumerAbstract
         $stmt = new XmlStatement($checkout);
         $stmt->prepare($request);
     }
+
+
 }

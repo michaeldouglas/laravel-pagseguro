@@ -3,6 +3,8 @@
 namespace laravel\pagseguro\Checkout\Facade;
 
 use laravel\pagseguro\Address\Address;
+use laravel\pagseguro\CreditCard\CreditCard;
+use laravel\pagseguro\CreditCard\CreditCardInterface;
 use laravel\pagseguro\Item\ItemCollection;
 use laravel\pagseguro\Receiver\Receiver;
 use laravel\pagseguro\Receiver\ReceiverInterface;
@@ -17,7 +19,7 @@ use laravel\pagseguro\Shipping\ShippingInterface;
  * @category   Checkout
  * @package    Laravel\PagSeguro\Checkout
  *
- * @author     Isaque de Souza <isaquesb@gmail.com>
+ * @author     Isaque de Souza <isaquesb@gmail.com>, Eduardo Alves <eduardoalves.info@gmail.com>
  * @since      2016-01-12
  *
  * @copyright  Laravel\PagSeguro
@@ -42,6 +44,9 @@ class DataFacade
         }
         if (array_key_exists('shipping', $data)) {
             $data['shipping'] = $this->ensureShippingInstance($data['shipping']);
+        }
+        if (array_key_exists('creditCard', $data)) {
+            $data['creditCard'] = $this->ensureCreditCardInstance($data['creditCard']);
         }
         return $data;
     }
@@ -109,5 +114,25 @@ class DataFacade
             $shipping['address'] = new Address($shipping['address']);
         }
         return new Shipping($shipping);
+    }
+
+    /**
+     * @param array|CreditCardInterface $creditCard
+     * @return CreditCardInterface
+     */
+    private function ensureCreditCardInstance($creditCard)
+    {
+        if ($creditCard instanceof CreditCardInterface) {
+            return $creditCard;
+        }
+        if (!is_array($creditCard)) {
+            throw new \InvalidArgumentException('Invalid credit card data');
+        }
+        if (array_key_exists('billingAddress', $creditCard)
+            && is_array($creditCard['billingAddress'])
+        ) {
+            $creditCard['billingAddress'] = new Address($creditCard['billingAddress']);
+        }
+        return new CreditCard($creditCard);
     }
 }
