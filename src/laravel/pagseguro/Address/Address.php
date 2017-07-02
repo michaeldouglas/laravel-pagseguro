@@ -2,7 +2,8 @@
 
 namespace laravel\pagseguro\Address;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
 
 /**
  * Address Object
@@ -22,7 +23,7 @@ class Address implements AddressInterface
      * Postal Code (CEP)
      * @var string
      */
-    protected $shippingAddressPostalCode;
+    protected $postalCode;
 
     /**
      * Street (Rua)
@@ -65,14 +66,10 @@ class Address implements AddressInterface
      * @var string
      */
     protected $country;
-    
-    /**
-     * ShippingType
-     * @var int
-     */
-    protected $shippingType;
 
-    use DataHydratorTrait;
+    use DataHydratorTrait, ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor
@@ -80,7 +77,7 @@ class Address implements AddressInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }
@@ -91,7 +88,7 @@ class Address implements AddressInterface
      */
     public function getPostalCode()
     {
-        return $this->shippingAddressPostalCode;
+        return $this->postalCode;
     }
 
     /**
@@ -156,24 +153,15 @@ class Address implements AddressInterface
     {
         return $this->country;
     }
-    
-    /**
-     * Get ShippingType (Tipo de envio)
-     * @return int
-     */
-    public function getShippingType()
-    {
-        return $this->shippingType;
-    }
 
     /**
      * Set Postal Code (CEP)
-     * @param string $shippingAddressPostalCode
+     * @param string $postalCode
      * @return string
      */
-    public function setPostalCode($shippingAddressPostalCode)
+    public function setPostalCode($postalCode)
     {
-        $this->shippingAddressPostalCode = $shippingAddressPostalCode;
+        $this->postalCode = $postalCode;
         return $this;
     }
 
@@ -262,17 +250,4 @@ class Address implements AddressInterface
     {
         return new ValidationRules();
     }
-    
-    
-    /**
-     * Set ShippingType (Tipo do envio)
-     * @return int $shippingType
-     * @return int
-     */
-    public function setShippingType($shippingType)
-    {
-        $this->shippingType = $shippingType;
-        return $this;
-    }
-
 }

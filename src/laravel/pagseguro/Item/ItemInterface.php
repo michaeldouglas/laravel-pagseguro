@@ -155,7 +155,7 @@ interface ItemInterface
     /**
      * Get Validator
      * Return only after hydrate
-     * @return null|Validator
+     * @return null|\Illuminate\Validation\Validator
      */
     public function getValidator();
 
@@ -164,5 +164,4 @@ interface ItemInterface
      * @return array
      */
     public function toArray();
-
 }

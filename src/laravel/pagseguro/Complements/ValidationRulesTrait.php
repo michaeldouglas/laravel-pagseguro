@@ -53,5 +53,4 @@ trait ValidationRulesTrait
         $this->messages = $messages;
         return $this;
     }
-
 }

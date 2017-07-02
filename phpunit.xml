@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="tests/bootstrap.php"
+         bootstrap="tests/unit/bootstrap.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -20,4 +20,7 @@
             <directory suffix=".php">./vendor</directory>
         </blacklist>
     </filter>
+    <logging>
+        <log type="coverage-html" target="./coverage/"/>
+    </logging>
 </phpunit>

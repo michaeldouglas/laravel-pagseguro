@@ -2,8 +2,8 @@
 
 namespace laravel\pagseguro\Item;
 
-use laravel\pagseguro\Complements\ValidationRulesInterface,
-    laravel\pagseguro\Complements\ValidationRulesTrait;
+use laravel\pagseguro\Complements\ValidationRulesInterface;
+use laravel\pagseguro\Complements\ValidationRulesTrait;
 
 /**
  * Validation Rules Object
@@ -40,5 +40,4 @@ class ValidationRules implements ValidationRulesInterface
     protected $messages;
 
     use ValidationRulesTrait;
-
 }

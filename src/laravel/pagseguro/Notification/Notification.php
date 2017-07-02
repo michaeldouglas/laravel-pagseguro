@@ -2,7 +2,12 @@
 
 namespace laravel\pagseguro\Notification;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorConstructorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
+use laravel\pagseguro\Credentials\CredentialsInterface;
+use laravel\pagseguro\Remote\Notification as RemoteNotification;
+use laravel\pagseguro\Transaction\Information\InformationFactory;
 
 /**
  * Notification Object
@@ -30,7 +35,9 @@ class Notification implements NotificationInterface
      */
     protected $notificationType = 'transaction';
 
-    use DataHydratorTrait;
+    use DataHydratorTrait, DataHydratorConstructorTrait, ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor
@@ -39,17 +46,11 @@ class Notification implements NotificationInterface
     public function __construct($data = [])
     {
         $args = func_get_args();
-        $firstArg = reset($args);
-        $data = is_array($firstArg) ? $firstArg : [];
-        if(count($args) === 2) {
-            $data['notificationCode'] = $firstArg;
-            $data['notificationType'] = end($args);
-        } elseif (is_string($firstArg)) {
-            $data['notificationCode'] = $firstArg;
-        }
-        if(count($data)) {
-            $this->hydrate($data);
-        }
+        $data = null;
+        $this->hydrateMagic(
+            ['notificationCode', 'notificationType'],
+            $args
+        );
     }
 
     /**
@@ -88,11 +89,29 @@ class Notification implements NotificationInterface
      */
     public function setNotificationType($type)
     {
+        $type = trim(strtolower($type));
         if ($type !== 'transaction') {
             throw new \InvalidArgumentException('Unsupported type:' . $type);
         }
         $this->notificationType = $type;
         return $this;
+    }
+
+    /**
+     * Check Information
+     * @param CredentialsInterface $credentials
+     * @return \laravel\pagseguro\Transaction\Information\Information
+     */
+    public function check(CredentialsInterface $credentials)
+    {
+        $type = $this->getNotificationType();
+        $remote = new RemoteNotification();
+        $data = $remote->$type($this->getNotificationCode(), $credentials);
+        $factoryBase = '\laravel\pagseguro\%s\Information\InformationFactory';
+        $factoryClass = sprintf($factoryBase, ucfirst($type));
+        $factory = new $factoryClass($data);
+        $information = $factory->getInformation();
+        return $information;
     }
 
     /**

@@ -2,7 +2,8 @@
 
 namespace laravel\pagseguro\Item;
 
-use laravel\pagseguro\Complements\DataHydratorTrait;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
 
 /**
  * Item Object
@@ -72,7 +73,9 @@ class Item implements ItemInterface
      */
     protected $length;
 
-    use DataHydratorTrait;
+    use DataHydratorTrait, ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor
@@ -80,7 +83,7 @@ class Item implements ItemInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }
@@ -273,5 +276,4 @@ class Item implements ItemInterface
     {
         return new ValidationRules();
     }
-
 }

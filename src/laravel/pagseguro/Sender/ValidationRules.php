@@ -2,14 +2,14 @@
 
 namespace laravel\pagseguro\Sender;
 
-use laravel\pagseguro\Complements\ValidationRulesInterface,
-    laravel\pagseguro\Complements\ValidationRulesTrait;
+use laravel\pagseguro\Complements\ValidationRulesInterface;
+use laravel\pagseguro\Complements\ValidationRulesTrait;
 
 /**
  * Validation Rules Object
  *
  * @category   Sender
- * @package    Laravel\PagSeguro\Address
+ * @package    Laravel\PagSeguro\Sender
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-01-11
@@ -24,7 +24,7 @@ class ValidationRules implements ValidationRulesInterface
      */
     protected $rules = [
         'email' => 'Required|Email',
-        'senderName' => 'Required|min:2|max:50',
+        'name' => 'Required|min:2|max:50',
         'documents' => 'Required',
         'phone' => 'Required',
         'bornDate' => 'Date',

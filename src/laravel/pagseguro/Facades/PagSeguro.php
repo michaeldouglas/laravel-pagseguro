@@ -2,23 +2,42 @@
 
 namespace laravel\pagseguro\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
 /**
- * PagSeguro Laravel Facade
- * @author  Michael Douglas <michaeldouglas010790@gmail.com>
+ * PagSeguro Facade
+ * @author  Isaque de Souza <isaquesb@gmail.com>
  */
-class PagSeguro extends Facade
+class PagSeguro
 {
 
     /**
-     * Get the registered name of the component.
-     *
-     * @return string
+     * @return Checkout
      */
-    protected static function getFacadeAccessor()
+    public function checkout()
     {
-        return 'pagseguro';
+        return new Checkout();
     }
 
+    /**
+     * @return Credentials
+     */
+    public function credentials()
+    {
+        return new Credentials();
+    }
+
+    /**
+     * @return Item
+     */
+    public function item()
+    {
+        return new Item();
+    }
+
+    /**
+     * @return Transaction
+     */
+    public function transaction()
+    {
+        return new Transaction();
+    }
 }

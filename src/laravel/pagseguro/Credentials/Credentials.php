@@ -3,13 +3,13 @@
 namespace laravel\pagseguro\Credentials;
 
 /**
- * Credential Class to PagSeguro Operations
+ * Credential Object to PagSeguro Operations
  *
  * @category   Credentials
- * @package    Laravel\PagSeguro
+ * @package    Laravel\PagSeguro\Credentials
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
- * @since      : 02/01/2015
+ * @since      2015-01-02
  *
  * @copyright  Laravel\PagSeguro
  */
@@ -37,11 +37,11 @@ class Credentials implements CredentialsInterface
      */
     public function __construct($token, $email)
     {
-        if(!$this->_tokenIsValid($token)) {
-            throw new \InvalidArgumentException (self::ERROR_INVALID_TOKEN);
+        if (!$this->tokenIsValid($token)) {
+            throw new \InvalidArgumentException(self::ERROR_INVALID_TOKEN);
         }
-        if(!$this->_emailIsValid($email)) {
-            throw new \InvalidArgumentException (self::ERROR_INVALID_EMAIL);
+        if (!$this->emailIsValid($email)) {
+            throw new \InvalidArgumentException(self::ERROR_INVALID_EMAIL);
         }
         $this->token = $token;
         $this->email = $email;
@@ -53,8 +53,8 @@ class Credentials implements CredentialsInterface
      */
     public function isValid()
     {
-        $validEmail = $this->_emailIsValid($this->email);
-        $validToken = $this->_tokenIsValid($this->token);
+        $validEmail = $this->emailIsValid($this->email);
+        $validToken = $this->tokenIsValid($this->token);
         return $validEmail && $validToken;
     }
 
@@ -63,7 +63,7 @@ class Credentials implements CredentialsInterface
      * @param string $email E-mail address
      * @return bool
      */
-    protected function _emailIsValid($email)
+    protected function emailIsValid($email)
     {
         return !is_null($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
     }
@@ -73,7 +73,7 @@ class Credentials implements CredentialsInterface
      * @param string $token Token
      * @return bool
      */
-    protected function _tokenIsValid($token)
+    protected function tokenIsValid($token)
     {
         return !is_null($token) && is_string($token) && !empty($token);
     }
@@ -95,14 +95,13 @@ class Credentials implements CredentialsInterface
     {
         return $this->email;
     }
-    
+
     /**
      * Return array credential
      * @return string
      */
-    public function __toArray()
+    public function toArray()
     {
         return ['email' => $this->email, 'token' => $this->token];
     }
-  
 }

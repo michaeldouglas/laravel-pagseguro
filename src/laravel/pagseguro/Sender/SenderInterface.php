@@ -2,11 +2,14 @@
 
 namespace laravel\pagseguro\Sender;
 
+use laravel\pagseguro\Document\DocumentCollection;
+use laravel\pagseguro\Phone\PhoneInterface;
+
 /**
  * Sender Interface
  *
  * @category   Sender
- * @package    Laravel\PagSeguro\Address
+ * @package    Laravel\PagSeguro\Sender
  *
  * @author     Isaque de Souza <isaquesb@gmail.com>
  * @since      2015-08-11
@@ -32,7 +35,7 @@ interface SenderInterface
      * Get Name (Nome)
      * @return string
      */
-    public function getSenderName();
+    public function getName();
 
     /**
      * Get Phone (Telefone)
@@ -55,35 +58,35 @@ interface SenderInterface
     /**
      * Set Email
      * @param string $email
-     * @return Address
+     * @return SenderInterface
      */
     public function setEmail($email);
 
     /**
      * Set Name
      * @param string $name
-     * @return Address
+     * @return SenderInterface
      */
-    public function setSenderName($name);
+    public function setName($name);
 
     /**
      * Set Phone (Telefone)
      * @param PhoneInterface|array $phone
-     * @return Address
+     * @return SenderInterface
      */
     public function setPhone($phone);
 
     /**
      * Set Documents (Lista de Documentos)
      * @param DocumentCollection|array|string $documents
-     * @return Address
+     * @return SenderInterface
      */
     public function setDocuments($documents);
 
     /**
      * Set Born Date (Data de nascimento)
      * @param string $bornDate
-     * @return Address
+     * @return SenderInterface
      */
     public function setBornDate($bornDate);
 
@@ -103,7 +106,7 @@ interface SenderInterface
     /**
      * Get Validator
      * Return only after hydrate
-     * @return null|Validator
+     * @return null|\Illuminate\Validation\Validator
      */
     public function getValidator();
 
@@ -112,5 +115,4 @@ interface SenderInterface
      * @return array
      */
     public function toArray();
-
 }

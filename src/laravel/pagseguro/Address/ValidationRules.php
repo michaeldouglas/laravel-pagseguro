@@ -2,8 +2,8 @@
 
 namespace laravel\pagseguro\Address;
 
-use laravel\pagseguro\Complements\ValidationRulesInterface,
-    laravel\pagseguro\Complements\ValidationRulesTrait;
+use laravel\pagseguro\Complements\ValidationRulesInterface;
+use laravel\pagseguro\Complements\ValidationRulesTrait;
 
 /**
  * Validation Rules Object
@@ -24,7 +24,6 @@ class ValidationRules implements ValidationRulesInterface
      */
     protected $rules = [
         'postalCode' => 'Required|numeric|digits:8',
-        'shippingType' => 'Required|numeric',
         'street' => 'Required|max:80',
         'number' => 'Required|max:20',
         'complement' => 'max:40',

@@ -3,7 +3,7 @@
 namespace laravel\pagseguro\Transaction;
 
 /**
- * Notification Interface
+ * Transaction Interface
  *
  * @category   Transaction
  * @package    Laravel\PagSeguro\Transaction
@@ -15,5 +15,21 @@ namespace laravel\pagseguro\Transaction;
  */
 interface TransactionInterface
 {
+    /**
+     * Get Code
+     * @return string
+     */
+    public function getCode();
 
+    /**
+     * Check transaction status
+     * @return bool
+     */
+    public function check();
+
+    /**
+     * Get Transaction Info
+     * @return Information\Information
+     */
+    public function getInformation();
 }

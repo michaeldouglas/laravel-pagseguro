@@ -2,8 +2,12 @@
 
 namespace laravel\pagseguro\Sender;
 
-use laravel\pagseguro\Complements\DataHydratorTrait,
-    laravel\pagseguro\Sender\Phone\Phone;
+use laravel\pagseguro\Address\AddressInterface;
+use laravel\pagseguro\Complements\DataHydratorTrait\DataHydratorTrait;
+use laravel\pagseguro\Complements\ValidateTrait;
+use laravel\pagseguro\Document\DocumentCollection;
+use laravel\pagseguro\Phone\Phone;
+use laravel\pagseguro\Phone\PhoneInterface;
 
 /**
  * Sender Object
@@ -49,7 +53,9 @@ class Sender implements SenderInterface
      */
     protected $bornDate;
 
-    use DataHydratorTrait;
+    use DataHydratorTrait, ValidateTrait {
+        ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
+    }
 
     /**
      * Constructor
@@ -57,7 +63,7 @@ class Sender implements SenderInterface
      */
     public function __construct(array $data = [])
     {
-        if(count($data)) {
+        if (count($data)) {
             $this->hydrate($data);
         }
     }
@@ -75,7 +81,7 @@ class Sender implements SenderInterface
      * Get Name (Nome)
      * @return string
      */
-    public function getSenderName()
+    public function getName()
     {
         return $this->name;
     }
@@ -110,7 +116,7 @@ class Sender implements SenderInterface
     /**
      * Set Email
      * @param string $email
-     * @return Address
+     * @return AddressInterface
      */
     public function setEmail($email)
     {
@@ -121,9 +127,9 @@ class Sender implements SenderInterface
     /**
      * Set Name
      * @param string $name
-     * @return Address
+     * @return AddressInterface
      */
-    public function setSenderName($name)
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -132,11 +138,11 @@ class Sender implements SenderInterface
     /**
      * Set Phone (Telefone)
      * @param PhoneInterface|array $phone
-     * @return Address
+     * @return AddressInterface
      */
     public function setPhone($phone)
     {
-        if(!is_null($phone)) {
+        if (!is_null($phone)) {
             $this->phone = Phone::factory($phone);
         } else {
             $this->phone = null;
@@ -146,11 +152,14 @@ class Sender implements SenderInterface
 
     /**
      * Set Documents (Lista de Documentos)
-     * @param DocumentCollection|array|string $documents
-     * @return Address
+     * @param DocumentCollection|array $documents
+     * @return AddressInterface
      */
     public function setDocuments($documents)
     {
+        if (is_array($documents)) {
+            $documents = DocumentCollection::factory($documents);
+        }
         $this->documents = $documents;
         return $this;
     }
@@ -158,7 +167,7 @@ class Sender implements SenderInterface
     /**
      * Set Born Date (Data de nascimento)
      * @param string $bornDate
-     * @return Address
+     * @return AddressInterface
      */
     public function setBornDate($bornDate)
     {
@@ -174,5 +183,4 @@ class Sender implements SenderInterface
     {
         return new ValidationRules();
     }
-
 }

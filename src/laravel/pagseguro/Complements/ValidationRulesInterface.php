@@ -36,8 +36,8 @@ interface ValidationRulesInterface
 
     /**
      * Set Messages
+     * @param array $messages
      * @return array
      */
     public function setMessages(array $messages);
-
 }

@@ -5,11 +5,12 @@
     "license": "MIT",
     "type": "library",
     "require": {
-        "ext-curl": "*",
         "php": ">=5.4.0",
+        "ext-curl": "*",
         "lib-curl": "*",
         "lib-openssl": "*",
-        "lib-libxml": "*"
+        "lib-libxml": "*",
+        "illuminate/validation": ">=4.2"
     },
     "require-dev": {
         "phpunit/phpunit": "4.0.*"
@@ -29,6 +30,9 @@
             "email": "isaquesb@gmail.com"
         }
     ],
+    "scripts": {
+        "test:unit": "phpunit -c phpunit.xml tests/unit --coverage-html=./tests/phpunit"
+    },
     "config":{
         "bin-dir": "bin/"
     },
