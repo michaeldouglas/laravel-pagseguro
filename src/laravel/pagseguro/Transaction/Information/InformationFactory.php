@@ -150,9 +150,9 @@ class InformationFactory extends InformationAbstractFactory
             'netamount',
             'extraamount',
         ], null);
-        $data = array_intersect_key($this->data, $map);
-        $normalized = $this->normalizer->amountNormalized($data);
-        $amounts = new Amounts($normalized);
+        $normalized = $this->normalizer->amountNormalized($map);
+        $data = array_intersect_key($this->data, $normalized);
+        $amounts = new Amounts($data);
         return $amounts;
     }
 
