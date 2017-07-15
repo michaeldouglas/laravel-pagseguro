@@ -10,10 +10,11 @@
         "lib-curl": "*",
         "lib-openssl": "*",
         "lib-libxml": "*",
-        "illuminate/validation": ">=4.2"
+        "illuminate/validation": ">=4.2",
+        "symfony/translation": "^3.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.0.*"
+        "phpunit/phpunit": "5.*.*"
     },
     "autoload": {
         "psr-0":{
