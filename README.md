@@ -28,6 +28,8 @@ Abra o arquivo `composer.json` e insira a seguinte instrução:
         "michael/laravelpagseguro": "dev-master"
     }
 
+**Observação**: Para a versão 5.1 do laravel ou abaixo especifique a versão **0.4.1** ao invés de utilizar **dev-master**
+
 Após inserir no require o `Laravel PagSeguro`, você deverá executar o comando:
 
     composer update
