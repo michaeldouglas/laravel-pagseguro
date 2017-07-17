@@ -13,7 +13,7 @@
         "illuminate/validation": ">=4.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.0.*"
+        "phpunit/phpunit": "4.*.*"
     },
     "autoload": {
         "psr-0":{
@@ -35,6 +35,5 @@
     },
     "config":{
         "bin-dir": "bin/"
-    },
-    "minimum-stability": "dev"
+    }
 }

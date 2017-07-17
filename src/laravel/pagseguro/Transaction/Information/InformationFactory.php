@@ -62,7 +62,9 @@ class InformationFactory extends InformationAbstractFactory
         $data['paymentMethod'] = $this->getPaymentMethod();
         $data['amounts'] = $this->getAmounts();
         $data['sender'] = $this->getSender();
-        $data['shipping'] = $this->getShipping();
+        if (isset($this->data['shipping'])) {
+            $data['shipping'] = $this->getShipping();
+        }
         $data['items'] = $this->getItems();
         return new Information($data);
     }

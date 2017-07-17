@@ -21,8 +21,15 @@ class ValidationRules extends \PHPUnit_Framework_TestCase
      */
     protected function validatorMake($rule, $value)
     {
+        // return new \Illuminate\Validation\Validator(
+        //     new \Symfony\Component\Translation\Translator('pt_BR'),
+        //     ['field' => $value],
+        //     ['field' => $rule]
+        // );
         return new \Illuminate\Validation\Validator(
-            new \Symfony\Component\Translation\Translator('pt_BR'),
+            new \Illuminate\Translation\Translator(
+                new \Illuminate\Translation\ArrayLoader, 'pt_BR'
+            ),
             ['field' => $value],
             ['field' => $rule]
         );
