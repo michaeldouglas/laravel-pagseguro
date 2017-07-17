@@ -12,9 +12,9 @@
     </paymentmethod>
     <grossamount>49900.00</grossamount>
     <discountamount>0.00</discountamount>
-    <feeAmount>1.10</feeAmount>
-    <netAmount>49909.00</netAmount>
-    <extraAmount>5.00</extraAmount>
+    <feeamount>1.10</feeamount>
+    <netamount>49909.00</netamount>
+    <extraamount>5.00</extraamount>
     <installmentcount>1</installmentcount>
     <itemcount>2</itemcount>
     <items>
