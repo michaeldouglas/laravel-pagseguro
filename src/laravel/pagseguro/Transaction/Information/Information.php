@@ -343,8 +343,11 @@ class Information extends InformationAbstract
      * @param ShippingInterface $shipping
      * @return Information
      */
-    protected function setShipping(ShippingInterface $shipping)
+    protected function setShipping($shipping)
     {
+        if (!is_null($shipping) && !($shipping instanceof ShippingInterface)) {
+            throw new \InvalidArgumentException('Invalid shipping object');
+        }
         $this->shipping = $shipping;
         return $this;
     }

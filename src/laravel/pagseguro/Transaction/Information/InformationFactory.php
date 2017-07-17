@@ -62,9 +62,7 @@ class InformationFactory extends InformationAbstractFactory
         $data['paymentMethod'] = $this->getPaymentMethod();
         $data['amounts'] = $this->getAmounts();
         $data['sender'] = $this->getSender();
-        if (isset($this->data['shipping'])) {
-            $data['shipping'] = $this->getShipping();
-        }
+        $data['shipping'] = $this->getShipping();
         $data['items'] = $this->getItems();
         return new Information($data);
     }
@@ -178,6 +176,9 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getShipping()
     {
+        if (!isset($this->data['shipping'])) {
+            return null;
+        }
         $data = $this->normalizer->shippingNormalized($this->data['shipping']);
         $address = new Address($data['address']);
         $data['address'] = $address;
