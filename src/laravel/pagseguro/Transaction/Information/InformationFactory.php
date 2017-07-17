@@ -176,6 +176,9 @@ class InformationFactory extends InformationAbstractFactory
      */
     public function getShipping()
     {
+        if (!isset($this->data['shipping'])) {
+            return null;
+        }
         $data = $this->normalizer->shippingNormalized($this->data['shipping']);
         $address = new Address($data['address']);
         $data['address'] = $address;

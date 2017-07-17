@@ -2,6 +2,8 @@
 
 namespace laravel\pagseguro\Platform;
 
+use Illuminate\Support\Facades\Input;
+
 /**
  * Platform Laravel
  *
@@ -21,7 +23,7 @@ class Laravel5 implements PlatformInterface
      */
     public function getUrlParameters()
     {
-        return \Input::all();
+        return Input::all();
     }
 
     /**
