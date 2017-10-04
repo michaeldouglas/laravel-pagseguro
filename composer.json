@@ -35,5 +35,15 @@
     },
     "config":{
         "bin-dir": "bin/"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "laravel\\pagseguro\\Platform\\Laravel5\\ServiceProvider"
+            ],
+            "aliases": {
+                "PagSeguro": "laravel\\pagseguro\\Platform\\Laravel5\\ServiceProvider"
+            }
+        }
     }
 }
