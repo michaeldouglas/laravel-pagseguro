@@ -127,14 +127,17 @@ class InformationFactory extends InformationAbstractFactory
      */
     private function getSenderDataNormalized()
     {
-        $data = $this->data['sender'];
-        if (array_key_exists('phone', $data) && is_array($data['phone'])) {
-            $data['phone'] = $this->normalizer->phoneNormalized($data['phone']);
+        if(array_key_exists('sender', $this->data)){
+            $data = $this->data['sender'];
+            if (array_key_exists('phone', $data) && is_array($data['phone'])) {
+                $data['phone'] = $this->normalizer->phoneNormalized($data['phone']);
+            }
+            if (array_key_exists('documents', $data)) {
+                $data['documents'] = $this->normalizer->documentsNormalized($data['documents']);
+            }
+            return $data;
         }
-        if (array_key_exists('documents', $data)) {
-            $data['documents'] = $this->normalizer->documentsNormalized($data['documents']);
-        }
-        return $data;
+        return [];
     }
 
     /**
