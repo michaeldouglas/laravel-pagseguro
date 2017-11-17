@@ -3,12 +3,13 @@
 namespace laravel\pagseguro\Tests\Unit\Sender\Document\CPF;
 
 use laravel\pagseguro\Document\CPF\CPF;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Sender Document CPF Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class CPFTest extends \PHPUnit_Framework_TestCase
+class CPFTest extends TestCase
 {
 
     public function testEmptyCPF()

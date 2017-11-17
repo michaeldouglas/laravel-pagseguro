@@ -4,12 +4,13 @@ namespace laravel\pagseguro\Tests\Unit\Item;
 
 use laravel\pagseguro\Item\Item;
 use laravel\pagseguro\Item\ItemCollection;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Item Collection Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class ItemCollectionTest extends \PHPUnit_Framework_TestCase
+class ItemCollectionTest extends TestCase
 {
 
     /**

@@ -4,12 +4,13 @@ namespace laravel\pagseguro\Tests\Unit\Sender\Document;
 
 use laravel\pagseguro\Document\CPF\CPF;
 use laravel\pagseguro\Document\DocumentCollection;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Document Collection Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
+class DocumentCollectionTest extends TestCase
 {
 
     /**

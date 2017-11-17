@@ -4,12 +4,13 @@ namespace laravel\pagseguro\Tests\Unit\Checkout;
 
 use laravel\pagseguro\Checkout\SimpleCheckout;
 use laravel\pagseguro\Facades\Checkout;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Checkout Test Base
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class CheckoutBase extends \PHPUnit_Framework_TestCase
+class CheckoutBase extends TestCase
 {
     /**
      * @var SimpleCheckout
