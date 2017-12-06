@@ -232,7 +232,7 @@ abstract class AbstractCheckout
      * @param string $reference
      * @return CheckoutInterface
      */
-    protected function setReference($reference)
+    public function setReference($reference)
     {
         $this->reference = $reference;
         return $this;
