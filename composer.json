@@ -1,5 +1,5 @@
 {
-    "name": "douglasduffor/laravel-pagseguro",
+    "name": "michael/laravel-pagseguro",
     "description": "Biblioteca de integração com o gateway de pagamento PagSeguro.",
     "keywords": ["framework", "laravel", "Gateway Pagamento", "PagSeguro"],
     "license": "MIT",
