@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Tests\Unit\Sender\Document;
 
 use laravel\pagseguro\Document\CPF\CPF;
+use laravel\pagseguro\Document\CNPJ\CNPJ;
 use laravel\pagseguro\Document\DocumentCollection;
 
 /**
@@ -62,6 +63,20 @@ class DocumentCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $item = new CPF([
             'number' => '10987654321',
+        ]);
+        $collection = DocumentCollection::factory([$item]);
+        $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $collection);
+        $this->assertCount(1, $collection);
+        $this->assertEquals($item, $collection->offsetGet(0));
+    }
+    
+    /**
+     * Test With Cnpj
+     */
+    public function testWithCnpj()
+    {
+        $item = new CNPJ([
+            'number' => '51815418000198',
         ]);
         $collection = DocumentCollection::factory([$item]);
         $this->assertInstanceOf('\laravel\pagseguro\Document\DocumentCollection', $collection);

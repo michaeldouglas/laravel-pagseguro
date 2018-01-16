@@ -3,6 +3,7 @@
 namespace laravel\pagseguro\Document;
 
 use laravel\pagseguro\Document\CPF\CPF;
+use laravel\pagseguro\Document\CNPJ\CNPJ;
 
 /**
  * Document Collection Object
@@ -45,7 +46,7 @@ class DocumentCollection extends \ArrayObject
 
     /**
      * Factory Document
-     * CPF is a unique suported document
+     * CPF and CNPJ are the unique suported documents
      * @param array $data
      * @return DocumentInterface
      * @throws \InvalidArgumentException
@@ -59,7 +60,26 @@ class DocumentCollection extends \ArrayObject
         ) {
             throw new \InvalidArgumentException('Invalid document data');
         }
-        unset($data['type']);
-        return new CPF($data);
+        
+        if($data['type'] == 'CPF'){
+            self::unsetType($data);
+            return new CPF($data);
+        }elseif($data['type'] == 'CNPJ'){
+            self::unsetType($data);
+            return new CNPJ($data);
+        }else{
+            throw new \InvalidArgumentException('Invalid document type');
+        }
     }
+    
+    /**
+     * Unset the type
+     * @param array $data
+     * @return void
+     */
+    private static function unsetType(array $data)
+    {
+        unset($data['type']);
+    }
+
 }
