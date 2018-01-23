@@ -3,12 +3,13 @@
 namespace laravel\pagseguro\Tests\Unit\Sender;
 
 use laravel\pagseguro\Sender\Sender;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Sender Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class SenderTest extends \PHPUnit_Framework_TestCase
+class SenderTest extends TestCase
 {
 
     public function testEmptySender()

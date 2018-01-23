@@ -3,12 +3,13 @@
 namespace laravel\pagseguro\Tests\Unit\Phone;
 
 use laravel\pagseguro\Phone\Phone;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Phone Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class PhoneTest extends \PHPUnit_Framework_TestCase
+class PhoneTest extends TestCase
 {
 
     public function testStdPhone()

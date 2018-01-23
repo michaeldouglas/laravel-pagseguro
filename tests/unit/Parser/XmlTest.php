@@ -3,12 +3,13 @@
 namespace laravel\pagseguro\Tests\Unit\Parser;
 
 use laravel\pagseguro\Parser\Xml;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Xml Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class XmlTest extends \PHPUnit_Framework_TestCase
+class XmlTest extends TestCase
 {
 
     protected function getXmlForParseTest()

@@ -3,12 +3,13 @@
 namespace laravel\pagseguro\Tests\Unit\Address;
 
 use laravel\pagseguro\Address\Address;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Address Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class AddressTest extends \PHPUnit_Framework_TestCase
+class AddressTest extends TestCase
 {
 
     public function testEmptyAddress()

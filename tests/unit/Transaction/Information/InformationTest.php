@@ -10,12 +10,13 @@ use laravel\pagseguro\Transaction\Information;
 use laravel\pagseguro\Http\Response\Response;
 use laravel\pagseguro\Remote\Manager;
 use laravel\pagseguro\Transaction\Status\Status;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Information Factory Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class InformationTest extends \PHPUnit_Framework_TestCase
+class InformationTest extends TestCase
 {
 
     /**

@@ -9,12 +9,13 @@ use laravel\pagseguro\Payment\Method\CreditCard\CreditCardInterface;
 use laravel\pagseguro\Payment\Method\DepositAccount\DepositAccountInterface;
 use laravel\pagseguro\Payment\Method\Extras\ExtrasInterface;
 use laravel\pagseguro\Payment\Method\Transfer\TransferInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Payment Method Factory Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class NotificationTest extends \PHPUnit_Framework_TestCase
+class NotificationTest extends TestCase
 {
 
     /**

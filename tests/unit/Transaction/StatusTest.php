@@ -3,12 +3,13 @@
 namespace laravel\pagseguro\Tests\Unit\Transaction;
 
 use laravel\pagseguro\Transaction\Status\Status;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Status Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class StatusTest extends \PHPUnit_Framework_TestCase
+class StatusTest extends TestCase
 {
 
     /**

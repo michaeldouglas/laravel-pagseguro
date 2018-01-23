@@ -2,11 +2,13 @@
 
 namespace laravel\pagseguro\Tests\Unit;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * ValidationRules Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class ValidationRules extends \PHPUnit_Framework_TestCase
+class ValidationRules extends TestCase
 {
 
     /**

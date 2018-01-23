@@ -4,12 +4,13 @@ namespace laravel\pagseguro\Tests\Unit\Shipping;
 
 use laravel\pagseguro\Shipping\Shipping;
 use laravel\pagseguro\Address\Address;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Shipping Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class ShippingTest extends \PHPUnit_Framework_TestCase
+class ShippingTest extends TestCase
 {
 
     public function testEmptySender()

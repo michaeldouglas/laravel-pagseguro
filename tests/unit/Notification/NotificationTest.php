@@ -3,12 +3,13 @@
 namespace laravel\pagseguro\Tests\Unit\Notification;
 
 use laravel\pagseguro\Notification\Notification;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Notification Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class NotificationTest extends \PHPUnit_Framework_TestCase
+class NotificationTest extends TestCase
 {
 
     public function testEmptyNotification()

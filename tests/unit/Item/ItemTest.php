@@ -3,12 +3,13 @@
 namespace laravel\pagseguro\Tests\Unit\Item;
 
 use laravel\pagseguro\Item\Item;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Item Test
  * @author Isaque de Souza <isaquesb@gmail.com>
  */
-class ItemTest extends \PHPUnit_Framework_TestCase
+class ItemTest extends TestCase
 {
 
     public function testEmptyItem()
