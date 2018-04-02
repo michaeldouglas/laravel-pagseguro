@@ -42,7 +42,7 @@
                 "laravel\\pagseguro\\Platform\\Laravel5\\ServiceProvider"
             ],
             "aliases": {
-                "PagSeguro": "laravel\\pagseguro\\Platform\\Laravel5\\ServiceProvider"
+                "PagSeguro": "laravel\\pagseguro\\Platform\\Laravel5\\PagSeguro"
             }
         }
     }
