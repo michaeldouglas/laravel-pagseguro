@@ -2,6 +2,7 @@
 
 namespace laravel\pagseguro\Tests\Unit\Sender;
 
+use laravel\pagseguro\Phone\Phone;
 use laravel\pagseguro\Sender\Sender;
 use PHPUnit\Framework\TestCase;
 
@@ -22,23 +23,39 @@ class SenderTest extends TestCase
             'phone' => null,
             'bornDate' => null,
         ], $sender->toArray());
+
     }
 
-    public function testSenderWithoutPhonesAndDocuments()
+    public function testSenderWithoutPhones()
     {
+        $class = '\\laravel\\pagseguro\\Phone\\Phone';
         $data = [
             'email' => 'isaquesb@gmail.com',
             'name' => 'Isaque de Souza',
             'documents' => null,
-            'phone' => null,
+            'phone' => [],
             'bornDate' => '1988-03-21',
         ];
         $sender = new Sender($data);
-        $this->assertEquals($data, $sender->toArray());
+        $this->assertInstanceOf($class, $sender->getPhone());
+    }
+
+    public function testSenderWithoutDocuments()
+    {
+        $phone = new Phone([]);
+        $data = [
+            'email' => 'isaquesb@gmail.com',
+            'name' => 'Isaque de Souza',
+            'documents' => null,
+            'phone' => [],
+            'bornDate' => '1988-03-21',
+        ];
+        $sender = new Sender($data);
+
         $this->assertEquals($data['email'], $sender->getEmail());
         $this->assertEquals($data['name'], $sender->getName());
         $this->assertEquals($data['documents'], $sender->getDocuments());
-        $this->assertEquals($data['phone'], $sender->getPhone());
         $this->assertEquals($data['bornDate'], $sender->getBornDate());
+
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
 $credentials = [
-    'email' => '',
-    'key' => ''
+    'email' => 'paezraphael@gmail.com',
+    'key' => 'B2019BCE2FF64CE1BFBBFDC04B747CD2'
 ];
 
 if (empty($credentials['email']) || empty($credentials['key'])) {
