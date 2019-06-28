@@ -37,7 +37,10 @@ $data = [
                 'type' => 'CPF'
             ]
         ],
-        'phone' => '11985445522',
+        'phone' => [
+            'number' => '985445522',
+            'areaCode' => '11',
+        ],
         'bornDate' => '1988-03-21',
     ],
     'currency' => 'BRL',

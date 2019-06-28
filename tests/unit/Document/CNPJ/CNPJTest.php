@@ -8,7 +8,7 @@ use laravel\pagseguro\Document\CNPJ\CNPJ;
  * Sender Document CNPJ Test
  * @author José Tobias de Freitas Neto <jtfnetoo@gmail.com>
  */
-class CNPJTest extends \PHPUnit_Framework_TestCase
+class CNPJTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testEmptyCNPJ()
