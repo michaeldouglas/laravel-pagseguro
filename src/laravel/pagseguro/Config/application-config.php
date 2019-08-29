@@ -67,5 +67,6 @@ return [
         'transactions-notifications' => '/v3/transactions/notifications',
         'transactions-history' => '/v2/transactions',
         'transactions-abandoned' => '/v2/transactions/abandoned',
+        'pre-approvals' => '/pre-approvals/request'
     ],
 ];

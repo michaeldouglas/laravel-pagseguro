@@ -18,6 +18,14 @@ class PagSeguro
     }
 
     /**
+     * @return Plan
+     */
+    public function plan()
+    {
+        return new Plan();
+    }
+
+    /**
      * @return Credentials
      */
     public function credentials()
