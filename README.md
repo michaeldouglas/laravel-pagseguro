@@ -282,6 +282,66 @@ Ou ....
 ],
 ```
 
+## Exemplo de callable em uma classe
+
+No arquivo de configuração você deverá deixar da seguinte maneira:
+
+```php
+'notification' => [
+  'callback' => ['App\Controllers\PagSeguroController', 'Notification'], // Callable callback to Notification function (notificationInfo) : void {}
+  'credential' => 'default', // Callable resolve credential function (notificationCode) : Credentials {}
+  'route-name' => 'pagseguro.notification', // Criar uma rota com este nome
+],
+```
+
+E na controller você deverá criar o método, por exemplo, Notification:
+
+```php
+public static function Notification($information)
+{
+    \Log::debug(print_r($information->getStatus()->getCode(), 1));
+}
+```
+
+## Criação de plano de pagamento recorrente
+
+A criação de plano de pagamento recorrente inicia com a criação do plano e para isso você deverá criar
+o seguinte array:
+
+Caso queira ver os objetos de requisição: https://dev.pagseguro.uol.com.br/v3.1/reference#api-pagamento-recorrente-criacao-do-plano
+
+```php
+$plan = [
+    'body' => [
+        'reference' => 'plano laravel pagseguro',
+    ],
+
+    'preApproval' => [
+        'name' => 'Plano ouro - mensal',
+        'charge' => 'AUTO', // outro valor pode ser MANUAL
+        'period' => 'MONTHLY', //WEEKLY, BIMONTHLY, TRIMONTHLY, SEMIANNUALLY, YEARLY
+        'amountPerPayment' => '125.00', // obrigatório para o charge AUTO - mais que 1.00, menos que 2000.00
+        'membershipFee' => '50.00', //opcional - cobrado com primeira parcela
+        'trialPeriodDuration' => 30, //opcional
+        'details' => 'Decrição do plano', //opcional
+    ]
+
+];
+```
+
+E então você deverá chamar o método de criação do plano:
+
+```php
+$plan = \PagSeguro::plan()->createFromArray($plan);
+$credentials = \PagSeguro::credentials()->get();
+$information = $plan->send($credentials); // Retorna um objeto de laravel\pagseguro\Checkout\Information\Information
+if ($information) {
+  print_r($information->getCode());
+  print_r($information->getDate());
+  print_r($information->getLink());
+}
+```
+
 ## Licença
 
 O Laravel PagSeguro utiliza a licença MIT, para saber mais leia no link: [MIT license](http://opensource.org/licenses/MIT)
