@@ -1,6 +1,6 @@
 ## Laravel PagSeguro - 1.0.6
 
-<p align="center"><img src="https://atitude-files.s3-sa-east-1.amazonaws.com/laravel_pagseguro.png" width="100"></p>
+<p align="center"><img src="https://atitude-files.s3-sa-east-1.amazonaws.com/laravel_pagseguro.png" width="200"></p>
 
 <p align="center">
 
