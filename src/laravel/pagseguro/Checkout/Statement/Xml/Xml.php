@@ -134,7 +134,7 @@ class Xml implements StatementInterface
     {
         $shipping = $this->checkout->getShipping();
         if (!$shipping) {
-            return null;
+            return '<shippingAddressRequired>false</shippingAddressRequired>';
         }
         $xmlItems = new XmlShipping($shipping);
         return $xmlItems->getXmlString();
