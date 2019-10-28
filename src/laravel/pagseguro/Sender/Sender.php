@@ -137,11 +137,15 @@ class Sender implements SenderInterface
 
     /**
      * Set Phone (Telefone)
-     * @param PhoneInterface|array $phone
+     * @param PhoneInterface|array|null $phone
      * @return AddressInterface
      */
     public function setPhone($phone)
     {
+        if ($phone === null) {
+            $phone = [];
+        }
+
         $this->phone = new Phone($phone);
         return $this;
     }
