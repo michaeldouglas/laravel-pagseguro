@@ -40,6 +40,19 @@ class SenderTest extends TestCase
         $this->assertInstanceOf($class, $sender->getPhone());
     }
 
+    public function testSenderWithoutPhonesKey()
+    {
+        $class = '\\laravel\\pagseguro\\Phone\\Phone';
+        $data = [
+            'email' => 'isaquesb@gmail.com',
+            'name' => 'Isaque de Souza',
+            'documents' => null,
+            'bornDate' => '1988-03-21',
+        ];
+        $sender = new Sender($data);
+        $this->assertInstanceOf($class, $sender->getPhone());
+    }
+
     public function testSenderWithoutDocuments()
     {
         $phone = new Phone([]);
