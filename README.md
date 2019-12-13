@@ -314,7 +314,7 @@ public static function Notification($information)
 A criação de plano de pagamento recorrente inicia com a criação do plano e para isso você deverá criar
 o seguinte array:
 
-Caso queira ver os objetos de requisição: https://dev.pagseguro.uol.com.br/v3.1/reference#api-pagamento-recorrente-criacao-do-plano
+Caso queira ver os objetos de requisição: https://dev.pagseguro.uol.com.br/v1.0/reference#criar-plano
 
 ```php
 $plan = [
@@ -330,6 +330,10 @@ $plan = [
         'membershipFee' => '50.00', //opcional - cobrado com primeira parcela
         'trialPeriodDuration' => 30, //opcional
         'details' => 'Decrição do plano', //opcional
+        'expiration' => [ // opcional
+            'value' => 1, // obrigatório de 1 a 1000000
+            'unit' => 'YEARLY', // obrigatório 
+        ],
     ]
 
 ];
