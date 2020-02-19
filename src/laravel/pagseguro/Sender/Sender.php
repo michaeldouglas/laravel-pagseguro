@@ -142,11 +142,12 @@ class Sender implements SenderInterface
      */
     public function setPhone($phone)
     {
-        if (!is_null($phone)) {
-            $this->phone = Phone::factory($phone);
-        } else {
-            $this->phone = null;
-        }
+        if ($phone === null) {
+    		$this->phone = null;
+    		return $this;
+    	}
+
+    	$this->phone = new Phone($phone);
         return $this;
     }
 
