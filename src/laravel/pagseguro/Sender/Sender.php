@@ -143,7 +143,8 @@ class Sender implements SenderInterface
     public function setPhone($phone)
     {
         if ($phone === null) {
-            $phone = [];
+            $this->phone = null;
+            return $this;
         }
 
         $this->phone = new Phone($phone);
