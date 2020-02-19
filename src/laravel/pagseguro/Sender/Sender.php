@@ -142,13 +142,13 @@ class Sender implements SenderInterface
      */
     public function setPhone($phone)
     {
-        if ($phone === null) {
+    	if ($phone === null) {
     		$this->phone = null;
     		return $this;
     	}
 
     	$this->phone = new Phone($phone);
-        return $this;
+    	return $this;
     }
 
     /**
