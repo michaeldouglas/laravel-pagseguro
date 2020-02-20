@@ -144,9 +144,9 @@ class Sender implements SenderInterface
     {
         if ($phone === null) {
             $phone = [];
+        } else {
+            $this->phone = new Phone($phone);
         }
-
-        $this->phone = new Phone($phone);
         return $this;
     }
 
