@@ -36,6 +36,7 @@ class PreApproval implements PreApprovalInterface
 
     protected $details;
 
+    protected $expiration;
 
     use DataHydratorTrait, ValidateTrait {
         ValidateTrait::getHidratableVars insteadof DataHydratorTrait;
@@ -139,6 +140,17 @@ class PreApproval implements PreApprovalInterface
     public function getDetails()
     {
         return $this->details;
+    }
+
+    public function setExpiration($expiration)
+    {
+        $this->expiration = $expiration;
+        return $this;
+    }
+
+    public function getExpiration()
+    {
+        return $this->expiration;
     }
 
     /**

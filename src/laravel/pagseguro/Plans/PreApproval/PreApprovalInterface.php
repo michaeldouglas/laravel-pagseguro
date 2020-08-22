@@ -59,6 +59,10 @@ interface PreApprovalInterface
 
     public function getDetails();
 
+    public function setExpiration($expiration);
+
+    public function getExpiration();
+
     /**
      * Proxies Data Hydrate
      * @param array $data
