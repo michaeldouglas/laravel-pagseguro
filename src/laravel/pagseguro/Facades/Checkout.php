@@ -18,7 +18,7 @@ class Checkout
      * @param array $data
      * @return CheckoutInterface
      */
-    public function createFromArray(array $data)
+    public function createFromArray(array $data, $referente = null)
     {
         $resolver = new Resolver();
         if (!array_key_exists('redirectURL', $data)) {
@@ -29,7 +29,7 @@ class Checkout
         }
         $createData = array_filter($data);
         $facade = new CheckoutFacade();
-        $checkout = $facade->createFromArray($createData);
+        $checkout = $facade->createFromArray($createData, $referente);
         return $checkout;
     }
 }
