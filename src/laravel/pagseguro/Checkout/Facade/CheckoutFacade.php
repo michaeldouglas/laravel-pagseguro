@@ -29,7 +29,7 @@ class CheckoutFacade
      * @param array $data
      * @return CheckoutInterface
      */
-    public function createFromArray(array $data, $referente = null)
+    public function createFromArray(array $data)
     {
         $isGamer = array_key_exists('game', $data);
         $isTravel = array_key_exists('travel', $data);
@@ -49,7 +49,7 @@ class CheckoutFacade
             unset($data['cellphone_charger']);
             return $this->createCellPhoneChargerCheckout($data, $info);
         }
-        return $this->createSimpleCheckout($data, $referente);
+        return $this->createSimpleCheckout($data);
     }
 
     /**
@@ -74,12 +74,11 @@ class CheckoutFacade
      * @param array
      * @return GamerCheckout
      */
-    public function createSimpleCheckout(array $data, $reference = null)
+    public function createSimpleCheckout(array $data)
     {
         $dataFacade = new DataFacade();
         $checkoutData = $dataFacade->ensureInstances($data);
         $checkout = new SimpleCheckout($checkoutData);
-        $checkout->setReference($reference);
         return $checkout;
     }
 
