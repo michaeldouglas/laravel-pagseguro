@@ -1,6 +1,6 @@
 <?php
 
-namespace laravel\pagseguro\Payment\Method\CrePixditCard;
+namespace laravel\pagseguro\Payment\Method\Pix;
 
 use laravel\pagseguro\Payment\Method\MethodAbstract;
 
