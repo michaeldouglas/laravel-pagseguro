@@ -21,6 +21,7 @@ interface MethodInterface
     const TYPE_PS_CREDIT = 4;
     const TYPE_OI_PAGGO = 5;
     const TYPE_DEPOSIT_ACCOUNT = 6;
+    const TYPE_PIX = 7;
 
     /**
      * Get Type Code
