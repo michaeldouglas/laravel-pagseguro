@@ -26,7 +26,8 @@ class MethodFactory extends MethodAbstract
         MethodInterface::TYPE_TRANSFER => '\laravel\pagseguro\Payment\Method\Transfer\Transfer',
         MethodInterface::TYPE_PS_CREDIT => '\laravel\pagseguro\Payment\Method\Extras\Extras',
         MethodInterface::TYPE_OI_PAGGO => '\laravel\pagseguro\Payment\Method\Extras\Extras',
-        MethodInterface::TYPE_DEPOSIT_ACCOUNT => '\laravel\pagseguro\Payment\Method\DepositAccount\DepositAccount'
+        MethodInterface::TYPE_DEPOSIT_ACCOUNT => '\laravel\pagseguro\Payment\Method\DepositAccount\DepositAccount',
+        MethodInterface::TYPE_PIX => '\laravel\pagseguro\Payment\Method\Pix\Pix'
     ];
 
     /**
