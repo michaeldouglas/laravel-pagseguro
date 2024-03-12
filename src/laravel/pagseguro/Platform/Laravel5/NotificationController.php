@@ -32,10 +32,7 @@ class NotificationController extends Controller
             $platform->abort();
             return;
         }
-        $credential = new PagSeguroCredentials(
-            \config('laravelpagseguro.credentials.token'),
-            \config('laravelpagseguro.credentials.email')
-        );
+        $credential = $this->getCredentialsTo($code);
         $notification = new Notification($code, $type);
         $info = $notification->check($credential);
         $this->notify($info);
@@ -74,7 +71,7 @@ class NotificationController extends Controller
             $callback = $config['credential'];
         }
         
-        if ($callback === 'default') {
+        if ($callback === 'default' || is_null($callback)) {
             return new PagSeguroCredentials(
                 \config('laravelpagseguro.credentials.token'),
                 \config('laravelpagseguro.credentials.email')
